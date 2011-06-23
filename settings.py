@@ -119,7 +119,12 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    
+    # Use south to handle database migrations
     'south',
+    
+    'users',
+    
 )
 
 # A sample logging configuration. The only tangible logging
