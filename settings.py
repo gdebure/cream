@@ -124,6 +124,8 @@ INSTALLED_APPS = (
     'south',
     
     'users',
+    'projects',
+    'services',
     
 )
 
