@@ -1,4 +1,4 @@
-from services.models import Domain
+from services.models import Domain, ServiceFamily
 from django.contrib import admin
 
 admin.site.register(Domain)

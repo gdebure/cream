@@ -16,6 +16,7 @@ class Domain (models.Model):
         
 class ServiceFamily (models.Model):
     
+    # Possible choices for Service Position
     SERVICE_POSITION_CHOICES = (
         ('L','Leader'),
         ('C','Challenger'),
@@ -23,6 +24,7 @@ class ServiceFamily (models.Model):
         ('N','Nicher'),
     )
     
+    # Possible choices for Service Lifecycle
     SERVICE_LIFECYCLE_CHOICES = (
         ('I','Introduction'),
         ('G','Growth'),
@@ -39,3 +41,6 @@ class ServiceFamily (models.Model):
     service_position = models.CharField(max_length=1,choices=SERVICE_POSITION_CHOICES)
     trend = models.IntegerField()
     service_lifecycle = models.CharField(max_length=1, choices=SERVICE_LIFECYCLE_CHOICES)
+    
+    def __unicode__(self):
+        return self.name
