@@ -44,3 +44,16 @@ class ServiceFamily (models.Model):
     
     def __unicode__(self):
         return self.name
+        
+        
+
+class Service (models.Model):
+    
+    name = models.CharField(max_length=128)
+    service_family = models.ForeignKey(ServiceFamily)
+    is_active = models.BooleanField()
+    owner = models.ForeignKey(User)
+    description = models.TextField(null=True)
+    
+    def __unicode__(self):
+        return self.name
