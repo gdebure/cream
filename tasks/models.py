@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import Employee
 from projects.models import Deliverable
+from subjects.models import Subject
 
 class RequestorType (models.Model):
     
@@ -31,8 +32,10 @@ class Task (models.Model):
     description = models.TextField()
     requestor = models.CharField(max_length=64)
     requestor_type = models.ForeignKey(RequestorType)
-    creator = models.ForeignKey(Employee)
+    creator = models.ForeignKey(Employee, related_name='creator')
     deliverable = models.ForeignKey(Deliverable)
+    subject = models.ManyToManyField(Subject)
+    
     
     # Answer information
     answer = models.TextField(null=True)
@@ -40,8 +43,18 @@ class Task (models.Model):
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
     reject_reason = models.CharField(max_length=64)
     time_spent = models.DecimalField(max_digits=5,decimal_places=2)
-    
+    owner = models.ManyToManyField(Employee, related_name='owner')
     
     def __unicode__(self):
         return str(self.id) + ":" + self.name
+        
+        
+        
+class Comment (models.Model):
+    
+    task = models.ForeignKey(Task)
+    date = models.DateField()
+    user = models.ForeignKey(Employee, related_name='comment_user')
+    description = models.TextField()
+    file = models.FileField(upload_to='comments')
     
