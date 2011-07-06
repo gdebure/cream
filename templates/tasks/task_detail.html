@@ -3,7 +3,7 @@
     <tr><th>name</th><td>{{ task.name}}</td></tr>
     <tr><th>project</th><td><a href="/projects/{{ task.deliverable.project.id }}">{{ task.deliverable.project }}</a></td></tr>
     <tr><th>open date</th><td>{{ task.open_date }}</td></tr>
-    <tr><th>criticity</th><td>{{ task.criticity }}</td></tr>
+    <tr><th>criticity</th><td>{{ task.get_criticity_display }}</td></tr>
     <tr><th>description</th><td>{{ task.description }}</td></tr>
     <tr><th>requestor</th><td>{{ task.requestor }}</td></tr>
     <tr><th>requestor type</th><td>{{ task.requestor_type }}</td></tr>
@@ -11,6 +11,9 @@
     <tr><th>deliverable</th><td>{{ task.deliverable }}</td></tr>
     <tr><th>answer</th><td>{{ task.answer }}</td></tr>
     <tr><th>close date</th><td>{{ task.close_date }}</td></tr>
-    <tr><th>status</th><td>{{ task.status }}</td></tr>
+    <tr><th>status</th><td>{{ task.get_status_display }}</td></tr>
     <tr><th>reject reason</th><td>{{ task.reject_reason }}</td></tr>
+    <tr><th>time spent</th><td>{{ task.time_spent }}</td></tr>
+    <tr><th>subjects</th><td>{{ task.subject }}</td></tr>
+    <tr><th>owners</th><td>{{ task.owner }}</td></tr>
 </table>
