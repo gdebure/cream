@@ -58,3 +58,6 @@ class Comment (models.Model):
     description = models.TextField()
     file = models.FileField(upload_to='comments')
     
+    def __unicode__(self):
+        return str(self.id)
+    
