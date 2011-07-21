@@ -8,7 +8,7 @@ class Project (models.Model):
     
     name = models.CharField(max_length=64)
     number = models.CharField(max_length=32, unique=True)
-    description = models.CharField(max_length=255, null=True)
+    description = models.TextField()
     date_start = models.DateField()
     date_end = models.DateField()
     customer_name = models.CharField(max_length=128, null=True)
