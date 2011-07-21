@@ -2,6 +2,7 @@
 from django.db import models
 
 from services.models import Service
+from users.models import Employee, Profile
 
 class Project (models.Model):
     '''A class to handle projects'''
@@ -18,6 +19,17 @@ class Project (models.Model):
     def __unicode__(self):
         return self.number + ": " + self.name
         
+
+class Authorization (models.Model):
+    employee = models.ForeignKey(Employee)
+    project = models.ForeignKey(Project)
+    profile = models.ForeignKey(Profile)
+    
+    class Meta:
+        unique_together = ("employee","project")
+        
+    def __unicode__(self):
+        return str(self.id)
 
 
 class Turnover (models.Model):

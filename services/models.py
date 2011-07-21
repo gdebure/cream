@@ -1,12 +1,12 @@
 from django.db import models
-from users.models import User
+from users.models import Employee
 
 
 class Domain (models.Model):
     
     name = models.CharField(max_length=64)
     is_active = models.BooleanField()
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(Employee)
     description = models.TextField(null=True)
 
     def __unicode__(self):
@@ -35,7 +35,7 @@ class ServiceFamily (models.Model):
     name = models.CharField(max_length=128)
     domain = models.ForeignKey(Domain)
     description = models.TextField(null=True)
-    focal_user = models.ForeignKey(User)
+    focal_user = models.ForeignKey(Employee)
     growth_potential = models.DecimalField(max_digits=2,decimal_places=0)
     is_active = models.BooleanField()
     service_position = models.CharField(max_length=1,choices=SERVICE_POSITION_CHOICES)
@@ -52,7 +52,7 @@ class Service (models.Model):
     name = models.CharField(max_length=128)
     service_family = models.ForeignKey(ServiceFamily)
     is_active = models.BooleanField()
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(Employee)
     description = models.TextField(null=True)
     
     def __unicode__(self):
