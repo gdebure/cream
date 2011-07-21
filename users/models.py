@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.contrib.auth.models import User
 from projects.models import Project
 
@@ -25,9 +26,12 @@ class Employee (models.Model):
     
     
 class Authorization (models.Model):
-    employee = models.ForeignKey(User)
+    employee = models.ForeignKey(Employee)
     project = models.ForeignKey(Project)
     profile = models.ForeignKey(Profile)
     
     class Meta:
         unique_together = ("employee","project")
+        
+    def __unicode__(self):
+        return str(self.id)
