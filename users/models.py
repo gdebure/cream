@@ -7,7 +7,7 @@ class Profile (models.Model):
     
     id = models.CharField(max_length=1,primary_key=True)
     name = models.CharField(max_length=32)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     
     def __unicode__(self):
         return self.name
