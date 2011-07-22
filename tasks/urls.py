@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
-from django.views.generic import DetailView, ListView, UpdateView
-from tasks.models import Task
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from tasks.models import Task, TaskForm
 
 urlpatterns = patterns('',
     (r'^$',
@@ -11,6 +11,16 @@ urlpatterns = patterns('',
     ),
     (r'^(?P<pk>\d+)/$',
         DetailView.as_view(
+            model=Task,
+        ),
+    ),
+    (r'^(?P<pk>\d+)/update/$',
+        UpdateView.as_view(
+            model=Task,
+        ),
+    ),
+    (r'^create/$',
+        CreateView.as_view(
             model=Task,
         ),
     ),

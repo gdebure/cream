@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 from django.contrib.auth.models import User
 
@@ -24,3 +25,6 @@ class Employee (models.Model):
         return self.user.last_name + " " + self.user.first_name
     
     
+class EmployeeForm(forms.ModelForm):
+    class Meta:
+        model = Employee

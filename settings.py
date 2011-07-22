@@ -126,6 +126,9 @@ INSTALLED_APPS = (
     # Use south to handle database migrations
     'south',
     
+    # Use richtemplates (http://packages.python.org/django-richtemplates/) for presentation
+    'richtemplates',
+    
     'users',
     'projects',
     'services',
@@ -160,3 +163,10 @@ LOGGING = {
 
 # Define additional information for users in the Employee model
 AUTH_PROFILE_MODULE = 'users.Employee'
+
+# Declare template processors for richtemplates
+TEMPLATE_CONTEXT_PROCESSORS = (
+     'django.core.context_processors.request',
+     'django.contrib.auth.context_processors.auth',
+     'richtemplates.context_processors.media',
+)
