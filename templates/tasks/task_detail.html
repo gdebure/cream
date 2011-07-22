@@ -3,7 +3,7 @@
 {% block title %}Task {{task.id}} details {% endblock %}
 
 {% block content %}
-<table>
+<table class="blue">
     <tr><th>id</th><td>{{ task.id }}</td></tr>
     <tr><th>name</th><td>{{ task.name}}</td></tr>
     <tr><th>project</th><td><a href="/projects/{{ task.deliverable.project.id }}">{{ task.deliverable.project }}</a></td></tr>
@@ -35,6 +35,6 @@
     </tr>
 </table>
 
-<a href="/admin/tasks/task/{{task.id}}">modify</a>
+<a href="update">modify</a>
 
 {% endblock %}

@@ -5,8 +5,9 @@
 {% block content %}
 
 {% if employees_list %}
-<table>
+<table class="blue">
     <tr>
+        <th/>
         <th>id</th>
         <th>name</th>
         <th>firstname</th>
@@ -26,6 +27,6 @@
 <p>No tasks found.</p>
 {% endif %}
 
-<a href="/admin/users/employee/add/">Add new employee</a>
+<a href="create">Add new employee</a>
 
 {% endblock %}

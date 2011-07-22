@@ -5,8 +5,9 @@
 {% block content %}
 
 {% if tasks_list %}
-<table>
+<table class="blue">
     <tr>
+        <th/>
         <th>id</th>
         <th>open date</th>
         <th>title</th>
@@ -30,6 +31,6 @@
 <p>No tasks found.</p>
 {% endif %}
 
-<a href="/admin/tasks/task/add/">Add new Task</a>
+<a href="create">Add new Task</a>
 
 {% endblock %}

@@ -3,12 +3,15 @@
 {% block title %}Employee {{employee}} details{% endblock %}
 
 {% block content %}
-<table>
+<table class="blue">
     <tr><th>id</th><td>{{ employee.user.username }}</td></tr>
     <tr><th>name</th><td>{{ employee.user.last_name }}</td></tr>
     <tr><th>first name</th><td>{{ employee.user.first_name }}</td></tr>
     <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
 </table>
 
-<a href="/admin/users/employee/{{ employee.user.id }}">modify</a>
+<a href="update">modify</a>
+
+<hr>
+
 {% endblock %}
