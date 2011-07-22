@@ -1,20 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Employees list{% endblock %}
+
+{% block content %}
+
 {% if employees_list %}
-    <table>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>firstname</th>
-            <th>siglum</th>
-        </tr>
-    {% for employee in employees_list %}
-        <tr>
-            <td><a href="/users/{{ employee.id }}/">{{ employee.user.username }}</a></td>
-            <td><a href="/users/{{ employee.id }}/">{{ employee.user.last_name }}</a></td>
-            <td>{{ employee.user.first_name }}</td>
-            <td>{{ employee.siglum }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>firstname</th>
+        <th>siglum</th>
+    </tr>
+{% for employee in employees_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{employee.id}}"/></td>
+        <td><a href="/employees/{{ employee.id }}/">{{ employee.user.username }}</a></td>
+        <td><a href="/employees/{{ employee.id }}/">{{ employee.user.last_name }}</a></td>
+        <td>{{ employee.user.first_name }}</td>
+        <td>{{ employee.siglum }}</td>
+    </tr>
+{% endfor %}
+</table>
 {% else %}
-    <p>No tasks found.</p>
+<p>No tasks found.</p>
 {% endif %}
+
+<a href="/admin/users/employee/add/">Add new employee</a>
+
+{% endblock %}

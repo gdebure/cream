@@ -1,24 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks list{% endblock %}
+
+{% block content %}
+
 {% if tasks_list %}
-    <table>
-        <tr>
-            <th>id</th>
-            <th>open date</th>
-            <th>title</th>
-            <th>project</th>
-            <th>deliverable</th>
-            <th>status</th>
-        </tr>
-    {% for task in tasks_list %}
-        <tr>
-            <td><a href="/tasks/{{ task.id }}/">{{ task.id }}</a></td>
-            <td>{{ task.open_date}}</td>
-            <td><a href="/tasks/{{ task.id }}/">{{ task.name }}</a></td>
-            <td>{{ task.deliverable.project }}</td>
-            <td>{{ task.deliverable }}</td>
-            <td>{{ task.get_status_display }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>open date</th>
+        <th>title</th>
+        <th>project</th>
+        <th>deliverable</th>
+        <th>status</th>
+    </tr>
+{% for task in tasks_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{task.id}}"/></td>
+        <td><a href="/tasks/{{ task.id }}/">{{ task.id }}</a></td>
+        <td>{{ task.open_date}}</td>
+        <td><a href="/tasks/{{ task.id }}/">{{ task.name }}</a></td>
+        <td>{{ task.deliverable.project }}</td>
+        <td>{{ task.deliverable }}</td>
+        <td>{{ task.get_status_display }}</td>
+    </tr>
+{% endfor %}
+</table>
 {% else %}
-    <p>No tasks found.</p>
+<p>No tasks found.</p>
 {% endif %}
+
+<a href="/admin/tasks/task/add/">Add new Task</a>
+
+{% endblock %}

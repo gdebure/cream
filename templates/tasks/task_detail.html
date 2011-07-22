@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Task {{task.id}} details {% endblock %}
+
+{% block content %}
 <table>
     <tr><th>id</th><td>{{ task.id }}</td></tr>
     <tr><th>name</th><td>{{ task.name}}</td></tr>
@@ -31,3 +36,5 @@
 </table>
 
 <a href="/admin/tasks/task/{{task.id}}">modify</a>
+
+{% endblock %}
