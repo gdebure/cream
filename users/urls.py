@@ -14,7 +14,7 @@ urlpatterns = patterns('',
             ),),
     (r'^(?P<pk>\d+)/update/$',
         UpdateView.as_view(
-            model=EmployeeForm,
+            model=Employee,
         ),
     ),
     (r'^create/$',
