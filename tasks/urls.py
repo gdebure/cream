@@ -18,13 +18,13 @@ urlpatterns = patterns('',
     (r'^(?P<pk>\d+)/update/$',
         UpdateView.as_view(
             model=Task,
-            success_url='/tasks/'
+            success_url='/tasks/%(id)s'
         ),
     ),
     (r'^create/$',
         CreateView.as_view(
             model=Task,
-            success_url='/tasks/'
+            success_url='/tasks/%(id)s'
         ),
     ),
 )
