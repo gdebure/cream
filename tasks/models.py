@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 
 from users.models import Employee
 from projects.models import Deliverable
@@ -50,11 +49,6 @@ class Task (models.Model):
     def __unicode__(self):
         return str(self.id) + ":" + self.name
         
-        
-        
-class TaskForm(forms.ModelForm):
-    class Meta:
-        model = Task
         
         
 class Comment (models.Model):

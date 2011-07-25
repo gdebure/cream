@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from tasks.models import Task, TaskForm
+from tasks.models import Task
+from tasks.forms import TaskForm
 
 urlpatterns = patterns('',
     (r'^$',
