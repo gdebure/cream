@@ -3,7 +3,8 @@
 {% block title %}Update Employee {{employee}} {% endblock %}
 
 {% block content %}
-<form>
+<form action="" method="POST">
+    {% csrf_token %}
     <table class="blue">
     {{ form }}
     </table>
