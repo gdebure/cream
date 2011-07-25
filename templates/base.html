@@ -5,9 +5,19 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css"/>
 </head>
 <body>
-    <div class="content">
-    <h1>{% block title %}{% endblock %}</h1>
-    {% block content %}{% endblock %}
+    
+    <div class="page_header">
+        {% include "header.html" %}
     </div>
+    
+    <div class="menu"/>
+        {% include "menu.html" %}
+    </div>
+    
+    <div class="content">
+        <h1>{% block title %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </div>
+    
 </body>
 </html>

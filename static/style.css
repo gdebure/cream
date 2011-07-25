@@ -35,6 +35,23 @@ table
 }
 
 
+/* Page Layout */
+div.page_header {
+    text-align:center;
+}
+
+div.menu {
+    float:left;
+    width:160px;
+}
+
+div.content {
+    float:left;
+}
+
+
+
+
 table.blue {
     empty-cells: show;
     border-collapse:collapse;
