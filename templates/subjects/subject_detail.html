@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Subject {{subject.id}} details {% endblock %}
+
+{% block content %}
+<table class="blue">
+    <tr><th>id</th><td>{{ subject.id }}</td></tr>
+    <tr><th>family</th><td><a href="/subject_families/{{subject.subject_family.id}}">{{ subject.subject_family }}</a></td></tr>
+    <tr><th>name</th><td>{{ subject.name}}</td></tr>
+    <tr><th>description</th><td>{{ subject.description }}</td></tr>
+    <tr><th>projects</th>
+        <td>
+        {% for project in subject.project.all %}
+            <a href="/projects/{{ project.id }}">{{ project }}</a></br>
+        {% endfor %}
+        </td>
+    
+</table>
+
+<a href="update">modify</a>
+
+{% endblock %}
