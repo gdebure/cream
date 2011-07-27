@@ -1,11 +1,17 @@
+body{
+    margin:0px;
+    padding:0px;
+}
 
 div, pre,td,th, input, select, textarea {
-    margin-left:0px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
+    margin:0px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
 img {
@@ -38,20 +44,38 @@ table
 /* Page Layout */
 div.page_header {
     text-align:center;
+    background-color: RGB(30,49,116);
+    font-size:14px;
+    color:white;
+    margin: 0px;
+    padding:5px;
+    clear:left;
 }
 
 div.menu {
     float:left;
     width:160px;
+    background-color: #d3dbed;
+    margin:10px;
+    padding:10px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #ccc;
 }
 
 div.content {
-    float:left;
+    padding-top:20px;
+    margin-left:200px;
+}
+
+div.footer {
+    text-align:center;
+    clear:left;
+    margin:10px;
 }
 
 
 
-
+/* Specific tables */
 table.blue {
     empty-cells: show;
     border-collapse:collapse;
@@ -63,6 +87,7 @@ table.blue td {
     padding-right:5px;
 }
 table.blue th {
+    text-transform:capitalize;
     font-weight: bold;
     border: 1px solid #94a9d4;
     background-color: #d3dbed;
@@ -70,6 +95,14 @@ table.blue th {
     padding-right:5px;
 }
 
+
+table.menu {
+    width:90%;
+    border:1px solid #94a9d4;
+}
+table.menu th {
+    background-color: #d3dbed;
+}
 
 
 
