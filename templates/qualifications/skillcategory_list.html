@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Skill Categories list{% endblock %}
+
+{% block content %}
+
+{% if skill_categories_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>name</th>
+    </tr>
+{% for skill_category in skill_categories_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{skill_category.id}}"/></td>
+        <td><a href="/qualifications/skill_categories/{{ skill_category.id }}/">{{ skill_category.name }}</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No skill categories found.</p>
+{% endif %}
+
+<a href="create">Add new skill category</a>
+
+{% endblock %}

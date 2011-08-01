@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Skill Category {{skillcategory}} details {% endblock %}
+
+{% block content %}
+<table class="blue">
+    <tr><th>name</th><td>{{ skillcategory.name}}</td></tr>
+    <tr><th>description</th><td>{{ skillcategory.description }}</td></tr>
+</table>
+
+<a href="update">modify</a>
+
+{% endblock %}

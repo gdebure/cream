@@ -4,9 +4,9 @@
 
 {% block content %}
 <table class="blue">
-    <tr><th>id</th><td>{{ skill.id }}</td></tr>
     <tr><th>name</th><td>{{ skill.name}}</td></tr>
     <tr><th>description</th><td>{{ skill.description }}</td></tr>
+    <tr><th>category</th><td><a href="/qualifications/skill_categories/{{skill.category.id}}">{{ skill.category }}</a></td></tr>
 </table>
 
 <a href="update">modify</a>
