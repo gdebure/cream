@@ -1,6 +1,8 @@
 <h1>Menu</h1>
 <div>
-    <a href="/tasks/">Tasks</a><br/>
-    <a href="/employees/">Employees</a><br/>
-    <a href="/subjects/">Subjects</a></br>
+    {% include "users/menu.html" %}
+    <hr>
+    {% include "tasks/menu.html" %}
+    <hr>
+    {% include "qualifications/menu.html" %}
 </div>
