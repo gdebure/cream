@@ -22,14 +22,14 @@
     <tr><th>subjects</th>
         <td>
         {% for subject in task.subject.all %}
-            <a href="/subjects/{{ subject.id }}">{{ subject }}</a></br>
+            <a href="/subjects/{{ subject.id }}">{{ subject }}</a><br/>
         {% endfor %}
         </td>
     </tr>
     <tr><th>owners</th>
         <td>
         {% for owner in task.owner.all %}
-            <a href="/employees/{{ owner.id }}">{{ owner }}</a></br>
+            <a href="/employees/{{ owner.id }}">{{ owner }}</a><br/>
         {% endfor %}
         </td>
     </tr>
