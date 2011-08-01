@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'services',
     'subjects',
     'tasks',
+    'qualifications',
     
 )
 

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Skill {{skill.id}} details {% endblock %}
+
+{% block content %}
+<table class="blue">
+    <tr><th>id</th><td>{{ skill.id }}</td></tr>
+    <tr><th>name</th><td>{{ skill.name}}</td></tr>
+    <tr><th>description</th><td>{{ skill.description }}</td></tr>
+</table>
+
+<a href="update">modify</a>
+
+{% endblock %}

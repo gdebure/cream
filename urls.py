@@ -18,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^tasks/',include('tasks.urls')),
     url(r'^employees/',include('users.urls')),
     url(r'^subjects/',include('subjects.urls')),
+    url(r'^qualifications/',include('qualifications.urls')),
 )
