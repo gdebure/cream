@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Jobs list{% endblock %}
+
+{% block content %}
+
+{% if jobs_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>name</th>
+    </tr>
+{% for job in jobs_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{job.id}}"/></td>
+        <td><a href="/qualifications/jobs/{{ job.id }}/">{{ job.name }}</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No jobs found.</p>
+{% endif %}
+
+<a href="create">Add new job</a>
+
+{% endblock %}

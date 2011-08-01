@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Skill details {% endblock %}
+
+{% block content %}
+<table class="blue">
+    <tr><th>employee</th><td>{{ employeeskill.employee}}</td></tr>
+    <tr><th>skill</th><td>{{ employeeskill.skill }}</td></tr>
+    <tr><th>level</th><td>{{ employeeskill.level }}</td></tr>
+</table>
+
+<a href="update">modify</a>
+
+{% endblock %}
