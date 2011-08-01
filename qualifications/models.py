@@ -38,7 +38,6 @@ class Job (models.Model):
     
     name = models.CharField(max_length=64)
     description = models.TextField()
-    skill = models.ManyToManyField(Skill)
     
     def __unicode__(self):
         return self.name
@@ -56,3 +55,19 @@ class EmployeeSkill(models.Model):
     
     def __unicode__(self):
         return self.employee.name + " : " + self.skill.name + " : " + str(self.level)
+        
+        
+
+
+
+class JobSkill(models.Model):
+    
+    job = models.ForeignKey(Job)
+    skill = models.ForeignKey(Skill)
+    level = models.IntegerField()
+    
+    class Meta:
+        unique_together = ("job","skill")
+        
+    def __unicode__(self):
+        return self.job.name + " : " + self.skill.name + " : " + str(self.level)

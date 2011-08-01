@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill
+from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobSkill
 from qualifications.forms import SkillForm
 
 urlpatterns = patterns('',
@@ -36,5 +36,12 @@ urlpatterns = patterns('',
     (r'^employee_skills/create/$', CreateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' ), ),
     ##################################
     
+    ##################################
+    # job Skills 
+    (r'^job_skills/$', ListView.as_view( queryset=JobSkill.objects.order_by('job','skill'), context_object_name='jobskills_list', ), ),
+    (r'^job_skills/(?P<pk>\d+)/$', DetailView.as_view( model=JobSkill, ), ),
+    (r'^job_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    (r'^job_skills/create/$', CreateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    ##################################
     
 )
