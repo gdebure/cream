@@ -6,14 +6,6 @@
 <table class="blue">
     <tr><th>name</th><td>{{ job.name}}</td></tr>
     <tr><th>description</th><td>{{ job.description }}</td></tr>
-    <tr>
-        <th>skills</th>
-        <td>
-        {% for skill in job.skill.all %}
-            <a href="/qualifications/skills/{{skill.id}}">{{skill}}</a><br/>
-        {% endfor %}
-        </td>
-    </tr>
 </table>
 
 <a href="update">modify</a>
