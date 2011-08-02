@@ -9,10 +9,25 @@ div, pre,td,th, input, select, textarea {
     font-size: 11px;
 }
 
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+
+
+/* Titles */
+h1,h2 {
+    color: RGB(30,49,116);
+    margin: 0px;
+    margin-bottom: 10px;
 }
+
+h1 {
+    font-size: 16px;
+}
+    
+
+h2 {
+    font-size: 12px;
+}
+/* ---------------- */
+
 
 img {
     border:0px;
@@ -60,11 +75,26 @@ div.menu {
     padding:10px;
     border-radius: 10px;
     box-shadow: 0 0 3px #ccc;
+    
+    /* Fix for IE6 and IE8 */
+    behavior: url(/static/PIE.htc); 
 }
 
 div.content {
     padding-top:20px;
     margin-left:200px;
+    margin-right: 10px;
+}
+
+div.block {
+    border-radius: 10px;
+    border: 2px solid #d3dbed;
+    padding: 5px;
+    padding-bottom:10px;
+    margin-top: 10px;
+    
+    /* Fix for IE6 and IE8 */
+    behavior: url(/static/PIE.htc); 
 }
 
 div.footer {
