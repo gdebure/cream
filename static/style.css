@@ -29,6 +29,10 @@ h2 {
 /* ---------------- */
 
 
+.warning {
+    color: red;
+}
+
 img {
     border:0px;
     margin:0px;
@@ -135,16 +139,16 @@ table.menu th {
 }
 
 
-
 /* Error Management in forms*/
 ul.errorlist {
     margin: 0;
     padding: 0;
 }
 .errorlist li {
-    background-color: red;
-    color: white;
+    color: red;
     display: block;
     margin: 0 0 3px;
     padding: 4px 5px;
 }
+
+
