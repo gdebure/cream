@@ -3,12 +3,10 @@
 {% block title %}Job Skill details {% endblock %}
 
 {% block content %}
-<table class="blue">
-    <tr><th>job</th><td>{{ jobskill.job}}</td></tr>
-    <tr><th>skill</th><td>{{ jobskill.skill }}</td></tr>
-    <tr><th>level</th><td>{{ jobskill.level }}</td></tr>
-</table>
 
-<a href="update">modify</a>
+{% include "qualifications/jobskill_property.html" %}
+
+{% include "common/object_actions.html" %}
+
 
 {% endblock %}

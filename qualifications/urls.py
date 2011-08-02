@@ -17,32 +17,36 @@ urlpatterns = patterns('',
     # Skill Categories 
     (r'^skill_categories/$', ListView.as_view( queryset=SkillCategory.objects.order_by('name'), context_object_name='skill_categories_list', ), ),
     (r'^skill_categories/(?P<pk>\d+)/$', DetailView.as_view( model=SkillCategory, ), ),
-    (r'^skill_categories/(?P<pk>\d+)/update/$', UpdateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' ), ),
     (r'^skill_categories/create/$', CreateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' ), ),
+    (r'^skill_categories/(?P<pk>\d+)/update/$', UpdateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' ), ),
+    (r'^skill_categories/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/' ), ),
     ##################################
     
     ##################################
     # Jobs
     (r'^jobs/$', ListView.as_view( queryset=Job.objects.order_by('name'), context_object_name='jobs_list', ), ),
     (r'^jobs/(?P<pk>\d+)/$', DetailView.as_view( model=Job, ), ),
-    (r'^jobs/(?P<pk>\d+)/update/$', UpdateView.as_view( model=Job, success_url='/qualifications/jobs/%(id)s' ), ),
     (r'^jobs/create/$', CreateView.as_view( model=Job, success_url='/qualifications/jobs/%(id)s' ), ),
+    (r'^jobs/(?P<pk>\d+)/update/$', UpdateView.as_view( model=Job, success_url='/qualifications/jobs/%(id)s' ), ),
+    (r'^jobs/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=Job, success_url='/qualifications/jobs/' ), ),
     ##################################
     
     ##################################
     # Employee Skills 
     (r'^employee_skills/$', ListView.as_view( queryset=EmployeeSkill.objects.order_by('employee','skill'), context_object_name='employeeskills_list', ), ),
     (r'^employee_skills/(?P<pk>\d+)/$', DetailView.as_view( model=EmployeeSkill, ), ),
-    (r'^employee_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' ), ),
     (r'^employee_skills/create/$', CreateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' ), ),
+    (r'^employee_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' ), ),
+    (r'^employee_skills/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/' ), ),
     ##################################
     
     ##################################
     # job Skills 
     (r'^job_skills/$', ListView.as_view( queryset=JobSkill.objects.order_by('job','skill'), context_object_name='jobskills_list', ), ),
     (r'^job_skills/(?P<pk>\d+)/$', DetailView.as_view( model=JobSkill, ), ),
-    (r'^job_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
     (r'^job_skills/create/$', CreateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    (r'^job_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    (r'^job_skills/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=JobSkill, success_url='/qualifications/job_skills/' ), ),
     ##################################
     
 )

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}<span class="warning">Do you really want to delete Skill Category {{skillcategory}} ?</span>{% endblock %}
+
+{% block content %}
+{% include "qualifications/skillcategory_property.html" %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit"/>
+</form>
+{% endblock %}

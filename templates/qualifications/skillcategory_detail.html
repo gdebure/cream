@@ -3,12 +3,10 @@
 {% block title %}Skill Category {{skillcategory}} details {% endblock %}
 
 {% block content %}
-<table class="blue">
-    <tr><th>name</th><td>{{ skillcategory.name}}</td></tr>
-    <tr><th>description</th><td>{{ skillcategory.description }}</td></tr>
-</table>
 
-<a href="update">modify</a>
+{% include "qualifications/skillcategory_property.html" %}
+
+{% include "common/object_actions.html" %}
 
 <div class="block">
 <h2>Skills in this Category</h2>
