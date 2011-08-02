@@ -11,15 +11,17 @@
 
 <a href="update">modify</a>
 
-<hr>
 
+<div class="block">
 <h2>Employees with this Skill</h2>
 {% include "qualifications/employeeskill_table.html" with employeeskills_list=skill.get_employees %}
+</div>
 
-<hr>
 
+<div class="block">
 <h2>Jobs requiring this Skill</h2>
 {% include "qualifications/jobskill_table.html" with jobskills_list=skill.get_jobs %}
+</div>
 
 
 {% endblock %}
