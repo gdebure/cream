@@ -4,12 +4,14 @@
         <th/>
         <th>category</th>
         <th>name</th>
+        <th>enabled</th>
     </tr>
 {% for skill in skills_list %}
     <tr>
         <td><input type="checkbox" name="id_{{skill.id}}"/></td>
         <td><a href="/qualifications/skill_categories/{{skill.category.id}}">{{skill.category}}</a></td>
         <td><a href="/qualifications/skills/{{ skill.id }}/">{{ skill.name }}</a></td>
+        <td>{{ skill.enabled }}</td>
     </tr>
 {% endfor %}
 </table>

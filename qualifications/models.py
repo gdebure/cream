@@ -13,7 +13,7 @@ class SkillCategory (models.Model):
     
     name = models.CharField(max_length=64)
     description = models.TextField()
-   
+    
     class Meta:
         '''Default order is on name'''
         ordering = ['name']
@@ -38,6 +38,7 @@ class Skill (models.Model):
     - Jobs through the JobSkill object'''
     
     name = models.CharField(max_length=64)
+    enabled = models.BooleanField(default=True)
     description = models.TextField()
     category = models.ForeignKey(SkillCategory)
     
