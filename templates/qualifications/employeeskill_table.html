@@ -11,7 +11,7 @@
 {% for employeeskill in employeeskills_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ employeeskill.id }}"/></td>
-        <td><a href="/users/{{employeeskill.employee.id}}">{{ employeeskill.employee }}</a></td>
+        <td><a href="/employees/{{employeeskill.employee.id}}">{{ employeeskill.employee }}</a></td>
         <td><a href="/qualifications/skills/{{ employeeskill.skill.id }}/">{{ employeeskill.skill }}</a></td>
         <td><a href="/qualifications/employee_skills/{{ employeeskill.id }}">{{ employeeskill.level }}</a></td>
     </tr>
@@ -20,7 +20,5 @@
 {% else %}
 <p>No employee skills found.</p>
 {% endif %}
-
-<a href="create">Add new skill</a>
 
 {% endblock %}

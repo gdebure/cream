@@ -108,6 +108,8 @@ class EmployeeSkill(models.Model):
 
 
 class JobSkill(models.Model):
+    ''''Defines the Skills levels required for a Job. The level should be between 
+    1 (basic knowledge) and 5 (intergalactic guru).'''
     
     job = models.ForeignKey(Job)
     skill = models.ForeignKey(Skill)
