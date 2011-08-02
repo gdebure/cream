@@ -4,26 +4,7 @@
 
 {% block content %}
 
-{% if jobskills_list %}
-<table class="blue">
-    <tr>
-        <th/>
-        <th>job</th>
-        <th>skill</th>
-        <th>level</th>
-    </tr>
-{% for jobskill in jobskills_list %}
-    <tr>
-        <td><input type="checkbox" name="id_{{ jobskill.id }}"/></td>
-        <td><a href="/qualifications/jobs/{{jobskill.job.id}}">{{ jobskill.job }}</a></td>
-        <td><a href="/qualifications/skills/{{ jobskill.skill.id }}/">{{ jobskill.skill }}</a></td>
-        <td><a href="/qualifications/job_skills/{{ jobskill.id }}">{{ jobskill.level }}</a></td>
-    </tr>
-{% endfor %}
-</table>
-{% else %}
-<p>No job skills found.</p>
-{% endif %}
+{% include "qualifications/jobskill_table.html" %}
 
 <a href="create">Add new skill</a>
 

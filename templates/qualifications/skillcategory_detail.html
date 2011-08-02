@@ -10,4 +10,9 @@
 
 <a href="update">modify</a>
 
+<hr/>
+
+<h2>Skills in this Category</h2>
+{% include "qualifications/skill_table.html" with skills_list=skillcategory.get_skills %}
+
 {% endblock %}

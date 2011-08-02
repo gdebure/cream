@@ -10,4 +10,10 @@
 
 <a href="update">modify</a>
 
+<hr/>
+
+<h2>Required Skills</h2>
+{% include "qualifications/jobskill_table.html" with jobskills_list=job.get_skills %}
+<a href="/qualifications/job_skills/create">Add Skill</a>
+
 {% endblock %}

@@ -13,6 +13,9 @@ class SkillCategory (models.Model):
    
     def __unicode__(self):
         return self.name
+        
+    def get_skills(self):
+        return self.skill_set.all()
 
 
 
@@ -41,9 +44,12 @@ class Job (models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def get_skills(self):
+        return self.jobskill_set.all()
         
-        
-
+            
+   
 
 class EmployeeSkill(models.Model):
     employee = models.ForeignKey(Employee)
@@ -71,3 +77,4 @@ class JobSkill(models.Model):
         
     def __unicode__(self):
         return self.job.name + " : " + self.skill.name + " : " + str(self.level)
+       
