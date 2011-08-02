@@ -10,8 +10,11 @@
     <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
 </table>
 
-<a href="update">modify</a>
+{% include "common/object_actions.html" %}
 
-<hr>
+<div class="block">
+<h2>Skills for this Employee</h2>
+{% include "qualifications/skill_table.html" with skills_list=employee.employeeskill_set.all %}
+</div>
 
 {% endblock %}
