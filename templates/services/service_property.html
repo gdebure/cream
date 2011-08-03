@@ -1,0 +1,7 @@
+<table class="blue">
+    <tr><th>name</th><td>{{ service.name}}</td></tr>
+    <tr><th>service family</th><td><a href="/services/service_families/{{ service.service_family.id}}">{{ service.service_family}}</a></td></tr>
+    <tr><th>is active</th><td>{{ service.is_active }}</td></tr>
+    <tr><th>owner</th><td><a href="/employees/{{ service.owner.id }}">{{ service.owner }}</a></td></tr>
+    <tr><th>description</th><td>{{ service.description }}</td></tr>
+</table>

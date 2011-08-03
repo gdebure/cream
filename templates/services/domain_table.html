@@ -1,0 +1,20 @@
+{% if domains_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>name</th>
+        <th>owner</th>
+        <th>active</th>
+    </tr>
+{% for domain in domains_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{ domain.id }}"/></td>
+        <td><a href="/services/domains/{{domain.id}}">{{ domain }}</a></td>
+        <td><a href="/employees/{{ domain.owner.id }}/">{{ domain.owner }}</a></td>
+        <td>{{ domain.is_active }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No domains found.</p>
+{% endif %}

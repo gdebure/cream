@@ -12,6 +12,9 @@ class Domain (models.Model):
     def __unicode__(self):
         return self.name
         
+    def get_service_families(self):
+        return self.servicefamily_set.all()
+        
 
         
 class ServiceFamily (models.Model):
@@ -44,6 +47,9 @@ class ServiceFamily (models.Model):
     
     def __unicode__(self):
         return self.name
+        
+    def get_services(self):
+        return self.service_set.all()
         
         
 
