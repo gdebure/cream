@@ -9,8 +9,8 @@
 {% for domain in domains_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ domain.id }}"/></td>
-        <td><a href="/services/domains/{{domain.id}}">{{ domain }}</a></td>
-        <td><a href="/employees/{{ domain.owner.id }}/">{{ domain.owner }}</a></td>
+        <td><a href="{{domain.get_absolute_url}}">{{ domain }}</a></td>
+        <td><a href="{{domain.owner.get_absolute_url}}">{{ domain.owner }}</a></td>
         <td>{{ domain.is_active }}</td>
     </tr>
 {% endfor %}

@@ -1,8 +1,8 @@
 <table class="blue">
     <tr><th>name</th><td>{{ servicefamily.name}}</td></tr>
-    <tr><th>domain</th><td><a href="/services/domains/{{ servicefamily.domain.id}}">{{ servicefamily.domain.name}}</a></td></tr>
+    <tr><th>domain</th><td><a href="{{ servicefamily.domain.get_absolute_url}}">{{ servicefamily.domain.name}}</a></td></tr>
     <tr><th>description</th><td>{{ servicefamily.description }}</td></tr>
-    <tr><th>focal point</th><td><a href="/employees/{{servicefamily.focal_user.id}}">{{ servicefamily.focal_user }}</a></td></tr>
+    <tr><th>focal point</th><td><a href="{{servicefamily.focal_user.get_absolute_url}}">{{ servicefamily.focal_user }}</a></td></tr>
     <tr><th>growth potential (%)</th><td>{{ servicefamily.growth_potential }}</td>
     <tr><th>is active</th><td>{{ servicefamily.is_active }}</td></tr>
     <tr><th>service position</th><td>{{ servicefamily.get_service_position_display }}</td></tr>

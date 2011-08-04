@@ -2,5 +2,5 @@
     <tr><th>name</th><td>{{ domain.name}}</td></tr>
     <tr><th>enabled</th><td>{{ domain.enabled }}</td></tr>
     <tr><th>description</th><td>{{ domain.description }}</td></tr>
-    <tr><th>owner</th><td><a href="/employees/{{domain.owner.id}}">{{ domain.owner }}</a></td></tr>
+    <tr><th>owner</th><td><a href="{{domain.owner.get_absolute_url}}">{{ domain.owner }}</a></td></tr>
 </table>
