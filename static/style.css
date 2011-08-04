@@ -68,6 +68,7 @@ div.page_header {
     color:white;
     margin: 0px;
     padding:5px;
+    height:30px;
     clear:left;
 }
 
@@ -100,6 +101,25 @@ div.block, div.login {
     /* Fix for IE6 and IE8 */
     behavior: url(/static/PIE.htc); 
 }
+
+/* User box */
+.userbox {
+    position:absolute;
+    right:5px;
+    font-size: 11px;
+    text-align:right;
+}
+
+.userbox a {
+    color: white;
+    font-size: 11px;
+    font-weight:normal;
+}
+
+.userbox a:hover {
+    font-weight:bold;
+}
+/* --------------- */
 
 div.login {
     margin-left: 50px;

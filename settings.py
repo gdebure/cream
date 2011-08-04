@@ -174,3 +174,4 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 LOGIN_URL="/users/login/"
+LOGIN_REDIRECT_URL="/users/employees"
