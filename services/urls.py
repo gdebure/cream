@@ -16,20 +16,20 @@ urlpatterns = patterns('',
     
     ##################################
     # Service Families 
-    (r'^service_families/$', ListView.as_view( queryset=ServiceFamily.objects.order_by('name'), context_object_name='servicefamilies_list', ), ),
-    (r'^service_families/(?P<pk>\d+)/$', DetailView.as_view( model=ServiceFamily, ), ),
-    (r'^service_families/create/$', CreateView.as_view( model=ServiceFamily, success_url='/services/service_families/%(id)s' ), ),
-    (r'^service_families/(?P<pk>\d+)/update/$', UpdateView.as_view( model=ServiceFamily, success_url='/services/service_families/%(id)s' ), ),
-    (r'^service_families/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=ServiceFamily, success_url='/services/service_families/' ), ),
+    (r'^service_families/$', login_required()(ListView.as_view( queryset=ServiceFamily.objects.order_by('name'), context_object_name='servicefamilies_list', )), ),
+    (r'^service_families/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=ServiceFamily, )), ),
+    (r'^service_families/create/$', permission_required('services.add_service_family')(CreateView.as_view( model=ServiceFamily, success_url='/services/service_families/%(id)s' )), ),
+    (r'^service_families/(?P<pk>\d+)/update/$', permission_required('services.change_service_family')(UpdateView.as_view( model=ServiceFamily, success_url='/services/service_families/%(id)s' )), ),
+    (r'^service_families/(?P<pk>\d+)/delete/$', permission_required('services.delete_service_family')(DeleteView.as_view( model=ServiceFamily, success_url='/services/service_families/' )), ),
     ##################################
     
     ##################################
     # Services
-    (r'^services/$', ListView.as_view( queryset=Service.objects.order_by('name'), context_object_name='services_list', ), ),
-    (r'^services/(?P<pk>\d+)/$', DetailView.as_view( model=Service, ), ),
-    (r'^services/create/$', CreateView.as_view( model=Service, success_url='/services/services/%(id)s' ), ),
-    (r'^services/(?P<pk>\d+)/update/$', UpdateView.as_view( model=Service, success_url='/services/services/%(id)s' ), ),
-    (r'^services/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=Service, success_url='/services/services/' ), ),
+    (r'^services/$', login_required()(ListView.as_view( queryset=Service.objects.order_by('name'), context_object_name='services_list', )), ),
+    (r'^services/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Service, )), ),
+    (r'^services/create/$', permission_required('services.add_service')(CreateView.as_view( model=Service, success_url='/services/services/%(id)s' )), ),
+    (r'^services/(?P<pk>\d+)/update/$', permission_required('services.change_service')(UpdateView.as_view( model=Service, success_url='/services/services/%(id)s' )), ),
+    (r'^services/(?P<pk>\d+)/delete/$', permission_required('services.delete_service')(DeleteView.as_view( model=Service, success_url='/services/services/' )), ),
     ##################################
     
 )
