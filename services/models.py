@@ -2,8 +2,9 @@ from django.db import models
 from users.models import Employee
 
 
+
 class Domain (models.Model):
-    
+    '''A class to handle the domain for services'''
     name = models.CharField(max_length=64)
     is_active = models.BooleanField()
     owner = models.ForeignKey(Employee)
