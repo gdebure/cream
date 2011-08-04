@@ -1,25 +1,8 @@
 from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
-from users.models import Employee, EmployeeForm
+from users.models import Employee
 
 urlpatterns = patterns('',
-    (r'^$',
-        ListView.as_view(
-            queryset=Employee.objects.order_by('-id'),
-            context_object_name='employees_list',
-            ),),
-    (r'^(?P<pk>\d+)/$',
-        DetailView.as_view(
-            model=Employee,
-            ),),
-    (r'^(?P<pk>\d+)/update/$',
-        UpdateView.as_view(
-            model=Employee,
-        ),
-    ),
-    (r'^create/$',
-        CreateView.as_view(
-            model=Employee,
-        ),
-    ),
+    (r'^employees/$', ListView.as_view( queryset=Employee.objects.order_by('id'), context_object_name='employees_list', ),),
+    (r'^employees/(?P<pk>\d+)/$', DetailView.as_view( model=Employee, ),),
 )

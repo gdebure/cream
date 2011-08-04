@@ -8,9 +8,8 @@
     <tr><th>name</th><td>{{ employee.user.last_name }}</td></tr>
     <tr><th>first name</th><td>{{ employee.user.first_name }}</td></tr>
     <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
+    <tr><th>email</th><td><a href="mailto:{{employee.user.email}}">{{employee.user.email}}</td></tr>
 </table>
-
-{% include "common/object_actions.html" %}
 
 <div class="block">
 <h2>Skills for this Employee</h2>

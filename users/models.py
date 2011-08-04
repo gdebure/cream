@@ -23,11 +23,11 @@ class Employee (models.Model):
     
     def __unicode__(self):
         return self.user.last_name + " " + self.user.first_name
-        
+
+    def get_absolute_url(self):
+        return "/users/employees/" + str(self.id)
+
     def get_skills(self):
         return self.employeeskill_set.all()
     
     
-class EmployeeForm(forms.ModelForm):
-    class Meta:
-        model = Employee
