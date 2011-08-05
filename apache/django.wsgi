@@ -1,7 +1,7 @@
 import os
 import sys
 
-path = 'E:/Devel/'
+path = 'E:/Devel/cream'
 if path not in sys.path:
     sys.path.append(path)
 
