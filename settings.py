@@ -127,9 +127,7 @@ INSTALLED_APPS = (
     # Use south to handle database migrations
     'south',
     
-    # Use richtemplates (http://packages.python.org/django-richtemplates/) for presentation
-    'richtemplates',
-    
+       
     'users',
     'projects',
     'services',
