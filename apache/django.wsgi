@@ -1,9 +1,8 @@
 import os
 import sys
 
-path = 'E:/Devel/cream'
-if path not in sys.path:
-    sys.path.append(path)
+sys.path.append('E:/Devel')
+sys.path.append('E:/Devel/cream')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'cream.settings'
 
