@@ -6,7 +6,7 @@
         <th>skill</th>
         <th>level</th>
     </tr>
-{% for jobskill in jobskills_list %}
+{% for jobskill in jobprofileskills_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ jobskill.id }}"/></td>
         <td><a href="/qualifications/jobs/{{jobskill.job.id}}">{{ jobskill.job }}</a></td>

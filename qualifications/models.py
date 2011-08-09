@@ -78,21 +78,36 @@ class Job (models.Model):
         '''Returns the name when printing object'''
         return self.name
     
-    def get_skills(self):
+    def get_profile_skills(self):
         '''Returns the list of skills required for this job. This method
         is just for convenience'''
-        return self.jobskill_set.all()
+        return self.jobprofileskill_set.all()
         
+            
+            
+            
+class Profile (models.Model):
+    '''A profile can is attached to a job to define the qualification levels for this job'''
+    
+    name = models.CharField(max_length=64)
+    description = models.TextField()
+    
+    def __unicode__(self):
+        return self.name
+        
+    def get_absolute_url(self):
+        return "/qualifications/profile/" + self.id
+            
             
    
 
 class EmployeeSkill(models.Model):
     '''Defines the Skills levels for an employee. The level should be between 
-    1 (basic knowledge) and 5 (intergalactic guru).'''    
+    1 (basic knowledge) and 4 (intergalactic guru).'''    
     
     employee = models.ForeignKey(Employee)
     skill = models.ForeignKey(Skill)
-    level = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+    level = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(4)])
     
     class Meta:
         #Make sure that there is unicity for an employee and a skill
@@ -108,21 +123,22 @@ class EmployeeSkill(models.Model):
 
 
 
-class JobSkill(models.Model):
+class JobProfileSkill(models.Model):
     ''''Defines the Skills levels required for a Job. The level should be between 
     1 (basic knowledge) and 5 (intergalactic guru).'''
     
     job = models.ForeignKey(Job)
+    profile = models.ForeignKey(Profile)
     skill = models.ForeignKey(Skill)
     level = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     
     class Meta:
         #Make sure that there is unicity for a job and a skill
-        unique_together = ("job", "skill")
+        unique_together = ("job", "profile", "skill")
         # Default order is employee, then leve (desc), then skill
-        ordering = ['job','-level','skill']
+        ordering = ['job', 'profile', '-level','skill']
         
     def __unicode__(self):
         '''Returns the job, skill and level when printing object'''
-        return self.job.name + " : " + self.skill.name + " : " + str(self.level)
+        return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
        
