@@ -3,6 +3,7 @@
 {% block title %}Update Domain {{domain}} {% endblock %}
 
 {% block content %}
+
 <form action="" method="POST">
     {% csrf_token %}
     <table class="blue">
@@ -10,4 +11,6 @@
     </table>
     <input type="submit"/>
 </form>
+
 {% endblock %}
+
