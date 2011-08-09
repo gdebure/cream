@@ -1,10 +1,11 @@
 from django.views.generic import UpdateView
-from guardian.decorators import permission_required_or_403
+from guardian.decorators import permission_required
+from django.utils.decorators import method_decorator
 
 from services.models import Domain
 
 class DomainUpdateView(UpdateView):
 
-    @permission_required_or_403('services.change_domain',(Domain, 'owner', 'user'))
+    @method_decorator(permission_required('services.change_domain',(Domain, 'id', 'pk')))
     def dispatch(self, *args, **kwargs):
         return super(DomainUpdateView, self).dispatch(*args, **kwargs)
