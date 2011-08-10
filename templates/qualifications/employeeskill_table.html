@@ -11,9 +11,9 @@
 {% for employeeskill in employeeskills_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ employeeskill.id }}"/></td>
-        <td><a href="/employees/{{employeeskill.employee.id}}">{{ employeeskill.employee }}</a></td>
-        <td><a href="/qualifications/skills/{{ employeeskill.skill.id }}/">{{ employeeskill.skill }}</a></td>
-        <td><a href="/qualifications/employee_skills/{{ employeeskill.id }}">{{ employeeskill.level }}</a></td>
+        <td><a href="{{ employeeskill.employee.get_absolute_ur l}}">{{ employeeskill.employee }}</a></td>
+        <td><a href="{{ employeeskill.skill.get_absolute_url }}/">{{ employeeskill.skill }}</a></td>
+        <td><a href="{{ employeeskill.get_absolute_url }}">{{ employeeskill.level }}</a></td>
     </tr>
 {% endfor %}
 </table>
