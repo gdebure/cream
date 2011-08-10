@@ -1,17 +1,19 @@
-{% if jobskills_list %}
+{% if jobprofileskills_list %}
 <table class="blue">
     <tr>
         <th/>
         <th>job</th>
+        <th>profile</th>
         <th>skill</th>
         <th>level</th>
     </tr>
 {% for jobskill in jobprofileskills_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ jobskill.id }}"/></td>
-        <td><a href="/qualifications/jobs/{{jobskill.job.id}}">{{ jobskill.job }}</a></td>
-        <td><a href="/qualifications/skills/{{ jobskill.skill.id }}/">{{ jobskill.skill }}</a></td>
-        <td><a href="/qualifications/job_skills/{{ jobskill.id }}">{{ jobskill.level }}</a></td>
+        <td><a href="{{ jobskill.job.get_absolute_url }}">{{ jobskill.job }}</a></td>
+        <td><a href="{{jobskill.profile.get_absolute_url }}">{{ jobskill.profile }}</a></td>
+        <td><a href="{{ jobskill.skill.get_absolute_url }}/">{{ jobskill.skill }}</a></td>
+        <td><a href="{{ jobskill.get_absolute_url }}">{{ jobskill.level }}</a></td>
     </tr>
 {% endfor %}
 </table>

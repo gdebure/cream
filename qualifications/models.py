@@ -22,6 +22,10 @@ class SkillCategory (models.Model):
         '''Returns the name when printing object'''
         return self.name
         
+    def get_absolute_url(self):
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/skill_categories/" + str(self.id)
+
     def get_skills(self):
         '''Returns the list of skills belonging to this category. This method
         is just for convenience'''
@@ -50,6 +54,10 @@ class Skill (models.Model):
         '''Returns the category and name when printing this object'''
         return self.category.name + ": " + self.name
         
+    def get_absolute_url(self):
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/skills/" + str(self.id)
+        
     def get_employees (self):
         '''Returns the list of employees with this skill. This method
         is just for convenience'''
@@ -58,7 +66,7 @@ class Skill (models.Model):
     def get_jobs (self):
         '''Returns the list of jobs requiring this skill. This method
         is just for convenience'''
-        return self.jobskill_set.all()
+        return self.jobprofileskill_set.all()
 
 
 
@@ -78,6 +86,10 @@ class Job (models.Model):
         '''Returns the name when printing object'''
         return self.name
     
+    def get_absolute_url(self):
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/jobs/" + str(self.id)
+        
     def get_profile_skills(self):
         '''Returns the list of skills required for this job. This method
         is just for convenience'''
@@ -94,10 +106,12 @@ class Profile (models.Model):
     
     def __unicode__(self):
         return self.name
-        
+
     def get_absolute_url(self):
-        return "/qualifications/profile/" + self.id
-            
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/profiles/" + str(self.id)
+        
+           
             
    
 
@@ -119,6 +133,9 @@ class EmployeeSkill(models.Model):
         '''Returns the employee, skill and level when printing object'''
         return str(self.employee) + " : " + self.skill.name + " : " + str(self.level)
         
+    def get_absolute_url(self):
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/employee_skills/" + str(self.id)
         
 
 
@@ -141,4 +158,8 @@ class JobProfileSkill(models.Model):
     def __unicode__(self):
         '''Returns the job, skill and level when printing object'''
         return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
+
+    def get_absolute_url(self):
+        '''Returns the absolute URL to this object'''
+        return "/qualifications/employee_skills/" + str(self.id)
        

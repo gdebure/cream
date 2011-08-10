@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     
     ##################################
     # profiles 
-    (r'^profiles/$', ListView.as_view( queryset=Profile.objects.order_by('category','name'), context_object_name='profiles_list', ), ),
+    (r'^profiles/$', ListView.as_view( queryset=Profile.objects.order_by('name'), context_object_name='profiles_list', ), ),
     (r'^profiles/(?P<pk>\d+)/$', DetailView.as_view( model=Profile, ), ),
     (r'^profiles/create/$', CreateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' ), ),
     (r'^profiles/(?P<pk>\d+)/update/$', UpdateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' ), ),

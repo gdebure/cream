@@ -8,9 +8,9 @@
     </tr>
 {% for skill in skills_list %}
     <tr>
-        <td><input type="checkbox" name="id_{{skill.id}}"/></td>
-        <td><a href="/qualifications/skill_categories/{{skill.category.id}}">{{skill.category}}</a></td>
-        <td><a href="/qualifications/skills/{{ skill.id }}/">{{ skill.name }}</a></td>
+        <td><input type="checkbox" name="id_{{ skill.id }}"/></td>
+        <td><a href="{{ skill.category.get_absolute_url }}">{{ skill.category }}</a></td>
+        <td><a href="{{ skill.get_absolute_url }}/">{{ skill.name }}</a></td>
         <td>{{ skill.enabled }}</td>
     </tr>
 {% endfor %}
