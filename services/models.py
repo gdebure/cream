@@ -9,6 +9,9 @@ class Domain (models.Model):
     is_active = models.BooleanField()
     owner = models.ForeignKey(Employee)
     description = models.TextField(null=True)
+    
+    class Meta:
+        ordering = ['name']
 
     def __unicode__(self):
         return self.name
@@ -49,6 +52,9 @@ class ServiceFamily (models.Model):
     trend = models.IntegerField()
     service_lifecycle = models.CharField(max_length=1, choices=SERVICE_LIFECYCLE_CHOICES)
     
+    class Meta:
+        ordering = ['domain','name']
+    
     def __unicode__(self):
         return self.name
         
@@ -67,6 +73,9 @@ class Service (models.Model):
     is_active = models.BooleanField()
     owner = models.ForeignKey(Employee)
     description = models.TextField(null=True)
+    
+    class Meta:
+        ordering = ['service_family','name']
     
     def __unicode__(self):
         return self.name
