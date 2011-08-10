@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(0, 'E:/Devel/cream')
+sys.path.insert(0, '/srv/http/cream')
 
 import settings
 

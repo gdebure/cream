@@ -127,6 +127,9 @@ INSTALLED_APPS = (
     # Use south to handle database migrations
     'south',
     
+    # Use guardian for per-object permissions
+    'guardian',
+    
        
     'users',
     'projects',
@@ -166,3 +169,12 @@ AUTH_PROFILE_MODULE = 'users.Employee'
 
 LOGIN_URL="/users/login/"
 LOGIN_REDIRECT_URL="/users/employees"
+
+# Guardian Backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+# Also needed for guardian
+ANONYMOUS_USER_ID = -1
