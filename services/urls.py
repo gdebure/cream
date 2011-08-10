@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
-from guardian.decorators import permission_required_or_403
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from services.models import Domain, ServiceFamily, Service
