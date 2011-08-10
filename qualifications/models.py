@@ -161,5 +161,5 @@ class JobProfileSkill(models.Model):
 
     def get_absolute_url(self):
         '''Returns the absolute URL to this object'''
-        return "/qualifications/employee_skills/" + str(self.id)
+        return "/qualifications/job_skills/" + str(self.id)
        
