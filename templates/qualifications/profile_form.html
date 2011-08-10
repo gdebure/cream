@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Update Domain {{domain}} {% endblock %}
+{% block title %}Update Profile {{profile}} {% endblock %}
 
 {% block content %}
-
 <form action="" method="POST">
     {% csrf_token %}
     <table class="blue">
@@ -11,6 +10,4 @@
     </table>
     <input type="submit"/>
 </form>
-
 {% endblock %}
-

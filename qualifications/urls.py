@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobSkill
+from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, Profile
 from qualifications.forms import SkillForm
 
 urlpatterns = patterns('',
@@ -41,12 +41,21 @@ urlpatterns = patterns('',
     ##################################
     
     ##################################
-    # job Skills 
-    (r'^job_skills/$', ListView.as_view( queryset=JobSkill.objects.order_by('job','skill'), context_object_name='jobskills_list', ), ),
-    (r'^job_skills/(?P<pk>\d+)/$', DetailView.as_view( model=JobSkill, ), ),
-    (r'^job_skills/create/$', CreateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
-    (r'^job_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=JobSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
-    (r'^job_skills/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=JobSkill, success_url='/qualifications/job_skills/' ), ),
+    # profiles 
+    (r'^profiles/$', ListView.as_view( queryset=Profile.objects.order_by('category','name'), context_object_name='profiles_list', ), ),
+    (r'^profiles/(?P<pk>\d+)/$', DetailView.as_view( model=Profile, ), ),
+    (r'^profiles/create/$', CreateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' ), ),
+    (r'^profiles/(?P<pk>\d+)/update/$', UpdateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' ), ),
+    (r'^profiles/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=Profile, success_url='/qualifications/profiles/' ), ),
+    ##################################
+    
+    ##################################
+    # job profile Skills 
+    (r'^job_skills/$', ListView.as_view( queryset=JobProfileSkill.objects.order_by('job','skill'), context_object_name='jobprofileskills_list', ), ),
+    (r'^job_skills/(?P<pk>\d+)/$', DetailView.as_view( model=JobProfileSkill, ), ),
+    (r'^job_skills/create/$', CreateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    (r'^job_skills/(?P<pk>\d+)/update/$', UpdateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' ), ),
+    (r'^job_skills/(?P<pk>\d+)/delete/$', DeleteView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/' ), ),
     ##################################
     
 )
