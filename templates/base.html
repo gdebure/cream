@@ -10,8 +10,19 @@
         {% include "header.html" %}
     </div>
     
-    <div class="menu">
-        {% include "menu.html" %}
+    <div class = "left_column">
+    
+    
+        <div class="menu">
+            {% include "menu.html" %}
+        </div>
+        
+        {% if user.is_staff %}
+        <div class="menu">
+            {% include "adminmenu.html" %}
+        </div>
+        {% endif%}
+    
     </div>
     
     <div class="content">

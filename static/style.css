@@ -66,15 +66,25 @@ div.page_header {
     background-color: RGB(30,49,116);
     font-size:14px;
     color:white;
-    margin: 0px;
-    padding:5px;
-    height:30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding:15px;
+    height:20px;
     clear:left;
+    
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 3px #ccc;
+    /* Fix for IE6 and IE8 */
+    behavior: url(/static/PIE.htc); 
+}
+
+div.left_column {
+    float:left;
+    width:160px;
 }
 
 div.menu {
-    float:left;
-    width:160px;
+    width:100%;
     background-color: #d3dbed;
     margin:10px;
     padding:10px;
@@ -105,7 +115,7 @@ div.block, div.login {
 /* User box */
 .userbox {
     position:absolute;
-    right:5px;
+    right:15px;
     font-size: 11px;
     text-align:right;
 }
@@ -127,6 +137,7 @@ div.login {
 }
 
 div.footer {
+    
     text-align:center;
     clear:left;
     margin:10px;
