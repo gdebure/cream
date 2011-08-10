@@ -1,6 +1,6 @@
 from django import forms
 
-from qualifications.models import Skill, SkillCategory, Job
+from qualifications.models import Skill, SkillCategory, Job, Profile
 
 class SkillForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,8 @@ class SkillCategoryForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
+        
+        
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
