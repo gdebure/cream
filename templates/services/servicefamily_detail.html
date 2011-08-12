@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block icon %}services/service_family.png{% endblock %}
 {% block title %}Service Family {{servicefamily}} details {% endblock %}
 
 {% block content %}
@@ -9,8 +10,7 @@
 {% include "common/object_actions.html" %}
 
 <div class="block">
-<h2>Services for this Service Family</h2>
-{% include "services/service_table.html" with services_list=servicefamily.get_services %}
+{% include "services/service_table.html" with title="Services for this Service Family" services_list=servicefamily.get_services %}
 <a href="/services/services/create">Add new service</a>
 
 {% endblock %}

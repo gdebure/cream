@@ -11,8 +11,7 @@
 
 
 <div class="block">
-<h2>Service Families in this domain</h2>
-{% include "services/servicefamily_table.html" with servicefamilies_list=domain.get_service_families %}
+{% include "services/servicefamily_table.html" with title="Service Families in this domain" servicefamilies_list=domain.get_service_families %}
 <a href="/services/service_families/create/">Add service family</a>
 </div>
 
