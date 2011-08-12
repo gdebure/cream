@@ -1,6 +1,5 @@
-{% if title %}
-{% include "list_decoration.html" with icon="services/service_family_small.png" %}
-{% endif %}
+
+{% include "services/decoration.html" with title=title|default:"Service Families list" icon=icon|default:"service_family_small.png" %}
 
 {% if servicefamilies_list %}
 <table class="blue">
