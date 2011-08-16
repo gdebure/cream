@@ -29,6 +29,9 @@ class Project (models.Model):
     def get_deliverables(self):
         return self.deliverable_set.all()
         
+    def get_turnover_values(self):
+        return self.turnover_set.all()
+        
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -72,7 +75,7 @@ class Turnover (models.Model):
         return self.project.name + ", " + str(self.year) + ", " + str(self.amount)
         
     def get_absolute_url(self):
-        return "/projects/turnover/" + str(self.id)
+        return "/projects/turnover_values/" + str(self.id)
         
         
 class Deliverable (models.Model):

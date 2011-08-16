@@ -2,9 +2,9 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Authorization, Deliverable
+from projects.models import Project, Authorization, Deliverable, Turnover
 
-from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView
+from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView, TurnoverUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -20,19 +20,26 @@ urlpatterns = patterns('',
     # Authorizations
     (r'^authorizations/$', login_required()(ListView.as_view( model=Authorization, context_object_name='authorizations_list', )), ),
     (r'^authorizations/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Authorization, )), ),
-    (r'^authorizations/create/$', permission_required('authorizations.add_authorization')(CreateView.as_view( model=Authorization, success_url='/authorizations/authorizations/%(id)s' )), ),
+    (r'^authorizations/create/$', permission_required('projects.add_authorization')(CreateView.as_view( model=Authorization, success_url='/authorizations/authorizations/%(id)s' )), ),
     (r'^authorizations/(?P<pk>\d+)/update/$', AuthorizationUpdateView.as_view( model=Authorization, success_url='/projects/authorizations/%(id)s' ), ),
-    (r'^authorizations/(?P<pk>\d+)/delete/$', permission_required('authorizations.delete_authorization')(DeleteView.as_view( model=Authorization, success_url='/authorizations/authorizations/' )), ),
+    (r'^authorizations/(?P<pk>\d+)/delete/$', permission_required('projects.delete_authorization')(DeleteView.as_view( model=Authorization, success_url='/authorizations/authorizations/' )), ),
     ##################################
     
     ##################################
     # Deliverables
     (r'^deliverables/$', login_required()(ListView.as_view( model=Deliverable, context_object_name='deliverables_list', )), ),
     (r'^deliverables/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Deliverable, )), ),
-    (r'^deliverables/create/$', permission_required('deliverables.add_deliverable')(CreateView.as_view( model=Deliverable, success_url='/deliverables/deliverables/%(id)s' )), ),
+    (r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, success_url='/deliverables/deliverables/%(id)s' )), ),
     (r'^deliverables/(?P<pk>\d+)/update/$', DeliverableUpdateView.as_view( model=Deliverable, success_url='/projects/deliverables/%(id)s' ), ),
-    (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('deliverables.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/deliverables/deliverables/' )), ),
+    (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/deliverables/deliverables/' )), ),
     ##################################
     
-    
+    ##################################
+    # Turnover values
+    (r'^turnover_values/$', login_required()(ListView.as_view( model=Turnover, context_object_name='turnover_values_list', )), ),
+    (r'^turnover_values/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Turnover, )), ),
+    (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
+    (r'^turnover_values/(?P<pk>\d+)/update/$', TurnoverUpdateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' ), ),
+    (r'^turnover_values/(?P<pk>\d+)/delete/$', permission_required('projects.delete_turnover')(DeleteView.as_view( model=Turnover, success_url='/projects/turnover_values/' )), ),
+    ##################################
 )
