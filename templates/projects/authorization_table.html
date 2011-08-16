@@ -1,0 +1,20 @@
+{% include "projects/decoration.html" with title=title|default:"Authorizations list" icon=icon|default:"authorization_small.png" %}
+
+{% if authorizations_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>project</th>
+        <th>employee</th>
+        <th>profile</th>
+    </tr>
+{% for authorization in authorizations_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{ authorization.id }}"/></td>
+        <td><a href="{{ authorization.project.get_absolute_url }}">{{ authorization.project }}</a></td>
+        <td><a href="{{ authorization.employee.get_absolute_url }}">{{ authorization.employee }}</a></td>
+        <td><a href="{{ authorization.get_absolute_url }}">{{ authorization.profile }}</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}

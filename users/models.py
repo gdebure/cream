@@ -3,20 +3,7 @@ from django import forms
 
 from django.contrib.auth.models import User
 
-class Profile (models.Model):
-    '''A Class to handle user profiles'''
-    
-    id = models.CharField(max_length=1,primary_key=True)
-    name = models.CharField(max_length=32)
-    description = models.TextField()
-        
-    class Meta:
-        ordering = ['name']
-    
-    def __unicode__(self):
-        return self.name
-    
-    
+  
     
 class Employee (models.Model):
     '''A class to handle employees'''

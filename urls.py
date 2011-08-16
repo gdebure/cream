@@ -14,8 +14,7 @@ urlpatterns = patterns('',
     
     # URLs for applications
     url(r'^services/',include('services.urls')),
-    url(r'^tasks/',include('tasks.urls')),
+    url(r'^projects/',include('projects.urls')),
     url(r'^users/',include('users.urls')),
-    url(r'^subjects/',include('subjects.urls')),
     url(r'^qualifications/',include('qualifications.urls')),
 )

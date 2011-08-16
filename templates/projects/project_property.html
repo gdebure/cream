@@ -1,0 +1,11 @@
+{% include "projects/decoration.html" with title=title|default:"Project properties" icon="project.png" block="main" %}
+<table class="blue">
+    <tr><th>name</th><td>{{ project.name}}</td></tr>
+    <tr><th>number</th><td>{{ project.number}}</td></tr>
+    <tr><th>description</th><td>{{ project.description }}</td></tr>
+    <tr><th>start date</th><td>{{project.date_start}}</td></tr>
+    <tr><th>end date</th><td>{{project.date_end}}</td></tr>
+    <tr><th>customer name</th><td>{{project.customer_name}}</td></tr>
+    <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
+    <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
+</table>
