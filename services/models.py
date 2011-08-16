@@ -89,3 +89,6 @@ class Service (models.Model):
         
     def get_absolute_url(self):
         return '/services/services/' + str(self.id)
+        
+    def get_deliverables(self):
+        return self.deliverable_set.all()

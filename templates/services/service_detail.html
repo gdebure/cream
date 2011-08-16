@@ -6,4 +6,9 @@
 
 {% include "common/object_actions.html" %}
 
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=service.get_deliverables %}
+</div>
+
+
 {% endblock %}
