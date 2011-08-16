@@ -1,0 +1,11 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "projects/authorization_table.html" with block="main" icon="authorization.png" %}
+
+<a href="create">Add new authorization</a>
+
+{% endblock %}

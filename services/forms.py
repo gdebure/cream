@@ -7,6 +7,7 @@ class DomainForm(forms.ModelForm):
         model = Domain
         
 class ServiceFamilyForm(forms.ModelForm):
+    
     class Meta:
         model = ServiceFamily
         

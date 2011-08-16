@@ -1,0 +1,23 @@
+
+{% include "projects/decoration.html" with title=title|default:"Projects list" icon=icon|default:"project_small.png" %}
+
+{% if projects_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>number</th>
+        <th>name</th>
+        <th>description</th>
+    </tr>
+{% for project in projects_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{ project.id }}"/></td>
+        <td>{{ project.number }}</a></td>
+        <td><a href="{{project.get_absolute_url}}">{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No projects found.</p>
+{% endif %}
