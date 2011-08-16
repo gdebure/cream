@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Update Task {{task.id}} {% endblock %}
-
 {% block content %}
+
+{% include "projects/decoration.html" with title="Update Deliverable" icon="deliverable.png" block="main" %}
+
 <form action="" method="POST">
     {% csrf_token %}
     <table class="blue">
@@ -10,4 +11,6 @@
     </table>
     <input type="submit"/>
 </form>
+
 {% endblock %}
+

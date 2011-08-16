@@ -14,4 +14,9 @@
 <a href="/projects/authorizations/create">Add authorization</a>
 </div>
 
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=project.get_deliverables %}
+<a href="/projects/deliverables/create">Add deliverable</a>
+</div>
+
 {% endblock %}

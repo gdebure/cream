@@ -26,7 +26,9 @@ class Project (models.Model):
     def get_authorizations(self):
         return self.authorization_set.all()
         
-
+    def get_deliverables(self):
+        return self.deliverable_set.all()
+        
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -82,9 +84,9 @@ class Deliverable (models.Model):
     description = models.TextField()
     estimated_volume = models.IntegerField()
     acceptance_criteria = models.TextField()
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2)
-    unit_time = models.IntegerField()
-    turnover = models.DecimalField(max_digits=12, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)")
+    unit_time = models.IntegerField(verbose_name="unit time (mn)")
+    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)")
     
     def __unicode__(self):
         return self.name

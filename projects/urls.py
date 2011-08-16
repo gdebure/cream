@@ -2,9 +2,9 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Authorization
+from projects.models import Project, Authorization, Deliverable
 
-from projects.views import ProjectUpdateView, AuthorizationUpdateView
+from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -24,5 +24,15 @@ urlpatterns = patterns('',
     (r'^authorizations/(?P<pk>\d+)/update/$', AuthorizationUpdateView.as_view( model=Authorization, success_url='/projects/authorizations/%(id)s' ), ),
     (r'^authorizations/(?P<pk>\d+)/delete/$', permission_required('authorizations.delete_authorization')(DeleteView.as_view( model=Authorization, success_url='/authorizations/authorizations/' )), ),
     ##################################
+    
+    ##################################
+    # Deliverables
+    (r'^deliverables/$', login_required()(ListView.as_view( model=Deliverable, context_object_name='deliverables_list', )), ),
+    (r'^deliverables/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Deliverable, )), ),
+    (r'^deliverables/create/$', permission_required('deliverables.add_deliverable')(CreateView.as_view( model=Deliverable, success_url='/deliverables/deliverables/%(id)s' )), ),
+    (r'^deliverables/(?P<pk>\d+)/update/$', DeliverableUpdateView.as_view( model=Deliverable, success_url='/projects/deliverables/%(id)s' ), ),
+    (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('deliverables.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/deliverables/deliverables/' )), ),
+    ##################################
+    
     
 )
