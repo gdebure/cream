@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1><span class="warning">Do you really want to delete this Project ?</span></h1>
+
+{% include "projects/project_property.html" %}
+  
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit"/>
+</form>
+{% endblock %}
