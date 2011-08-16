@@ -12,7 +12,7 @@ class Employee (models.Model):
     siglum = models.CharField(max_length=16)
     
     class Meta:
-        ordering = ['user']
+        ordering = ['user__last_name']
     
     def __unicode__(self):
         return self.user.last_name + " " + self.user.first_name
