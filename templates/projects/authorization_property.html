@@ -1,0 +1,6 @@
+{% include "projects/decoration.html" with title=title|default:"Authorization properties" icon="authorization.png" block="main" %}
+<table class="blue">
+    <tr><th>employee</th><td><a href="{{authorization.employee.get_absolute_url}}">{{ authorization.employee }}</a></td></tr>
+    <tr><th>project</th><td><a href="{{ authorization.project.get_absolute_url }}">{{ authorization.project }}</a></td></tr>
+    <tr><th>profile</th><td>{{ authorization.profile }}</td></tr>
+</table>
