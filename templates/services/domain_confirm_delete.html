@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}<span class="warning">Do you really want to delete Domain {{domain}} ?</span>{% endblock %}
-
 {% block content %}
+
+<h1><span class="warning">Do you really want to delete this Domain ?</span></h1>
+
 {% include "services/domain_property.html" %}
+  
 <form method="POST">
     {% csrf_token %}
     {{ form }}

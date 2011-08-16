@@ -7,7 +7,7 @@
 {% include "common/object_actions.html" %}
 
 <div class="block">
-{% include "services/service_table.html"%}
+{% include "services/service_table.html" with services_list=servicefamily.get_services%}
 <a href="/services/services/create">Add new service</a>
 
 {% endblock %}

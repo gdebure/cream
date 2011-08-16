@@ -1,3 +1,4 @@
+{% include "services/decoration.html" with title=title|default:"Domain properties" icon="domain.png" block="main" %}
 <table class="blue">
     <tr><th>name</th><td>{{ domain.name}}</td></tr>
     <tr><th>enabled</th><td>{{ domain.is_active }}</td></tr>

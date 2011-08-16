@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}<span class="warning">Do you really want to delete Service Family {{servicefamily}} ?</span>{% endblock %}
 
 {% block content %}
+{% block title %}<h1><span class="warning">Do you really want to delete this Service Family ?</span></h1>{% endblock %}
 {% include "services/servicefamily_property.html" %}
 <form method="POST">
     {% csrf_token %}

@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Include the list of objects -->
-{% include "services/domain_table.html" %}
+{% include "services/domain_table.html" with block="main" icon="domain.png" %}
 
 <a href="create">Add new domain</a>
 
