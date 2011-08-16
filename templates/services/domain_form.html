@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Update Domain {{domain}} {% endblock %}
-
 {% block content %}
+
+{% include "services/decoration.html" with title="Update Domain" icon="domain.png" block="main" %}
 
 <form action="" method="POST">
     {% csrf_token %}

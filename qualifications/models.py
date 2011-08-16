@@ -104,6 +104,9 @@ class Profile (models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField()
     
+    class Meta:
+        ordering = ['name']
+    
     def __unicode__(self):
         return self.name
 
@@ -126,7 +129,7 @@ class EmployeeSkill(models.Model):
     class Meta:
         #Make sure that there is unicity for an employee and a skill
         unique_together = ("employee", "skill")
-        # Default order is employee, then leve (desc), then skill
+        # Default order is employee, then level (desc), then skill
         ordering = ['employee','-level','skill']
     
     def __unicode__(self):
@@ -152,7 +155,7 @@ class JobProfileSkill(models.Model):
     class Meta:
         #Make sure that there is unicity for a job and a skill
         unique_together = ("job", "profile", "skill")
-        # Default order is employee, then leve (desc), then skill
+        # Default order is job, then profile, then level (desc), then skill
         ordering = ['job', 'profile', '-level','skill']
         
     def __unicode__(self):

@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Update Service {{service}} {% endblock %}
 
 {% block content %}
+
+{% include "services/decoration.html" with title="Update Service" icon="service.png" block="main" %}
+
 <form action="" method="POST">
     {% csrf_token %}
     <table class="blue">

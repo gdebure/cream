@@ -1,3 +1,4 @@
+{% include "services/decoration.html" with title="Service Family properties" icon="service_family.png" block="main" %}
 <table class="blue">
     <tr><th>name</th><td>{{ servicefamily.name}}</td></tr>
     <tr><th>domain</th><td><a href="{{ servicefamily.domain.get_absolute_url}}">{{ servicefamily.domain.name}}</a></td></tr>

@@ -1,10 +1,10 @@
+<!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
-
-{% block title %}Domains list{% endblock %}
 
 {% block content %}
 
-{% include "services/domain_table.html" %}
+<!-- Include the list of objects -->
+{% include "services/domain_table.html" with block="main" icon="domain.png" %}
 
 <a href="create">Add new domain</a>
 

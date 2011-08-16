@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Service Families list{% endblock %}
-
 {% block content %}
 
-{% include "services/servicefamily_table.html" %}
+{% include "services/servicefamily_table.html" with block="main" icon="service_family.png" %}
 
 <a href="create">Add new servicefamily</a>
 
