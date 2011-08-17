@@ -2,7 +2,7 @@ from django.views.generic import UpdateView
 from guardian.decorators import permission_required
 from django.utils.decorators import method_decorator
 
-from projects.models import Project, Authorization, Deliverable, Turnover
+from projects.models import Project, Authorization, Deliverable, Turnover, Task
 
 class ProjectUpdateView(UpdateView):
 
@@ -33,3 +33,11 @@ class TurnoverUpdateView(UpdateView):
     @method_decorator(permission_required('projects.change_turnover',(Turnover, 'id', 'pk')))
     def dispatch(self, *args, **kwargs):
         return super(TurnoverUpdateView, self).dispatch(*args, **kwargs)
+
+
+
+class TaskUpdateView(UpdateView):
+
+    @method_decorator(permission_required('projects.change_turnover',(Task, 'id', 'pk')))
+    def dispatch(self, *args, **kwargs):
+        return super(TaskUpdateView, self).dispatch(*args, **kwargs)

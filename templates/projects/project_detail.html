@@ -24,4 +24,8 @@
 <a href="/projects/deliverables/create">Add deliverable</a>
 </div>
 
+<div class="block">
+{% include "projects/task_table.html" with tasks_list=project.get_tasks %}
+<a href="/projects/tasks/create">Add task</a>
+</div>
 {% endblock %}

@@ -32,6 +32,12 @@ class Project (models.Model):
     def get_turnover_values(self):
         return self.turnover_set.all()
         
+    def get_tasks(self):
+        tasks = list()
+        for deliverable in self.get_deliverables():
+            tasks += deliverable.task_set.all()
+            
+        return tasks
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -162,3 +168,10 @@ class Task (models.Model):
         
     def get_absolute_url(self):
         return "/projects/tasks/" + str(self.id)
+        
+    def get_subjects(self):
+        return self.subject.all()
+        
+    def get_owners(self):
+        return self.owner.all()
+        

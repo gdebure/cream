@@ -2,9 +2,9 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Authorization, Deliverable, Turnover
+from projects.models import Project, Authorization, Deliverable, Turnover, Task
 
-from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView, TurnoverUpdateView
+from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView, TurnoverUpdateView, TaskUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -41,5 +41,14 @@ urlpatterns = patterns('',
     (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
     (r'^turnover_values/(?P<pk>\d+)/update/$', TurnoverUpdateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' ), ),
     (r'^turnover_values/(?P<pk>\d+)/delete/$', permission_required('projects.delete_turnover')(DeleteView.as_view( model=Turnover, success_url='/projects/turnover_values/' )), ),
+    ##################################
+    
+    ##################################
+    # Task values
+    (r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
+    (r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
+    (r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
+    (r'^tasks/(?P<pk>\d+)/update/$', TaskUpdateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' ), ),
+    (r'^tasks/(?P<pk>\d+)/delete/$', permission_required('projects.delete_task')(DeleteView.as_view( model=Task, success_url='/projects/tasks/' )), ),
     ##################################
 )
