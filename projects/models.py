@@ -86,8 +86,8 @@ class Turnover (models.Model):
         
 class Deliverable (models.Model):
     
-    project = models.ForeignKey(Project)
-    service = models.ForeignKey(Service)
+    project = models.ForeignKey(Project, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT)
     code = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     description = models.TextField()
