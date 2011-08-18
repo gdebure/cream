@@ -1,0 +1,18 @@
+CREAM (Company REsources Administration and Management) is a Suite allowing you to manage several aspects of your company
+
+It is currently composed of several modules:
+* Users: allows to define attributes for employees in the company
+** Employees
+* Projects: define attributes for the projects in your company
+** Projects
+** Deliverables
+** Tasks
+* Services: Define your company's service catalogue
+** Domains
+** Service Family
+** Services
+* Qualifications: Define your employees' jobs and skills
+** Skills
+** Jobs
+
+CREAM is written in Python, based on the Django web framework
