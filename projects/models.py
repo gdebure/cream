@@ -86,6 +86,12 @@ class Turnover (models.Model):
         
 class Deliverable (models.Model):
     
+    SERVICE_OWNER_APPROVAL_CHOICES = (
+        ('P','Pending'),
+        ('A','Approved'),
+        ('R','Rejected')
+        )
+    
     project = models.ForeignKey(Project, on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
     code = models.CharField(max_length=32)
@@ -96,6 +102,7 @@ class Deliverable (models.Model):
     unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)")
     unit_time = models.IntegerField(verbose_name="unit time (mn)")
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)")
+    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES)
     
     def __unicode__(self):
         return self.name
@@ -152,7 +159,7 @@ class Task (models.Model):
     #requestor_type = models.ForeignKey(RequestorType)
     creator = models.ForeignKey(Employee, related_name='creator')
     deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
-    subject = models.ManyToManyField(Subject, on_delete=models.PROTECT)
+    subject = models.ManyToManyField(Subject)
     
     
     # Answer information

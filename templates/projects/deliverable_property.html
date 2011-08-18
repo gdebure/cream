@@ -2,6 +2,7 @@
 <table class="blue">
     <tr><th>project</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
     <tr><th>service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
+    <tr><th>service</th><td>{{ deliverable.get_approved_by_service_owner_display }}</td></tr>
     <tr><th>code</th><td>{{ deliverable.code }}</td></tr>
     <tr><th>name</th><td>{{ deliverable.name}}</td></tr>
     <tr><th>description</th><td>{{ deliverable.description }}</td></tr>
