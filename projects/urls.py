@@ -29,9 +29,9 @@ urlpatterns = patterns('',
     # Deliverables
     (r'^deliverables/$', login_required()(ListView.as_view( model=Deliverable, context_object_name='deliverables_list', )), ),
     (r'^deliverables/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Deliverable, )), ),
-    (r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, success_url='/deliverables/deliverables/%(id)s' )), ),
+    (r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, success_url='/projects/deliverables/%(id)s' )), ),
     (r'^deliverables/(?P<pk>\d+)/update/$', DeliverableUpdateView.as_view( model=Deliverable, success_url='/projects/deliverables/%(id)s' ), ),
-    (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/deliverables/deliverables/' )), ),
+    (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/projects/deliverables/' )), ),
     ##################################
     
     ##################################
