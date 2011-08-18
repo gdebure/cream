@@ -13,7 +13,6 @@ urlpatterns = patterns('',
     (r'^domains/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Domain, )), ),
     (r'^domains/create/$', permission_required('services.add_domain')(CreateView.as_view( model=Domain, success_url='/services/domains/%(id)s' )), ),
     (r'^domains/(?P<pk>\d+)/update/$', DomainUpdateView.as_view( model=Domain, success_url='/services/domains/%(id)s' ), ),
-    #(r'^domains/(?P<pk>\d+)/update/$', update_domain(model=Domain, object_id='%(pk)s'), )
     (r'^domains/(?P<pk>\d+)/delete/$', permission_required('services.delete_domain')(DeleteView.as_view( model=Domain, success_url='/services/domains/' )), ),
     ##################################
     
