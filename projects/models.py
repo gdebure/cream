@@ -86,8 +86,14 @@ class Turnover (models.Model):
         
 class Deliverable (models.Model):
     
-    project = models.ForeignKey(Project)
-    service = models.ForeignKey(Service)
+    SERVICE_OWNER_APPROVAL_CHOICES = (
+        ('P','Pending'),
+        ('A','Approved'),
+        ('R','Rejected')
+        )
+    
+    project = models.ForeignKey(Project, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT)
     code = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     description = models.TextField()
@@ -96,6 +102,7 @@ class Deliverable (models.Model):
     unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)")
     unit_time = models.IntegerField(verbose_name="unit time (mn)")
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)")
+    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES)
     
     def __unicode__(self):
         return self.name
@@ -119,7 +126,7 @@ class SubjectFamily (models.Model):
 class Subject (models.Model):
     
     name = models.CharField(max_length=64)
-    subject_family = models.ForeignKey(SubjectFamily)
+    subject_family = models.ForeignKey(SubjectFamily, on_delete=models.PROTECT)
     description = models.TextField()
     project = models.ManyToManyField(Project)
     
@@ -151,7 +158,7 @@ class Task (models.Model):
     requestor = models.CharField(max_length=64)
     #requestor_type = models.ForeignKey(RequestorType)
     creator = models.ForeignKey(Employee, related_name='creator')
-    deliverable = models.ForeignKey(Deliverable)
+    deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
     subject = models.ManyToManyField(Subject)
     
     
