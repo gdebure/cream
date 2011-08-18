@@ -119,7 +119,7 @@ class SubjectFamily (models.Model):
 class Subject (models.Model):
     
     name = models.CharField(max_length=64)
-    subject_family = models.ForeignKey(SubjectFamily)
+    subject_family = models.ForeignKey(SubjectFamily, on_delete=models.PROTECT)
     description = models.TextField()
     project = models.ManyToManyField(Project)
     
@@ -151,8 +151,8 @@ class Task (models.Model):
     requestor = models.CharField(max_length=64)
     #requestor_type = models.ForeignKey(RequestorType)
     creator = models.ForeignKey(Employee, related_name='creator')
-    deliverable = models.ForeignKey(Deliverable)
-    subject = models.ManyToManyField(Subject)
+    deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
+    subject = models.ManyToManyField(Subject, on_delete=models.PROTECT)
     
     
     # Answer information
