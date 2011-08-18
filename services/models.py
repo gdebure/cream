@@ -78,7 +78,7 @@ class Service (models.Model):
     name = models.CharField(max_length=128)
     service_family = models.ForeignKey(ServiceFamily,on_delete=models.PROTECT)
     is_active = models.BooleanField()
-    owner = models.ForeignKey(Employee)
+    owner = models.ForeignKey(Employee, null=True, blank=True)
     description = models.TextField(null=True)
     
     class Meta:
