@@ -53,11 +53,11 @@ class ServiceFamily (models.Model):
     domain = models.ForeignKey(Domain, on_delete=models.PROTECT)
     description = models.TextField(null=True)
     focal_point = models.ForeignKey(Employee, null=True, blank=True)
-    growth_potential = models.DecimalField(max_digits=2,decimal_places=0, verbose_name='Growth Potential in %')
+    growth_potential = models.DecimalField(max_digits=2,decimal_places=0, verbose_name='Growth Potential in %',null=True, blank=True)
     is_active = models.BooleanField()
-    service_position = models.CharField(max_length=1,choices=SERVICE_POSITION_CHOICES)
-    trend = models.CharField(max_length=1, choices=TREND_CHOICES)
-    service_lifecycle = models.CharField(max_length=1, choices=SERVICE_LIFECYCLE_CHOICES)
+    service_position = models.CharField(max_length=1,choices=SERVICE_POSITION_CHOICES,null=True, blank=True)
+    trend = models.CharField(max_length=1, choices=TREND_CHOICES,null=True, blank=True)
+    service_lifecycle = models.CharField(max_length=1, choices=SERVICE_LIFECYCLE_CHOICES,null=True, blank=True)
     
     class Meta:
         ordering = ['domain','name']
