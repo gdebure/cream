@@ -10,8 +10,22 @@
 {% include "common/object_actions.html" %}
 
 <div class="block">
+{% include "projects/turnover_table.html" with turnover_values_list=project.get_turnover_values %}
+<a href="/projects/turnover_values/create">Add turnover value</a>
+</div>
+
+<div class="block">
 {% include "projects/authorization_table.html" with authorizations_list=project.get_authorizations %}
 <a href="/projects/authorizations/create">Add authorization</a>
 </div>
 
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=project.get_deliverables %}
+<a href="/projects/deliverables/create">Add deliverable</a>
+</div>
+
+<div class="block">
+{% include "projects/task_table.html" with tasks_list=project.get_tasks %}
+<a href="/projects/tasks/create">Add task</a>
+</div>
 {% endblock %}

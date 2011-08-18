@@ -26,7 +26,18 @@ class Project (models.Model):
     def get_authorizations(self):
         return self.authorization_set.all()
         
-
+    def get_deliverables(self):
+        return self.deliverable_set.all()
+        
+    def get_turnover_values(self):
+        return self.turnover_set.all()
+        
+    def get_tasks(self):
+        tasks = list()
+        for deliverable in self.get_deliverables():
+            tasks += deliverable.task_set.all()
+            
+        return tasks
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -70,7 +81,7 @@ class Turnover (models.Model):
         return self.project.name + ", " + str(self.year) + ", " + str(self.amount)
         
     def get_absolute_url(self):
-        return "/projects/turnover/" + str(self.id)
+        return "/projects/turnover_values/" + str(self.id)
         
         
 class Deliverable (models.Model):
@@ -82,9 +93,9 @@ class Deliverable (models.Model):
     description = models.TextField()
     estimated_volume = models.IntegerField()
     acceptance_criteria = models.TextField()
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2)
-    unit_time = models.IntegerField()
-    turnover = models.DecimalField(max_digits=12, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)")
+    unit_time = models.IntegerField(verbose_name="unit time (mn)")
+    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)")
     
     def __unicode__(self):
         return self.name
@@ -157,3 +168,10 @@ class Task (models.Model):
         
     def get_absolute_url(self):
         return "/projects/tasks/" + str(self.id)
+        
+    def get_subjects(self):
+        return self.subject.all()
+        
+    def get_owners(self):
+        return self.owner.all()
+        

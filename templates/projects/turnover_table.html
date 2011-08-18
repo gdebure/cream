@@ -1,0 +1,21 @@
+
+{% include "projects/decoration.html" with title=title|default:"Turnover values" icon=icon|default:"turnover_small.png" %}
+
+{% if turnover_values_list %}
+<table class="blue">
+    <tr>
+        <th/>
+        <th>year</th>
+        <th>amount</th>
+    </tr>
+{% for turnover in turnover_values_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{ turnover.id }}"/></td>
+        <td>{{ turnover.year }}</a></td>
+        <td><a href="{{ turnover.get_absolute_url }}">{{ turnover.amount}}</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No turnover value found.</p>
+{% endif %}
