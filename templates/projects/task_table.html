@@ -8,6 +8,7 @@
         <th>id</th>
         <th>project</th>
         <th>name</th>
+        <th>deliverable</th>
         <th>open date</th>
         <th>status</th>
         <th>criticity</th>
@@ -18,6 +19,7 @@
         <td><a href="{{ task.get_absolute_url }}">{{ task.id }}</a></td>
         <td><a href="{{ task.deliverable.project.get_absolute_url }}">{{ task.deliverable.project }}</a></a></td>
         <td><a href="{{ task.get_absolute_url }}">{{ task.name }}</a></td>
+        <td><a href="{{ task.deliverable.get_absolute_url }}">{{ task.deliverable }}</a></td>
         <td>{{ task.open_date }}</td>
         <td>{{ task.get_status_display }}</td>
         <td style={% include "projects/criticity_display.html" %}>{{ task.get_criticity_display }}</td>
