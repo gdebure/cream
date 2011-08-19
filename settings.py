@@ -2,7 +2,7 @@
 
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -103,7 +103,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'CREAM.urls'
+ROOT_URLCONF = 'cream.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -164,13 +164,6 @@ LOGGING = {
 
 # Define additional information for users in the Employee model
 AUTH_PROFILE_MODULE = 'users.Employee'
-
-# Declare template processors for richtemplates
-TEMPLATE_CONTEXT_PROCESSORS = (
-     'django.core.context_processors.request',
-     'django.contrib.auth.context_processors.auth',
-     'richtemplates.context_processors.media',
-)
 
 LOGIN_URL="/users/login/"
 LOGIN_REDIRECT_URL="/users/employees"
