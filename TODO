@@ -1,0 +1,14 @@
+== Global ==
+* Enforce modularization (hard and soft dependencies between modules)
+* Licencing (and if GPL allowed by CIMPA, push to some opensource hosting facility)
+
+== Services Modules ==
+* Add workflow for deliverable link to service
+* Check per object permmissions for service catalogue
+* Automatically add per object permissions (guardian) on service catalogue
+
+== Projects Module ==
+* Segregate task attributes
+
+
+
