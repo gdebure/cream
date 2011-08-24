@@ -16,4 +16,9 @@
 {% include "qualifications/employeeskill_table.html" with employeeskills_list=employee.get_skills %}
 </div>
 
+<div class="block">
+<h2>Jobs for this Employee</h2>
+{% include "qualifications/jobemployee_table.html" with jobemployees_list=employee.get_jobs %}
+</div>
+
 {% endblock %}

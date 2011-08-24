@@ -165,4 +165,21 @@ class JobProfileSkill(models.Model):
     def get_absolute_url(self):
         '''Returns the absolute URL to this object'''
         return "/qualifications/job_skills/" + str(self.id)
+        
+        
+class JobEmployee(models.Model):
+    
+    job = models.ForeignKey(Job)
+    employee = models.ForeignKey(Employee)
+    date_start = models.DateField()
+    date_end = models.DateField(null=True, blank=True)
+    
+    class Meta:
+        ordering = ['employee','-date_start','job']
+        
+    def __unicode__(self):
+        return self.job + " : " + self.employee + " : " + self.date_start + " : " + self.date_end
+        
+    def get_absolute_url(self):
+        return "/qualifications/job_employees/" + str(self.id)
        

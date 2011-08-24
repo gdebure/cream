@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.decorators import permission_required, login_required
 
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, Profile
+from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, Profile, JobEmployee
 from qualifications.forms import SkillForm
 
 urlpatterns = patterns('',
@@ -59,5 +59,15 @@ urlpatterns = patterns('',
     (r'^job_skills/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobprofileskill')(UpdateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' )), ),
     (r'^job_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobprofileskill')(DeleteView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/' )), ),
     ##################################
+    
+    ##################################
+    # job Employees 
+    (r'^job_employees/$', login_required()(ListView.as_view( model=JobEmployee, context_object_name='jobemployees_list', )), ),
+    (r'^job_employees/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=JobEmployee, )), ),
+    (r'^job_employees/create/$', permission_required('qualifications.add_jobemployee')(CreateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
+    (r'^job_employees/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobemployee')(UpdateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
+    (r'^job_employees/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobemployee')(DeleteView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/' )), ),
+    ##################################
+    
     
 )

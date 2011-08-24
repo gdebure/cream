@@ -22,5 +22,8 @@ class Employee (models.Model):
 
     def get_skills(self):
         return self.employeeskill_set.all()
+        
+    def get_jobs(self):
+        return self.jobemployee_set.all()
     
     
