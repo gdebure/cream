@@ -94,15 +94,15 @@ class Deliverable (models.Model):
     
     project = models.ForeignKey(Project, on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    code = models.CharField(max_length=32)
+    code = models.CharField(max_length=32, null=True, blank=True)
     name = models.CharField(max_length=128)
     description = models.TextField()
-    estimated_volume = models.IntegerField()
-    acceptance_criteria = models.TextField()
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)")
-    unit_time = models.IntegerField(verbose_name="unit time (mn)")
-    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)")
-    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES)
+    estimated_volume = models.IntegerField(null=True, blank=True)
+    acceptance_criteria = models.TextField(null=True, blank=True)
+    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True)
+    unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True)
+    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True)
+    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, null=True, blank=True)
     
     def __unicode__(self):
         return self.name
