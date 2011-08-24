@@ -9,3 +9,12 @@ class DomainUpdateView(UpdateView):
     @method_decorator(permission_required('services.change_domain',(Domain, 'id', 'pk')))
     def dispatch(self, *args, **kwargs):
         return super(DomainUpdateView, self).dispatch(*args, **kwargs)
+
+
+#class AddServiceFamilyView(UpdateView):
+
+    #@method_decorator(permission_required('services.create_domain',(Domain, 'id', 'pk')))
+    #def dispatch(self, *args, **kwargs):
+        #return super(ServiceFamilyUpdateView, self).dispatch(*args, **kwargs)
+        
+        

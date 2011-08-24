@@ -52,6 +52,13 @@ class ServiceFamilyForm(forms.ModelForm):
         return servicefamily
 
 
+class AddServiceFamilyForm(ServiceFamilyForm):
+    
+        domain = forms.ModelChoiceField(Domain.objects.filter(pk=Domain.id))
+        
+        
+   
+        
 
 
 class ServiceForm(forms.ModelForm):
