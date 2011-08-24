@@ -95,6 +95,9 @@ class Job (models.Model):
         is just for convenience'''
         return self.jobprofileskill_set.all()
         
+    def get_employees(self):
+        return self.jobemployee_set.all()
+        
             
             
             
