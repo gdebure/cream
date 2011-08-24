@@ -6,13 +6,9 @@
 == Services Modules ==
 * Add workflow for deliverable link to service
 * Check per object permmissions for service catalogue
-* Automatically add per object permissions (guardian) on service catalogue
 
 == Projects Module ==
 * Segregate task attributes
 * Per year deliverables volumes + Computation with unit price to find:
 ** Deliverable turnover (per year)
 ** Project turnover (per year)
-
-
-
