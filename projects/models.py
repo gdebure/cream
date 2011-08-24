@@ -97,11 +97,11 @@ class Deliverable (models.Model):
     code = models.CharField(max_length=32, null=True, blank=True)
     name = models.CharField(max_length=128)
     description = models.TextField()
-    estimated_volume = models.IntegerField(null=True, blank=True)
+    contractual_volume = models.IntegerField(null=True, blank=True)
     acceptance_criteria = models.TextField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True)
-    unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True)
-    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True)
+    unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False) # Unit time is not used for the moment
+    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False) # FIXME: Turnover will be computed, to be removed from datamodel
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, null=True, blank=True)
     
     def __unicode__(self):
