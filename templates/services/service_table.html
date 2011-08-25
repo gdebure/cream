@@ -5,16 +5,16 @@
 <table class="blue">
     <tr>
         <th/>
-        <th>domain</th>
-        <th>family</th>
         <th>service</th>
+        <th>family</th>
+        <th>domain</th>
     </tr>
 {% for service in services_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ service.id }}"/></td>
-        <td><a href="{{ service.service_family.domain.get_absolute_url }}/">{{ service.service_family.domain}}</a></td>
-        <td><a href="{{ service.service_family.get_absolute_url }}/">{{ service.service_family}}</a></td>
         <td><a href="{{ service.get_absolute_url }}/">{{ service }}</a></td>
+        <td><a href="{{ service.service_family.get_absolute_url }}/">{{ service.service_family}}</a></td>
+        <td><a href="{{ service.service_family.domain.get_absolute_url }}/">{{ service.service_family.domain}}</a></td>
     </tr>
 {% endfor %}
 </table>
