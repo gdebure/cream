@@ -8,7 +8,7 @@ from users.models import Employee
 class Project (models.Model):
     '''A class to handle projects'''
     
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, verbose_name="project name")
     number = models.CharField(max_length=32, unique=True)
     description = models.TextField()
     date_start = models.DateField(null=True, blank=True)
@@ -16,6 +16,9 @@ class Project (models.Model):
     customer_name = models.CharField(max_length=128, null=True, blank=True)
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
+    
+    class Meta:
+        ordering = ["number", "name"]
     
     def __unicode__(self):
         return self.number + ": " + self.name

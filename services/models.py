@@ -5,9 +5,9 @@ from users.models import Employee
 
 class Domain (models.Model):
     '''A class to handle the domain for services'''
-    name = models.CharField(max_length=64)
-    is_active = models.BooleanField()
-    owner = models.ForeignKey(Employee)
+    name = models.CharField(max_length=64, verbose_name="domain name")
+    is_active = models.BooleanField(verbose_name="domaine is active")
+    owner = models.ForeignKey(Employee, verbose_name="domain owner")
     description = models.TextField(null=True)
     
     class Meta:
@@ -49,8 +49,8 @@ class ServiceFamily (models.Model):
         ('D', 'Decreasing'),
     )
     
-    name = models.CharField(max_length=128)
-    domain = models.ForeignKey(Domain, on_delete=models.PROTECT)
+    name = models.CharField(max_length=128, verbose_name="service family name")
+    domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="service family domain")
     description = models.TextField(null=True)
     focal_point = models.ForeignKey(Employee, null=True, blank=True)
     growth_potential = models.DecimalField(max_digits=2,decimal_places=0, verbose_name='Growth Potential in %',null=True, blank=True)
@@ -75,7 +75,7 @@ class ServiceFamily (models.Model):
 
 class Service (models.Model):
     
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True, verbose_name="service name")
     service_family = models.ForeignKey(ServiceFamily,on_delete=models.PROTECT)
     is_active = models.BooleanField()
     owner = models.ForeignKey(Employee, null=True, blank=True)
