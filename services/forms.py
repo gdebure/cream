@@ -53,8 +53,8 @@ class ServiceFamilyForm(forms.ModelForm):
 
 
 class AddServiceFamilyForm(ServiceFamilyForm):
-    
-        domain = forms.ModelChoiceField(Domain.objects.filter(pk=Domain.id))
+    pass
+    #domain = forms.ModelChoiceField(Domain.objects.filter(pk=Domain.id))
         
         
    
