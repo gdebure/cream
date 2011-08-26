@@ -95,12 +95,12 @@ class Deliverable (models.Model):
         ('R','Rejected')
         )
     
-    project = models.ForeignKey(Project, on_delete=models.PROTECT)
-    service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    code = models.CharField(max_length=32, null=True, blank=True)
-    name = models.CharField(max_length=128)
+    project = models.ForeignKey(Project, on_delete=models.PROTECT, verbose_name="project name")
+    service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True, blank=True)
+    code = models.CharField(max_length=32, null=True, blank=True, verbose_name="project deliverable identifier")
+    name = models.CharField(max_length=128, verbose_name="project deliverable name")
     description = models.TextField()
-    contractual_volume = models.IntegerField(null=True, blank=True)
+    contractual_volume = models.IntegerField(null=True, blank=True, verbose_name="number of units")
     acceptance_criteria = models.TextField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True)
     unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False) # Unit time is not used for the moment
