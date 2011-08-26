@@ -32,7 +32,7 @@ urlpatterns = patterns('',
     (r'^services/$', login_required()(ListView.as_view( model=Service, context_object_name='services_list', )), ),
     (r'^services/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Service, )), ),
     (r'^services/create/$', permission_required('services.add_service')(CreateView.as_view( model=Service, form_class=ServiceForm, success_url='/services/services/%(id)s' )), ),
-    (r'^services/(?P<pk>\d+)/update/$', ServiceUpdateView.as_view( model=Service, form_class=ServiceForm, form_class=ServiceForm, success_url='/services/services/%(id)s' ), ),
+    (r'^services/(?P<pk>\d+)/update/$', ServiceUpdateView.as_view( model=Service, form_class=ServiceForm, success_url='/services/services/%(id)s' ), ),
     (r'^services/(?P<pk>\d+)/delete/$', permission_required('services.delete_service')(DeleteView.as_view( model=Service, success_url='/services/services/' )), ),
     ##################################
     
