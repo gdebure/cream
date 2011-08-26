@@ -5,8 +5,16 @@ from services.models import Service
 from users.models import Employee 
 
 
+from django.core.exceptions import ValidationError
+
 class Project (models.Model):
     '''A class to handle projects'''
+    
+    NATCO_CHOICES = (
+        ('D','CIMPA GmbH'),
+        ('F','CIMPA SAS'),
+        ('U','CIMPA Ltd'),
+        )
     
     name = models.CharField(max_length=64, verbose_name="project name")
     number = models.CharField(max_length=32, unique=True)
@@ -16,6 +24,9 @@ class Project (models.Model):
     customer_name = models.CharField(max_length=128, null=True, blank=True)
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
+    project_leader = models.ForeignKey(Employee)
+    department = models.CharField(max_length=2)
+    natco = models.CharField(max_length=2, choices=NATCO_CHOICES)
     
     class Meta:
         ordering = ["number", "name"]
@@ -86,7 +97,12 @@ class Turnover (models.Model):
     def get_absolute_url(self):
         return "/projects/turnover_values/" + str(self.id)
         
-        
+
+def validate_positive(value):
+    if value < 0:
+        raise ValidationError(u'%s is not a positive value !' % value)
+
+
 class Deliverable (models.Model):
     
     SERVICE_OWNER_APPROVAL_CHOICES = (
@@ -96,15 +112,15 @@ class Deliverable (models.Model):
         )
     
     project = models.ForeignKey(Project, on_delete=models.PROTECT, verbose_name="project name")
-    service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True, blank=True)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True, blank=True, verbose_name="service family / service")
     code = models.CharField(max_length=32, null=True, blank=True, verbose_name="project deliverable identifier")
     name = models.CharField(max_length=128, verbose_name="project deliverable name")
     description = models.TextField()
-    contractual_volume = models.IntegerField(null=True, blank=True, verbose_name="number of units")
+    contractual_volume = models.IntegerField(null=True, blank=True, verbose_name="number of units", validators=[validate_positive])
     acceptance_criteria = models.TextField(null=True, blank=True)
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True)
-    unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False) # Unit time is not used for the moment
-    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False) # FIXME: Turnover will be computed, to be removed from datamodel
+    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True, validators=[validate_positive])
+    unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False, validators=[validate_positive]) # Unit time is not used for the moment
+    turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False, validators=[validate_positive]) # FIXME: Turnover will be computed, to be removed from datamodel
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, null=True, blank=True)
     
     def __unicode__(self):
