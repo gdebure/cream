@@ -85,7 +85,7 @@ class Service (models.Model):
         ordering = ['service_family','name']
     
     def __unicode__(self):
-        return self.name
+        return self.service_family.name + " : " + self.name
         
     def get_absolute_url(self):
         return '/services/services/' + str(self.id)
