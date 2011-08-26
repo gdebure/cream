@@ -148,23 +148,27 @@ div.footer {
 
 
 /* Specific tables */
-table.blue {
+table.styled {
     empty-cells: show;
     border-collapse:collapse;
 }
-table.blue td {
+table.styled td {
     border: 1px solid #cbd4e8;
     background-color: #f2f4fa;
     padding-left:5px;
     padding-right:5px;
 }
-table.blue th {
+table.styled th {
     text-transform:capitalize;
     font-weight: bold;
     border: 1px solid #94a9d4;
     background-color: #d3dbed;
     padding-left:5px;
     padding-right:5px;
+}
+
+table.detail th {
+    text-align:left;
 }
 
 

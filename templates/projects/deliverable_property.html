@@ -1,5 +1,5 @@
 {% include "services/decoration.html" with title="Deliverable properties" icon="deliverable.png" block="main" %}
-<table class="blue">
+<table class="styled detail">
     <tr><th>project</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
     <tr><th>service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
     <tr><th>code</th><td>{{ deliverable.code }}</td></tr>

@@ -1,6 +1,6 @@
 {% include "projects/decoration.html" with title=title|default:"Project properties" icon="project.png" block="main" %}
-<table class="blue">
-    <tr><th>name</th><td>{{ project.name}}</td></tr>
+<table class="styled detail">
+    <tr><th>project name</th><td>{{ project.name}}</td></tr>
     <tr><th>number</th><td>{{ project.number}}</td></tr>
     <tr><th>description</th><td>{{ project.description }}</td></tr>
     <tr><th>start date</th><td>{{project.date_start}}</td></tr>

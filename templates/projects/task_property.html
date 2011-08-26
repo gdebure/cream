@@ -1,5 +1,5 @@
 {% include "projects/decoration.html" with title="Task properties" icon="task.png" block="main" %}
-<table class="blue">
+<table class="styled detail">
     <tr><th>name</th><td>{{ task.name }}</td></tr>
     <tr><th>open date</th><td>{{ task.open_date }}</td></tr>
     <tr><th>criticity</th><td style={% include "projects/criticity_display.html" %}>{{ task.get_criticity_display }}</td></tr>

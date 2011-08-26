@@ -1,5 +1,5 @@
 {% include "services/decoration.html" with title=title|default:"Domain properties" icon="domain.png" block="main" %}
-<table class="blue">
+<table class="styled detail">
     <tr><th>name</th><td>{{ domain.name}}</td></tr>
     <tr><th>enabled</th><td>{{ domain.is_active }}</td></tr>
     <tr><th>description</th><td>{{ domain.description }}</td></tr>
