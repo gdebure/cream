@@ -3,6 +3,8 @@ from django import forms
 
 from django.contrib.auth.models import User
 
+import projects.models
+
   
     
 class Employee (models.Model):
@@ -25,5 +27,8 @@ class Employee (models.Model):
         
     def get_jobs(self):
         return self.jobemployee_set.all()
+        
+    def get_deliverables_to_validate(self):
+        return projects.models.Deliverable.objects.filter(approved_by_service_owner='P',service__owner=self)
     
     
