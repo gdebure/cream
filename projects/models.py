@@ -24,7 +24,7 @@ class Project (models.Model):
     customer_name = models.CharField(max_length=128, null=True, blank=True)
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
-    project_leader = models.ForeignKey(Employee, null=True, blank=True)
+    project_leader = models.ForeignKey(Employee, null=True, blank=True, related_name="project_leader")
     department = models.CharField(max_length=2)
     natco = models.CharField(max_length=2, choices=NATCO_CHOICES)
     
@@ -71,7 +71,7 @@ class Profile (models.Model):
     
 
 class Authorization (models.Model):
-    employee = models.ForeignKey(Employee)
+    employee = models.ForeignKey(Employee, related_name="authorization_employee")
     project = models.ForeignKey(Project)
     profile = models.ForeignKey(Profile)
     
@@ -121,13 +121,19 @@ class Deliverable (models.Model):
     unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True, validators=[validate_positive])
     unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False, validators=[validate_positive]) # Unit time is not used for the moment
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False, validators=[validate_positive]) # FIXME: Turnover will be computed, to be removed from datamodel
-    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, null=True, blank=True)
+    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
     
     def __unicode__(self):
         return self.name
         
     def get_absolute_url(self):
         return "/projects/deliverables/" + str(self.id)
+        
+    def user_can_update(self,user):
+        if user.has_perm('services.change_service',self.service):
+            return True
+        else:
+            return False
         
         
 class SubjectFamily (models.Model):
