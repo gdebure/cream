@@ -3,6 +3,7 @@ from guardian.decorators import permission_required
 from django.utils.decorators import method_decorator
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
+from services.models import Service
 
 class ProjectUpdateView(UpdateView):
 
@@ -26,6 +27,15 @@ class DeliverableUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(DeliverableUpdateView, self).dispatch(*args, **kwargs)
         
+
+class ValidateServiceView(UpdateView):
+    
+    def dispatch(self, *args, **kwargs):
+        deliverable = self.get_object()
+        if self.request.user.has_perm('services.change_service',deliverable.service):
+            return super(ValidateServiceView, self).dispatch(*args, **kwargs)
+        else:
+            return HttpResponse("Not allowed")
 
 
 class TurnoverUpdateView(UpdateView):

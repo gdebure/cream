@@ -24,7 +24,7 @@ class Project (models.Model):
     customer_name = models.CharField(max_length=128, null=True, blank=True)
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
-    project_leader = models.ForeignKey(Employee)
+    project_leader = models.ForeignKey(Employee, null=True, blank=True)
     department = models.CharField(max_length=2)
     natco = models.CharField(max_length=2, choices=NATCO_CHOICES)
     

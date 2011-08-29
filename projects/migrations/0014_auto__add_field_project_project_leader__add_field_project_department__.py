@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'Project.project_leader'
-        db.add_column('projects_project', 'project_leader', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['users.Employee']), keep_default=False)
+        db.add_column('projects_project', 'project_leader', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['users.Employee']), keep_default=False)
 
         # Adding field 'Project.department'
         db.add_column('projects_project', 'department', self.gf('django.db.models.fields.CharField')(default='', max_length=2), keep_default=False)
