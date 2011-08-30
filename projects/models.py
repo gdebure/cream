@@ -19,14 +19,14 @@ class Project (models.Model):
     name = models.CharField(max_length=64, verbose_name="project name")
     number = models.CharField(max_length=32, unique=True)
     description = models.TextField()
-    date_start = models.DateField(null=True, blank=True)
+    date_start = models.DateField(null=True, blank=True )
     date_end = models.DateField(null=True, blank=True)
     customer_name = models.CharField(max_length=128, null=True, blank=True)
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
     project_leader = models.ForeignKey(Employee, null=True, blank=True, related_name="project_leader")
     department = models.CharField(max_length=2)
-    natco = models.CharField(max_length=2, choices=NATCO_CHOICES)
+    natco = models.CharField(max_length=2, choices=NATCO_CHOICES, verbose_name="billing natco")
     
     class Meta:
         ordering = ["number", "name"]

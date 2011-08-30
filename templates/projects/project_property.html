@@ -8,4 +8,7 @@
     <tr><th>customer name</th><td>{{project.customer_name}}</td></tr>
     <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
     <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
+    <tr><th>project leader</th><td><a href="{{ project.project_leader.get_absolute_url }}">{{project.project_leader}}</a></td></tr>
+    <tr><th>department</th><td>{{project.department}}</td></tr>
+    <tr><th>billing natco</th><td>{{project.get_natco_display}}</td></tr>
 </table>
