@@ -1,9 +1,17 @@
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
 from guardian.decorators import permission_required
 from django.utils.decorators import method_decorator
 
+from django.shortcuts import get_object_or_404, render_to_response
+from django.views.generic.create_update import update_object
+from django.views.generic.simple import direct_to_template
+
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from services.models import Service
+from projects.forms import DeliverableValidateServiceForm
+
+
+
+
 
 class ProjectUpdateView(UpdateView):
 
@@ -28,14 +36,18 @@ class DeliverableUpdateView(UpdateView):
         return super(DeliverableUpdateView, self).dispatch(*args, **kwargs)
         
 
-class ValidateServiceView(UpdateView):
+
     
-    def dispatch(self, *args, **kwargs):
-        deliverable = self.get_object()
-        if self.request.user.has_perm('services.change_service',deliverable.service):
-            return super(ValidateServiceView, self).dispatch(*args, **kwargs)
-        else:
-            return HttpResponse("Not allowed")
+def validate_deliverable_service(request, pk):
+    domain = get_object_or_404(Deliverable, id=pk)
+    if request.user.has_perm('services.change_service',domain.service):
+        response = update_object(request,form_class=DeliverableValidateServiceForm, object_id=pk)
+    else:
+        response = direct_to_template(request,template="forbidden.html")
+    return response
+
+
+
 
 
 class TurnoverUpdateView(UpdateView):
