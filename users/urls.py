@@ -3,7 +3,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from django.contrib.auth.views import login, logout_then_login, password_change, password_change_done
 from users.models import Employee
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 urlpatterns = patterns('',
@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     
     (r'^employees/$', login_required()(ListView.as_view( queryset=Employee.objects.order_by('id'), context_object_name='employees_list', )),),
     (r'^employees/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Employee, )),),
-    
+    (r'^employees/create/$', permission_required('users.add_employee')(CreateView.as_view( model=Employee, )),),
 )
