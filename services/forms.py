@@ -20,8 +20,9 @@ class DomainForm(forms.ModelForm):
                 remove_perm('delete_domain',user,domain)
         
         # Assign the right to update this domain to the domain owner
-        assign('domains.change_domain', domain.owner.user, domain)
-        assign('domains.delete_domain', domain.owner.user, domain)
+        if domain.owner != None:
+            assign('domains.change_domain', domain.owner.user, domain)
+            assign('domains.delete_domain', domain.owner.user, domain)
         
         return domain
         
@@ -46,8 +47,9 @@ class ServiceFamilyForm(forms.ModelForm):
                 remove_perm('delete_servicefamily',user,servicefamily)
         
         # Assign the right to update this servicefamily to the servicefamily focal point
-        assign('servicefamily.change_servicefamily', servicefamily.focal_point.user, servicefamily)
-        assign('servicefamily.delete_servicefamily', servicefamily.focal_point.user, servicefamily)
+        if servicefamily.focal_point != None:
+            assign('servicefamily.change_servicefamily', servicefamily.focal_point.user, servicefamily)
+            assign('servicefamily.delete_servicefamily', servicefamily.focal_point.user, servicefamily)
         
         return servicefamily
 
@@ -77,7 +79,8 @@ class ServiceForm(forms.ModelForm):
                 remove_perm('delete_service',user,service)
         
         # Assign the right to update this service to the service focal point
-        assign('service.change_service', service.owner.user, service)
-        assign('service.delete_service', service.owner.user, service)
+        if service.owner != None:
+            assign('service.change_service', service.owner.user, service)
+            assign('service.delete_service', service.owner.user, service)
         
         return service
