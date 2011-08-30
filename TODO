@@ -2,7 +2,6 @@
 * Enforce modularization (hard and soft dependencies between modules)
 * Licencing (and if GPL allowed by CIMPA, push to some opensource hosting facility)
 * Enforce mandatory fields appearance (bold ? or maybe *)
-* Date formats in labels (YYYY-MM-DD)
 * Email notifications
 
 == Services Modules ==

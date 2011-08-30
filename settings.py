@@ -6,7 +6,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Guillaume DE BURE', 'guillaume.debure@airbus.com'),
 )
 
 MANAGERS = ADMINS
@@ -176,3 +176,9 @@ AUTHENTICATION_BACKENDS = (
 
 # Also needed for guardian
 ANONYMOUS_USER_ID = -1
+
+
+#### Email stuff
+EMAIL_HOST = 'tocimserver'
+EMAIL_PORT= 5225
+EMAIL_SUBJECT_PREFIX = '[CREAM]'
