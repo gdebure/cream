@@ -2,8 +2,10 @@ from django.views.generic import UpdateView, DetailView
 from guardian.decorators import permission_required
 from django.utils.decorators import method_decorator
 
+from django.db.models import ProtectedError
+
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.create_update import update_object
+from django.views.generic.create_update import update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
@@ -62,16 +64,40 @@ def update_deliverable(request, pk):
 def validate_deliverable_service(request, pk):
     '''Perform the validation of the link to the service'''
     
-    domain = get_object_or_404(Deliverable, id=pk)
+    deliverable = get_object_or_404(Deliverable, id=pk)
     
     # It is only possible if the user has rights on the service
-    if request.user.has_perm('services.change_service',domain.service):
+    if request.user.has_perm('services.change_service',deliverable.service):
         response = update_object(request,form_class=DeliverableValidateServiceForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
     
     return response
+
+
+
+
+
+def delete_deliverable(request, pk):
+    '''Perform the deliverable delete'''
+    
+    deliverable = get_object_or_404(Deliverable, id=pk)
+    project = deliverable.project
+    
+    # It is only possible if the user has rights on the deliverable
+    if request.user.has_perm('projects.delete_deliverable',deliverable):
+        try:
+            response = delete_object(request, Deliverable, project.get_absolute_url(), object_id=pk, template_object_name="deliverable")
+        except ProtectedError:
+            message = 'You can not delete deliverable <a href="' + deliverable.get_absolute_url() +'">' + str(deliverable) + '</a> because there are Tasks attached to it'
+            response = direct_to_template(request, template="common/error.html", extra_context={'message':message})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+    
 
 
 
