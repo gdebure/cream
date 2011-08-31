@@ -27,7 +27,7 @@ class DeliverableForm(forms.ModelForm):
             mail_title = 'New deliverable added to service'
             mail_body = 'Please check whether the deliverable "' + str(deliverable)+ '" should be linked to the service "' + str(deliverable.service) + "\n"
             mail_body += 'Please Approve or Reject at this address : ' + deliverable.get_absolute_url()
-            #send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
+            send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
             
         return deliverable
         
