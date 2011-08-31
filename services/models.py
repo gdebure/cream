@@ -82,7 +82,7 @@ class Service (models.Model):
     description = models.TextField(null=True)
     
     class Meta:
-        ordering = ['service_family','name']
+        ordering = ['service_family__name','name']
     
     def __unicode__(self):
         return self.service_family.name + " : " + self.name
