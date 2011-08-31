@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
 from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm
 
-from projects.views import ProjectUpdateView, AuthorizationUpdateView, DeliverableUpdateView, TurnoverUpdateView, TaskUpdateView, validate_deliverable_service
+from projects.views import ProjectUpdateView, AuthorizationUpdateView, update_deliverable, TurnoverUpdateView, TaskUpdateView, validate_deliverable_service
 
 urlpatterns = patterns('',
     ##################################
@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     (r'^deliverables/$', login_required()(ListView.as_view( model=Deliverable, context_object_name='deliverables_list', )), ),
     (r'^deliverables/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Deliverable, )), ),
     (r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, form_class=DeliverableForm, success_url='/projects/deliverables/%(id)s' )), ),
-    (r'^deliverables/(?P<pk>\d+)/update/$', permission_required('projects.change_deliverable')(UpdateView.as_view( model=Deliverable, form_class=DeliverableForm, success_url='/projects/deliverables/%(id)s' ), )),
+    (r'^deliverables/(?P<pk>\d+)/update/$', update_deliverable),
     (r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, success_url='/projects/deliverables/' )), ),
     # Service validation stuff
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),

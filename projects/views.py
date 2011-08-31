@@ -7,7 +7,7 @@ from django.views.generic.create_update import update_object
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import DeliverableValidateServiceForm
+from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 
 
@@ -35,15 +35,42 @@ class DeliverableUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(DeliverableUpdateView, self).dispatch(*args, **kwargs)
         
+        
 
+
+
+def update_deliverable(request, pk):
+    '''Perform update on the deliverable'''
+    
+    deliverable = get_object_or_404(Deliverable, id=pk)
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_deliverable
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_deliverable',deliverable) or request.user.has_perm('projects.change_project',deliverable.project):
+        response = update_object(request,form_class=DeliverableForm, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
     
+
+
+
 def validate_deliverable_service(request, pk):
+    '''Perform the validation of the link to the service'''
+    
     domain = get_object_or_404(Deliverable, id=pk)
+    
+    # It is only possible if the user has rights on the service
     if request.user.has_perm('services.change_service',domain.service):
         response = update_object(request,form_class=DeliverableValidateServiceForm, object_id=pk)
     else:
+        # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
+    
     return response
 
 
