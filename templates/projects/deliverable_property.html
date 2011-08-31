@@ -3,7 +3,7 @@
     <tr><th>project</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
     <tr><th>linked to service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
 <!--     To be colored depending on status -->
-<tr><th>service linked validated ?</th><td><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
+<tr><th>service linked validated ?</th><td style={% include "projects/link_display.html" %}><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
 <!--     To be colored depending on status -->
     <tr><th>code</th><td>{{ deliverable.code }}</td></tr>
     <tr><th>name</th><td>{{ deliverable.name}}</td></tr>

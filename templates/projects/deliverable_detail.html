@@ -9,5 +9,8 @@
 <!-- Include the object property -->
 {% include "common/object_actions.html" %}
 
+<div class="block">
+{% include "projects/task_table.html" with tasks_list=deliverable.get_tasks %}
+</div>
 
 {% endblock %}

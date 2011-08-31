@@ -19,7 +19,7 @@
         <td><a href="{{ deliverable.get_absolute_url }}">{{ deliverable }}</a></td>
         <td><a href="{{ deliverable.service.service_family.get_absolute_url }}">{{ deliverable.service.service_family }}</a></td>
         <td><a href="{{ deliverable.service.get_absolute_url }}">{{ deliverable.service }}</a></td>
-        <td><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
+        <td style={% include "projects/link_display.html" %}><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
     </tr>
 {% endfor %}
 </table>

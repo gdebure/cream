@@ -129,11 +129,8 @@ class Deliverable (models.Model):
     def get_absolute_url(self):
         return "/projects/deliverables/" + str(self.id)
         
-    def user_can_update(self,user):
-        if user.has_perm('services.change_service',self.service):
-            return True
-        else:
-            return False
+    def get_tasks(self):
+        return self.task_set.all()
         
         
 class SubjectFamily (models.Model):
