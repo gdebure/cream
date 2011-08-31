@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
 from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm
 
-from projects.views import ProjectUpdateView, AuthorizationUpdateView, update_deliverable, delete_deliverable, validate_deliverable_service, TurnoverUpdateView, TaskUpdateView
+from projects.views import ProjectUpdateView, update_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, TurnoverUpdateView, TaskUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     (r'^authorizations/$', login_required()(ListView.as_view( model=Authorization, context_object_name='authorizations_list', )), ),
     (r'^authorizations/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Authorization, )), ),
     (r'^authorizations/create/$', permission_required('projects.add_authorization')(CreateView.as_view( model=Authorization, success_url='/authorizations/authorizations/%(id)s' )), ),
-    (r'^authorizations/(?P<pk>\d+)/update/$', AuthorizationUpdateView.as_view( model=Authorization, success_url='/projects/authorizations/%(id)s' ), ),
+    (r'^authorizations/(?P<pk>\d+)/update/$', update_authorization ),
     (r'^authorizations/(?P<pk>\d+)/delete/$', permission_required('projects.delete_authorization')(DeleteView.as_view( model=Authorization, success_url='/authorizations/authorizations/' )), ),
     ##################################
     

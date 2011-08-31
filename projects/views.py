@@ -15,29 +15,41 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 
 
-class ProjectUpdateView(UpdateView):
+def update_project(request, pk):
+    '''Perform update on the project'''
+    
+    authorization = get_object_or_404(Project, id=pk)
+    
+    # Can only update if the current user has rights on the project
+    if request.user.has_perm('projects.change_authorization',authorization) or request.user.has_perm('projects.change_project',authorization.project):
+        response = update_object(request, model=Authorization, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+    
+    
+    
 
-    @method_decorator(permission_required('projects.change_project',(Project, 'id', 'pk')))
-    def dispatch(self, *args, **kwargs):
-        return super(ProjectUpdateView, self).dispatch(*args, **kwargs)
+
+def update_authorization(request, pk):
+    '''Perform update on the authorization'''
+    
+    authorization = get_object_or_404(Deliverable, id=pk)
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_authorization
+    # - or has the right to change the project this authorization belongs to
+    if request.user.has_perm('projects.change_authorization',authorization) or request.user.has_perm('projects.change_project',authorization.project):
+        response = update_object(request, model=Authorization, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
-
-class AuthorizationUpdateView(UpdateView):
-
-    @method_decorator(permission_required('projects.change_authorization',(Authorization, 'id', 'pk')))
-    def dispatch(self, *args, **kwargs):
-        return super(AuthorizationUpdateView, self).dispatch(*args, **kwargs)
-
-
-
-class DeliverableUpdateView(UpdateView):
-
-    @method_decorator(permission_required('projects.change_deliverable',(Deliverable, 'id', 'pk')))
-    def dispatch(self, *args, **kwargs):
-        return super(DeliverableUpdateView, self).dispatch(*args, **kwargs)
-        
-        
 
 
 
