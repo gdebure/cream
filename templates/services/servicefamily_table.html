@@ -7,16 +7,16 @@
         <th/>
         <th>service family</th>
         <th>domain</th>
-        <th>description</th>
         <th>focal point</th>
+        <th>active</th>
     </tr>
 {% for servicefamily in servicefamilies_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ servicefamily.id }}"/></td>
         <td><a href="{{ servicefamily.get_absolute_url }}/">{{ servicefamily}}</a></td>
         <td><a href="{{servicefamily.domain.get_absolute_url}}">{{ servicefamily.domain }}</a></td>
-        <td>{{servicefamily.description}}</td>
         <td><a href="{{servicefamily.focal_point.get_absolute_url}}">{{ servicefamily.focal_point}}</a></td>
+        <td>{{ servicefamily.is_active }}</td>
     </tr>
 {% endfor %}
 </table>
