@@ -166,7 +166,7 @@ LOGGING = {
 AUTH_PROFILE_MODULE = 'users.Employee'
 
 LOGIN_URL="/users/login/"
-LOGIN_REDIRECT_URL="/users/employees"
+LOGIN_REDIRECT_URL="/"
 
 # Guardian Backends
 AUTHENTICATION_BACKENDS = (
