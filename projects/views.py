@@ -18,11 +18,11 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 def update_project(request, pk):
     '''Perform update on the project'''
     
-    authorization = get_object_or_404(Project, id=pk)
+    project = get_object_or_404(Project, id=pk)
     
     # Can only update if the current user has rights on the project
-    if request.user.has_perm('projects.change_authorization',authorization) or request.user.has_perm('projects.change_project',authorization.project):
-        response = update_object(request, model=Authorization, object_id=pk)
+    if request.user.has_perm('projects.change_projectn',project):
+        response = update_object(request, model=Project, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
