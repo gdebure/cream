@@ -132,6 +132,12 @@ class Deliverable (models.Model):
     def get_tasks(self):
         return self.task_set.all()
         
+    def get_turnover(self):
+        if self.unit_price != None and self.contractual_volume != None:
+            return self.unit_price * self.contractual_volume
+        else:
+            return 0
+        
         
 class SubjectFamily (models.Model):
     

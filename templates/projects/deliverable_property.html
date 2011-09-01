@@ -1,17 +1,17 @@
-{% include "services/decoration.html" with title="Deliverable properties" icon="deliverable.png" block="main" %}
+{% include "services/decoration.html" with title="Project Deliverable properties" icon="deliverable.png" block="main" %}
 <table class="styled detail">
-    <tr><th>project</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
-    <tr><th>linked to service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
+    <tr><th>project deliverable name</th><td>{{ deliverable.name}}</td></tr>
+    <tr><th>project deliverable identifier</th><td>{{ deliverable.code }}</td></tr>
+    <tr><th>project name</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
+    <tr><th>service family / service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
 <!--     To be colored depending on status -->
 <tr><th>service linked validated ?</th><td style={% include "projects/link_display.html" %}><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
 <!--     To be colored depending on status -->
-    <tr><th>code</th><td>{{ deliverable.code }}</td></tr>
-    <tr><th>name</th><td>{{ deliverable.name}}</td></tr>
     <tr><th>description</th><td>{{ deliverable.description }}</td></tr>
-    <tr><th>contractual volume</th><td>{{ deliverable.contractual_volume }}</td></tr>
     <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
-    <tr><th>unit price</th><td>{{ deliverable.unit_price }}</td></tr>
+    <tr><th>number of units</th><td>{{ deliverable.contractual_volume }}</td></tr>
+    <tr><th>unit price (&euro;)</th><td>{{ deliverable.unit_price }} &euro;</td></tr>
 <!--     <tr><th>unit time</th><td>{{ deliverable.unit_time }}</td></tr> -->
-    <tr><th>unit turnover</th><td>(computed)</td></tr>
+    <tr><th>total turnover (&euro;)</th><td>{{deliverable.get_turnover}} &euro;</td></tr>
     
 </table>
