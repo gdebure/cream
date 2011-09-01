@@ -3,6 +3,14 @@ from django.core.mail import send_mail
 
 from projects.models import Project, Deliverable, Task
 
+class ProjectForm(forms.ModelForm):
+    
+    class Meta:
+        model = Project
+        fields = ('name','number','project_leader','date_start','date_end','department','natco','customer_name','description','wiki_link')
+
+
+
 
 class DeliverableForm(forms.ModelForm):
     
@@ -24,13 +32,17 @@ class DeliverableForm(forms.ModelForm):
         
 
 
+
 class DeliverableValidateServiceForm(forms.ModelForm):
     
     class Meta:
         model = Deliverable
         fields = ('approved_by_service_owner',)
         
-        
+
+
+
+
 class TaskForm(forms.ModelForm):
     
     class Meta:

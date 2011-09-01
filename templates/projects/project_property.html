@@ -2,13 +2,13 @@
 <table class="styled detail">
     <tr><th>project name</th><td>{{ project.name}}</td></tr>
     <tr><th>project number</th><td>{{ project.number}}</td></tr>
-    <tr><th>description</th><td>{{ project.description }}</td></tr>
+    <tr><th>project leader</th><td><a href="{{ project.project_leader.get_absolute_url }}">{{project.project_leader}}</a></td></tr>
     <tr><th>project start date</th><td>{{project.date_start}}</td></tr>
     <tr><th>project end date</th><td>{{project.date_end}}</td></tr>
-    <tr><th>customer name</th><td>{{project.customer_name}}</td></tr>
-    <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
-    <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
-    <tr><th>project leader</th><td><a href="{{ project.project_leader.get_absolute_url }}">{{project.project_leader}}</a></td></tr>
     <tr><th>CIMPA department</th><td>{{project.department}}</td></tr>
     <tr><th>turnover allocation natco</th><td>{{project.get_natco_display}}</td></tr>
+    <tr><th>customer name</th><td>{{project.customer_name}}</td></tr>
+    <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
+    <tr><th>description</th><td>{{ project.description }}</td></tr>
+    <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
 </table>
