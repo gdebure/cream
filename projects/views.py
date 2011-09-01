@@ -9,7 +9,7 @@ from django.views.generic.create_update import update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import DeliverableForm, DeliverableValidateServiceForm
+from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm
 
 
 
@@ -22,7 +22,7 @@ def update_project(request, pk):
     
     # Can only update if the current user has rights on the project
     if request.user.has_perm('projects.change_projectn',project):
-        response = update_object(request, model=Project, object_id=pk)
+        response = update_object(request, form_class=ProjectForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
