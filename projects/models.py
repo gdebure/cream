@@ -25,8 +25,8 @@ class Project (models.Model):
     customer_siglum = models.CharField(max_length=16, null=True, blank=True)
     wiki_link = models.URLField(null=True, blank=True)
     project_leader = models.ForeignKey(Employee, null=True, blank=True, related_name="project_leader")
-    department = models.CharField(max_length=2)
-    natco = models.CharField(max_length=2, choices=NATCO_CHOICES, verbose_name="billing natco")
+    department = models.CharField(max_length=2,null=True, blank=True)
+    natco = models.CharField(max_length=2, choices=NATCO_CHOICES, verbose_name="turnover allocation natco", null=True, blank=True)
     
     class Meta:
         ordering = ["number", "name"]
