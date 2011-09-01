@@ -5,8 +5,8 @@ from projects.models import Project, Deliverable, Task
 
 class ProjectForm(forms.ModelForm):
     
-    date_start = forms.DateField(help_text='YYYY-MM-DD')
-    date_end = forms.DateField(help_text='YYYY-MM-DD')
+    date_start = forms.DateField(help_text='YYYY-MM-DD', label='project start date')
+    date_end = forms.DateField(help_text='YYYY-MM-DD', label='project end date')
     
     class Meta:
         model = Project
