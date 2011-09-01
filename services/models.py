@@ -50,7 +50,7 @@ class ServiceFamily (models.Model):
     )
     
     name = models.CharField(max_length=128, verbose_name="service family name")
-    domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="service family domain")
+    domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="domain")
     description = models.TextField(null=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name="service family owner")
     growth_potential = models.DecimalField(max_digits=2,decimal_places=0, verbose_name='growth potential in %',null=True, blank=True)
