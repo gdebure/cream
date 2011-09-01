@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, CreateView, DeleteView
 from services.models import Domain, ServiceFamily, Service
 from services.forms import DomainForm, ServiceFamilyForm, ServiceForm, AddServiceFamilyForm
 
-from services.views import DomainUpdateView, ServiceFamilyUpdateView, ServiceUpdateView, domains_report
+from services.views import update_domain, delete_domain, update_servicefamily, delete_servicefamily, ServiceUpdateView, domains_report
 
 urlpatterns = patterns('',
     ##################################
@@ -13,8 +13,8 @@ urlpatterns = patterns('',
     (r'^domains/$', login_required()(ListView.as_view( model=Domain, context_object_name='domains_list', )), ),
     (r'^domains/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Domain, )), ),
     (r'^domains/create/$', permission_required('services.add_domain')(CreateView.as_view( model=Domain, form_class=DomainForm, success_url='/services/domains/%(id)s' )), ),
-    (r'^domains/(?P<pk>\d+)/update/$', DomainUpdateView.as_view( model=Domain, form_class=DomainForm, success_url='/services/domains/%(id)s' ), ),
-    (r'^domains/(?P<pk>\d+)/delete/$', permission_required('services.delete_domain')(DeleteView.as_view( model=Domain, success_url='/services/domains/' )), ),
+    (r'^domains/(?P<pk>\d+)/update/$', update_domain ),
+    (r'^domains/(?P<pk>\d+)/delete/$', delete_domain ),
     #(r'^domains/(?P<pk>\d+)/add_servicefamily/$', permission_required('services.change_domain')(CreateView.as_view( model=ServiceFamily, form_class=AddServiceFamilyForm,  success_url='/services/domains/%(id)s' )), ),
     ##################################
     
@@ -23,8 +23,8 @@ urlpatterns = patterns('',
     (r'^service_families/$', login_required()(ListView.as_view( model=ServiceFamily, context_object_name='servicefamilies_list', )), ),
     (r'^service_families/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=ServiceFamily, )), ),
     (r'^service_families/create/$', permission_required('services.add_servicefamily')(CreateView.as_view( model=ServiceFamily, form_class=ServiceFamilyForm, success_url='/services/service_families/%(id)s' )), ),
-    (r'^service_families/(?P<pk>\d+)/update/$', ServiceFamilyUpdateView.as_view( model=ServiceFamily, form_class=ServiceFamilyForm, success_url='/services/service_families/%(id)s' ), ),
-    (r'^service_families/(?P<pk>\d+)/delete/$', permission_required('services.delete_servicefamily')(DeleteView.as_view( model=ServiceFamily, success_url='/services/service_families/' )), ),
+    (r'^service_families/(?P<pk>\d+)/update/$', update_servicefamily ),
+    (r'^service_families/(?P<pk>\d+)/delete/$', delete_servicefamily ),
     ##################################
     
     ##################################
