@@ -1,12 +1,12 @@
 {% include "services/decoration.html" with title="Service Family properties" icon="service_family.png" block="main" %}
 <table class="styled detail">
-    <tr><th>name</th><td>{{ servicefamily.name}}</td></tr>
+    <tr><th>service family name</th><td>{{ servicefamily.name}}</td></tr>
+    <tr><th>service family is active</th><td>{{ servicefamily.is_active }}</td></tr>
+    <tr><th>service family owner</th><td><a href="{{servicefamily.focal_point.get_absolute_url}}">{{ servicefamily.owner }}</a></td></tr>
     <tr><th>domain</th><td><a href="{{ servicefamily.domain.get_absolute_url}}">{{ servicefamily.domain.name}}</a></td></tr>
     <tr><th>description</th><td>{{ servicefamily.description }}</td></tr>
-    <tr><th>focal point</th><td><a href="{{servicefamily.focal_point.get_absolute_url}}">{{ servicefamily.focal_point }}</a></td></tr>
     <tr><th>growth potential (%)</th><td>{{ servicefamily.growth_potential }}</td>
-    <tr><th>is active</th><td>{{ servicefamily.is_active }}</td></tr>
-    <tr><th>service position</th><td>{{ servicefamily.get_service_position_display }}</td></tr>
-    <tr><th>trend</th><td>{{ servicefamily.get_trend_display }}</td></tr>
-    <tr><th>service lifecycle</th><td>{{ servicefamily.get_service_lifecycle_display }}</td></tr>
+    <tr><th>service family market position</th><td>{{ servicefamily.get_service_position_display }}</td></tr>
+    <tr><th>service family market trend</th><td>{{ servicefamily.get_trend_display }}</td></tr>
+    <tr><th>service family lifecycle</th><td>{{ servicefamily.get_service_lifecycle_display }}</td></tr>
 </table>

@@ -7,6 +7,7 @@ class DomainForm(forms.ModelForm):
     
     class Meta:
         model = Domain
+        fields = ['name','is_active','owner','description']
         
     def save(self, commit=True):
         domain = super(forms.ModelForm, self).save(commit=commit)
@@ -34,6 +35,7 @@ class ServiceFamilyForm(forms.ModelForm):
     
     class Meta:
         model = ServiceFamily
+        fields = ['name','is_active','owner','domain','description','growth_potential','service_position','trend','service_lifecycle']
 
     def save(self, commit=True):
         servicefamily = super(forms.ModelForm, self).save(commit=commit)
@@ -47,9 +49,9 @@ class ServiceFamilyForm(forms.ModelForm):
                 remove_perm('delete_servicefamily',user,servicefamily)
         
         # Assign the right to update this servicefamily to the servicefamily focal point
-        if servicefamily.focal_point != None:
-            assign('servicefamily.change_servicefamily', servicefamily.focal_point.user, servicefamily)
-            assign('servicefamily.delete_servicefamily', servicefamily.focal_point.user, servicefamily)
+        if servicefamily.owner != None:
+            assign('servicefamily.change_servicefamily', servicefamily.owner.user, servicefamily)
+            assign('servicefamily.delete_servicefamily', servicefamily.owner.user, servicefamily)
         
         return servicefamily
 
@@ -66,6 +68,7 @@ class AddServiceFamilyForm(ServiceFamilyForm):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
+        fields = ['name','is_active','owner','service_family','description']
         
     def save(self, commit=True):
         service = super(forms.ModelForm, self).save(commit=commit)
