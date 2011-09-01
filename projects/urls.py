@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
-from projects.views import update_project, update_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, TurnoverUpdateView, TaskUpdateView
+from projects.views import update_project, delete_project, update_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, update_turnover, TaskUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     (r'^projects/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Project, )), ),
     (r'^projects/create/$', permission_required('projects.add_project')(CreateView.as_view( model=Project, success_url='/projects/projects/%(id)s' )), ),
     (r'^projects/(?P<pk>\d+)/update/$', update_project),
-    (r'^projects/(?P<pk>\d+)/delete/$', permission_required('projects.delete_project')(DeleteView.as_view( model=Project, success_url='/projects/projects/' )), ),
+    (r'^projects/(?P<pk>\d+)/delete/$', delete_project),
     ##################################
     
     ##################################
@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     (r'^turnover_values/$', login_required()(ListView.as_view( model=Turnover, context_object_name='turnover_values_list', )), ),
     (r'^turnover_values/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Turnover, )), ),
     (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
-    (r'^turnover_values/(?P<pk>\d+)/update/$', TurnoverUpdateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' ), ),
+    (r'^turnover_values/(?P<pk>\d+)/update/$', update_turnover ),
     (r'^turnover_values/(?P<pk>\d+)/delete/$', permission_required('projects.delete_turnover')(DeleteView.as_view( model=Turnover, success_url='/projects/turnover_values/' )), ),
     ##################################
     

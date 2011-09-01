@@ -30,7 +30,27 @@ def update_project(request, pk):
     return response
     
     
+
+
+def delete_project(request, pk):
+    '''Perform the project delete'''
     
+    project = get_object_or_404(Project, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.delete_project',project):
+        try:
+            response = delete_object(request, Project, '/projects/projects', object_id=pk, template_object_name="project")
+        except ProtectedError:
+            message = 'You can not delete project <a href="' + project.get_absolute_url() +'">' + str(project) + '</a> because there are Deliverable or Tasks attached to it'
+            response = direct_to_template(request, template="common/error.html", extra_context={'message':message})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+
+
 
 
 def update_authorization(request, pk):
@@ -115,11 +135,24 @@ def delete_deliverable(request, pk):
 
 
 
-class TurnoverUpdateView(UpdateView):
-
-    @method_decorator(permission_required('projects.change_turnover',(Turnover, 'id', 'pk')))
-    def dispatch(self, *args, **kwargs):
-        return super(TurnoverUpdateView, self).dispatch(*args, **kwargs)
+def update_turnover(request, pk):
+    '''Perform update on the turnover'''
+    
+    turnover = get_object_or_404(Turnover, id=pk)
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_turnover
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_turnover',turnover) or request.user.has_perm('projects.change_project',turnover.project):
+        response = update_object(request,model=Turnover, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+        
+        
+    
 
 
 
