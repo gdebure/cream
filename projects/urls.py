@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm
+from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 from projects.views import update_project, update_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, TurnoverUpdateView, TaskUpdateView
 
