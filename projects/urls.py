@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
-from projects.views import update_project, delete_project, update_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, update_turnover, TaskUpdateView
+from projects.views import update_project, delete_project, update_authorization, delete_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, update_turnover, delete_turnover, update_task, delete_task
 
 urlpatterns = patterns('',
     ##################################
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     (r'^authorizations/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Authorization, )), ),
     (r'^authorizations/create/$', permission_required('projects.add_authorization')(CreateView.as_view( model=Authorization, success_url='/authorizations/authorizations/%(id)s' )), ),
     (r'^authorizations/(?P<pk>\d+)/update/$', update_authorization ),
-    (r'^authorizations/(?P<pk>\d+)/delete/$', permission_required('projects.delete_authorization')(DeleteView.as_view( model=Authorization, success_url='/authorizations/authorizations/' )), ),
+    (r'^authorizations/(?P<pk>\d+)/delete/$', delete_authorization ),
     ##################################
     
     ##################################
@@ -43,7 +43,7 @@ urlpatterns = patterns('',
     (r'^turnover_values/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Turnover, )), ),
     (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
     (r'^turnover_values/(?P<pk>\d+)/update/$', update_turnover ),
-    (r'^turnover_values/(?P<pk>\d+)/delete/$', permission_required('projects.delete_turnover')(DeleteView.as_view( model=Turnover, success_url='/projects/turnover_values/' )), ),
+    (r'^turnover_values/(?P<pk>\d+)/delete/$', delete_turnover ),
     ##################################
     
     ##################################
@@ -51,7 +51,7 @@ urlpatterns = patterns('',
     (r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
     (r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
     (r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
-    (r'^tasks/(?P<pk>\d+)/update/$', TaskUpdateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' ), ),
-    (r'^tasks/(?P<pk>\d+)/delete/$', permission_required('projects.delete_task')(DeleteView.as_view( model=Task, success_url='/projects/tasks/' )), ),
+    (r'^tasks/(?P<pk>\d+)/update/$', update_task),
+    (r'^tasks/(?P<pk>\d+)/delete/$', delete_task),
     ##################################
 )

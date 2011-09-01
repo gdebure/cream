@@ -1,6 +1,4 @@
 from django.views.generic import UpdateView, DetailView
-from guardian.decorators import permission_required
-from django.utils.decorators import method_decorator
 
 from django.db.models import ProtectedError
 
@@ -9,9 +7,7 @@ from django.views.generic.create_update import update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm
-
-
+from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, TaskForm
 
 
 
@@ -21,7 +17,7 @@ def update_project(request, pk):
     project = get_object_or_404(Project, id=pk)
     
     # Can only update if the current user has rights on the project
-    if request.user.has_perm('projects.change_projectn',project):
+    if request.user.has_perm('projects.change_project',project):
         response = update_object(request, form_class=ProjectForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
@@ -63,6 +59,24 @@ def update_authorization(request, pk):
     # - or has the right to change the project this authorization belongs to
     if request.user.has_perm('projects.change_authorization',authorization) or request.user.has_perm('projects.change_project',authorization.project):
         response = update_object(request, model=Authorization, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+
+
+
+
+
+def delete_authorization(request, pk):
+    '''Perform the project authorization'''
+    
+    authorization = get_object_or_404(Authorization, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.change_authorization',authorization) or request.user.has_perm('projects.change_project',authorization.project):
+        response = delete_object(request, Authorization, authorization.project.get_absolute_url(), object_id=pk, template_object_name="authorization")
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
@@ -154,11 +168,53 @@ def update_turnover(request, pk):
         
     
 
+def delete_turnover(request, pk):
+    '''Perform the turnover delete'''
+    
+    turnover = get_object_or_404(Turnover, id=pk)
+    
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.change_project',turnover.project):
+        response = delete_object(request, Turnover, turnover.project.get_absolute_url(), object_id=pk, template_object_name="turnover")
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
-class TaskUpdateView(UpdateView):
 
-    @method_decorator(permission_required('projects.change_turnover',(Task, 'id', 'pk')))
-    def dispatch(self, *args, **kwargs):
-        return super(TaskUpdateView, self).dispatch(*args, **kwargs)
-        
+
+def update_task(request, pk):
+    '''Perform update on the turnover'''
+    
+    task = get_object_or_404(Task, id=pk)
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_turnover
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_task',task) or request.user.has_perm('projects.change_project',turnover.project):
+        response = update_object(request,form_class=TaskForm, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+    
+
+
+
+def delete_task(request, pk):
+    '''Perform the task delete'''
+    
+    task = get_object_or_404(Task, id=pk)
+    deliverable = task.deliverable
+    
+    # It is only possible if the user has rights on the deliverable
+    if request.user.has_perm('projects.delete_task',task):
+        response = delete_object(request, Task, deliverable.project.get_absolute_url(), object_id=pk, template_object_name="task")
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
