@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, CreateView, DeleteView
 from services.models import Domain, ServiceFamily, Service
 from services.forms import DomainForm, ServiceFamilyForm, ServiceForm, AddServiceFamilyForm
 
-from services.views import update_domain, delete_domain, update_servicefamily, delete_servicefamily, ServiceUpdateView, domains_report
+from services.views import update_domain, delete_domain, update_servicefamily, delete_servicefamily, update_service, delete_service, domains_report
 
 urlpatterns = patterns('',
     ##################################
@@ -32,8 +32,8 @@ urlpatterns = patterns('',
     (r'^services/$', login_required()(ListView.as_view( model=Service, context_object_name='services_list', )), ),
     (r'^services/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Service, )), ),
     (r'^services/create/$', permission_required('services.add_service')(CreateView.as_view( model=Service, form_class=ServiceForm, success_url='/services/services/%(id)s' )), ),
-    (r'^services/(?P<pk>\d+)/update/$', ServiceUpdateView.as_view( model=Service, form_class=ServiceForm, success_url='/services/services/%(id)s' ), ),
-    (r'^services/(?P<pk>\d+)/delete/$', permission_required('services.delete_service')(DeleteView.as_view( model=Service, success_url='/services/services/' )), ),
+    (r'^services/(?P<pk>\d+)/update/$', update_service),
+    (r'^services/(?P<pk>\d+)/delete/$', delete_service),
     ##################################
     
     (r'^report$',domains_report),

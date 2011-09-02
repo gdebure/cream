@@ -1,5 +1,3 @@
-from django.views.generic import UpdateView, DetailView
-
 from django.db.models import ProtectedError
 
 from django.shortcuts import get_object_or_404, render_to_response
