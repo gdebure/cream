@@ -30,6 +30,12 @@ class DeliverableForm(forms.ModelForm):
             
         return deliverable
         
+        
+class DeliverableFromProjectForm(DeliverableForm):
+    
+    class Meta:
+        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
+        
 
 
 
