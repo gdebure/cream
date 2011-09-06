@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
-from projects.views import update_project, delete_project, update_authorization, delete_authorization, update_deliverable, delete_deliverable, validate_deliverable_service, update_turnover, delete_turnover, update_task, delete_task
+from projects.views import update_project, delete_project, update_authorization, delete_authorization, create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service, update_turnover, delete_turnover, update_task, delete_task
 
 urlpatterns = patterns('',
     ##################################
@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     (r'^projects/create/$', permission_required('projects.add_project')(CreateView.as_view( model=Project, success_url='/projects/projects/%(id)s' )), ),
     (r'^projects/(?P<pk>\d+)/update/$', update_project),
     (r'^projects/(?P<pk>\d+)/delete/$', delete_project),
+    # Add deliverable to a project
+    (r'^projects/(?P<pk>\d+)/add_deliverable/$', create_deliverable),
     ##################################
     
     ##################################

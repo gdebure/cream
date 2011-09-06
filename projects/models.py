@@ -123,6 +123,9 @@ class Deliverable (models.Model):
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False, validators=[validate_positive]) # FIXME: Turnover will be computed, to be removed from datamodel
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
     
+    class Meta:
+        ordering = ['project','service','name']
+    
     def __unicode__(self):
         return self.name
         

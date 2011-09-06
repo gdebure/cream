@@ -1,11 +1,11 @@
 from django.db.models import ProtectedError
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.create_update import update_object, delete_object
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, TaskForm
+from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, DeliverableFromProjectForm, TaskForm
 
 
 
@@ -47,6 +47,7 @@ def delete_project(request, pk):
 
 
 
+
 def update_authorization(request, pk):
     '''Perform update on the authorization'''
     
@@ -81,6 +82,22 @@ def delete_authorization(request, pk):
     
     return response
 
+
+
+
+def create_deliverable(request, pk):
+    '''Create a deliverable from a project page'''
+    
+    project = get_object_or_404(Project, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.delete_project',project):
+        response = create_object(request, form_class=DeliverableFromProjectForm)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 
