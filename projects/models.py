@@ -140,8 +140,37 @@ class Deliverable (models.Model):
             return self.unit_price * self.contractual_volume
         else:
             return 0
+            
+    def get_volumes(self):
+        return self.deliverablevolume_set.all()
         
+    def get_total_volume(self):
+        volumes = self.get_volumes()
+        total = 0
+        for volume in volumes:
+            total += volume.quantity
+        return total
         
+
+
+
+class DeliverableVolume(models.Model):
+
+    deliverable = models.ForeignKey(Deliverable)
+    date_start = models.DateField()
+    date_end = models.DateField()
+    quantity = models.IntegerField()
+
+    class Meta:
+        ordering = ['deliverable','date_start']
+        
+    def __unicode__(self):
+        return str(self.deliverable)+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
+        
+    def get_absolute_url(self):
+        return '/projects/deliverablevolumes/' + str(self.id)
+
+
 class SubjectFamily (models.Model):
     
     name = models.CharField(max_length=64)

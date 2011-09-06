@@ -1,0 +1,24 @@
+{% include "projects/decoration.html" with title=title|default:"Project Deliverables Volumes list" icon=icon|default:"deliverable_small.png" %}
+
+{% if deliverablevolumes_list %}
+<table class="styled">
+    <tr>
+        <th/>
+        <th>project deliverable name</th>
+        <th>date start</th>
+        <th>date end</th>
+        <th>quantity</th>
+    </tr>
+{% for deliverablevolume in deliverablevolumes_list %}
+    <tr>
+        <td><input type="checkbox" name="id_{{ deliverablevolume.id }}"/></td>
+        <td><a href="{{ deliverablevolume.get_absolute_url }}">{{ deliverablevolume.deliverable }}</a></td>
+        <td>{{ deliverablevolume.date_start }}</td>
+        <td>{{ deliverablevolume.date_end }}</td>
+        <td>{{ deliverablevolume.quantity }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No deliverable volume found.</p>
+{% endif %}

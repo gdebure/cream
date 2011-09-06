@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "projects/decoration.html" with title="Edit Project Deliverable Volume" icon="deliverable.png" block="main" %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="styled detail">
+    {{ form }}
+    </table>
+    <input type="submit" value="save"/>
+</form>
+
+{% endblock %}
+

@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
-from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, DeliverableFromProjectForm, TaskForm
+from projects.models import Project, Authorization, Deliverable, DeliverableVolume, Turnover, Task
+from projects.forms import ProjectForm, DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm, TaskForm
 
 
 
@@ -159,6 +159,26 @@ def delete_deliverable(request, pk):
     
     return response
     
+
+
+
+
+def update_deliverablevolume(request, pk):
+    '''Perform update on the deliverable'''
+    
+    deliverablevolume = get_object_or_404(DeliverableVolume, id=pk)
+    project = deliverablevolume.deliverable.project
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_deliverable
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_deliverablevolume',deliverablevolume) or request.user.has_perm('projects.change_project',project):
+        response = update_object(request,model=DeliverableVolume, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 

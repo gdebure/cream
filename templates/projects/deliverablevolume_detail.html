@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Include the object property -->
-{% include "projects/deliverable_property.html" %}
+{% include "projects/deliverablevolume_property.html" %}
 
 <!-- Include the object property -->
 {% include "common/object_actions.html" %}
@@ -13,10 +13,5 @@
 Do no show tasks at the moment, keep it for later...
 {% include "projects/task_table.html" with tasks_list=deliverable.get_tasks %}
 </div>-->
-
-<div class="block">
-{% include "projects/deliverablevolume_table.html" with deliverablevolumes_list=deliverable.get_volumes %}
-<a href="/projects/deliverablevolumes/create">Add turnover value</a>
-</div>
 
 {% endblock %}
