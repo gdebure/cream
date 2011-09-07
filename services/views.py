@@ -1,11 +1,11 @@
 from django.db.models import ProtectedError
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.create_update import update_object, delete_object
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from services.models import Domain, ServiceFamily, Service
-from services.forms import DomainForm, ServiceFamilyForm, ServiceForm
+from services.forms import DomainForm, ServiceFamilyForm, ServiceFamilyFromDomainForm, ServiceForm, ServiceFromServiceFamilyForm
 
 
 
@@ -45,6 +45,20 @@ def delete_domain(request, pk):
     return response
 
 
+    
+def create_servicefamily(request, pk):
+    '''Create a deliverable from a project page'''
+    
+    domain = get_object_or_404(Domain, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('services.change_domain',domain):
+        response = create_object(request, form_class=ServiceFamilyFromDomainForm, extra_context={'predefined_value':domain})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 def update_servicefamily(request, pk):
@@ -83,7 +97,22 @@ def delete_servicefamily(request, pk):
     return response
 
 
+def create_service(request, pk):
+    '''Create a deliverable from a project page'''
+    
+    servicefamily = get_object_or_404(ServiceFamily, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('services.change_servicefamily',servicefamily):
+        response = create_object(request, form_class=ServiceFromServiceFamilyForm, extra_context={'predefined_value':servicefamily})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
+    
+    
 
 def update_service(request, pk):
     '''Perform update on the service'''

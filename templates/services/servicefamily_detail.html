@@ -8,6 +8,6 @@
 
 <div class="block">
 {% include "services/service_table.html" with services_list=servicefamily.get_services%}
-<a href="/services/services/create">Add new service</a>
+<a href="{{servicefamily.get_absolute_url}}/add_service">Add new service</a>
 
 {% endblock %}

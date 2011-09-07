@@ -4,11 +4,6 @@
 
 {% include "services/decoration.html" with title="Edit Service Family" icon="service_family.png" block="main" %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table class="styled detail">
-    {{ form }}
-    </table>
-    <input type="submit" value="save"/>
-</form>
+{% include "common/standard_form.html" %}
+
 {% endblock %}
