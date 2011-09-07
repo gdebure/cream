@@ -11,7 +11,7 @@
 
 <div class="block">
 {% include "projects/deliverable_table.html" with deliverables_list=project.get_deliverables %}
-<a href="/projects/deliverables/create">Add deliverable</a>
+<a href="{{project.get_absolute_url}}/add_deliverable">Add deliverable</a>
 </div>
 
 <div class="block">
