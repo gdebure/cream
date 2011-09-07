@@ -8,7 +8,7 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 from projects.views import update_project, delete_project
 from projects.views import update_authorization, delete_authorization
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
-from projects.views import update_deliverablevolume, delete_deliverablevolume
+from projects.views import update_deliverablevolume
 from projects.views import update_turnover, delete_turnover
 from projects.views import update_task, delete_task
 
@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     (r'^deliverablevolumes/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=DeliverableVolume, )), ),
     (r'^deliverablevolumes/create/$', permission_required('projects.add_deliverablevolume')(CreateView.as_view( model=DeliverableVolume, success_url='/projects/deliverablevolumes/%(id)s' )), ),
     (r'^deliverablevolumes/(?P<pk>\d+)/update/$', update_deliverablevolume),
-    (r'^deliverablevolumes/(?P<pk>\d+)/delete/$', delete_deliverablevolume),
+    #(r'^deliverablevolumes/(?P<pk>\d+)/delete/$', delete_deliverablevolume),
     ##################################
     
     
