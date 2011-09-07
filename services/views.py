@@ -120,7 +120,7 @@ def update_service(request, pk):
     service = get_object_or_404(Service, id=pk)
     
     # Can only update if the current user has rights on the service or on the servicefamily
-    if request.user.has_perm('services.change_service',service) or request.user.has_perm('services.change_servicefamily', service.servicefamily):
+    if request.user.has_perm('services.change_service',service) or request.user.has_perm('services.change_servicefamily', service.service_family):
         response = update_object(request, form_class=ServiceForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
@@ -137,7 +137,7 @@ def delete_service(request, pk):
     service = get_object_or_404(Service, id=pk)
      
     # It is only possible if the user has rights on the service or on the domain
-    if request.user.has_perm('services.delete_service',service) or request.user.has_perm('services.change_servicefamily', service.servicefamily):
+    if request.user.has_perm('services.delete_service',service) or request.user.has_perm('services.change_servicefamily', service.service_family):
         try:
             response = delete_object(request, Service, '/services/services', object_id=pk, template_object_name="service")
         except ProtectedError:
