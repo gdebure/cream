@@ -160,12 +160,13 @@ table.styled td {
 }
 table.styled th {
     text-transform:capitalize;
-    font-weight: bold;
+    font-weight: normal;
     border: 1px solid #94a9d4;
     background-color: #d3dbed;
     padding-left:5px;
     padding-right:5px;
 }
+
 
 table.detail th {
     text-align:left;
