@@ -6,10 +6,13 @@
 <table>
     <tr>
         <td><img src="/static/media/common/error.png"/></td>
-        <td><h1>Failed !</h1></td>
+        <td>
+            <h1>{{title|default:"Failed"}} !</h1>
+            {{ message|safe }}
+        </td>
     </tr>
 </table>
 </div>
-<div>{{ message|safe }}</div>
+<div></div>
 
 {% endblock%}
