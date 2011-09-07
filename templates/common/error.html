@@ -2,7 +2,14 @@
 
 {% block content%}
 
-<div class="warning"><h1>Failed !</h1></div>
+<div>
+<table>
+    <tr>
+        <td><img src="/static/media/common/error.png"/></td>
+        <td><h1>Failed !</h1></td>
+    </tr>
+</table>
+</div>
 <div>{{ message|safe }}</div>
 
 {% endblock%}
