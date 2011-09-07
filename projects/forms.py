@@ -38,6 +38,17 @@ class DeliverableFromProjectForm(DeliverableForm):
         
 
 
+class DeliverableFromProjectForm(DeliverableForm):
+    
+    class Meta:
+        model = Deliverable
+        widgets = {
+            'project': forms.HiddenInput(),
+        }
+        
+        
+
+
 
 class DeliverableValidateServiceForm(forms.ModelForm):
     
