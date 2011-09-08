@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome in CREAM !{%endblock%}
-
 {% block content %}
 
-Please use menu on the left to navigate
+<div class="block">
+{% include "services/summary.html"%}
+<hr/>
+{% include "projects/summary.html"%}
+</div>
+
+{% if user_pending_deliverables %}
+<div>{{user_pending_deliverables.count}}</div>
+{% endif %}
 
 {% endblock %}

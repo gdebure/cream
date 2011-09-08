@@ -3,13 +3,15 @@ from django.views.generic.simple import direct_to_template
 
 from django.contrib.auth.decorators import login_required
 
+from views import home_view
+
 # Enable the admin site:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Base URL displays home page
-    url(r'^$', login_required()(direct_to_template), {'template': 'home.html'}),
+    url(r'^$', login_required()(home_view)),
 
     # URL for the admin site:
     url(r'^admin/', include(admin.site.urls)),
