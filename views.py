@@ -13,7 +13,7 @@ def home_view(request):
     count_projects = Project.objects.count()
     count_deliverables = Deliverable.objects.count()
     
-    user_services = get_objects_for_user(request.user,'services.change_service')
+    user_services = Service.objects.filter(owner=request.user)
     deliverables_pending = Deliverable.objects.filter(approved_by_service_owner='p')
     user_pending_deliverables = deliverables_pending.filter(service__in=user_services)
     
