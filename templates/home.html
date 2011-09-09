@@ -12,8 +12,10 @@
 </table>
 </div>
 
-{% if user_pending_deliverables %}
-<div>{{user_pending_deliverables.count}}</div>
+{% if user_pending_deliverables.count > 0 %}
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=user_pending_deliverables title="Deliverables that need your validation" %}
+</div>
 {% endif %}
 
 {% endblock %}
