@@ -17,7 +17,10 @@ def home_view(request):
     deliverables_pending = Deliverable.objects.filter(approved_by_service_owner='p')
     user_pending_deliverables = deliverables_pending.filter(service__in=user_services)
     
-    user_projects = get_objects_for_user(request.user,'projects.change_project')
+    user_projects = Project.objects.filter(project_leader=request.user)
+    
+    deliverables_rejected = Deliverable.objects.filter(approved_by_service_owner='r')
+    user_rejected_deliverables = deliverables_rejected.filter(project__in=user_projects)
     
     return direct_to_template(request, template="home.html", extra_context={
         'count_domains':count_domains,
@@ -27,5 +30,6 @@ def home_view(request):
         'count_deliverables':count_deliverables,
         'user_services':user_services,
         'user_pending_deliverables':user_pending_deliverables,
+        'user_rejected_deliverables':user_rejected_deliverables,
         'user_projects':user_projects,
         })

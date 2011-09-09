@@ -18,6 +18,12 @@
 </div>
 {% endif %}
 
+{% if user_rejected_deliverables.count > 0 %}
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=user_rejected_deliverables title="Rejected Deliverables" %}
+</div>
+{% endif %}
+
 {% if user_services.count > 0 %}
 <div class="block">
 {% include "services/service_table.html" with services_list=user_services title="My Services" %}
