@@ -3,9 +3,13 @@
 {% block content %}
 
 <div class="block">
-{% include "services/summary.html"%}
-<hr/>
-{% include "projects/summary.html"%}
+<table>
+    <tr>
+        <td style="padding-right:30px;vertical-align:top;">{% include "services/summary.html"%}</td>
+        <td style="border-right:2px solid #d3dbed"/>
+        <td style="padding:0 30px 0 30px;vertical-align:top;">{% include "projects/summary.html"%}</td>
+    </tr>
+</table>
 </div>
 
 {% if user_pending_deliverables %}
