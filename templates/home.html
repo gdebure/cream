@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="block">
+<div class="block"">
 <table>
     <tr>
         <td style="padding-right:30px;vertical-align:top;">{% include "services/summary.html"%}</td>
@@ -14,7 +14,19 @@
 
 {% if user_pending_deliverables.count > 0 %}
 <div class="block">
-{% include "projects/deliverable_table.html" with deliverables_list=user_pending_deliverables title="Deliverables that need your validation" %}
+{% include "projects/deliverable_table.html" with deliverables_list=user_pending_deliverables title="Deliverables to validate" %}
+</div>
+{% endif %}
+
+{% if user_services.count > 0 %}
+<div class="block">
+{% include "services/service_table.html" with services_list=user_services title="My Services" %}
+</div>
+{% endif %}
+
+{% if user_projects.count > 0 %}
+<div class="block">
+{% include "projects/project_table.html" with projects_list=user_projects title="My Projects" %}
 </div>
 {% endif %}
 
