@@ -1,0 +1,24 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <table class="styled detail">
+    {% for field in form %}
+    <tr>
+        {% if field.field.required %} 
+        <th style="font-weight: bold;">{{ field.label_tag }} *</th>
+        {% else %}
+        <th>{{ field.label_tag }}</th>
+        {% endif %}
+        
+        {% if form.predefined == field.name %}
+        <td><a href="{{predefined_value.get_absolute_url}}">{{predefined_value}}</a><input type="hidden" name="{{field.name}}" id="id_{{field.name}}" value="{{predefined_value.id}}"/></td>
+        {% else %}
+        <td>{{ field.errors }}{{ field }} {{field.help_text}}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </table>
+    
+    <p><b>* Mandatory fields</b></p>
+    
+    <input type="submit" value="save"/>
+</form>

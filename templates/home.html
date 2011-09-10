@@ -1,7 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome in CREAM !{%endblock%}
-
 {% block content %}
-Use menu on the left to navigate
+
+<div class="block"">
+<table>
+    <tr>
+        <td style="padding-right:30px;vertical-align:top;">{% include "services/summary.html"%}</td>
+        <td style="border-right:2px solid #d3dbed"/>
+        <td style="padding:0 30px 0 30px;vertical-align:top;">{% include "projects/summary.html"%}</td>
+    </tr>
+</table>
+</div>
+
+{% if user_pending_deliverables.count > 0 %}
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=user_pending_deliverables title="Deliverables to validate" %}
+</div>
+{% endif %}
+
+{% if user_rejected_deliverables.count > 0 %}
+<div class="block">
+{% include "projects/deliverable_table.html" with deliverables_list=user_rejected_deliverables title="Rejected Deliverables" %}
+</div>
+{% endif %}
+
+{% if user_services.count > 0 %}
+<div class="block">
+{% include "services/service_table.html" with services_list=user_services title="My Services" %}
+</div>
+{% endif %}
+
+{% if user_projects.count > 0 %}
+<div class="block">
+{% include "projects/project_table.html" with projects_list=user_projects title="My Projects" %}
+</div>
+{% endif %}
+
 {% endblock %}

@@ -4,13 +4,7 @@
 
 {% include "projects/decoration.html" with title="Update Project" icon="project.png" block="main" %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table class="styled detail">
-    {{ form }}
-    </table>
-    <input type="submit" value="save"/>
-</form>
+{% include "common/standard_form.html" %}
 
 {% endblock %}
 

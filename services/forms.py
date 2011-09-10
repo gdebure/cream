@@ -28,8 +28,7 @@ class DomainForm(forms.ModelForm):
         return domain
         
         
-        
-       
+      
 
 class ServiceFamilyForm(forms.ModelForm):
     
@@ -56,10 +55,9 @@ class ServiceFamilyForm(forms.ModelForm):
         return servicefamily
 
 
-class AddServiceFamilyForm(ServiceFamilyForm):
-    pass
-    #domain = forms.ModelChoiceField(Domain.objects.filter(pk=Domain.id))
-        
+class ServiceFamilyFromDomainForm(ServiceFamilyForm):
+
+    predefined = 'domain'
         
    
         
@@ -87,3 +85,7 @@ class ServiceForm(forms.ModelForm):
             assign('service.delete_service', service.owner.user, service)
         
         return service
+        
+class ServiceFromServiceFamilyForm(ServiceForm):
+
+    predefined = 'service_family'

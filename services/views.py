@@ -1,11 +1,11 @@
 from django.db.models import ProtectedError
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic.create_update import update_object, delete_object
+from django.views.generic.create_update import create_object, update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
 from services.models import Domain, ServiceFamily, Service
-from services.forms import DomainForm, ServiceFamilyForm, ServiceForm
+from services.forms import DomainForm, ServiceFamilyForm, ServiceFamilyFromDomainForm, ServiceForm, ServiceFromServiceFamilyForm
 
 
 
@@ -32,7 +32,7 @@ def delete_domain(request, pk):
     domain = get_object_or_404(Domain, id=pk)
      
     # It is only possible if the user has rights on the project
-    if request.user.has_perm('projects.delete_domain',domain):
+    if request.user.has_perm('services.delete_domain',domain):
         try:
             response = delete_object(request, Domain, '/services/domains', object_id=pk, template_object_name="domain")
         except ProtectedError:
@@ -45,6 +45,20 @@ def delete_domain(request, pk):
     return response
 
 
+    
+def create_servicefamily(request, pk):
+    '''Create a deliverable from a project page'''
+    
+    domain = get_object_or_404(Domain, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('services.change_domain',domain):
+        response = create_object(request, form_class=ServiceFamilyFromDomainForm, extra_context={'predefined_value':domain})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 def update_servicefamily(request, pk):
@@ -70,7 +84,7 @@ def delete_servicefamily(request, pk):
     servicefamily = get_object_or_404(ServiceFamily, id=pk)
      
     # It is only possible if the user has rights on the servicefamily or on the domain
-    if request.user.has_perm('projects.delete_servicefamily',servicefamily) or request.user.has_perm('projects.change_domain',servicefamily.domain):
+    if request.user.has_perm('services.delete_servicefamily',servicefamily) or request.user.has_perm('services.change_domain',servicefamily.domain):
         try:
             response = delete_object(request, ServiceFamily, '/services/service_families', object_id=pk, template_object_name="servicefamily")
         except ProtectedError:
@@ -83,7 +97,22 @@ def delete_servicefamily(request, pk):
     return response
 
 
+def create_service(request, pk):
+    '''Create a deliverable from a project page'''
+    
+    servicefamily = get_object_or_404(ServiceFamily, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('services.change_servicefamily',servicefamily):
+        response = create_object(request, form_class=ServiceFromServiceFamilyForm, extra_context={'predefined_value':servicefamily})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
+    
+    
 
 def update_service(request, pk):
     '''Perform update on the service'''
@@ -91,7 +120,7 @@ def update_service(request, pk):
     service = get_object_or_404(Service, id=pk)
     
     # Can only update if the current user has rights on the service or on the servicefamily
-    if request.user.has_perm('services.change_service',service) or request.user.has_perm('services.change_servicefamily', service.servicefamily):
+    if request.user.has_perm('services.change_service',service) or request.user.has_perm('services.change_servicefamily', service.service_family):
         response = update_object(request, form_class=ServiceForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
@@ -108,7 +137,7 @@ def delete_service(request, pk):
     service = get_object_or_404(Service, id=pk)
      
     # It is only possible if the user has rights on the service or on the domain
-    if request.user.has_perm('projects.delete_service',service) or request.user.has_perm('services.change_servicefamily', service.servicefamily):
+    if request.user.has_perm('services.delete_service',service) or request.user.has_perm('services.change_servicefamily', service.service_family):
         try:
             response = delete_object(request, Service, '/services/services', object_id=pk, template_object_name="service")
         except ProtectedError:
