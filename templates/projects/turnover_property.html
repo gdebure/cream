@@ -1,6 +1,0 @@
-{% include "projects/decoration.html" with title="Turnover properties" icon="turnover.png" block="main" %}
-<table class="styled">
-    <tr><th>year</th><td>{{ turnover.year }}</td></tr>
-    <tr><th>project</th><td><a href="{{ turnover.project.get_absolute_url }}">{{ turnover.project }}</a></td></tr>
-    <tr><th>amount</th><td>{{ turnover.amount }}</td></tr>
-</table>

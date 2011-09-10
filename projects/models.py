@@ -85,18 +85,6 @@ class Authorization (models.Model):
         return "/projects/authorizations/" + str(self.id)
 
 
-class Turnover (models.Model):
-    
-    year = models.IntegerField()
-    project = models.ForeignKey(Project)
-    amount = models.IntegerField()
-    
-    def __unicode__(self):
-        return self.project.name + ", " + str(self.year) + ", " + str(self.amount)
-        
-    def get_absolute_url(self):
-        return "/projects/turnover_values/" + str(self.id)
-        
 
 def validate_positive(value):
     if value < 0:
@@ -159,7 +147,8 @@ class DeliverableVolume(models.Model):
     deliverable = models.ForeignKey(Deliverable)
     date_start = models.DateField()
     date_end = models.DateField()
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(null=True, blank=True)
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
     class Meta:
         ordering = ['deliverable','date_start']

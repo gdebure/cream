@@ -2,12 +2,11 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Deliverable, Turnover, Task
+from projects.models import Project, Deliverable, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
-from projects.views import update_turnover, delete_turnover
 from projects.views import update_task, delete_task
 
 urlpatterns = patterns('',
@@ -31,15 +30,6 @@ urlpatterns = patterns('',
     (r'^deliverables/(?P<pk>\d+)/delete/$', delete_deliverable),
     # Service validation stuff
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
-    ##################################
-    
-    ##################################
-    # Turnover values
-    (r'^turnover_values/$', login_required()(ListView.as_view( model=Turnover, context_object_name='turnover_values_list', )), ),
-    (r'^turnover_values/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Turnover, )), ),
-    (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
-    (r'^turnover_values/(?P<pk>\d+)/update/$', update_turnover ),
-    (r'^turnover_values/(?P<pk>\d+)/delete/$', delete_turnover ),
     ##################################
     
     ##################################
