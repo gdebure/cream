@@ -41,22 +41,9 @@ class DeliverableFromProjectForm(DeliverableForm):
         fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
         
     
-        
-        
 
-
-class DeliverableFromProjectForm(DeliverableForm):
     
-    class Meta:
-        model = Deliverable
-        widgets = {
-            'project': forms.HiddenInput(),
-        }
-        
-        
-
-
-
+    
 class DeliverableValidateServiceForm(forms.ModelForm):
     
     class Meta:
