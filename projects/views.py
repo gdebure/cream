@@ -5,7 +5,11 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, DeliverableVolume, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm, TaskForm
+
+from projects.forms import ProjectForm
+from projects.forms import DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm
+from projects.forms import DeliverableVolumeFromDeliverableForm
+from projects.forms import TaskForm
 
 
 
@@ -162,6 +166,18 @@ def delete_deliverable(request, pk):
 
 
 
+def create_deliverablevolume(request, pk):
+    
+    deliverable = get_object_or_404(Deliverable)
+    project = deliverable.project
+    
+    if request.user.has_perm('projects.add_deliverablevolume') or request.user.has_perm('projects.change_project',project):
+        response = create_object(request, form_class=DeliverableVolumeFromDeliverableForm, extra_context={'predefined_value':deliverable})
+    else:
+        response = direct_to_template(request, template="forbidden.html")
+    
+    return response
+    
 
 def update_deliverablevolume(request, pk):
     '''Perform update on the deliverable'''

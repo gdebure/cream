@@ -1,7 +1,7 @@
 from django import forms
 from django.core.mail import send_mail
 
-from projects.models import Project, Deliverable, Task
+from projects.models import Project, Deliverable, DeliverableVolume, Task
 
 class ProjectForm(forms.ModelForm):
     
@@ -52,7 +52,20 @@ class DeliverableValidateServiceForm(forms.ModelForm):
         
 
 
+        
+class DeliverableVolumeForm(forms.ModelForm):
+    
+    class Meta:
+        model = DeliverableVolume
 
+
+        
+class DeliverableVolumeFromDeliverableForm(DeliverableVolumeForm):
+    
+    predefined = 'deliverable'
+        
+
+        
 
 class TaskForm(forms.ModelForm):
     
