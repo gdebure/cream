@@ -197,6 +197,20 @@ def update_deliverablevolume(request, pk):
     return response
 
 
+def delete_deliverablevolume(request, pk):
+    '''Perform the deliverable delete'''
+    
+    deliverablevolume = get_object_or_404(DeliverableVolume, id=pk)
+    deliverable = deliverablevolume.deliverable
+    
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.change_project',deliverable.project):
+        response = delete_object(request, DeliverableVolume, deliverable.get_absolute_url(), object_id=pk, template_object_name="deliverablevolume")
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 

@@ -2,12 +2,12 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Deliverable, Task
+from projects.models import Project, Deliverable, DeliverableVolume, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
-from projects.views import create_deliverablevolume
+from projects.views import create_deliverablevolume, update_deliverablevolume, delete_deliverablevolume
 from projects.views import update_task, delete_task
 
 urlpatterns = patterns('',
@@ -33,6 +33,15 @@ urlpatterns = patterns('',
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
     (r'^deliverables/(?P<pk>\d+)/add_volume/$', create_deliverablevolume),
     ##################################
+    
+    
+    ##################################
+    # Deliverable Volumes
+    (r'^deliverablevolumes/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=DeliverableVolume, )), ),
+    (r'^deliverablevolumes/(?P<pk>\d+)/update/$', update_deliverablevolume),
+    (r'^deliverablevolumes/(?P<pk>\d+)/delete/$', delete_deliverablevolume),
+    ##################################
+    
     
     ##################################
     # Task values
