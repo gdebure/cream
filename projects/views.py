@@ -243,7 +243,7 @@ def update_task_answer(request, pk):
     # - has specifically the permission change_turnover
     # - or has the right to change the project this deliverable belongs to
     if request.user.has_perm('projects.change_task',task):
-        response = update_object(request,form_class=TaskAnswerForm, object_id=pk)
+        response = update_object(request,form_class=TaskAnswerForm, object_id=pk, template_name="projects/task_answer_form.html", extra_context={'task':task})
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")

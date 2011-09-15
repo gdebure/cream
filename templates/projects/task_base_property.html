@@ -1,0 +1,11 @@
+<table class="styled detail">
+    <tr><th>name</th><td>{{ task.name }}</td></tr>
+    <tr><th>open date</th><td>{{ task.open_date }}</td></tr>
+    <tr><th>criticity</th><td style={% include "projects/criticity_display.html" %}>{{ task.get_criticity_display }}</td></tr>
+    <tr><th>description</th><td>{{ task.description }}</td></tr>
+    <tr><th>requestor</th><td>{{ task.requestor }}</td></tr>
+    <tr><th>creator</th><td><a href="{{ task.creator.get_absolute_url }}">{{ task.creator }}</a></td></tr>
+    <tr><th>project</th><td><a href="{{ task.deliverable.project.get_absolute_url }}">{{ task.deliverable.project }}</a></td></tr>
+    <tr><th>deliverable</th><td><a href="{{ task.deliverable.get_absolute_url }}">{{ task.deliverable}}</a></td></tr>
+</table>
+{% include "common/object_actions.html" %}

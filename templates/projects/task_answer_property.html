@@ -1,0 +1,18 @@
+<table class="styled detail">
+    <tr><th>answer</th><td>{{ task.answer }}</td></tr>
+    <tr><th>close date</th><td>{{ task.close_date }}</td></tr>
+    <tr><th>status</th><td>{{ task.get_status_display }}</td></tr>
+    <tr><th>reject reason</th><td>{{ task.reject_reason }}</td></tr>
+    <tr><th>time spent</th><td>{{ task.time_spent }}</td></tr>
+    <tr><th>subject</th><td>
+        {% for subject in task.get_subjects %}
+        <a href="{{ subject.get_absolute_url }}">{{ subject }}</a><br/>
+        {% endfor %}
+    </td></tr>
+    <tr><th>owner</th><td>
+        {% for owner in task.get_owners %}
+        <a href="{{ owner.get_absolute_url }}">{{ owner }}</a><br/>
+        {% endfor %}
+    </td></tr>
+</table>
+<table><tr><td><a href="update_answer">edit answer</a></td></tr></table>
