@@ -5,7 +5,7 @@ from django.views.generic.create_update import create_object, update_object, del
 from django.views.generic.simple import direct_to_template
 
 from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, DeliverableFromProjectForm, TaskForm
+from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, DeliverableFromProjectForm, TaskForm, TaskFromDeliverableForm, TaskAnswerForm
 
 
 
@@ -199,6 +199,22 @@ def delete_turnover(request, pk):
 
 
 
+def create_task(request, pk):
+    '''Create a task from a deliverable page'''
+    
+    deliverable = get_object_or_404(Deliverable, id=pk)
+     
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.add_task'):
+        response = create_object(request, form_class=TaskFromDeliverableForm, extra_context={'predefined_value':deliverable})
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+
+
+
 
 def update_task(request, pk):
     '''Perform update on the turnover'''
@@ -208,14 +224,32 @@ def update_task(request, pk):
     # Can only update if the current user has enough rights:
     # - has specifically the permission change_turnover
     # - or has the right to change the project this deliverable belongs to
-    if request.user.has_perm('projects.change_task',task) or request.user.has_perm('projects.change_project',turnover.project):
+    if request.user.has_perm('projects.change_task',task):
         response = update_object(request,form_class=TaskForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
     
     return response
+
+
+
+def update_task_answer(request, pk):
+    '''Perform update on the turnover'''
     
+    task = get_object_or_404(Task, id=pk)
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_turnover
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_task',task):
+        response = update_object(request,form_class=TaskAnswerForm, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
+
 
 
 

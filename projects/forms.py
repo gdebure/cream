@@ -60,3 +60,21 @@ class TaskForm(forms.ModelForm):
     
     class Meta:
         model = Task
+        fields = ('name', 'open_date', 'criticity', 'description', 'requestor', 'creator', 'deliverable', 'subject')
+
+
+
+class TaskFromDeliverableForm(TaskForm):
+    
+    predefined = 'deliverable'
+
+
+
+class TaskAnswerForm(forms.ModelForm):
+    
+    class Meta:
+        model = Task
+        fields = ('answer', 'close_date', 'status', 'reject_reason', 'time_spent', 'owner', 'number_of_units')
+        
+    
+    

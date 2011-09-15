@@ -187,19 +187,19 @@ class Task (models.Model):
     criticity = models.CharField(max_length=1,choices=CRITICITY_CHOICES)
     description = models.TextField()
     requestor = models.CharField(max_length=64)
-    #requestor_type = models.ForeignKey(RequestorType)
     creator = models.ForeignKey(Employee, related_name='creator')
     deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
     subject = models.ManyToManyField(Subject)
     
     
     # Answer information
-    answer = models.TextField(null=True)
-    close_date = models.DateField(null=True)
-    status = models.CharField(max_length=1,choices=STATUS_CHOICES)
-    reject_reason = models.CharField(max_length=64)
-    time_spent = models.DecimalField(max_digits=5,decimal_places=2)
-    owner = models.ManyToManyField(Employee, related_name='owner')
+    answer = models.TextField(null=True, blank=True)
+    close_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=1,choices=STATUS_CHOICES, default='O')
+    reject_reason = models.CharField(max_length=64,null=True, blank=True)
+    time_spent = models.DecimalField(max_digits=5,decimal_places=2,null=True, blank=True)
+    owner = models.ManyToManyField(Employee, related_name='owner',null=True, blank=True)
+    number_of_units = models.IntegerField(default=1)
     
     def __unicode__(self):
         return str(self.id) + ":" + self.name

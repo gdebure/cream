@@ -8,7 +8,7 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
 from projects.views import update_turnover, delete_turnover
-from projects.views import update_task, delete_task
+from projects.views import create_task, update_task, delete_task, update_task_answer
 
 urlpatterns = patterns('',
     ##################################
@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     (r'^deliverables/(?P<pk>\d+)/delete/$', delete_deliverable),
     # Service validation stuff
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
+    (r'^deliverables/(?P<pk>\d+)/add_task/$', create_task),
     ##################################
     
     ##################################
@@ -46,8 +47,9 @@ urlpatterns = patterns('',
     # Task values
     (r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
     (r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
-    (r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
     (r'^tasks/(?P<pk>\d+)/update/$', update_task),
+    (r'^tasks/(?P<pk>\d+)/update_answer/$', update_task_answer),
     (r'^tasks/(?P<pk>\d+)/delete/$', delete_task),
+    
     ##################################
 )

@@ -8,6 +8,11 @@
     <tr><th>creator</th><td><a href="{{ task.creator.get_absolute_url }}">{{ task.creator }}</a></td></tr>
     <tr><th>project</th><td><a href="{{ task.deliverable.project.get_absolute_url }}">{{ task.deliverable.project }}</a></td></tr>
     <tr><th>deliverable</th><td><a href="{{ task.deliverable.get_absolute_url }}">{{ task.deliverable}}</a></td></tr>
+</table>
+{% include "common/object_actions.html" %}        
+
+<br/>
+<table class="styled detail">
     <tr><th>answer</th><td>{{ task.answer }}</td></tr>
     <tr><th>close date</th><td>{{ task.close_date }}</td></tr>
     <tr><th>status</th><td>{{ task.get_status_display }}</td></tr>
@@ -24,3 +29,4 @@
         {% endfor %}
     </td></tr>
 </table>
+<table><tr><td><a href="update_answer">edit answer</a></td></tr></table>
