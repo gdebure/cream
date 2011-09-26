@@ -1,4 +1,5 @@
 from django.db.models import ProtectedError
+from django.http import HttpResponse
 
 from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.create_update import create_object, update_object, delete_object
@@ -172,11 +173,8 @@ def domains_report(request):
                 deliverables = service.deliverable_set.all()
                 
                 for deliverable in deliverables:
-                    deliverable_turnover = 0
-                    if deliverable.contractual_volume != None and deliverable.unit_price != None:
-                        deliverable_turnover = deliverable.contractual_volume * deliverable.unit_price
-                        response += "Deliverable: " + str(deliverable) + " = " + str(deliverable_turnover) + "<br/>"
-                    service_turnover += deliverable_turnover
+                    response += "Deliverable: " + str(deliverable) + " = " + str(deliverable.get_turnover()) + "<br/>"
+                    service_turnover += deliverable.get_turnover()
                 
                 response += "Service Total = " + str(service_turnover) + "</br>"
                 family_turnover += service_turnover
