@@ -52,6 +52,13 @@ class Project (models.Model):
             tasks += deliverable.task_set.all()
             
         return tasks
+        
+    def get_total_turnover(self):
+        turnover = 0
+        for deliverable in self.deliverable_set.all():
+            turnover += deliverable.get_turnover()
+        return turnover
+    
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -104,9 +111,7 @@ class Deliverable (models.Model):
     code = models.CharField(max_length=32, null=True, blank=True, verbose_name="project deliverable identifier")
     name = models.CharField(max_length=128, verbose_name="project deliverable name")
     description = models.TextField()
-    contractual_volume = models.IntegerField(null=True, blank=True, verbose_name="number of units", validators=[validate_positive])
     acceptance_criteria = models.TextField(null=True, blank=True)
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name="unit price (€)",null=True, blank=True, validators=[validate_positive])
     unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False, validators=[validate_positive]) # Unit time is not used for the moment
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False, validators=[validate_positive]) # FIXME: Turnover will be computed, to be removed from datamodel
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
@@ -124,10 +129,11 @@ class Deliverable (models.Model):
         return self.task_set.all()
         
     def get_turnover(self):
-        if self.unit_price != None and self.contractual_volume != None:
-            return self.unit_price * self.contractual_volume
-        else:
-            return 0
+        turnover = 0
+        for volume in self.deliverablevolume_set.all():
+            if volume.quantity != None and volume.unit_price != None:
+                turnover += volume.quantity * volume.unit_price
+        return turnover
             
     def get_volumes(self):
         return self.deliverablevolume_set.all()
@@ -158,6 +164,9 @@ class DeliverableVolume(models.Model):
         
     def get_absolute_url(self):
         return '/projects/deliverablevolumes/' + str(self.id)
+        
+    def get_total_price(self):
+        return self.quantity * self.unit_price
 
 
 class SubjectFamily (models.Model):

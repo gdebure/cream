@@ -168,7 +168,7 @@ def delete_deliverable(request, pk):
 
 def create_deliverablevolume(request, pk):
     
-    deliverable = get_object_or_404(Deliverable)
+    deliverable = get_object_or_404(Deliverable, id=pk)
     project = deliverable.project
     
     if request.user.has_perm('projects.add_deliverablevolume') or request.user.has_perm('projects.change_project',project):

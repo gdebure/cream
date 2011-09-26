@@ -9,9 +9,6 @@
 <!--     To be colored depending on status -->
     <tr><th>description</th><td>{{ deliverable.description }}</td></tr>
     <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
-    <tr><th>number of units</th><td>{{ deliverable.contractual_volume }}</td></tr>
-    <tr><th>unit price (&euro;)</th><td>{{ deliverable.unit_price }} &euro;</td></tr>
-<!--     <tr><th>unit time</th><td>{{ deliverable.unit_time }}</td></tr> -->
     <tr><th>total turnover (&euro;)</th><td>{{deliverable.get_turnover}} &euro;</td></tr>
     
 </table>

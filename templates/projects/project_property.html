@@ -11,4 +11,5 @@
     <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
     <tr><th>description</th><td>{{ project.description }}</td></tr>
     <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
+    <tr><th>turnover</th><td>{{ project.get_total_turnover }} &euro;</td></tr>
 </table>

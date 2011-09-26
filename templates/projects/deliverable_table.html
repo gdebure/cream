@@ -11,6 +11,7 @@
         <th>service</th>
         <th>link approved</th>
         <th>total volume</th>
+        <th>turnover</th>
     </tr>
 {% for deliverable in deliverables_list %}
     <tr>
@@ -22,6 +23,7 @@
         <td><a href="{{ deliverable.service.get_absolute_url }}">{{ deliverable.service.name }}</a></td>
         <td style={% include "projects/link_display.html" %}><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
         <td>{{ deliverable.get_total_volume }}</td>
+        <td align="right">{{ deliverable.get_turnover }} &euro;</td>
     </tr>
 {% endfor %}
 </table>

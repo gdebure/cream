@@ -8,13 +8,15 @@
         <th>project number</th>
         <th>project name</th>
         <th>project leader</th>
+        <th>project turnover</th>
     </tr>
 {% for project in projects_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ project.id }}"/></td>
-        <td>{{ project.number }}</a></td>
+        <td>{{ project.number }}</td>
         <td><a href="{{project.get_absolute_url}}">{{ project.name }}</td>
         <td><a href="{{project.project_leader.get_absolute_url}}">{{ project.project_leader }}</a></td>
+        <td align="right">{{ project.get_total_turnover }} &euro;</td>
     </tr>
 {% endfor %}
 </table>

@@ -16,7 +16,7 @@ class DeliverableForm(forms.ModelForm):
     
     class Meta:
         model = Deliverable
-        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
+        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria')
         
     def save(self, commit=True):
         '''On save, send a mail to the service owner'''
@@ -38,7 +38,7 @@ class DeliverableFromProjectForm(DeliverableForm):
     
     class Meta:
         model = Deliverable
-        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
+        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria')
         
     
 
