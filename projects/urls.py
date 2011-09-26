@@ -2,13 +2,13 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Deliverable, Turnover, Task
+from projects.models import Project, Deliverable, DeliverableVolume, Task
 from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
-from projects.views import update_turnover, delete_turnover
-from projects.views import create_task, update_task, delete_task, update_task_answer
+from projects.views import create_deliverablevolume, update_deliverablevolume, delete_deliverablevolume
+from projects.views import update_task, delete_task
 
 urlpatterns = patterns('',
     ##################################
@@ -31,25 +31,24 @@ urlpatterns = patterns('',
     (r'^deliverables/(?P<pk>\d+)/delete/$', delete_deliverable),
     # Service validation stuff
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
-    (r'^deliverables/(?P<pk>\d+)/add_task/$', create_task),
+    (r'^deliverables/(?P<pk>\d+)/add_volume/$', create_deliverablevolume),
     ##################################
     
+    
     ##################################
-    # Turnover values
-    (r'^turnover_values/$', login_required()(ListView.as_view( model=Turnover, context_object_name='turnover_values_list', )), ),
-    (r'^turnover_values/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Turnover, )), ),
-    (r'^turnover_values/create/$', permission_required('projects.add_turnover')(CreateView.as_view( model=Turnover, success_url='/projects/turnover_values/%(id)s' )), ),
-    (r'^turnover_values/(?P<pk>\d+)/update/$', update_turnover ),
-    (r'^turnover_values/(?P<pk>\d+)/delete/$', delete_turnover ),
+    # Deliverable Volumes
+    (r'^deliverablevolumes/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=DeliverableVolume, )), ),
+    (r'^deliverablevolumes/(?P<pk>\d+)/update/$', update_deliverablevolume),
+    (r'^deliverablevolumes/(?P<pk>\d+)/delete/$', delete_deliverablevolume),
     ##################################
+    
     
     ##################################
     # Task values
     (r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
     (r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
+    (r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
     (r'^tasks/(?P<pk>\d+)/update/$', update_task),
-    (r'^tasks/(?P<pk>\d+)/update_answer/$', update_task_answer),
     (r'^tasks/(?P<pk>\d+)/delete/$', delete_task),
-    
     ##################################
 )

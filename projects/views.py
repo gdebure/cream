@@ -4,8 +4,12 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic.create_update import create_object, update_object, delete_object
 from django.views.generic.simple import direct_to_template
 
-from projects.models import Project, Authorization, Deliverable, Turnover, Task
-from projects.forms import ProjectForm, DeliverableForm, DeliverableValidateServiceForm, DeliverableFromProjectForm, TaskForm, TaskFromDeliverableForm, TaskAnswerForm
+from projects.models import Project, Authorization, Deliverable, DeliverableVolume, Task
+
+from projects.forms import ProjectForm
+from projects.forms import DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm
+from projects.forms import DeliverableVolumeFromDeliverableForm
+from projects.forms import TaskForm
 
 
 
@@ -162,57 +166,51 @@ def delete_deliverable(request, pk):
 
 
 
-
-
-def update_turnover(request, pk):
-    '''Perform update on the turnover'''
-    
-    turnover = get_object_or_404(Turnover, id=pk)
-    
-    # Can only update if the current user has enough rights:
-    # - has specifically the permission change_turnover
-    # - or has the right to change the project this deliverable belongs to
-    if request.user.has_perm('projects.change_turnover',turnover) or request.user.has_perm('projects.change_project',turnover.project):
-        response = update_object(request,model=Turnover, object_id=pk)
-    else:
-        # if not allowed, return the page forbidden.html
-        response = direct_to_template(request,template="forbidden.html")
-    
-    return response
-        
-        
-    
-
-def delete_turnover(request, pk):
-    '''Perform the turnover delete'''
-    
-    turnover = get_object_or_404(Turnover, id=pk)
-    
-    # It is only possible if the user has rights on the project
-    if request.user.has_perm('projects.change_project',turnover.project):
-        response = delete_object(request, Turnover, turnover.project.get_absolute_url(), object_id=pk, template_object_name="turnover")
-    else:
-        # if not allowed, return the page forbidden.html
-        response = direct_to_template(request,template="forbidden.html")
-    
-    return response
-
-
-
-def create_task(request, pk):
-    '''Create a task from a deliverable page'''
+def create_deliverablevolume(request, pk):
     
     deliverable = get_object_or_404(Deliverable, id=pk)
-     
-    # It is only possible if the user has rights on the project
-    if request.user.has_perm('projects.add_task'):
-        response = create_object(request, form_class=TaskFromDeliverableForm, extra_context={'predefined_value':deliverable})
+    project = deliverable.project
+    
+    if request.user.has_perm('projects.add_deliverablevolume') or request.user.has_perm('projects.change_project',project):
+        response = create_object(request, form_class=DeliverableVolumeFromDeliverableForm, extra_context={'predefined_value':deliverable})
+    else:
+        response = direct_to_template(request, template="forbidden.html")
+    
+    return response
+    
+
+def update_deliverablevolume(request, pk):
+    '''Perform update on the deliverable'''
+    
+    deliverablevolume = get_object_or_404(DeliverableVolume, id=pk)
+    project = deliverablevolume.deliverable.project
+    
+    # Can only update if the current user has enough rights:
+    # - has specifically the permission change_deliverable
+    # - or has the right to change the project this deliverable belongs to
+    if request.user.has_perm('projects.change_deliverablevolume',deliverablevolume) or request.user.has_perm('projects.change_project',project):
+        response = update_object(request,model=DeliverableVolume, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
     
     return response
 
+
+def delete_deliverablevolume(request, pk):
+    '''Perform the deliverable delete'''
+    
+    deliverablevolume = get_object_or_404(DeliverableVolume, id=pk)
+    deliverable = deliverablevolume.deliverable
+    
+    # It is only possible if the user has rights on the project
+    if request.user.has_perm('projects.change_project',deliverable.project):
+        response = delete_object(request, DeliverableVolume, deliverable.get_absolute_url(), object_id=pk, template_object_name="deliverablevolume")
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 
 
@@ -224,32 +222,14 @@ def update_task(request, pk):
     # Can only update if the current user has enough rights:
     # - has specifically the permission change_turnover
     # - or has the right to change the project this deliverable belongs to
-    if request.user.has_perm('projects.change_task',task):
+    if request.user.has_perm('projects.change_task',task) or request.user.has_perm('projects.change_project',turnover.project):
         response = update_object(request,form_class=TaskForm, object_id=pk)
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
     
     return response
-
-
-
-def update_task_answer(request, pk):
-    '''Perform update on the turnover'''
     
-    task = get_object_or_404(Task, id=pk)
-    
-    # Can only update if the current user has enough rights:
-    # - has specifically the permission change_turnover
-    # - or has the right to change the project this deliverable belongs to
-    if request.user.has_perm('projects.change_task',task):
-        response = update_object(request,form_class=TaskAnswerForm, object_id=pk, template_name="projects/task_answer_form.html", extra_context={'task':task})
-    else:
-        # if not allowed, return the page forbidden.html
-        response = direct_to_template(request,template="forbidden.html")
-    
-    return response
-
 
 
 

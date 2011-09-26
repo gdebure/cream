@@ -1,0 +1,8 @@
+{% include "projects/decoration.html" with title="Project Deliverable Volume properties" icon="deliverablevolume.png" block="main" %}
+<table class="styled detail">
+    <tr><th>project deliverable name</th><td><a href="{{deliverablevolume.deliverable.get_absolute_url}}">{{ deliverablevolume.deliverable}}</a></td></tr>
+    <tr><th>date start</th><td>{{ deliverablevolume.date_start}}</td></tr>
+    <tr><th>date end</th><td>{{ deliverablevolume.date_end}}</td></tr>
+    <tr><th>number of units</th><td>{{ deliverablevolume.quantity }}</td></tr>
+    <tr><th>unit price</th><td>{{ deliverablevolume.unit_price }} &euro;</td></tr>
+</table>

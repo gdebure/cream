@@ -1,7 +1,7 @@
 from django import forms
 from django.core.mail import send_mail
 
-from projects.models import Project, Deliverable, Task
+from projects.models import Project, Deliverable, DeliverableVolume, Task
 
 class ProjectForm(forms.ModelForm):
     
@@ -16,7 +16,7 @@ class DeliverableForm(forms.ModelForm):
     
     class Meta:
         model = Deliverable
-        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
+        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria')
         
     def save(self, commit=True):
         '''On save, send a mail to the service owner'''
@@ -38,14 +38,12 @@ class DeliverableFromProjectForm(DeliverableForm):
     
     class Meta:
         model = Deliverable
-        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria', 'contractual_volume', 'unit_price')
+        fields = ('name', 'code', 'project',  'service', 'description', 'acceptance_criteria')
         
     
-        
-        
 
-
-
+    
+    
 class DeliverableValidateServiceForm(forms.ModelForm):
     
     class Meta:
@@ -54,7 +52,20 @@ class DeliverableValidateServiceForm(forms.ModelForm):
         
 
 
+        
+class DeliverableVolumeForm(forms.ModelForm):
+    
+    class Meta:
+        model = DeliverableVolume
 
+
+        
+class DeliverableVolumeFromDeliverableForm(DeliverableVolumeForm):
+    
+    predefined = 'deliverable'
+        
+
+        
 
 class TaskForm(forms.ModelForm):
     

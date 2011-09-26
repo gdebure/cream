@@ -1,0 +1,17 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "projects/deliverablevolume_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+<!--<div class="block">
+Do no show tasks at the moment, keep it for later...
+{% include "projects/task_table.html" with tasks_list=deliverable.get_tasks %}
+</div>-->
+
+{% endblock %}

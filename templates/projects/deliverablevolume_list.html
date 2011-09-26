@@ -1,0 +1,11 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "projects/deliverablevolume_table.html" with block="main" icon="deliverable.png" %}
+
+<a href="create">Add new deliverable volume</a>
+
+{% endblock %}
