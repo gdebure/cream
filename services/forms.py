@@ -25,7 +25,17 @@ class DomainForm(forms.ModelForm):
             assign('domains.change_domain', domain.owner.user, domain)
             assign('domains.delete_domain', domain.owner.user, domain)
         
+        
+        mail_title = 'Domain updated: ' + str(domain)
+        mail_body = 'The Domain ' + str(domain)+ ' has been updated by XXXX \n'
+        mail_body += domain.get_absolute_url()
+            
+        # FIXME: Use the catalog admin group to get email adresses
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        
         return domain
+
+        
         
         
       
@@ -51,6 +61,14 @@ class ServiceFamilyForm(forms.ModelForm):
         if servicefamily.owner != None:
             assign('servicefamily.change_servicefamily', servicefamily.owner.user, servicefamily)
             assign('servicefamily.delete_servicefamily', servicefamily.owner.user, servicefamily)
+            
+            
+        mail_title = 'Service Family updated: ' + str(servicefamily)
+        mail_body = 'The Service Family ' + str(servicefamily)+ ' has been updated by XXXX \n'
+        mail_body += servicefamily.get_absolute_url()
+            
+        # FIXME: Use the catalog admin group to get email adresses
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
         
         return servicefamily
 
@@ -83,6 +101,13 @@ class ServiceForm(forms.ModelForm):
         if service.owner != None:
             assign('service.change_service', service.owner.user, service)
             assign('service.delete_service', service.owner.user, service)
+            
+        mail_title = 'Service updated: ' + str(service)
+        mail_body = 'The Service ' + str(service)+ ' has been updated by XXXX \n'
+        mail_body += service.get_absolute_url()
+            
+        # FIXME: Use the catalog admin group to get email adresses
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
         
         return service
         
