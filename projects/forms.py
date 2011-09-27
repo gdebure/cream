@@ -67,7 +67,7 @@ class DeliverableValidateServiceForm(forms.ModelForm):
         deliverable = super(forms.ModelForm, self).save(commit=commit)
         
         mail_title = 'Deliverable ' + str(deliverable) + ' linked to service ' + str(deliverable.service)
-        mail_body = 'The deliverable ' + str(deliverable)+ ' link to the service ' + str(deliverable.service)' has been approved by XXXX \n'
+        mail_body = 'The deliverable ' + str(deliverable)+ ' link to the service ' + str(deliverable.service) + ' has been approved by XXXX \n'
         mail_body += deliverable.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
