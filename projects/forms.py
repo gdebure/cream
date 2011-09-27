@@ -9,7 +9,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ('name','number','project_leader','date_start','date_end','department','natco','customer_name', 'customer_siglum','description','wiki_link')
         
-    def save(self):
+    def save(self, commit=True):
         project = super(forms.ModelForm, self).save(commit=commit)
         
         mail_title = 'Project Updated: ' + str(project)
@@ -17,7 +17,7 @@ class ProjectForm(forms.ModelForm):
         mail_body += project.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return project
 
@@ -63,7 +63,7 @@ class DeliverableValidateServiceForm(forms.ModelForm):
         fields = ('approved_by_service_owner',)
         
         
-    def save(self):
+    def save(self, commit=True):
         deliverable = super(forms.ModelForm, self).save(commit=commit)
         
         mail_title = 'Deliverable ' + str(deliverable) + ' linked to service ' + str(deliverable.service)
@@ -71,7 +71,7 @@ class DeliverableValidateServiceForm(forms.ModelForm):
         mail_body += deliverable.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return deliverable
 
@@ -82,7 +82,7 @@ class DeliverableVolumeForm(forms.ModelForm):
     class Meta:
         model = DeliverableVolume
         
-    def save(self):
+    def save(self, commit=True):
         volume = super(forms.ModelForm, self).save(commit=commit)
         
         mail_title = 'Deliverable Volume updated ' + str(volume.deliverable)
@@ -90,7 +90,7 @@ class DeliverableVolumeForm(forms.ModelForm):
         mail_body += volume.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return volume
 

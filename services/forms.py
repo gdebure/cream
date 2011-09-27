@@ -31,7 +31,7 @@ class DomainForm(forms.ModelForm):
         mail_body += domain.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return domain
 
@@ -68,7 +68,7 @@ class ServiceFamilyForm(forms.ModelForm):
         mail_body += servicefamily.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return servicefamily
 
@@ -107,7 +107,7 @@ class ServiceForm(forms.ModelForm):
         mail_body += service.get_absolute_url()
             
         # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com','christian.scholz@airbus.com',fail_silently=False)
+        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return service
         
