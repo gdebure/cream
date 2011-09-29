@@ -9,7 +9,7 @@ from projects.models import Project, Authorization, Deliverable, DeliverableVolu
 from projects.forms import ProjectForm
 from projects.forms import DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm
 from projects.forms import DeliverableVolumeFromDeliverableForm
-from projects.forms import TaskForm
+from projects.forms import TaskForm, TaskFromDeliverableForm
 
 
 
@@ -211,6 +211,22 @@ def delete_deliverablevolume(request, pk):
         response = direct_to_template(request,template="forbidden.html")
     
     return response
+
+
+
+
+def create_task(request, pk):
+    
+    deliverable = get_object_or_404(Deliverable, id=pk)
+    project = deliverable.project
+    
+    if request.user.has_perm('projects.add_task') or request.user.has_perm('projects.change_project',project):
+        response = create_object(request, form_class=TaskFromDeliverableForm, extra_context={'predefined_value':deliverable})
+    else:
+        response = direct_to_template(request, template="forbidden.html")
+    
+    return response
+
 
 
 
