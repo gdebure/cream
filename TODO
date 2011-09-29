@@ -8,9 +8,6 @@
 
 == Projects Module ==
 * Segregate task attributes
-* Per year deliverables volumes + Computation with unit price to find:
-** Deliverable turnover (per year)
-** Project turnover (per year)
 * Dynamic Service selection:
 ** Select Domain -> filter Service Family
 ** Select Service Family -> filter Service
