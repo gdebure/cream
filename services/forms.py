@@ -1,3 +1,5 @@
+from django.core.mail import send_mail
+
 from services.models import Domain, ServiceFamily, Service
 from django import forms
 
