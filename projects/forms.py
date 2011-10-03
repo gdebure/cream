@@ -3,6 +3,9 @@ from django.core.mail import send_mail
 
 from projects.models import Project, Deliverable, DeliverableVolume, Task
 
+from guardian.shortcuts import assign, remove_perm, get_users_with_perms
+
+
 class ProjectForm(forms.ModelForm):
     
     class Meta:
@@ -11,6 +14,21 @@ class ProjectForm(forms.ModelForm):
         
     def save(self, commit=True):
         project = super(forms.ModelForm, self).save(commit=commit)
+        
+        
+        # Remove existing rights on this project
+        users_with_perms = get_users_with_perms(project)
+        for user in users_with_perms:
+            if user.has_perm('change_project',project):
+                remove_perm('change_project',user,project)
+            if user.has_perm('delete_project',project):
+                remove_perm('delete_project',user,project)
+        
+        # Assign the right to update this project to the project owner
+        if project.project_leader != None:
+            assign('projects.change_project', project.project_leader.user, project)
+            assign('projects.delete_project', project.project_leader.user, project)
+        
         
         mail_title = 'Project Updated: ' + str(project)
         mail_body = 'This project has been updated "' + str(project)+ ' by XXXXX \n'

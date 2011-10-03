@@ -95,7 +95,7 @@ def create_deliverable(request, pk):
     project = get_object_or_404(Project, id=pk)
      
     # It is only possible if the user has rights on the project
-    if request.user.has_perm('projects.delete_project',project):
+    if request.user.has_perm('projects.change_project',project):
         response = create_object(request, form_class=DeliverableFromProjectForm, extra_context={'predefined_value':project})
     else:
         # if not allowed, return the page forbidden.html
