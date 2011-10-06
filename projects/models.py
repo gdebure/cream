@@ -7,6 +7,9 @@ from users.models import Employee
 
 from django.core.exceptions import ValidationError
 
+import reversion
+
+
 class Project (models.Model):
     '''A class to handle projects'''
     
@@ -58,7 +61,9 @@ class Project (models.Model):
         for deliverable in self.deliverable_set.all():
             turnover += deliverable.get_turnover()
         return turnover
-    
+
+# Register this object in reversion, so that we can track its history
+reversion.register(Project)
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -145,6 +150,8 @@ class Deliverable (models.Model):
             total += volume.quantity
         return total
         
+# Register this object in reversion, so that we can track its history
+reversion.register(Deliverable)
 
 
 
@@ -167,6 +174,9 @@ class DeliverableVolume(models.Model):
         
     def get_total_price(self):
         return self.quantity * self.unit_price
+
+# Register this object in reversion, so that we can track its history
+reversion.register(DeliverableVolume)
 
 
 class SubjectFamily (models.Model):
