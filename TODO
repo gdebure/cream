@@ -4,11 +4,21 @@
 * Display names of people authorized in forbidden page
 * Implement bugtracker
 
+
+#############
+History functionality !
+#############
+
 == Services Modules ==
 
+
 == Projects Module ==
+Bug:
+When changing the service for a deliverable, the link status shall be reset to "pending"
+
 * Segregate task attributes
 * Dynamic Service selection:
 ** Select Domain -> filter Service Family
 ** Select Service Family -> filter Service
 ** Select Service
+* Add Customer in the project page
