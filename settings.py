@@ -101,6 +101,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
+    # We need this for reversion
+    'django.middleware.transaction.TransactionMiddleware',
+    'reversion.middleware.RevisionMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -129,6 +133,9 @@ INSTALLED_APPS = (
     
     # Use guardian for per-object permissions
     'guardian',
+    
+    # Use reversion for data versioning
+    'reversion',
     
        
     'users',
