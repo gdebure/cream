@@ -167,7 +167,7 @@ class DeliverableVolume(models.Model):
         ordering = ['deliverable','date_start']
         
     def __unicode__(self):
-        return str(self.deliverable)+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
+        return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
         
     def get_absolute_url(self):
         return '/projects/deliverablevolumes/' + str(self.id)
@@ -227,8 +227,7 @@ class Task (models.Model):
     creator = models.ForeignKey(Employee, related_name='creator')
     deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
     subject = models.ManyToManyField(Subject)
-    
-    
+        
     # Answer information
     answer = models.TextField(null=True, blank=True)
     close_date = models.DateField(null=True, blank=True)
