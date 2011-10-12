@@ -8,6 +8,7 @@ from django.views.generic.simple import direct_to_template
 from services.models import Domain, ServiceFamily, Service
 from services.forms import DomainForm, ServiceFamilyForm, ServiceFamilyFromDomainForm, ServiceForm, ServiceFromServiceFamilyForm
 
+import reversion
 
 
 def update_domain(request, pk):
@@ -150,6 +151,16 @@ def delete_service(request, pk):
     
     return response
 
+
+
+def show_history(request):
+    
+    # Build list of deleted items
+    deleted_domains = reversion.get_deleted(Domain)
+    
+    response = direct_to_template(request, template="services/deleted_domains.html")
+    return response
+    
 
         
 def domains_report(request):

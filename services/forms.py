@@ -5,7 +5,28 @@ from django import forms
 
 from guardian.shortcuts import assign, remove_perm, get_users_with_perms
 
-class DomainForm(forms.ModelForm):
+import reversion
+
+
+class ServiceCatalogueForm(forms.ModelForm):
+    
+    def get_diff(self, domain):
+        domain_versions = reversion.get_for_object(domain)
+        
+        text = "\n"
+        for field in domain_versions[0].field_dict:
+            old_object_value = domain_versions[0].field_dict[field]
+            new_object_value = domain.__getattribute__(field)
+            if old_object_value != new_object_value:
+                text += "\n" + field + ":\n"
+                text += " old: " + str(old_object_value) + "\n"
+                text += " new: " + str(new_object_value) + "\n"
+
+        return text
+    
+
+
+class DomainForm(ServiceCatalogueForm):
     
     class Meta:
         model = Domain
@@ -31,18 +52,19 @@ class DomainForm(forms.ModelForm):
         mail_title = 'Domain updated: ' + str(domain)
         mail_body = 'The Domain ' + str(domain)+ ' has been updated by XXXX \n'
         mail_body += domain.get_absolute_url()
+        mail_body += self.get_diff(domain)
+        
             
         # FIXME: Use the catalog admin group to get email adresses
         send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return domain
-
-        
+      
         
         
       
 
-class ServiceFamilyForm(forms.ModelForm):
+class ServiceFamilyForm(ServiceCatalogueForm):
     
     class Meta:
         model = ServiceFamily
@@ -68,11 +90,13 @@ class ServiceFamilyForm(forms.ModelForm):
         mail_title = 'Service Family updated: ' + str(servicefamily)
         mail_body = 'The Service Family ' + str(servicefamily)+ ' has been updated by XXXX \n'
         mail_body += servicefamily.get_absolute_url()
+        mail_body += self.get_diff(servicefamily)
             
         # FIXME: Use the catalog admin group to get email adresses
         send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return servicefamily
+
 
 
 class ServiceFamilyFromDomainForm(ServiceFamilyForm):
@@ -83,7 +107,7 @@ class ServiceFamilyFromDomainForm(ServiceFamilyForm):
         
 
 
-class ServiceForm(forms.ModelForm):
+class ServiceForm(ServiceCatalogueForm):
     class Meta:
         model = Service
         fields = ['name','is_active','owner','service_family','description']
@@ -107,12 +131,15 @@ class ServiceForm(forms.ModelForm):
         mail_title = 'Service updated: ' + str(service)
         mail_body = 'The Service ' + str(service)+ ' has been updated by XXXX \n'
         mail_body += service.get_absolute_url()
+        mail_body += self.get_diff(service)
             
         # FIXME: Use the catalog admin group to get email adresses
         send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
         
         return service
         
+
+
 class ServiceFromServiceFamilyForm(ServiceForm):
 
     predefined = 'service_family'
