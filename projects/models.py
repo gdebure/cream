@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.core.mail import send_mail
-
-from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
 
 import reversion
@@ -252,35 +247,4 @@ class Task (models.Model):
     def get_owners(self):
         return self.owner.all()
         
-        
-        
-@receiver(post_save,sender=Project)
-@receiver(post_save,sender=Deliverable)
-@receiver(post_save,sender=DeliverableVolume)
-def send_mail_on_save(sender, **kwargs):
-    
-    # This is the list of users that will receive the email
-    recipients = User.objects.filter(groups__name='Service Catalog Admins').values_list('email',flat=True)
-    # Get the object instance
-    instance = kwargs['instance']
-    
-    # Get the latest two version for comparison:
-    instance_versions = reversion.get_for_object(instance)
-    old_version = instance_versions[0]
-    new_version = instance
-    
-    mail_body = "\n"
-    for field in old_version.field_dict:
-        old_object_value = old_version.field_dict[field]
-        new_object_value = instance.__getattribute__(field)
-        if old_object_value != new_object_value:
-            mail_body += "\n" + field + ":\n"
-            mail_body += "----------------\n"
-            mail_body += "* old: " + str(old_object_value) + "\n"
-            mail_body += "* new: " + str(new_object_value) + "\n"
-    
-    
-    mail_title = str(sender._meta.verbose_name)+ " " + str(instance) + " updated"
-    send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
-    
-    
+       

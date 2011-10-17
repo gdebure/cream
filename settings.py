@@ -137,7 +137,7 @@ INSTALLED_APPS = (
     # Use reversion for data versioning
     'reversion',
     
-       
+    'mailer',
     'users',
     'projects',
     'services',
