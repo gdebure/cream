@@ -115,7 +115,7 @@ def update_deliverable(request, pk):
     # - has specifically the permission change_deliverable
     # - or has the right to change the project this deliverable belongs to
     if request.user.has_perm('projects.change_deliverable',deliverable) or request.user.has_perm('projects.change_project',deliverable.project):
-        response = update_object(request,form_class=DeliverableForm, object_id=pk)
+        response = update_object(request,form_class=DeliverableFromProjectForm, object_id=pk, extra_context={'predefined_value':deliverable.project})
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
@@ -189,7 +189,7 @@ def update_deliverablevolume(request, pk):
     # - has specifically the permission change_deliverable
     # - or has the right to change the project this deliverable belongs to
     if request.user.has_perm('projects.change_deliverablevolume',deliverablevolume) or request.user.has_perm('projects.change_project',project):
-        response = update_object(request,model=DeliverableVolume, object_id=pk)
+        response = update_object(request,model=DeliverableVolume, object_id=pk, form_class=DeliverableVolumeFromDeliverableForm, extra_context={'predefined_value':deliverablevolume.deliverable}, post_save_redirect=deliverablevolume.deliverable.get_absolute_url())
     else:
         # if not allowed, return the page forbidden.html
         response = direct_to_template(request,template="forbidden.html")
