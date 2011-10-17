@@ -55,7 +55,10 @@ def send_mail_on_save(sender, **kwargs):
     
     send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
     
-    
+
+
+
+
 @receiver(post_save,sender=Deliverable)    
 def send_mail_on_service_link(sender, **kwargs):
 

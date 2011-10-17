@@ -172,7 +172,7 @@ def create_deliverablevolume(request, pk):
     project = deliverable.project
     
     if request.user.has_perm('projects.add_deliverablevolume') or request.user.has_perm('projects.change_project',project):
-        response = create_object(request, form_class=DeliverableVolumeFromDeliverableForm, extra_context={'predefined_value':deliverable})
+        response = create_object(request, form_class=DeliverableVolumeFromDeliverableForm, extra_context={'predefined_value':deliverable}, post_save_redirect=deliverable.get_absolute_url())
     else:
         response = direct_to_template(request, template="forbidden.html")
     
