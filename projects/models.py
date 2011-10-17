@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-
-from services.models import Service
-from users.models import Employee 
-
-
 from django.core.exceptions import ValidationError
+
+import reversion
+
+from users.models import Employee
+from services.models import Service
 
 class Project (models.Model):
     '''A class to handle projects'''
@@ -30,6 +30,7 @@ class Project (models.Model):
     
     class Meta:
         ordering = ["number", "name"]
+        
     
     def __unicode__(self):
         return self.number + ": " + self.name
@@ -58,7 +59,9 @@ class Project (models.Model):
         for deliverable in self.deliverable_set.all():
             turnover += deliverable.get_turnover()
         return turnover
-    
+
+# Register this object in reversion, so that we can track its history
+reversion.register(Project)
 
 class Profile (models.Model):
     '''A Class to handle user profiles on a project'''
@@ -145,14 +148,16 @@ class Deliverable (models.Model):
             total += volume.quantity
         return total
         
+# Register this object in reversion, so that we can track its history
+reversion.register(Deliverable)
 
 
 
 class DeliverableVolume(models.Model):
 
     deliverable = models.ForeignKey(Deliverable)
-    date_start = models.DateField()
-    date_end = models.DateField()
+    date_start = models.DateField(help_text='YYYY-MM-DD')
+    date_end = models.DateField(help_text='YYYY-MM-DD')
     quantity = models.IntegerField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
@@ -160,13 +165,16 @@ class DeliverableVolume(models.Model):
         ordering = ['deliverable','date_start']
         
     def __unicode__(self):
-        return str(self.deliverable)+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
+        return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
         
     def get_absolute_url(self):
         return '/projects/deliverablevolumes/' + str(self.id)
         
     def get_total_price(self):
         return self.quantity * self.unit_price
+
+# Register this object in reversion, so that we can track its history
+reversion.register(DeliverableVolume)
 
 
 class SubjectFamily (models.Model):
@@ -217,8 +225,7 @@ class Task (models.Model):
     creator = models.ForeignKey(Employee, related_name='creator')
     deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
     subject = models.ManyToManyField(Subject)
-    
-    
+        
     # Answer information
     answer = models.TextField(null=True, blank=True)
     close_date = models.DateField(null=True, blank=True)
@@ -240,3 +247,4 @@ class Task (models.Model):
     def get_owners(self):
         return self.owner.all()
         
+       

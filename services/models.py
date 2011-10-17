@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import Employee
-
+import reversion
 
 
 class Domain (models.Model):
@@ -22,6 +22,8 @@ class Domain (models.Model):
     def get_service_families(self):
         return self.servicefamily_set.all()
         
+# Register this object in reversion, so that we can track its history
+reversion.register(Domain)
 
         
 class ServiceFamily (models.Model):
@@ -71,6 +73,8 @@ class ServiceFamily (models.Model):
     def get_services(self):
         return self.service_set.all()
         
+# Register this object in reversion, so that we can track its history
+reversion.register(ServiceFamily)
         
 
 class Service (models.Model):
@@ -92,3 +96,6 @@ class Service (models.Model):
         
     def get_deliverables(self):
         return self.deliverable_set.all()
+        
+# Register this object in reversion, so that we can track its history
+reversion.register(Service)

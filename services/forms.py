@@ -1,7 +1,12 @@
 from services.models import Domain, ServiceFamily, Service
 from django import forms
+from django.contrib.auth.models import User, Group
 
 from guardian.shortcuts import assign, remove_perm, get_users_with_perms
+
+import reversion
+
+
 
 class DomainForm(forms.ModelForm):
     
@@ -26,16 +31,8 @@ class DomainForm(forms.ModelForm):
             assign('domains.delete_domain', domain.owner.user, domain)
         
         
-        mail_title = 'Domain updated: ' + str(domain)
-        mail_body = 'The Domain ' + str(domain)+ ' has been updated by XXXX \n'
-        mail_body += domain.get_absolute_url()
-            
-        # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
-        
         return domain
-
-        
+      
         
         
       
@@ -63,14 +60,8 @@ class ServiceFamilyForm(forms.ModelForm):
             assign('servicefamily.delete_servicefamily', servicefamily.owner.user, servicefamily)
             
             
-        mail_title = 'Service Family updated: ' + str(servicefamily)
-        mail_body = 'The Service Family ' + str(servicefamily)+ ' has been updated by XXXX \n'
-        mail_body += servicefamily.get_absolute_url()
-            
-        # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
-        
         return servicefamily
+
 
 
 class ServiceFamilyFromDomainForm(ServiceFamilyForm):
@@ -102,15 +93,10 @@ class ServiceForm(forms.ModelForm):
             assign('service.change_service', service.owner.user, service)
             assign('service.delete_service', service.owner.user, service)
             
-        mail_title = 'Service updated: ' + str(service)
-        mail_body = 'The Service ' + str(service)+ ' has been updated by XXXX \n'
-        mail_body += service.get_absolute_url()
-            
-        # FIXME: Use the catalog admin group to get email adresses
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',['christian.scholz@airbus.com'],fail_silently=False)
-        
         return service
         
+
+
 class ServiceFromServiceFamilyForm(ServiceForm):
 
     predefined = 'service_family'
