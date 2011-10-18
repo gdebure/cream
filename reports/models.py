@@ -2,8 +2,14 @@ from django.db import models
 
 from services.models import Domain
 
-# Create your models here.
-class Report(model.Model):
+
+def get_database_fields():
+    fields = Domain._meta.get_all_field_names()
+    return fields
+
+
+
+class Report(models.Model):
     
     OPERATORS_CHOICES=(
         ('=','='),
@@ -11,12 +17,12 @@ class Report(model.Model):
         ('<','<'),
         ('<=','<='),
         ('>','>'),
-        ('>=','>=')
+        ('>=','>='),
         ('in','in range'),
         ('not in','not in range'),
     )
     
-    title = models.CharField(max_length=256, choices=self.get_database_fields())
+    title = models.CharField(max_length=256, choices=get_database_fields())
     x_data = models.CharField(max_length=128)
     y_data = models.CharField(max_length=128)
     split_per = models.CharField(max_length=128)
@@ -31,6 +37,5 @@ class Report(model.Model):
     def get_absolute_url(self):
         return "/reports/" + str(self.id)
     
-    def get_database_fields(self):
-        fields = Domain._meta.get_all_field_names()
-        return fields
+
+    
