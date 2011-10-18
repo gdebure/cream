@@ -60,9 +60,7 @@ def send_mail_on_save(sender, **kwargs):
         
     
     mail_body += "\n\nThis is an automatically generated email, please do not reply"
-    print mail_title + "\n"
-    print mail_body + "\n"
-    #send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
+    send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
     
 
 
