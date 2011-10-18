@@ -19,7 +19,7 @@ def send_mail_on_save(sender, **kwargs):
     # Get the object instance
     version = kwargs['instance']
     
-    user = Employee.objects.get(pk=version.revision.user.id)
+    user = Employee.objects.get(user=version.revision.user)
     date_created = version.revision.date_created
     
     mail_body = "\n"
