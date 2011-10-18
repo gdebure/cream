@@ -7,7 +7,7 @@
 <!--     To be colored depending on status -->
 <tr><th>service linked validated ?</th><td style={% include "projects/link_display.html" %}><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
 <!--     To be colored depending on status -->
-    <tr><th>description</th><td>{{ deliverable.description }}</td></tr>
+    <tr><th>description</th><td>{{ deliverable.description|linebreaksbr  }}</td></tr>
     <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
     <tr><th>total turnover (&euro;)</th><td>{{deliverable.get_turnover}} &euro;</td></tr>
     

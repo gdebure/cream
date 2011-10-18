@@ -3,5 +3,5 @@
     <tr><th>domain name</th><td>{{ domain.name}}</td></tr>
     <tr><th>domain is active</th><td>{{ domain.is_active }}</td></tr>
     <tr><th>domain owner</th><td><a href="{{domain.owner.get_absolute_url}}">{{ domain.owner }}</a></td></tr>
-    <tr><th>description</th><td>{{ domain.description }}</td></tr>
+    <tr><th>description</th><td>{{ domain.description|linebreaksbr  }}</td></tr>
 </table>

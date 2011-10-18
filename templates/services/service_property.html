@@ -4,5 +4,5 @@
     <tr><th>is active</th><td>{{ service.is_active }}</td></tr>
     <tr><th>service owner</th><td><a href="{{service.owner.get_absolute_url}}">{{ service.owner }}</a></td></tr>
     <tr><th>service family</th><td><a href="{{ service.service_family.get_absolute_url}}">{{ service.service_family}}</a></td></tr>
-    <tr><th>description</th><td>{{ service.description }}</td></tr>
+    <tr><th>description</th><td>{{ service.description|linebreaksbr }}</td></tr>
 </table>
