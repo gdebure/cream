@@ -26,16 +26,20 @@ def send_mail_on_save(sender, **kwargs):
     mail_body += "User who made the change: " + str(user) + "\n"
     mail_body += "Date: " + str(date_created) + "\n"
    
+    updated_fields = 0
+        
     if version.type == 0:
         # This is an object creation...
-        mail_title = "[CREAM] " + str(version.content_type)+ " " + str(version.object_repr) + " created"
+        updated_fields += 1
+        mail_title = "[CREAM] " + str(version.content_type)+ " " + str(version.object) + " created"
         mail_body += version.object.get_absolute_url() + "\n"
         for field in version.field_dict:
             mail_body += field + ": " + str(version.field_dict[field])+ "\n"
     
     elif version.type == 2:
         # This is an object deletion
-        mail_title = "[CREAM] " + str(version.content_type) + " " + str(version.object_repr) + " deleted"
+        updated_fields += 1
+        mail_title = "[CREAM] " + str(version.content_type) + " " + str(version.object) + " deleted"
         for field in version.field_dict:
             mail_body += field + ": " + str(version.field_dict[field])+ "\n"
     
@@ -46,13 +50,14 @@ def send_mail_on_save(sender, **kwargs):
         instance_versions = reversion.get_for_object(version.object)
         old_version = instance_versions[1]
         
-        mail_title = "[CREAM] " + str(version.content_type)+ " " + str(version.object_repr) + " updated"
+        mail_title = "[CREAM] " + str(version.content_type)+ " " + str(version.object) + " updated"
         mail_body += version.object.get_absolute_url() + "\n"
         
         for field in version.field_dict:
             old_object_value = old_version.field_dict[field]
             new_object_value = version.field_dict[field]
             if old_object_value != new_object_value:
+                updated_fields += 1
                 mail_body += "\n" + field + ":\n"
                 mail_body += "----------------\n"
                 mail_body += "* old: " + str(old_object_value) + "\n"
@@ -60,7 +65,8 @@ def send_mail_on_save(sender, **kwargs):
         
     
     mail_body += "\n\nThis is an automatically generated email, please do not reply"
-    send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
+    if updated_fields > 0:
+        send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
     
 
 
