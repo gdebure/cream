@@ -9,14 +9,14 @@
 <!-- Include the object property -->
 {% include "common/object_actions.html" %}
 
-<!--<div class="block">
-{% include "projects/task_table.html" with tasks_list=deliverable.get_tasks %}
-<a href="add_task">Add task</a>
-</div>-->
-
 <div class="block">
 {% include "projects/deliverablevolume_table.html" with deliverablevolumes_list=deliverable.get_volumes %}
 <a href="{{ deliverable.get_absolute_url }}/add_volume/">Add deliverable volume</a>
+</div>
+
+<div class="block">
+{% include "projects/task_table.html" with tasks_list=deliverable.get_tasks %}
+<a href="add_task">Add task</a>
 </div>
 
 {% endblock %}

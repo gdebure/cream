@@ -1,0 +1,7 @@
+<tr>
+    <th><h1>{{domain}}</h1></th>
+    <td></td>
+</tr>
+{% for service_family in domain.get_service_families %}
+{% include "services/servicefamily_report_property.html" %}
+{% endfor %}

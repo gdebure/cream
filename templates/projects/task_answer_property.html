@@ -1,5 +1,5 @@
 <table class="styled detail">
-    <tr><th>answer</th><td>{{ task.answer }}</td></tr>
+    <tr><th>answer</th><td>{{ task.answer|linebreaksbr  }}</td></tr>
     <tr><th>close date</th><td>{{ task.close_date }}</td></tr>
     <tr><th>status</th><td>{{ task.get_status_display }}</td></tr>
     <tr><th>reject reason</th><td>{{ task.reject_reason }}</td></tr>

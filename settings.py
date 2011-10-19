@@ -1,4 +1,6 @@
-# Django settings for CREAM project.
+# -*- coding: utf-8 -*-
+
+#Django settings for CREAM project.
 
 import os
 
@@ -189,3 +191,8 @@ ANONYMOUS_USER_ID = -1
 EMAIL_HOST = 'tocimserver'
 EMAIL_PORT= 5225
 EMAIL_SUBJECT_PREFIX = '[CREAM]'
+
+### Currency stuff
+CURRENCY_SYMBOL = '€'
+THOUSAND_SEPARATOR = ','
+DECIMAL_SEPARATOR = '.'

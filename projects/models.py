@@ -120,7 +120,7 @@ class Deliverable (models.Model):
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
     
     class Meta:
-        ordering = ['project','service','name']
+        ordering = ['project','code','name']
     
     def __unicode__(self):
         return self.name
@@ -159,7 +159,7 @@ class DeliverableVolume(models.Model):
     date_start = models.DateField(help_text='YYYY-MM-DD')
     date_end = models.DateField(help_text='YYYY-MM-DD')
     quantity = models.IntegerField(null=True, blank=True)
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     class Meta:
         ordering = ['deliverable','date_start']

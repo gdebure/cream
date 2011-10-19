@@ -1,6 +1,7 @@
 {% include "projects/decoration.html" with title=title|default:"Project Deliverables Volumes list" icon=icon|default:"deliverablevolume_small.png" %}
 
 {% if deliverablevolumes_list %}
+{% load currency_filter %}
 <table class="styled">
     <tr>
         <th/>
@@ -18,8 +19,8 @@
         <td>{{ deliverablevolume.date_start }}</td>
         <td>{{ deliverablevolume.date_end }}</td>
         <td align="right">{{ deliverablevolume.quantity }}</td>
-        <td align="right">{{ deliverablevolume.unit_price }} &euro;</td>
-        <td align="right">{{ deliverablevolume.get_total_price }} &euro;</td>
+        <td align="right">{{ deliverablevolume.unit_price|currency }}</td>
+        <td align="right">{{ deliverablevolume.get_total_price|currency }}</td>
     </tr>
 {% endfor %}
 </table>

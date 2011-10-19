@@ -3,57 +3,74 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.contrib.auth.models import User, Group
 
+from reversion.models import Version
 import reversion
 
-from services.models import Domain, Service, ServiceFamily
-from projects.models import Project, Deliverable, DeliverableVolume
+from projects.models import Deliverable
+from users.models import Employee
 
-@receiver(post_save,sender=Domain)
-@receiver(post_save,sender=Service)
-@receiver(post_save,sender=ServiceFamily)
-@receiver(post_save,sender=Project)
-@receiver(post_save,sender=Deliverable)
-@receiver(post_save,sender=DeliverableVolume)
+
+
+@receiver(post_save,sender=Version)
 def send_mail_on_save(sender, **kwargs):
     
     # This is the list of users that will receive the email
     recipients = User.objects.filter(groups__name='Service Catalog Admins').values_list('email',flat=True)
     # Get the object instance
-    instance = kwargs['instance']
-   
+    version = kwargs['instance']
+    
+    user = Employee.objects.get(user=version.revision.user)
+    date_created = version.revision.date_created
+    
+    mail_title_prefix = '[CREAM]'
+    
     mail_body = "\n"
+    mail_body += "Edited by: " + str(user) + "\n"
+    mail_body += "Date: " + str(date_created) + "\n"
    
-    print 'New Instance:' + str(kwargs['created'])
-   
-    if kwargs['created']:
-        # This is a new object, so we don't have any history yet...
-        mail_title = "[CREAM] " + str(sender._meta.verbose_name)+ " " + str(instance) + " created"
+    updated_fields = 0
         
-        for field in instance._meta.get_all_field_names():
-            mail_body += field + ": " + str(getattr(instance, field,"")) + "\n"
+    if version.type == 0:
+        # This is an object creation...
+        updated_fields += 1
+        mail_title_prefix += '[created]'
+        mail_body += version.object.get_absolute_url() + "\n"
+        for field in version.field_dict:
+            mail_body += field + ": " + str(version.field_dict[field])+ "\n"
     
+    elif version.type == 2:
+        # This is an object deletion
+        updated_fields += 1
+        mail_title_prefix += '[deleted]'
+        for field in version.field_dict:
+            mail_body += field + ": " + str(version.field_dict[field])+ "\n"
+    
+        
     else:
-    
-        # Get the latest two version for comparison:
-        instance_versions = reversion.get_for_object(instance)
-        old_version = instance_versions[0]
-        new_version = instance
+        # this is an updated object
+        # Get the old version for comparison:
+        instance_versions = reversion.get_for_object(version.object)
+        old_version = instance_versions[1]
         
-        mail_title = str(sender._meta.verbose_name)+ " " + str(instance) + " updated"
-    
-        for field in old_version.field_dict:
+        mail_title_prefix += '[updated]'
+        
+        mail_body += version.object.get_absolute_url() + "\n"
+        
+        for field in version.field_dict:
             old_object_value = old_version.field_dict[field]
-            new_object_value = str(getattr(instance,field,""))
+            new_object_value = version.field_dict[field]
             if old_object_value != new_object_value:
+                updated_fields += 1
                 mail_body += "\n" + field + ":\n"
                 mail_body += "----------------\n"
                 mail_body += "* old: " + str(old_object_value) + "\n"
                 mail_body += "* new: " + str(new_object_value) + "\n"
         
-    
+    mail_title = mail_title_prefix + str(version.content_type) + " \"" + str(version.object) + "\""
+        
     mail_body += "\n\nThis is an automatically generated email, please do not reply"
-    
-    send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
+    if updated_fields > 0:
+        send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
     
 
 
@@ -64,7 +81,7 @@ def send_mail_on_service_link(sender, **kwargs):
 
     deliverable = kwargs['instance']
     if deliverable.approved_by_service_owner == 'P':
-        mail_title = '[CREAM] ' + 'New deliverable added to service ' + str(deliverable.service)
+        mail_title = '[CREAM] ' + str(deliverable.service) + ': New deliverable' 
         mail_body = 'Please check whether the deliverable "' + str(deliverable)+ '" should be linked to the service "' + str(deliverable.service) + "\n"
         mail_body += "\n\nThis is an automatically generated email, please do not reply"
         
