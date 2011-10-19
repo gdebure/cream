@@ -159,7 +159,7 @@ class DeliverableVolume(models.Model):
     date_start = models.DateField(help_text='YYYY-MM-DD')
     date_end = models.DateField(help_text='YYYY-MM-DD')
     quantity = models.IntegerField(null=True, blank=True)
-    unit_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     class Meta:
         ordering = ['deliverable','date_start']
