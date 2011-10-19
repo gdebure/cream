@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% load currency_filter %}
+
+{% block content %}
+<h1>Report for Domain {{domain}}</h1>
+<table class="styled detail">
+<tr>
+    <th>Service Family</th>
+    <th>Domain</th>
+    <th>Turnover</th>
+</tr>
+{% for servicefamily in domain.get_service_families %}
+    <tr>
+        <td><a href="{{servicefamily.get_report_url}}">{{servicefamily}}</a></td>
+        <td><a href="{{servicefamily.domain.get_report_url}}">{{servicefamily.domain}}</td>
+        <td>{{servicefamily.get_turnover|currency}}</td>
+    </tr>
+{% endfor %}
+<table>
+
+{% endblock %}
