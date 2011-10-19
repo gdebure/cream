@@ -7,6 +7,10 @@ register = template.Library()
 @register.filter()
 def currency(value):
     
+    if not value:
+        value=0
+    
+    
     symbol = getattr(settings, 'CURRENCY_SYMBOL', '€')
     thousand_sep = getattr(settings, 'THOUSAND_SEPARATOR', ' ')
     decimal_sep = getattr(settings, 'DECIMAL_SEPARATOR', '.')

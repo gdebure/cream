@@ -1,3 +1,4 @@
+{% load currency_filter %}
 {% include "services/decoration.html" with title="Project Deliverable properties" icon="deliverable.png" block="main" %}
 <table class="styled detail">
     <tr><th>project deliverable name</th><td>{{ deliverable.name}}</td></tr>
@@ -9,6 +10,6 @@
 <!--     To be colored depending on status -->
     <tr><th>description</th><td>{{ deliverable.description|linebreaksbr  }}</td></tr>
     <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
-    <tr><th>total turnover (&euro;)</th><td>{{deliverable.get_turnover}} &euro;</td></tr>
+    <tr><th>total turnover</th><td>{{ deliverable.get_turnover|currency }}</td></tr>
     
 </table>

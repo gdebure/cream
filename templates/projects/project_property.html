@@ -1,3 +1,4 @@
+{% load currency_filter %}
 {% include "projects/decoration.html" with title=title|default:"Project properties" icon="project.png" block="main" %}
 <table class="styled detail">
     <tr><th>project name</th><td>{{ project.name}}</td></tr>
@@ -11,5 +12,5 @@
     <tr><th>customer siglum</th><td>{{project.customer_siglum}}</td></tr>
     <tr><th>description</th><td>{{ project.description|linebreaksbr  }}</td></tr>
     <tr><th>wiki link</th><td><a href="{{project.wiki_link}}">{{ project.wiki_link}}</a></td></tr>
-    <tr><th>turnover</th><td>{{ project.get_total_turnover }} &euro;</td></tr>
+    <tr><th>turnover</th><td>{{ project.get_total_turnover|currency }}</td></tr>
 </table>
