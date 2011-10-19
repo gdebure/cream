@@ -120,7 +120,7 @@ class Deliverable (models.Model):
     approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
     
     class Meta:
-        ordering = ['project','service','name']
+        ordering = ['project','code','name']
     
     def __unicode__(self):
         return self.name
