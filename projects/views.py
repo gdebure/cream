@@ -151,7 +151,7 @@ def delete_deliverable(request, pk):
     project = deliverable.project
     
     # It is only possible if the user has rights on the deliverable
-    if request.user.has_perm('projects.delete_deliverable',deliverable):
+    if request.user.has_perm('projects.delete_deliverable',deliverable) or request.user.has_perm('projects.change_project',project):
         try:
             response = delete_object(request, Deliverable, project.get_absolute_url(), object_id=pk, template_object_name="deliverable")
         except ProtectedError:
