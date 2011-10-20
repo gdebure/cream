@@ -36,14 +36,14 @@ def send_mail_on_save(sender, **kwargs):
         mail_title_prefix += '[created]'
         mail_body += version.object.get_absolute_url() + "\n"
         for field in version.field_dict:
-            mail_body += field + ": " + str(version.field_dict[field])+ "\n"
+            mail_body += field + ": " + unicode(version.field_dict[field])+ "\n"
     
     elif version.type == 2:
         # This is an object deletion
         updated_fields += 1
         mail_title_prefix += '[deleted]'
         for field in version.field_dict:
-            mail_body += field + ": " + str(version.field_dict[field])+ "\n"
+            mail_body += field + ": " + unicode(version.field_dict[field])+ "\n"
     
         
     else:
@@ -63,10 +63,10 @@ def send_mail_on_save(sender, **kwargs):
                 updated_fields += 1
                 mail_body += "\n" + field + ":\n"
                 mail_body += "----------------\n"
-                mail_body += "* old: " + str(old_object_value) + "\n"
-                mail_body += "* new: " + str(new_object_value) + "\n"
+                mail_body += "* old: " + unicode(old_object_value) + "\n"
+                mail_body += "* new: " + unicode(new_object_value) + "\n"
         
-    mail_title = mail_title_prefix + str(version.content_type) + " \"" + str(version.object) + "\""
+    mail_title = mail_title_prefix + unicode(version.content_type) + " \"" + unicode(version.object) + "\""
         
     mail_body += "\n\nThis is an automatically generated email, please do not reply"
     if updated_fields > 0:
@@ -81,8 +81,8 @@ def send_mail_on_service_link(sender, **kwargs):
 
     deliverable = kwargs['instance']
     if deliverable.approved_by_service_owner == 'P':
-        mail_title = '[CREAM] ' + str(deliverable.service) + ': New deliverable' 
-        mail_body = 'Please check whether the deliverable "' + str(deliverable)+ '" should be linked to the service "' + str(deliverable.service) + "\n"
+        mail_title = '[CREAM] ' + unicode(deliverable.service) + ': New deliverable' 
+        mail_body = 'Please check whether the deliverable "' + unicode(deliverable)+ '" should be linked to the service "' + unicode(deliverable.service) + "\n"
         mail_body += "\n\nThis is an automatically generated email, please do not reply"
         
         send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
