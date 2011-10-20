@@ -1,3 +1,4 @@
+{% load currency_filter %}
 {% include "projects/decoration.html" with title=title|default:"Project Deliverables list" icon=icon|default:"deliverable_small.png" %}
 
 {% if deliverables_list %}
@@ -23,7 +24,7 @@
         <td><a href="{{ deliverable.service.get_absolute_url }}">{{ deliverable.service.name }}</a></td>
         <td style={% include "projects/link_display.html" %}><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
         <td align="right">{{ deliverable.get_total_volume }}</td>
-        <td align="right">{{ deliverable.get_turnover }} &euro;</td>
+        <td align="right">{{ deliverable.get_turnover|currency }}</td>
     </tr>
 {% endfor %}
 </table>

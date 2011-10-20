@@ -165,37 +165,26 @@ def show_history(request):
         
 def domains_report(request):
     
-    domains = Domain.objects.all()
-    response = "<h1>Domain Reporting</h1><hr/>"
-    
-    for domain in domains:
-        domain_turnover = 0
-        response += "Domain: " + str(domain) + "<br/>"
-        families = domain.servicefamily_set.all()
-    
-        for family in families:
-            family_turnover = 0
-            response += "Service Family: " + str(family) + "<br/>"
-            services = family.service_set.all()
-            
-            for service in services:
-                service_turnover = 0
-                response += "Service: " + str(service) + "<br/>"
-                deliverables = service.deliverable_set.all()
-                
-                for deliverable in deliverables:
-                    response += "Deliverable: " + str(deliverable) + " = " + str(deliverable.get_turnover()) + "<br/>"
-                    service_turnover += deliverable.get_turnover()
-                
-                response += "Service Total = " + str(service_turnover) + "</br>"
-                family_turnover += service_turnover
-            
-            response += "Family Total = " + str(family_turnover) + "</br>"
-            domain_turnover += family_turnover
-        
-        response += "Domain Total = " + str(domain_turnover) + "</br>"
-                
-    
-    return HttpResponse(response)
-        
+    domain_list = Domain.objects.all()
+    response = direct_to_template(request, template="services/domains_report.html", extra_context={'domain_list':domain_list})
+    return response
 
+
+def domain_report(request,pk):
+    
+    domain = get_object_or_404(Domain, id=pk)
+    response = direct_to_template(request, template="services/domain_report.html", extra_context={'domain':domain})
+    return response    
+
+
+def servicefamily_report(request,pk):
+    
+    service_family = get_object_or_404(ServiceFamily, id=pk)
+    response = direct_to_template(request, template="services/servicefamily_report.html", extra_context={'service_family':service_family})
+    return response 
+    
+def service_report(request,pk):
+    
+    service = get_object_or_404(Service, id=pk)
+    response = direct_to_template(request, template="services/service_report.html", extra_context={'service':service})
+    return response

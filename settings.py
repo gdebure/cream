@@ -193,6 +193,6 @@ EMAIL_PORT= 5225
 EMAIL_SUBJECT_PREFIX = '[CREAM]'
 
 ### Currency stuff
-CURRENCY_SYMBOL = '€'
+CURRENCY_SYMBOL = u"\u20AC" # This is the utf-8 code for the ¤ symbol
 THOUSAND_SEPARATOR = ','
 DECIMAL_SEPARATOR = '.'

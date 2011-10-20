@@ -1,4 +1,4 @@
-
+{% load currency_filter %}
 {% include "projects/decoration.html" with title=title|default:"Projects list" icon=icon|default:"project_small.png" %}
 
 {% if projects_list %}
@@ -16,7 +16,7 @@
         <td>{{ project.number }}</td>
         <td><a href="{{project.get_absolute_url}}">{{ project.name }}</td>
         <td><a href="{{project.project_leader.get_absolute_url}}">{{ project.project_leader }}</a></td>
-        <td align="right">{{ project.get_total_turnover }} &euro;</td>
+        <td align="right">{{ project.get_total_turnover|currency }}</td>
     </tr>
 {% endfor %}
 </table>

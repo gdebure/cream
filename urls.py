@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     # URLs for applications
     url(r'^services/',include('services.urls')),
     url(r'^projects/',include('projects.urls')),
+    url(r'^reports/',include('reports.urls')),
     url(r'^users/',include('users.urls')),
     url(r'^qualifications/',include('qualifications.urls')),
 )

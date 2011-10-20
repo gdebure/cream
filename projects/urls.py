@@ -8,7 +8,7 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
 from projects.views import create_deliverablevolume, update_deliverablevolume, delete_deliverablevolume
-from projects.views import update_task, delete_task
+from projects.views import create_task, update_task, delete_task
 
 urlpatterns = patterns('',
     ##################################
@@ -32,6 +32,7 @@ urlpatterns = patterns('',
     # Service validation stuff
     (r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
     (r'^deliverables/(?P<pk>\d+)/add_volume/$', create_deliverablevolume),
+    (r'^deliverables/(?P<pk>\d+)/add_task/$', create_task),
     ##################################
     
     

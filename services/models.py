@@ -18,9 +18,19 @@ class Domain (models.Model):
         
     def get_absolute_url(self):
         return '/services/domains/' + str(self.id)
+    
+    def get_report_url(self):
+        return '/services/reports/domains/' + str(self.id)
         
     def get_service_families(self):
         return self.servicefamily_set.all()
+        
+    def get_turnover(self):
+        service_families = self.get_service_families()
+        turnover = 0
+        for service_family in service_families:
+            turnover += service_family.get_turnover()
+        return turnover
         
 # Register this object in reversion, so that we can track its history
 reversion.register(Domain)
@@ -70,8 +80,18 @@ class ServiceFamily (models.Model):
     def get_absolute_url(self):
         return '/services/service_families/' + str(self.id)
         
+    def get_report_url(self):
+        return '/services/reports/service_families/' + str(self.id)
+        
     def get_services(self):
         return self.service_set.all()
+        
+    def get_turnover(self):
+        services = self.get_services()
+        turnover = 0
+        for service in services:
+            turnover += service.get_turnover()
+        return turnover
         
 # Register this object in reversion, so that we can track its history
 reversion.register(ServiceFamily)
@@ -94,8 +114,17 @@ class Service (models.Model):
     def get_absolute_url(self):
         return '/services/services/' + str(self.id)
         
+    def get_report_url(self):
+        return '/services/reports/services/' + str(self.id)
+        
     def get_deliverables(self):
         return self.deliverable_set.all()
         
+    def get_turnover(self):
+        deliverables = self.get_deliverables()
+        turnover = 0
+        for deliverable in deliverables:
+            turnover += deliverable.get_turnover()
+        return turnover
 # Register this object in reversion, so that we can track its history
 reversion.register(Service)
