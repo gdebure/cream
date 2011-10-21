@@ -8,7 +8,7 @@ from services.forms import DomainForm, ServiceFamilyForm, ServiceForm
 from services.views import update_domain, delete_domain
 from services.views import create_servicefamily,update_servicefamily, delete_servicefamily
 from services.views import create_service, update_service, delete_service
-from services.views import domains_report, domain_report, servicefamily_report, service_report
+from services.views import domains_report, domain_report, servicefamilies_report, servicefamily_report, services_report, service_report
 
 urlpatterns = patterns('',
     ##################################
@@ -45,7 +45,9 @@ urlpatterns = patterns('',
     (r'^reports/$',domains_report),
     (r'^reports/domains/$',domains_report),
     (r'^reports/domains/(?P<pk>\d+)/$',domain_report),
+    (r'^reports/service_families/$',servicefamilies_report),
     (r'^reports/service_families/(?P<pk>\d+)/$',servicefamily_report),
+    (r'^reports/services/$',services_report),
     (r'^reports/services/(?P<pk>\d+)/$',service_report),
     ##################################
 )

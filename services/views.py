@@ -177,11 +177,26 @@ def domain_report(request,pk):
     return response    
 
 
+def servicefamilies_report(request):
+    
+    servicefamilies_list = ServiceFamily.objects.all()
+    response = direct_to_template(request, template="services/servicefamilies_report.html", extra_context={'servicefamilies_list':servicefamilies_list})
+    return response 
+
+    
 def servicefamily_report(request,pk):
     
     service_family = get_object_or_404(ServiceFamily, id=pk)
     response = direct_to_template(request, template="services/servicefamily_report.html", extra_context={'service_family':service_family})
     return response 
+    
+
+def services_report(request):
+    
+    services_list = Service.objects.all()
+    response = direct_to_template(request, template="services/services_report.html", extra_context={'services_list':services_list})
+    return response
+    
     
 def service_report(request,pk):
     
