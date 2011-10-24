@@ -8,10 +8,14 @@
 </tr>
 {% for service in services_list %}
     <tr>
-        <td><a href="{{service.get_report_url}}">{{service}}</a></td>
+        <td><a href="{{service.get_report_url}}">{{service.name}}</a></td>
         <td><a href="{{service.service_family.get_report_url}}">{{service.service_family}}</a></td>
         <td><a href="{{service.service_family.domain.get_report_url}}">{{service.service_family.domain}}</a></td>
-        <td>{{service.get_turnover|currency}}</td>
+        <td style="text-align:right;">{{service.get_turnover|currency}}</td>
     </tr>
 {% endfor %}
+    <tr>
+        <th colspan="3">Total</th>
+        <th style="text-align:right;">{{total_turnover|currency}}</th>
+    </tr>
 <table>

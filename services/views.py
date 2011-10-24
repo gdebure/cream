@@ -166,40 +166,58 @@ def show_history(request):
 def domains_report(request):
     
     domain_list = Domain.objects.all()
-    response = direct_to_template(request, template="services/domains_report.html", extra_context={'domain_list':domain_list})
+    total_turnover = 0
+    for domain in domain_list:
+        total_turnover += domain.get_turnover()
+    response = direct_to_template(request, template="services/domains_report.html", extra_context={'domain_list':domain_list,'total_turnover':total_turnover})
     return response
 
 
 def domain_report(request,pk):
     
     domain = get_object_or_404(Domain, id=pk)
-    response = direct_to_template(request, template="services/domain_report.html", extra_context={'domain':domain})
+    total_turnover = 0
+    for service_family in domain.get_service_families():
+        total_turnover += service_family.get_turnover()
+    response = direct_to_template(request, template="services/domain_report.html", extra_context={'domain':domain,'total_turnover':total_turnover})
     return response    
 
 
 def servicefamilies_report(request):
     
     servicefamilies_list = ServiceFamily.objects.all()
-    response = direct_to_template(request, template="services/servicefamilies_report.html", extra_context={'servicefamilies_list':servicefamilies_list})
+    total_turnover = 0
+    for service_family in servicefamilies_list:
+        total_turnover += service_family.get_turnover()
+    response = direct_to_template(request, template="services/servicefamilies_report.html", extra_context={'servicefamilies_list':servicefamilies_list,'total_turnover':total_turnover})
     return response 
 
     
 def servicefamily_report(request,pk):
     
     service_family = get_object_or_404(ServiceFamily, id=pk)
-    response = direct_to_template(request, template="services/servicefamily_report.html", extra_context={'service_family':service_family})
+    total_turnover = 0
+    for service in service_family.get_services():
+        total_turnover += service.get_turnover()
+    response = direct_to_template(request, template="services/servicefamily_report.html", extra_context={'service_family':service_family,'total_turnover':total_turnover})
     return response 
     
 
 def services_report(request):
     
     services_list = Service.objects.all()
-    response = direct_to_template(request, template="services/services_report.html", extra_context={'services_list':services_list})
+    total_turnover = 0
+    for service in services_list:
+        total_turnover += service.get_turnover()
+    response = direct_to_template(request, template="services/services_report.html", extra_context={'services_list':services_list,'total_turnover':total_turnover})
     return response
     
     
 def service_report(request,pk):
     
     service = get_object_or_404(Service, id=pk)
-    response = direct_to_template(request, template="services/service_report.html", extra_context={'service':service})
+    total_turnover = 0
+    for deliverable in service.get_deliverables():
+        total_turnover += deliverable.get_turnover()
+    response = direct_to_template(request, template="services/service_report.html", extra_context={'service':service,'total_turnover':total_turnover})
     return response

@@ -2,7 +2,7 @@
 {% load currency_filter %}
 
 {% block content %}
-<h1>Report for Service {{service}}</h1>
+{% include "services/decoration.html" with title=title|default:"Turnover by Deliverable" icon="report.png" block="main" %}
 <table class="styled detail">
 <tr>
     <th>Project</th>
@@ -16,12 +16,16 @@
     <tr>
         <td><a href="{{deliverable.project.get_absolute_url}}">{{deliverable.project}}</a></td>
         <td><a href="{{deliverable.get_absolute_url}}">{{deliverable}}</a></td>
-        <td><a href="{{deliverable.service.get_report_url}}">{{deliverable.service}}</a></td>
+        <td><a href="{{deliverable.service.get_report_url}}">{{deliverable.service.name}}</a></td>
         <td><a href="{{service.service_family.get_report_url}}">{{service.service_family}}</a></td>
         <td><a href="{{service.service_family.domain.get_report_url}}">{{service.service_family.domain}}</a></td>
         <td>{{deliverable.get_turnover|currency}}</td>
     </tr>
 {% endfor %}
+    <tr>
+        <th colspan="5">Total</th>
+        <th style="text-align:right;">{{total_turnover|currency}}</th>
+    </tr>
 <table>
 
 {% endblock %}

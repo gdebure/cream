@@ -9,7 +9,14 @@
     <tr>
         <td><a href="{{servicefamily.get_report_url}}">{{servicefamily}}</a></td>
         <td><a href="{{servicefamily.domain.get_report_url}}">{{servicefamily.domain}}</td>
-        <td>{{servicefamily.get_turnover|currency}}</td>
+        <td style="text-align:right;">{{servicefamily.get_turnover|currency}}</td>
     </tr>
 {% endfor %}
+    <tr>
+        <th colspan="2">Total</th>
+        <th style="text-align:right;">{{total_turnover|currency}}</th>
+    </tr>
 <table>
+    
+<table>
+

@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 
 {% block content %}
-<h1>Report for Service Families</h1>
+{% include "services/decoration.html" with title=title|default:"Turnover by Service Family" icon="report.png" block="main" %}
 {% include "services/servicefamily_report_table.html" %}
 
 {% endblock %}
