@@ -1,23 +1,7 @@
 {% extends "base.html"%}
-{% load currency_filter %}
 
 {% block content %}
 <h1>Report for Service Family {{service_family}}</h1>
-<table class="styled detail">
-<tr>
-    <th>Service</th>
-    <th>Service Family</th>
-    <th>Domain</th>
-    <th>Turnover</th>
-</tr>
-{% for service in service_family.get_services %}
-    <tr>
-        <td><a href="{{service.get_report_url}}">{{service}}</a></td>
-        <td><a href="{{service.service_family.get_report_url}}">{{service.service_family}}</a></td>
-        <td><a href="{{service.service_family.domain.get_report_url}}">{{service.service_family.domain}}</a></td>
-        <td>{{service.get_turnover|currency}}</td>
-    </tr>
-{% endfor %}
-<table>
+{% include "services/service_report_table.html" with services_list=service_family.get_services %}
 
 {% endblock %}

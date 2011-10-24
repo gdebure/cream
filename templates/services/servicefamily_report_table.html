@@ -1,0 +1,15 @@
+{% load currency_filter %}
+<table class="styled detail">
+<tr>
+    <th>Service Family</th>
+    <th>Domain</th>
+    <th>Turnover</th>
+</tr>
+{% for servicefamily in servicefamilies_list %}
+    <tr>
+        <td><a href="{{servicefamily.get_report_url}}">{{servicefamily}}</a></td>
+        <td><a href="{{servicefamily.domain.get_report_url}}">{{servicefamily.domain}}</td>
+        <td>{{servicefamily.get_turnover|currency}}</td>
+    </tr>
+{% endfor %}
+<table>
