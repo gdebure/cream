@@ -46,9 +46,6 @@ class Project (models.Model):
     def get_deliverables(self):
         return self.deliverable_set.all()
         
-    def get_turnover_values(self):
-        return self.turnover_set.all()
-        
     def get_tasks(self):
         tasks = list()
         for deliverable in self.get_deliverables():
@@ -60,6 +57,17 @@ class Project (models.Model):
         turnover = 0
         for deliverable in self.deliverable_set.all():
             turnover += deliverable.get_turnover()
+        return turnover
+        
+    def get_turnover_per_year(self):
+        year_min = self.date_start.year
+        year_max = self.date_end.year
+        turnover = dict()
+        for year in range(year_min,year_max+1):
+            year_turnover = 0
+            for deliverable in self.deliverable_set.all():
+                year_turnover += deliverable.get_turnover_year(year)
+            turnover[year] = year_turnover
         return turnover
 
 # Register this object in reversion, so that we can track its history
@@ -139,7 +147,6 @@ class Deliverable (models.Model):
             if volume.quantity != None and volume.unit_price != None:
                 turnover += volume.quantity * volume.unit_price
         return turnover
-        
         
 
     def get_turnover_year(self,year):
