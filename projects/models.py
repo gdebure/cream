@@ -235,6 +235,9 @@ class Task (models.Model):
     owner = models.ManyToManyField(Employee, related_name='owner',null=True, blank=True)
     number_of_units = models.IntegerField(default=1)
     
+    class Meta:
+        ordering = ['-id'] # Sort per id (descending)
+    
     def __unicode__(self):
         return str(self.id) + ":" + self.name
         
