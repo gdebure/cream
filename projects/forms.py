@@ -92,7 +92,11 @@ class TaskForm(forms.ModelForm):
 class TaskFromDeliverableForm(TaskForm):
     
     predefined = 'deliverable'
-
+    
+class TaskFromProjectForm(TaskForm):
+    
+    predefined = 'project'
+    deliverable = forms.ModelChoiceField(queryset=Deliverable.objects.filter(project__id=project.id))
 
 
 class TaskAnswerForm(forms.ModelForm):
