@@ -9,7 +9,7 @@ from projects.models import Project, Authorization, Deliverable, DeliverableVolu
 from projects.forms import ProjectForm
 from projects.forms import DeliverableForm, DeliverableFromProjectForm, DeliverableValidateServiceForm
 from projects.forms import DeliverableVolumeFromDeliverableForm
-from projects.forms import TaskForm, TaskFromDeliverableForm
+from projects.forms import TaskForm, TaskAnswerForm, TaskFromDeliverableForm
 
 
 
@@ -247,7 +247,16 @@ def update_task(request, pk):
     return response
     
 
-
+def update_task_answer(request, pk):
+    
+    task = get_object_or_404(Task, id=pk)
+    if request.user.has_perm('projects.change_task',task) or request.user.has_perm('projects.change_project',turnover.project):
+        response = update_object(request,form_class=TaskAnswerForm, object_id=pk)
+    else:
+        # if not allowed, return the page forbidden.html
+        response = direct_to_template(request,template="forbidden.html")
+    
+    return response
 
 def delete_task(request, pk):
     '''Perform the task delete'''

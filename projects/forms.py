@@ -99,7 +99,7 @@ class TaskAnswerForm(forms.ModelForm):
     
     class Meta:
         model = Task
-        fields = ('answer', 'close_date', 'status', 'reject_reason', 'time_spent', 'owner', 'number_of_units')
+        fields = ('status', 'answer', 'close_date', 'reject_reason', 'time_spent', 'owner', 'number_of_units')
         
     
     

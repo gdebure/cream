@@ -8,7 +8,7 @@ from projects.forms import DeliverableForm, DeliverableValidateServiceForm
 from projects.views import update_project, delete_project
 from projects.views import create_deliverable, update_deliverable, delete_deliverable, validate_deliverable_service
 from projects.views import create_deliverablevolume, update_deliverablevolume, delete_deliverablevolume
-from projects.views import create_task, update_task, delete_task
+from projects.views import create_task, update_task, update_task_answer, delete_task
 
 urlpatterns = patterns('',
     ##################################
@@ -45,11 +45,12 @@ urlpatterns = patterns('',
     
     
     ##################################
-    # Task values
+    # Tasks
     (r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
     (r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
     (r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
     (r'^tasks/(?P<pk>\d+)/update/$', update_task),
+    (r'^tasks/(?P<pk>\d+)/update_answer/$', update_task_answer),
     (r'^tasks/(?P<pk>\d+)/delete/$', delete_task),
     ##################################
 )
