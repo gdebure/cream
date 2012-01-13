@@ -213,7 +213,9 @@ class Task (models.Model):
     
     STATUS_CHOICES = (
         ('O','Open'),
-        ('C','Closed')
+        ('P','In Progress'),
+        ('C','Closed'),
+        ('X','Cancelled'),
     )
     
     # Base information
@@ -231,7 +233,7 @@ class Task (models.Model):
     close_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=1,choices=STATUS_CHOICES, default='O')
     reject_reason = models.CharField(max_length=64,null=True, blank=True)
-    time_spent = models.DecimalField(max_digits=5,decimal_places=2,null=True, blank=True)
+    time_spent = models.DecimalField(max_digits=5,decimal_places=2,null=True, blank=True, help_text="hours")
     owner = models.ManyToManyField(Employee, related_name='owner',null=True, blank=True)
     number_of_units = models.IntegerField(default=1)
     
