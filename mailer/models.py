@@ -85,4 +85,4 @@ def send_mail_on_service_link(sender, **kwargs):
         mail_body = 'Please check whether the deliverable "' + unicode(deliverable)+ '" should be linked to the service "' + unicode(deliverable.service) + "\n"
         mail_body += "\n\nThis is an automatically generated email, please do not reply"
         
-        send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
+        #send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
