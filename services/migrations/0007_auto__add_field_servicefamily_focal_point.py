@@ -9,13 +9,13 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'ServiceFamily.focal_point'
-        db.add_column('services_servicefamily', 'focal_point', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.Employee'], null=True, blank=True), keep_default=False)
+        db.add_column('services_servicefamily', 'owner_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.Employee'], null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
         # Deleting field 'ServiceFamily.focal_point'
-        db.delete_column('services_servicefamily', 'focal_point_id')
+        db.delete_column('services_servicefamily', 'owner_id')
 
 
     models = {
@@ -76,7 +76,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "['domain', 'name']", 'object_name': 'ServiceFamily'},
             'description': ('django.db.models.fields.TextField', [], {'null': 'True'}),
             'domain': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['services.Domain']"}),
-            'focal_point': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['users.Employee']", 'null': 'True', 'blank': 'True'}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['users.Employee']", 'null': 'True', 'blank': 'True'}),
             'growth_potential': ('django.db.models.fields.DecimalField', [], {'max_digits': '2', 'decimal_places': '0'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),

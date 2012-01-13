@@ -15,7 +15,7 @@ class Migration(SchemaMigration):
     def backwards(self, orm):
         
         # Adding field 'ServiceFamily.focal_user'
-        db.add_column('services_servicefamily', 'focal_user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.Employee'], null=True, blank=True), keep_default=False)
+        db.add_column('services_servicefamily', 'focal_user_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['users.Employee'], null=True, blank=True), keep_default=False)
 
 
     models = {
