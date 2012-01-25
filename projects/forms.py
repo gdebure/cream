@@ -93,11 +93,20 @@ class TaskFromDeliverableForm(TaskForm):
     
     predefined = 'deliverable'
     
+
 class TaskFromProjectForm(TaskForm):
     
     predefined = 'project'
-    deliverable = forms.ModelChoiceField(queryset=Deliverable.objects.filter(project__id=project.id))
-
+    project = forms.CharField()
+    
+    class Meta:
+        model = Task
+        fields = ('name', 'open_date', 'criticity', 'description', 'requestor', 'creator', 'project', 'deliverable', 'subject')
+    
+    def __init__(self, *args, **kwargs):
+        project = kwargs.pop('project')
+        super(TaskFromProjectForm, self).__init__(*args, **kwargs)
+        deliverable = forms.ChoiceField(choices=project.deliverable_set.all())
 
 class TaskAnswerForm(forms.ModelForm):
     
