@@ -227,17 +227,22 @@ def create_task(request, pk):
     
     return response
 
+
+    
 def create_task_from_project(request, pk):
-    
     project = get_object_or_404(Project, id=pk)
-    if request.user.has_perm('projects.add_task') or request.user.has_perm('projects.change_project',project):
-        response = create_object(request, form_class=TaskFromProjectForm(project=project), extra_context={'predefined_value':project})
+    if request.method == 'POST':
+        form = TaskFromProjectForm(request.POST, project=project)
+        if form.is_valid(): 
+            return HttpResponseRedirect(project.get_absolute_url())
     else:
-        response = direct_to_template(request, template="forbidden.html")
+        form = TaskFromProjectForm(project=project)
+
+    return render_to_response('projects/task_form.html', {
+        'form': form,
+    })
     
-    return response
-
-
+    
 def update_task(request, pk):
     '''Perform update on the turnover'''
     
