@@ -1,24 +1,29 @@
-<form action="" method="POST">
+<form class="form-horizontal" action="" method="POST">
     {% csrf_token %}
-    <table class="styled detail">
+    <legend>{{ legend }}</legend>
     {% for field in form %}
-    <tr>
-        {% if field.field.required %} 
-        <th style="font-weight: bold;">{{ field.label_tag }} *</th>
-        {% else %}
-        <th>{{ field.label_tag }}</th>
-        {% endif %}
-        
-        {% if form.predefined == field.name %}
-        <td><a href="{{predefined_value.get_absolute_url}}">{{predefined_value}}</a><input type="hidden" name="{{field.name}}" id="id_{{field.name}}" value="{{predefined_value.id}}"/></td>
-        {% else %}
-        <td>{{ field.errors }}{{ field }} {{field.help_text}}</td>
-        {% endif %}
-    </tr>
+    <div class="control-group">
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
+        <div class="controls">
+            
+            {% if field.field.required %}
+            <div class="input-append">
+            {% endif %}
+            
+            {{ field.errors }}{{ field }}{{field.help_text}}
+            
+            {% if field.field.required %} 
+            <span class="add-on"><i class="icon-asterisk"></i></span>
+            </div>
+            {% endif %}
+            
+        </div>
+    </div>
     {% endfor %}
-    </table>
-    
-    <p><b>* Mandatory fields</b></p>
-    
-    <input type="submit" value="save"/>
+    <div class="control-group">
+        <div class="controls">
+            <p><i class="icon-asterisk"></i> <b>Mandatory fields</b></p>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </div>
 </form>

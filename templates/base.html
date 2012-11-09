@@ -1,39 +1,50 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+<!DOCTYPE html >
+<html lang="en" >
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>CREAM reloaded</title>
-        <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/datatables/DT_bootstrap.css">
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+    </style>
     </head>
 <body>
-    
-    <div class="page_header">
-        {% include "header.html" %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+            {% include "header.html" %}
+            </div>
+        </div>
     </div>
     
-    <div class = "left_column">
     
+{% comment %}         {% if user.is_staff %} {% endcomment %}
+{% comment %}             {% include "adminmenu.html" %} {% endcomment %}
+{% comment %}         {% endif%} {% endcomment %}
     
-        <div class="menu">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
             {% include "menu.html" %}
+            </div>
+            
+            <div class="span9">
+            {% block content %}{% endblock %}
+            </div>
         </div>
-        
-        {% if user.is_staff %}
-        <div class="menu">
-            {% include "adminmenu.html" %}
-        </div>
-        {% endif%}
-    
     </div>
     
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
-    
-    <div class="footer">
-        {% include "footer.html" %}
-    </div>
-    
+{% comment %}         {% include "footer.html" %} {% endcomment %}
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/static/datatables/DT_bootstrap.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

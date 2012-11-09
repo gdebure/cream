@@ -2,29 +2,34 @@
 {% load url from future %}
 
 {% block content %}
-<div class="login">
-    <h1>Please login</h1>
+{% comment %} <div class="login"> {% endcomment %}
+{% comment %}     <h1>Please login</h1> {% endcomment %}
 
 {% if form.errors %}
     <div class="warning">Your username and password didn't match. Please try again.</div>
 {% endif %}
 
-    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    <form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
     {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        </table>
-
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
+    <legend>Please Login</legend>
+    <div class="control-group">
+        <label class="control-label" for="id_username">{{ form.username.label_tag }}</label>
+        <div class="controls">
+        <input type="text" id="id_username" name="username" placeholder="login">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_password">{{ form.password.label_tag }}</label>
+        <div class="controls">
+        <input type="password" id="id_password" name="password" placeholder="Password">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </div>
     </form>
-</div>
 
 {% endblock %}

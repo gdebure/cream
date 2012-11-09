@@ -2,7 +2,8 @@
 {% include "services/decoration.html" with title=title|default:"Service Families list" icon=icon|default:"service_family_small.png" %}
 
 {% if servicefamilies_list %}
-<table class="styled">
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
     <tr>
         <th/>
         <th>service family</th>
@@ -10,6 +11,8 @@
         <th>focal point</th>
         <th>active</th>
     </tr>
+    </thead>
+    <tbody>
 {% for servicefamily in servicefamilies_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ servicefamily.id }}"/></td>
@@ -19,6 +22,7 @@
         <td>{{ servicefamily.is_active }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No servicefamilys found.</p>

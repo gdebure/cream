@@ -2,8 +2,8 @@
 {% include "projects/decoration.html" with title=title|default:"Project Deliverables list" icon=icon|default:"deliverable_small.png" %}
 
 {% if deliverables_list %}
-<table class="styled">
-    <tr>
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
         <th/>
         <th>project deliverable name</th>
         <th>project deliverable identifier</th>
@@ -13,7 +13,8 @@
         <th>link approved</th>
         <th>total volume</th>
         <th>turnover</th>
-    </tr>
+    </thead>
+    <tbody>
 {% for deliverable in deliverables_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ deliverable.id }}"/></td>
@@ -27,6 +28,7 @@
         <td align="right">{{ deliverable.get_turnover|currency }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No deliverables found.</p>

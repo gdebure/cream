@@ -1,4 +1,20 @@
-<h1>Menu</h1>
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
+        <li class="nav-header">Main</li>
+        <li><a href="/">Home</a></li>
+        {% include "services/menu.html" %}
+        {% include "projects/menu.html" %}
+        <li class="nav-header">Help Menu</li>
+        <li><a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue">Cream Description</a></li>
+        <li><a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue#CREAMforPLMBPServiceCatalogue-UserManualHowTo%27s" target="_blank">How Tos</a></li>
+        <li><a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue#CREAMforPLMBPServiceCatalogue-ProcessDescriptions" target="_blank">Processes</a></li>
+    </ul>
+</div><!--/.well -->
+
+
+
+
+{% comment %}<h1>Menu</h1>
 <div>
     <a href="/">Home</a>
     <hr/>
@@ -14,4 +30,4 @@
     <a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue#CREAMforPLMBPServiceCatalogue-ProcessDescriptions" target="_blank">Processes</a><br/>
 <!--     <hr/> -->
 <!--     {% include "qualifications/menu.html" %} -->
-</div>
+</div>{% endcomment %}

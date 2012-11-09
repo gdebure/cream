@@ -5,7 +5,8 @@
 {% block content %}
 
 {% if employees_list %}
-<table class="styled">
+<table  class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
     <tr>
         <th/>
         <th>id</th>
@@ -13,6 +14,8 @@
         <th>firstname</th>
         <th>siglum</th>
     </tr>
+    </thead>
+    <tbody>
 {% for employee in employees_list %}
     <tr>
         <td><input type="checkbox" name="id_{{employee.id}}"/></td>
@@ -22,6 +25,7 @@
         <td>{{ employee.siglum }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No employees found.</p>

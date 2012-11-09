@@ -2,14 +2,17 @@
 {% include "projects/decoration.html" with title=title|default:"Projects list" icon=icon|default:"project_small.png" %}
 
 {% if projects_list %}
-<table class="styled">
-    <tr>
-        <th/>
-        <th>project number</th>
-        <th>project name</th>
-        <th>project leader</th>
-        <th>project turnover</th>
-    </tr>
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th/>
+            <th>project number</th>
+            <th>project name</th>
+            <th>project leader</th>
+            <th>project turnover</th>
+        </tr>
+    </thead>
+    <tbody>
 {% for project in projects_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ project.id }}"/></td>
@@ -19,6 +22,7 @@
         <td align="right">{{ project.get_total_turnover|currency }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No projects found.</p>

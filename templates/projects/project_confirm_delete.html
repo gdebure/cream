@@ -2,13 +2,16 @@
 
 {% block content %}
 
-<h1><span class="warning">Do you really want to delete this Project ?</span></h1>
+<div class="alert">Do you really want to delete this Project ?</div>
 
 {% include "projects/project_property.html" %}
   
 <form method="POST">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="delete"/>
+    <div class="btn-group">
+        <button class="btn btn-warning" type="submit"/>Delete</button>
+        <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
+    </div>
 </form>
 {% endblock %}

@@ -2,7 +2,8 @@
 
 {% if deliverablevolumes_list %}
 {% load currency_filter %}
-<table class="styled">
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
     <tr>
         <th/>
         <th>project deliverable name</th>
@@ -12,6 +13,8 @@
         <th>unit price</th>
         <th>total price</th>
     </tr>
+    </thead>
+    <tbody>
 {% for deliverablevolume in deliverablevolumes_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ deliverablevolume.id }}"/></td>
@@ -23,6 +26,7 @@
         <td align="right">{{ deliverablevolume.get_total_price|currency }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No deliverable volume found.</p>

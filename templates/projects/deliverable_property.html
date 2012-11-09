@@ -1,6 +1,6 @@
 {% load currency_filter %}
 {% include "services/decoration.html" with title="Project Deliverable properties" icon="deliverable.png" block="main" %}
-<table class="styled detail">
+<table class="table table-hover">
     <tr><th>project deliverable name</th><td>{{ deliverable.name}}</td></tr>
     <tr><th>project deliverable identifier</th><td>{{ deliverable.code }}</td></tr>
     <tr><th>project name</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>

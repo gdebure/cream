@@ -2,7 +2,8 @@
 {% include "services/decoration.html" with title=title|default:"Services list" icon=icon|default:"service_small.png" %}
 
 {% if services_list %}
-<table class="styled">
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
     <tr>
         <th/>
         <th>service</th>
@@ -10,6 +11,8 @@
         <th>domain</th>
         <th>owner</th>
     </tr>
+    </thead>
+    <tbody>
 {% for service in services_list %}
     <tr>
         <td><input type="checkbox" name="id_{{ service.id }}"/></td>
@@ -19,6 +22,7 @@
         <td><a href="{{ service.owner.get_absolute_url }}">{{service.owner}}</a></td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No services found.</p>
