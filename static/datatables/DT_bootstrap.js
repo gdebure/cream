@@ -1,6 +1,6 @@
 /* Table initialisation */
 $(document).ready(function() {
-    $('.table').dataTable( {
+    $('.dataTable').dataTable( {
         "bPaginate": false,
         "bLengthChange": false,
         "bFilter": false,

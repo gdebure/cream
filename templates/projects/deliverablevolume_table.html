@@ -1,7 +1,6 @@
+{% load currency_filter %}
 {% include "projects/decoration.html" with title=title|default:"Project Deliverables Volumes list" icon=icon|default:"deliverablevolume_small.png" %}
 
-{% if deliverablevolumes_list %}
-{% load currency_filter %}
 <table class="table table-condensed table-bordered table-hover dataTable">
     <thead>
     <tr>
@@ -24,10 +23,6 @@
         <td align="right">{{ deliverablevolume.quantity }}</td>
         <td align="right">{{ deliverablevolume.unit_price|currency }}</td>
         <td align="right">{{ deliverablevolume.get_total_price|currency }}</td>
-    </tr>
 {% endfor %}
     </tbody>
 </table>
-{% else %}
-<p>No deliverable volume found.</p>
-{% endif %}

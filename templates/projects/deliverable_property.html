@@ -5,11 +5,8 @@
     <tr><th>project deliverable identifier</th><td>{{ deliverable.code }}</td></tr>
     <tr><th>project name</th><td><a href="{{deliverable.project.get_absolute_url }}">{{ deliverable.project}}</a></td></tr>
     <tr><th>service family / service</th><td><a href="{{ deliverable.service.get_absolute_url}}">{{ deliverable.service}}</a></td></tr>
-<!--     To be colored depending on status -->
-<tr><th>service linked validated ?</th><td style={% include "projects/link_display.html" %}><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
-<!--     To be colored depending on status -->
+    <tr><th>service linked validated ?</th><td><span class={% include "projects/link_display.html" %}></span><a href="validate_service">{{ deliverable.get_approved_by_service_owner_display }}</a></td></tr>
     <tr><th>description</th><td>{{ deliverable.description|linebreaksbr  }}</td></tr>
     <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
     <tr><th>total turnover</th><td>{{ deliverable.get_turnover|currency }}</td></tr>
-    
 </table>

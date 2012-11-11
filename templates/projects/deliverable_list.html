@@ -6,6 +6,6 @@
 <!-- Include the list of objects -->
 {% include "projects/deliverable_table.html" with block="main" icon="deliverable.png" %}
 
-<a href="create">Add new deliverable</a>
+{% include "common/list_actions.html" with item_name="deliverable" %}
 
 {% endblock %}

@@ -6,24 +6,24 @@
         <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
         <div class="controls">
             
+            <div class="input-prepend">
             {% if field.field.required %}
-            <div class="input-append">
-            {% endif %}
-            
-            {{ field.errors }}{{ field }}{{field.help_text}}
-            
-            {% if field.field.required %} 
             <span class="add-on"><i class="icon-asterisk"></i></span>
-            </div>
+            {% else %}
+            <span class="add-on">&nbsp;</span>
             {% endif %}
-            
+            {{ field.errors }}{{ field }}{{field.help_text}}
+            </div>
         </div>
     </div>
     {% endfor %}
     <div class="control-group">
         <div class="controls">
             <p><i class="icon-asterisk"></i> <b>Mandatory fields</b></p>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
+            </div>
         </div>
     </div>
 </form>

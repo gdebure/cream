@@ -6,7 +6,7 @@
 {% comment %}     <h1>Please login</h1> {% endcomment %}
 
 {% if form.errors %}
-    <div class="warning">Your username and password didn't match. Please try again.</div>
+    <div class="alert alert-error" align="center">Your username and password didn't match. Please try again.</div>
 {% endif %}
 
     <form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">

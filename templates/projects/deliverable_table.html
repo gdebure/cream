@@ -23,7 +23,7 @@
         <td><a href="{{ deliverable.project.get_absolute_url }}">{{ deliverable.project }}</a></td>
         <td><a href="{{ deliverable.service.service_family.get_absolute_url }}">{{ deliverable.service.service_family }}</a></td>
         <td><a href="{{ deliverable.service.get_absolute_url }}">{{ deliverable.service.name }}</a></td>
-        <td style={% include "projects/link_display.html" %}><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
+        <td><span class={% include "projects/link_display.html" %}></span><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
         <td align="right">{{ deliverable.get_total_volume }}</td>
         <td align="right">{{ deliverable.get_turnover|currency }}</td>
     </tr>

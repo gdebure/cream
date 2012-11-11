@@ -4,8 +4,8 @@
 {% block content %}
 
 <!-- Include the list of objects -->
-{% include "projects/deliverablevolume_table.html" with block="main" icon="deliverable.png" %}
+{% include "projects/deliverablevolume_table.html" with block="main" icon="deliverablevolume.png" %}
 
-<a href="create">Add new deliverable volume</a>
+{% include "common/list_actions.html" with item_name="deliverable volume" %}
 
 {% endblock %}
