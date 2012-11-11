@@ -9,9 +9,9 @@
         <li><a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue#CREAMforPLMBPServiceCatalogue-UserManualHowTo%27s" target="_blank">How Tos</a></li>
         <li><a href="http://confluence.intra.cimpa.corp/confluence/display/main/CREAM+for+PLM+BP+Service+Catalogue#CREAMforPLMBPServiceCatalogue-ProcessDescriptions" target="_blank">Processes</a></li>
         {% if user.is_staff %}
-        <li class="nav-header">Administration</li>
-        <li><a href="/admin">admin site</a></li>
-        {% include "users/menu.html" %}
+        <li class="nav-header"><i class="icon-lock"></i> Administration</li>
+        <li><a href="/admin"><i class="icon-wrench"></i> Admin site</a></li>
+        <li><a href="/users/employees/"><i class="icon-user"></i> Employees</a></li>
         {% endif %}
     </ul>
 </div><!--/.well -->
