@@ -32,6 +32,13 @@ class Domain (models.Model):
             turnover += service_family.get_turnover()
         return turnover
         
+    def get_turnover_year(self,year):
+        service_families = self.get_service_families()
+        turnover = 0
+        for service_family in service_families:
+            turnover += service_family.get_turnover_year(year)
+        return turnover
+        
 # Register this object in reversion, so that we can track its history
 reversion.register(Domain)
 
@@ -93,6 +100,13 @@ class ServiceFamily (models.Model):
             turnover += service.get_turnover()
         return turnover
         
+    def get_turnover_year(self,year):
+        services = self.get_services()
+        turnover = 0
+        for service in services:
+            turnover += service.get_turnover_year(year)
+        return turnover
+        
 # Register this object in reversion, so that we can track its history
 reversion.register(ServiceFamily)
         
@@ -126,5 +140,13 @@ class Service (models.Model):
         for deliverable in deliverables:
             turnover += deliverable.get_turnover()
         return turnover
+        
+    def get_turnover_year(self,year):
+        deliverables = self.get_deliverables()
+        turnover = 0
+        for deliverable in deliverables:
+            turnover += deliverable.get_turnover_year(year)
+        return turnover
+        
 # Register this object in reversion, so that we can track its history
 reversion.register(Service)
