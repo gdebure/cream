@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="" method="POST">
+<!--<form class="form-horizontal" action="" method="POST">
     {% csrf_token %}
     <legend>{{ legend }}</legend>
     {% for field in form %}
@@ -16,6 +16,54 @@
             </div>
         </div>
     </div>
+    {% endfor %}
+    <div class="control-group">
+        <div class="controls">
+            <p><i class="icon-asterisk"></i> <b>Mandatory fields</b></p>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>-->
+{% load extras %}
+
+<form class="form-horizontal" action="" method="POST">
+    {% csrf_token %}
+    <legend>{{ legend }}</legend>
+    {% for field in form %}
+    {% with name=field.name %}
+    
+{% comment %} Here we will check if the field is already defined in the view      {% endcomment %}
+    {% if name in predefined %}
+    {% with predefined_object=predefined|get:name %}
+    <div class="control-group">
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
+        <div class="controls">
+            <input type="text" value="{{ predefined_object }}" disabled/>
+            <input type="hidden" id="id_{{ field.name }}" name="{{ field.name }}" value="{{ predefined_object.id }}"/>
+        </div>
+    </div>
+    {% endwith %}
+{% comment %} This field was not predefined     {% endcomment %}
+    {% else %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
+        <div class="controls">
+            <div class="input-prepend">
+            {% if field.field.required %}
+                <span class="add-on"><i class="icon-asterisk"></i></span>
+            {% else %}
+                <span class="add-on">&nbsp;</span>
+            {% endif %}
+            {{ field }}{{field.help_text}}
+            </div>
+            <span class="help-inline">{{ field.errors|join:', ' }}</span>
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
     {% endfor %}
     <div class="control-group">
         <div class="controls">
