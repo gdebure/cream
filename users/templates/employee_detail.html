@@ -12,7 +12,7 @@
 </table>
 
 <div class="block">
-{% include "deliverable_table.html" with deliverables_list=employee.get_deliverables_to_validate title="Deliverables to approve" %}
+{% include "service_table.html" with services_list=employee.service_set.all title="Services" %}
 </div>
 
 {% endblock %}

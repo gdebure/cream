@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 import projects.models
 
@@ -20,15 +21,5 @@ class Employee (models.Model):
         return self.user.last_name + " " + self.user.first_name
 
     def get_absolute_url(self):
-        return "/users/employees/" + str(self.id)
-
-    def get_skills(self):
-        return self.employeeskill_set.all()
-        
-    def get_jobs(self):
-        return self.jobemployee_set.all()
-        
-    def get_deliverables_to_validate(self):
-        return projects.models.Deliverable.objects.filter(approved_by_service_owner='P',service__owner=self)
-    
+        return reverse('employee',kwargs={'pk':self.id})
     
