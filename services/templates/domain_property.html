@@ -1,0 +1,7 @@
+{% include "decoration.html" with title=title|default:"Domain properties" icon="domain.png" block="main" %}
+<table class="table table-hover">
+    <tr><th>domain name</th><td>{{ domain.name}}</td></tr>
+    <tr><th>domain is active</th><td>{% include 'common/colored_label.html' with value=domain.is_active %}</td></tr>
+    <tr><th>domain owner</th><td><a href="{% url 'employee' domain.owner.id %}">{{ domain.owner }}</a></td></tr>
+    <tr><th>description</th><td>{{ domain.description|linebreaksbr  }}</td></tr>
+</table>

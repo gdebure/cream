@@ -1,0 +1,8 @@
+{% include "decoration.html" with title="Service properties" icon="service.png" block="main" %}
+<table class="table table-hover">
+    <tr><th>service name</th><td>{{ service.name}}</td></tr>
+    <tr><th>is active</th><td>{% include 'common/colored_label.html' with value=service.is_active %}</td></tr>
+    <tr><th>service owner</th><td><a href="{% url 'employee' service.owner.id %}">{{ service.owner }}</a></td></tr>
+    <tr><th>service family</th><td><a href="{% url 'servicefamily' service.service_family.id %}">{{ service.service_family}}</a></td></tr>
+    <tr><th>description</th><td>{{ service.description|linebreaksbr }}</td></tr>
+</table>

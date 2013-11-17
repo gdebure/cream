@@ -1,0 +1,11 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "domain_table.html" with block="main" icon="domain.png" %}
+
+{% include "common/list_actions.html" with item_name="domain" %}
+
+{% endblock %}

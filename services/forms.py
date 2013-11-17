@@ -41,7 +41,7 @@ class ServiceFamilyForm(forms.ModelForm):
     
     class Meta:
         model = ServiceFamily
-        fields = ['name','is_active','owner','domain','description','growth_potential','service_position','trend','service_lifecycle']
+        fields = ['name','is_active','owner','domain','description']
 
     def save(self, commit=True):
         servicefamily = super(forms.ModelForm, self).save(commit=commit)

@@ -1,0 +1,11 @@
+{% load currency_filter %}
+{% include "decoration.html" with title="Project Deliverable properties" icon="deliverable.png" block="main" %}
+<table class="table table-hover">
+    <tr><th>project deliverable name</th><td>{{ deliverable.name}}</td></tr>
+    <tr><th>project deliverable identifier</th><td>{{ deliverable.code }}</td></tr>
+    <tr><th>project name</th><td><a href="{% url 'project' deliverable.project.id %}">{{ deliverable.project}}</a></td></tr>
+    <tr><th>service family / service</th><td><a href="{% url 'service' deliverable.service.id %}">{{ deliverable.service}}</a></td></tr>
+    <tr><th>description</th><td>{{ deliverable.description|linebreaksbr  }}</td></tr>
+    <tr><th>acceptance criteria</th><td>{{ deliverable.acceptance_criteria }}</td></tr>
+    <tr><th>total turnover</th><td>{{ deliverable.get_turnover|currency }}</td></tr>
+</table>

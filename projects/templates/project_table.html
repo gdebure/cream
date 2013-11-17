@@ -1,0 +1,27 @@
+{% load currency_filter %}
+{% include "decoration.html" with title=title|default:"Projects list" icon=icon|default:"project_small.png" %}
+
+{% if projects_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>project number</th>
+            <th>project name</th>
+            <th>project leader</th>
+            <th>project turnover</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for project in projects_list %}
+    <tr>
+        <td>{{ project.number }}</td>
+        <td><a href="{% url 'project' project.id %}">{{ project.name }}</td>
+        <td><a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a></td>
+        <td align="right">{{ project.get_total_turnover|currency }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No projects found.</p>
+{% endif %}

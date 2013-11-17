@@ -1,0 +1,14 @@
+<div class="well sidebar-nav">
+    <ul class="nav nav-list">
+        <li class="nav-header">Main</li>
+        <li><a href="/">Home</a></li>
+        {% include "services_menu.html" %}
+        {% include "projects_menu.html" %}
+        {%comment%} include "reports_menu.html" {%endcomment%}
+        {% if user.is_staff %}
+        <li class="nav-header"><i class="fa fa-lock"></i> Administration</li>
+        <li><a href="/admin"><i class="fa fa-wrench"></i> Admin site</a></li>
+        <li><a href="/users/employees/"><i class="fa fa-user"></i> Employees</a></li>
+        {% endif %}
+    </ul>
+</div><!--/.well -->

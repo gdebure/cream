@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "service_property.html" %}
+
+{% include "common/object_actions.html" %}
+
+<div class="block">
+{% include "deliverable_table.html" with deliverables_list=service.get_deliverables %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+
+{% include "decoration.html" with title=title|default:"Domains list" icon=icon|default:"domain_small.png" %}
+
+{% if domains_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+    <tr>
+        <th>domain</th>
+        <th>owner</th>
+        <th>active</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for domain in domains_list %}
+    <tr>
+        <td><a href="{% url 'domain' domain.id %}">{{ domain }}</a></td>
+        <td><a href="{% url 'employee' domain.owner.id %}">{{ domain.owner }}</a></td>
+        <td>{% include 'common/colored_label.html' with value=domain.is_active %}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No domains found.</p>
+{% endif %}

@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% load currency_filter %}
+
+{% block content %}
+{% include "decoration.html" with title=title|default:"Turnover by Domain" icon="report.png" block="main" %}
+
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+    <tr>
+        <th>Domain</th>
+        <th>Turnover</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for domain in domain_list %}
+    <tr>
+        <td><a href="{% url 'domain_report' domain.id %}">{{domain}}</a></td>
+        <td style="text-align:right;">{{domain.get_turnover|currency}}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>Total</th>
+        <th style="text-align:right;">{{total_turnover|currency}}</th>
+    </tr>
+    </tfoot>
+<table>
+
+{% endblock %}

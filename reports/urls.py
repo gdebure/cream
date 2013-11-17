@@ -1,13 +1,16 @@
 from django.conf.urls.defaults import *
 
-from reports.models import Report
-from django.views.generic import DetailView, ListView, CreateView, DeleteView
+from reports.views import DomainsReportView, DomainReportView, ServiceFamilyReportView, ServiceReportView
+from django.views.generic import TemplateView
 
 
 urlpatterns = patterns('',
     ##################################
     # Reports
-    #(r'^reports/create$', login_required()(CreateView.as_view( model=Report )), ),
+    url(r'^$',DomainsReportView.as_view(), name='domains_report'),
+    url(r'^domains/(?P<pk>\d+)/$',DomainReportView.as_view(), name='domain_report'),
+    url(r'^servicefamily/(?P<pk>\d+)/$', ServiceFamilyReportView.as_view(), name='servicefamily_report'),
+    url(r'^service/(?P<pk>\d+)/$', ServiceReportView.as_view(), name='service_report'),
     ##################################
     )
     

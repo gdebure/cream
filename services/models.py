@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.urlresolvers import reverse
+
 from users.models import Employee
 import reversion
 
@@ -17,7 +19,7 @@ class Domain (models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return '/services/domains/' + str(self.id)
+        return reverse('domain',kwargs={'pk':self.id})
     
     def get_report_url(self):
         return '/services/reports/domains/' + str(self.id)
@@ -45,38 +47,11 @@ reversion.register(Domain)
         
 class ServiceFamily (models.Model):
     
-    # Possible choices for Service Position
-    SERVICE_POSITION_CHOICES = (
-        ('L','Leader'),
-        ('C','Challenger'),
-        ('F','Follower'),
-        ('N','Nicher'),
-    )
-    
-    # Possible choices for Service Lifecycle
-    SERVICE_LIFECYCLE_CHOICES = (
-        ('I','Introduction'),
-        ('G','Growth'),
-        ('M','Maturity'),
-        ('S','Saturation'),
-        ('D','Decline'),
-    )
-    
-    TREND_CHOICES = (
-        ('I', 'Increasing'),
-        ('S', 'Stable'),
-        ('D', 'Decreasing'),
-    )
-    
     name = models.CharField(max_length=128, verbose_name="service family name")
     domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="domain")
     description = models.TextField(null=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name="service family owner")
-    growth_potential = models.DecimalField(max_digits=2,decimal_places=0, verbose_name='growth potential in %',null=True, blank=True)
     is_active = models.BooleanField()
-    service_position = models.CharField(max_length=1,choices=SERVICE_POSITION_CHOICES,null=True, blank=True, verbose_name='service family market position')
-    trend = models.CharField(max_length=1, choices=TREND_CHOICES,null=True, blank=True, verbose_name='service family market trend')
-    service_lifecycle = models.CharField(max_length=1, choices=SERVICE_LIFECYCLE_CHOICES,null=True, blank=True, verbose_name='service family lifecycle')
     
     class Meta:
         ordering = ['domain','name']
@@ -85,7 +60,7 @@ class ServiceFamily (models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return '/services/service_families/' + str(self.id)
+        return reverse('servicefamily',kwargs={'pk':self.id})
         
     def get_report_url(self):
         return '/services/reports/service_families/' + str(self.id)
@@ -126,7 +101,7 @@ class Service (models.Model):
         return self.service_family.name + " : " + self.name
         
     def get_absolute_url(self):
-        return '/services/services/' + str(self.id)
+        return reverse('service', kwargs={'pk':self.id})
         
     def get_report_url(self):
         return '/services/reports/services/' + str(self.id)

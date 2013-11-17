@@ -3,6 +3,7 @@ from datetime import date
 
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 
 import reversion
 
@@ -37,9 +38,6 @@ class Project (models.Model):
     def __unicode__(self):
         return self.number + ": " + self.name
         
-    def get_absolute_url(self):
-        return "/projects/projects/" + str(self.id)
-        
     def get_authorizations(self):
         return self.authorization_set.all()
         
@@ -52,6 +50,9 @@ class Project (models.Model):
             tasks += deliverable.task_set.all()
             
         return tasks
+    
+    def get_absolute_url(self):
+        return reverse('project',kwargs={'pk':self.id})
         
     def get_total_turnover(self):
         turnover = 0
@@ -73,36 +74,6 @@ class Project (models.Model):
 # Register this object in reversion, so that we can track its history
 reversion.register(Project)
 
-class Profile (models.Model):
-    '''A Class to handle user profiles on a project'''
-    
-    id = models.CharField(max_length=1,primary_key=True)
-    name = models.CharField(max_length=32)
-    description = models.TextField()
-        
-    class Meta:
-        ordering = ['name']
-    
-    def __unicode__(self):
-        return self.name
-        
-    def get_absolute_url(self):
-        return "/projects/profiles/" + str(self.id)
-    
-
-class Authorization (models.Model):
-    employee = models.ForeignKey(Employee, related_name="authorization_employee")
-    project = models.ForeignKey(Project)
-    profile = models.ForeignKey(Profile)
-    
-    class Meta:
-        unique_together = ("employee","project")
-        
-    def __unicode__(self):
-        return str(self.id)
-        
-    def get_absolute_url(self):
-        return "/projects/authorizations/" + str(self.id)
 
 
 
@@ -127,7 +98,6 @@ class Deliverable (models.Model):
     acceptance_criteria = models.TextField(null=True, blank=True)
     unit_time = models.IntegerField(verbose_name="unit time (mn)", null=True, blank=True, editable=False, validators=[validate_positive]) # Unit time is not used for the moment
     turnover = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="turnover (€)", null=True, blank=True, editable=False, validators=[validate_positive]) # FIXME: Turnover will be computed, to be removed from datamodel
-    approved_by_service_owner = models.CharField(max_length=1, choices=SERVICE_OWNER_APPROVAL_CHOICES, default="P")
     
     class Meta:
         ordering = ['project','code','name']
@@ -136,7 +106,7 @@ class Deliverable (models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return "/projects/deliverables/" + str(self.id)
+        return reverse('deliverable', kwargs={'pk':self.id})
         
     def get_tasks(self):
         return self.task_set.all()
@@ -204,7 +174,7 @@ class DeliverableVolume(models.Model):
         return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
         
     def get_absolute_url(self):
-        return '/projects/deliverablevolumes/' + str(self.id)
+        return reverse('deliverablevolume', kwargs={'pk':self.id})
         
     def get_total_price(self):
         return self.quantity * self.unit_price

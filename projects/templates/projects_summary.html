@@ -1,0 +1,11 @@
+<h2>Projects Status</h2>
+<table>
+    <tr>
+        <td><img src="/static/media/projects/project_small.png"/></td>
+        <td><a href="{% url 'projects_list' %}">{{count_projects}} Projects</a> registered</td>
+    </tr>
+    <tr>
+        <td><img src="/static/media/projects/deliverable_small.png"/></td>
+        <td><a href="{% url 'deliverables_list' %}">{{count_deliverables}} Deliverables</a> registered</td>
+    </tr>
+</table>

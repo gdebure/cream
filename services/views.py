@@ -1,6 +1,6 @@
-from django.views.generic import CreateView
+from django.views.generic import DetailView, CreateView
 
-from services.models import Domain, ServiceFamily
+from services.models import Domain, ServiceFamily, Service
 
 class AddServiceFamilyView(CreateView):
     
@@ -9,6 +9,12 @@ class AddServiceFamilyView(CreateView):
         domain = Domain.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'domain':domain}
         return  context
+    
+class ServiceView(DetailView):
+    
+    model = Service
+    template_name='service_detail.html'
+    
     
 class AddServiceView(CreateView):
     

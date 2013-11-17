@@ -1,0 +1,18 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "domain_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+
+<div class="block">
+{% include "servicefamily_table.html" with servicefamilies_list=domain.get_service_families %}
+<a href="{% url 'add_servicefamily' domain.id %}"><i class="fa fa-plus"></i>Add service family</a>
+</div>
+
+{% endblock %}

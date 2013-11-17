@@ -1,0 +1,15 @@
+<h2>Service Catalogue Status</h2>
+<table>
+    <tr>
+        <td><img src="/static/media/services/domain_small.png"/></td>
+        <td><a href="{% url 'domains_list' %}">{{count_domains}} Domains</a> registered</td>
+    </tr>
+    <tr>
+        <td><img src="/static/media/services/service_family_small.png"/></td>
+        <td><a href="{% url 'servicefamilies_list' %}">{{count_servicefamilies}} Service Families</a> registered</td>
+    </tr>
+    <tr>
+        <td><img src="/static/media/services/service_small.png"/></td>
+        <td><a href="{% url 'services_list' %}">{{count_services}} Services</a> registered</td>
+    </tr>
+</table>

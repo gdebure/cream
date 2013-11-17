@@ -1,0 +1,33 @@
+{% load currency_filter %}
+{% include "decoration.html" with title=title|default:"Project Deliverables list" icon=icon|default:"deliverable_small.png" %}
+
+{% if deliverables_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <th>project deliverable name</th>
+        <th>project deliverable identifier</th>
+        <th>Project Name</th>
+        <th>service family</th>
+        <th>service</th>
+        <th>link approved</th>
+        <th>total volume</th>
+        <th>turnover</th>
+    </thead>
+    <tbody>
+{% for deliverable in deliverables_list %}
+    <tr>
+        <td><a href="{% url 'deliverable' deliverable.id %}">{{ deliverable }}</a></td>
+        <td>{{ deliverable.code }}</td>
+        <td><a href="{% url 'project' deliverable.project.id %}">{{ deliverable.project }}</a></td>
+        <td><a href="{% url 'servicefamily' deliverable.service.service_family.id %}">{{ deliverable.service.service_family }}</a></td>
+        <td><a href="{% url 'service' deliverable.service.id %}">{{ deliverable.service.name }}</a></td>
+        <td><span class={% include "link_display.html" %}></span><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
+        <td align="right">{{ deliverable.get_total_volume }}</td>
+        <td align="right">{{ deliverable.get_turnover|currency }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No deliverables found.</p>
+{% endif %}

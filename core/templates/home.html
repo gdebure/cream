@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row well">
+    <div class="span5">
+    {% include "services_summary.html"%}
+    </div>
+    <div class="span5 pull-right">
+    {% include "projects_summary.html"%}
+    </div>
+</div>
+
+{% if user_services.count > 0 %}
+<div class="block">
+{% include "service_table.html" with services_list=user_services title="My Services" %}
+</div>
+{% endif %}
+
+{% if user_projects.count > 0 %}
+<div class="block">
+{% include "project_table.html" with projects_list=user_projects title="My Projects" %}
+</div>
+{% endif %}
+
+{% endblock %}

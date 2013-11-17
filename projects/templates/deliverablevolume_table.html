@@ -1,0 +1,26 @@
+{% load currency_filter %}
+{% include "decoration.html" with title=title|default:"Project Deliverables Volumes list" icon=icon|default:"deliverablevolume_small.png" %}
+
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+    <tr>
+        <th>project deliverable name</th>
+        <th>date start</th>
+        <th>date end</th>
+        <th>quantity</th>
+        <th>unit price</th>
+        <th>total price</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for deliverablevolume in deliverablevolumes_list %}
+    <tr>
+        <td><a href="{% url 'deliverablevolume' deliverablevolume.deliverable.id %}">{{ deliverablevolume.deliverable }}</a></td>
+        <td>{{ deliverablevolume.date_start }}</td>
+        <td>{{ deliverablevolume.date_end }}</td>
+        <td align="right">{{ deliverablevolume.quantity }}</td>
+        <td align="right">{{ deliverablevolume.unit_price|currency }}</td>
+        <td align="right">{{ deliverablevolume.get_total_price|currency }}</td>
+{% endfor %}
+    </tbody>
+</table>

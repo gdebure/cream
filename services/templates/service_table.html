@@ -1,0 +1,29 @@
+
+{% include "decoration.html" with title=title|default:"Services list" icon=icon|default:"service_small.png" %}
+
+{% if services_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+    <tr>
+        <th>service</th>
+        <th>family</th>
+        <th>domain</th>
+        <th>owner</th>
+        <th>active</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for service in services_list %}
+    <tr>
+        <td><a href="{% url 'service' service.id %}">{{ service.name }}</a></td>
+        <td><a href="{% url 'servicefamily' service.service_family.id %}">{{ service.service_family}}</a></td>
+        <td><a href="{% url 'domain' service.service_family.domain.id %}">{{ service.service_family.domain}}</a></td>
+        <td><a href="{% url 'employee' service.owner.id %}">{{service.owner}}</a></td>
+        <td>{% include 'common/colored_label.html' with value=service.is_active %}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No services found.</p>
+{% endif %}

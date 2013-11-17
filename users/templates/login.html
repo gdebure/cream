@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% comment %} <div class="login"> {% endcomment %}
+{% comment %}     <h1>Please login</h1> {% endcomment %}
+
+{% if form.errors %}
+    <div class="alert alert-error" align="center">Your username and password didn't match. Please try again.</div>
+{% endif %}
+
+    <form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    {% csrf_token %}
+    <legend>Please Login</legend>
+    <div class="control-group">
+        <label class="control-label" for="id_username">{{ form.username.label_tag }}</label>
+        <div class="controls">
+        <input type="text" id="id_username" name="username" placeholder="login">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_password">{{ form.password.label_tag }}</label>
+        <div class="controls">
+        <input type="password" id="id_password" name="password" placeholder="Password">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </div>
+    </form>
+
+{% endblock %}

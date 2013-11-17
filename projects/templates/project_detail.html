@@ -1,0 +1,19 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "project_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+<hr/>
+
+<div class="block">
+{% include "deliverable_table.html" with deliverables_list=project.get_deliverables %}
+<a href="{% url 'add_deliverable' project.id %}"><i class="fa fa-plus"></i>Add deliverable</a>
+</div>
+
+{% endblock %}

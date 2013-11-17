@@ -1,0 +1,7 @@
+{% extends "base.html"%}
+
+{% block content %}
+{% include "decoration.html" with title=title|default:"Turnover by Service Family" icon="report.png" block="main" %}
+{% include "servicefamily_report_table.html" with servicefamilies_list=domain.get_service_families %}
+
+{% endblock %}

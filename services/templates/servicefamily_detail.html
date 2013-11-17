@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "servicefamily_property.html" %}
+
+{% include "common/object_actions.html" %}
+
+<div class="block">
+{% include "service_table.html" with services_list=servicefamily.get_services%}
+<a href="{% url 'add_service' servicefamily.id %}"><i class="fa fa-plus"></i>Add new service</a>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from projects.models import Project, Profile, Authorization, Deliverable, SubjectFamily, Subject, Task, DeliverableVolume
+from projects.models import Project, Deliverable, SubjectFamily, Subject, Task, DeliverableVolume
 from django.contrib import admin
 from guardian.admin import GuardedModelAdmin
 from reversion import VersionAdmin

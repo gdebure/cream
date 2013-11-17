@@ -1,0 +1,28 @@
+{% load currency_filter %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+<thead>
+<tr>
+    <th>Service Family</th>
+    <th>Domain</th>
+    <th>Turnover</th>
+</tr>
+</thead>
+<tbody>
+{% for servicefamily in servicefamilies_list %}
+    <tr>
+        <td><a href="{% url 'servicefamily_report' servicefamily.id %}">{{servicefamily}}</a></td>
+        <td><a href="{% url 'domain_report' servicefamily.domain.id %}">{{servicefamily.domain}}</td>
+        <td style="text-align:right;">{{servicefamily.get_turnover|currency}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+<tfoot>
+    <tr>
+        <th colspan="2">Total</th>
+        <th style="text-align:right;">{{total_turnover|currency}}</th>
+    </tr>
+</tfoot>
+<table>
+    
+<table>
+

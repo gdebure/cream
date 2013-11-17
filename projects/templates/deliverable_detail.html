@@ -1,0 +1,17 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "deliverable_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+<hr/>
+
+{% include "deliverablevolume_table.html" with deliverablevolumes_list=deliverable.get_volumes %}
+<a href="{% url 'add_deliverablevolume' deliverable.id %}"><i class="fa fa-plus"></i>Add deliverable volume</a>
+
+{% endblock %}
