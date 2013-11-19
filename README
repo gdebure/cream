@@ -6,13 +6,10 @@ It is currently composed of several modules:
 * Projects: define attributes for the projects in your company
 ** Projects
 ** Deliverables
-** Tasks
+** Deliverables Volumes
 * Services: Define your company's service catalogue
 ** Domains
 ** Service Family
 ** Services
-* Qualifications: Define your employees' jobs and skills
-** Skills
-** Jobs
 
 CREAM is written in Python, based on the Django web framework
