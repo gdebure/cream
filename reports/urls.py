@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, patterns
 
 from reports.views import DomainsReportView, DomainReportView, ServiceFamilyReportView, ServiceReportView
 from django.views.generic import TemplateView
