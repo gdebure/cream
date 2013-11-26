@@ -1,12 +1,15 @@
+{% load staticfiles %}
+
 <!DOCTYPE html >
 <html lang="en" >
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>CREAM reloaded</title>
-        <link rel="stylesheet" href="/static/cream.css"/>
-        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/datatables/DT_bootstrap.css">
-        <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'cream.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'datatables/DT_bootstrap.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'datepicker/css/datepicker.css' %}"/>
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -40,12 +43,12 @@
     
 {% include "footer.html" %}
 
-<script src="/static/jquery/jquery.min.js"></script>
-<script src="/static/bootstrap/js/bootstrap.min.js"></script>
-<script src="/static/datatables/media/js/jquery.dataTables.js"></script>
-<script src="/static/datatables/DT_bootstrap.js"></script>
-{% comment %} <script src="/static/datepicker/js/bootstrap-datepicker.js"></script> {% endcomment %}
-{% comment %} <script src="/static/datepicker/datepicker.js"></script> {% endcomment %}
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'datatables/DT_bootstrap.js' %}"></script>
+<script src="{% static 'datepicker/js/bootstrap-datepicker.js' %}"></script>
+<script language="javascript">$('.datepicker').datepicker()</script>
 
 </body>
 </html>

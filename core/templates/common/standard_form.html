@@ -1,45 +1,19 @@
-<!--<form class="form-horizontal" action="" method="POST">
-    {% csrf_token %}
-    <legend>{{ legend }}</legend>
-    {% for field in form %}
-    <div class="control-group">
-        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
-        <div class="controls">
-            
-            <div class="input-prepend">
-            {% if field.field.required %}
-            <span class="add-on"><i class="icon-asterisk"></i></span>
-            {% else %}
-            <span class="add-on">&nbsp;</span>
-            {% endif %}
-            {{ field.errors }}{{ field }}{{field.help_text}}
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="control-group">
-        <div class="controls">
-            <p><i class="icon-asterisk"></i> <b>Mandatory fields</b></p>
-            <div class="btn-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
-            </div>
-        </div>
-    </div>
-</form>-->
 {% load extras %}
 
 <form class="form-horizontal" action="" method="POST">
     {% csrf_token %}
+
     <legend>{{ legend }}</legend>
+    
     {% for field in form %}
     {% with name=field.name %}
-    
+
+   
 {% comment %} Here we will check if the field is already defined in the view      {% endcomment %}
     {% if name in predefined %}
     {% with predefined_object=predefined|get:name %}
     <div class="control-group">
-        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
+        <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
         <div class="controls">
             <input type="text" value="{{ predefined_object }}" disabled/>
             <input type="hidden" id="id_{{ field.name }}" name="{{ field.name }}" value="{{ predefined_object.id }}"/>
@@ -49,16 +23,21 @@
 {% comment %} This field was not predefined     {% endcomment %}
     {% else %}
     <div class="control-group {% if field.errors %}error{% endif %}">
-        <label class="control-label" for="id_{{ field.name }}">{{ field.label_tag }}</label>
-        <div class="controls">
-            <div class="input-prepend">
-            {% if field.field.required %}
-                <span class="add-on"><i class="icon-asterisk"></i></span>
-            {% else %}
-                <span class="add-on">&nbsp;</span>
+        <label class="control-label" for="id_{{ field.name }}">
+            {% if field.field.required %}<strong><i class="fa fa-asterisk"> {{ field.label }}</i></strong>
+            {% else %}{{ field.label }}
             {% endif %}
+            
+        </label>
+        <div class="controls">
+            {% if field|field_type == 'DateField' %}
+                <div class="input-append date" id="id_{{ field.name }}" data-date="{{ field.value }}" data-date-format="yyyy-mm-dd">
+                    <input size="16" type="text" value="{{ field.value }}">
+                    <span class="add-on"><i class="fa fa-calendar"></i></span>
+                </div>
+            {% else %}
             {{ field }}{{field.help_text}}
-            </div>
+            {% endif %}
             <span class="help-inline">{{ field.errors|join:', ' }}</span>
         </div>
     </div>
@@ -67,7 +46,7 @@
     {% endfor %}
     <div class="control-group">
         <div class="controls">
-            <p><i class="icon-asterisk"></i> <b>Mandatory fields</b></p>
+            <p><i class="fa fa-asterisk"></i> <b>Mandatory fields</b></p>
             <div class="btn-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
