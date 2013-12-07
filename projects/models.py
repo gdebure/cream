@@ -72,7 +72,7 @@ class Project (models.Model):
         return turnover
 
 # Register this object in reversion, so that we can track its history
-reversion.register(Project)
+#reversion.register(Project)
 
 
 
