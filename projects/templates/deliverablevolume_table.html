@@ -15,7 +15,7 @@
     <tbody>
 {% for deliverablevolume in deliverablevolumes_list %}
     <tr>
-        <td><a href="{% url 'deliverablevolume' deliverablevolume.deliverable.id %}">{{ deliverablevolume.deliverable }}</a></td>
+        <td><a href="{% url 'deliverablevolume' deliverablevolume.id %}">{{ deliverablevolume.deliverable }}</a></td>
         <td>{{ deliverablevolume.date_start }}</td>
         <td>{{ deliverablevolume.date_end }}</td>
         <td align="right">{{ deliverablevolume.quantity }}</td>
