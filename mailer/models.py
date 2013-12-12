@@ -72,17 +72,3 @@ def send_mail_on_save(sender, **kwargs):
     if updated_fields > 0:
         send_mail(mail_title, mail_body, 'creamrobot@cimpa.com', recipients, fail_silently=False)
     
-
-
-
-
-@receiver(post_save,sender=Deliverable)    
-def send_mail_on_service_link(sender, **kwargs):
-
-    deliverable = kwargs['instance']
-    if deliverable.approved_by_service_owner == 'P':
-        mail_title = '[CREAM] ' + unicode(deliverable.service) + ': New deliverable' 
-        mail_body = 'Please check whether the deliverable "' + unicode(deliverable)+ '" should be linked to the service "' + unicode(deliverable.service) + "\n"
-        mail_body += "\n\nThis is an automatically generated email, please do not reply"
-        
-        #send_mail(mail_title,mail_body,'creamrobot@cimpa.com',[deliverable.service.owner.user.email],fail_silently=False)
