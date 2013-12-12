@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from projects.models import Project, Deliverable, DeliverableVolume, Task
+from projects.models import Project, Deliverable, DeliverableVolume
 
 from projects.views import AddDeliverableView, AddDeliverableVolumeView
 
@@ -41,15 +41,5 @@ urlpatterns = patterns('',
     url(r'^deliverablevolumes/(?P<pk>\d+)/update/$', permission_required('projects.change_deliverablevolume')(UpdateView.as_view( model=DeliverableVolume, template_name='deliverablevolume_form.html' )), name='update_deliverablevolume'),
     url(r'^deliverablevolumes/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverablevolume')(DeleteView.as_view( model=DeliverableVolume, template_name='deliverablevolume_confirm_delete.html' )), name='delete_deliverablevolume'),
     ##################################
-    
-    
-    ##################################
-    # Tasks
-    #url(r'^tasks/$', login_required()(ListView.as_view( model=Task, context_object_name='tasks_list', )), ),
-    #url(r'^tasks/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Task, )), ),
-    #url(r'^tasks/create/$', permission_required('projects.add_task')(CreateView.as_view( model=Task, success_url='/projects/tasks/%(id)s' )), ),
-    #url(r'^tasks/(?P<pk>\d+)/update/$', update_task),
-    #url(r'^tasks/(?P<pk>\d+)/update_answer/$', update_task_answer),
-    #url(r'^tasks/(?P<pk>\d+)/delete/$', delete_task),
-    ##################################
+
 )
