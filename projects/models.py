@@ -155,7 +155,7 @@ class Deliverable (models.Model):
         return total
         
 # Register this object in reversion, so that we can track its history
-reversion.register(Deliverable)
+#reversion.register(Deliverable)
 
 
 
@@ -180,82 +180,4 @@ class DeliverableVolume(models.Model):
         return self.quantity * self.unit_price
 
 # Register this object in reversion, so that we can track its history
-reversion.register(DeliverableVolume)
-
-
-class SubjectFamily (models.Model):
-    
-    name = models.CharField(max_length=64)
-    description = models.TextField()
-    
-    def __unicode__(self):
-        return self.name
-        
-    def get_absolute_url(self):
-        return "/projects/subject_families/" + str(self.id)
-        
-
-class Subject (models.Model):
-    
-    name = models.CharField(max_length=64)
-    subject_family = models.ForeignKey(SubjectFamily, on_delete=models.PROTECT)
-    description = models.TextField()
-    project = models.ManyToManyField(Project)
-    
-    def __unicode__(self):
-        return self.subject_family.name + " " + self.name
-        
-    def get_absolute_url(self):
-        return "/projects/subjects/" + str(self.id)
-
-
-class Task (models.Model):
-    
-    CRITICITY_CHOICES = (
-        ('H','High'),
-        ('L','Low'),
-        ('M','Medium'),
-    )
-    
-    STATUS_CHOICES = (
-        ('O','Open'),
-        ('P','In Progress'),
-        ('C','Closed'),
-        ('X','Cancelled'),
-    )
-    
-    # Base information
-    name = models.CharField(max_length=128)
-    open_date = models.DateField()
-    criticity = models.CharField(max_length=1,choices=CRITICITY_CHOICES)
-    description = models.TextField()
-    requestor = models.CharField(max_length=64)
-    creator = models.ForeignKey(Employee, related_name='creator')
-    deliverable = models.ForeignKey(Deliverable, on_delete=models.PROTECT)
-    subject = models.ManyToManyField(Subject)
-        
-    # Answer information
-    answer = models.TextField(null=True, blank=True)
-    close_date = models.DateField(null=True, blank=True)
-    status = models.CharField(max_length=1,choices=STATUS_CHOICES, default='O')
-    reject_reason = models.CharField(max_length=64,null=True, blank=True)
-    time_spent = models.DecimalField(max_digits=5,decimal_places=2,null=True, blank=True, help_text="hours")
-    owner = models.ManyToManyField(Employee, related_name='owner',null=True, blank=True)
-    number_of_units = models.IntegerField(default=1)
-    
-    class Meta:
-        ordering = ['-id'] # Sort per id (descending)
-    
-    def __unicode__(self):
-        return str(self.id) + ":" + self.name
-        
-    def get_absolute_url(self):
-        return "/projects/tasks/" + str(self.id)
-        
-    def get_subjects(self):
-        return self.subject.all()
-        
-    def get_owners(self):
-        return self.owner.all()
-        
-       
+#reversion.register(DeliverableVolume)
