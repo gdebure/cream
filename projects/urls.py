@@ -15,11 +15,11 @@ urlpatterns = patterns('',
     url(r'^projects/create/$', permission_required('projects.add_project')(CreateView.as_view( model=Project, template_name='project_form.html' )), name='create_project'),
     url(r'^projects/(?P<pk>\d+)/update/$', permission_required('projects.change_project')(UpdateView.as_view( model=Project, template_name='project_form.html' )), name='update_project'),
     url(r'^projects/(?P<pk>\d+)/delete/$', permission_required('projects.delete_project')(DeleteView.as_view( model=Project, template_name='project_confirm_delete.html', success_url=reverse_lazy('projects_list' ))), name='delete_project'),
+    
     # Add deliverable to a project
     url(r'^projects/(?P<pk>\d+)/add_deliverable/$', permission_required('projects.change_project')(AddDeliverableView.as_view( model=Deliverable, template_name='deliverable_form.html' )), name='add_deliverable'),
-    # Add task to a project
-    #url(r'^projects/(?P<pk>\d+)/add_task/$',create_task_from_project),
     ##################################
+    
     
     ##################################
     # Deliverables
@@ -28,10 +28,9 @@ urlpatterns = patterns('',
     url(r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, template_name='deliverable_form.html' )), name='create_deliverable'),
     url(r'^deliverables/(?P<pk>\d+)/update/$', permission_required('projects.change_deliverable')(UpdateView.as_view( model=Deliverable, template_name='deliverable_form.html' )), name='update_deliverable'),
     url(r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, template_name='deliverable_confirm_delete.html', success_url=reverse_lazy('deliverables_list') )), name='delete_deliverable'),
-    ## Service validation stuff
-    #url(r'^deliverables/(?P<pk>\d+)/validate_service/$', validate_deliverable_service),
+    
+    # Add volume to a deiverable
     url(r'^deliverables/(?P<pk>\d+)/add_volume/$', permission_required('projects.change_deliverable')(AddDeliverableVolumeView.as_view( model=DeliverableVolume, template_name='deliverablevolume_form.html' )), name='add_deliverablevolume'),
-    #url(r'^deliverables/(?P<pk>\d+)/add_task/$', create_task),
     ##################################
     
     
