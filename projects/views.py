@@ -1,6 +1,7 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DeleteView
+from django.core.urlresolvers import reverse
 
-from projects.models import Project, Deliverable
+from projects.models import Project, Deliverable, DeliverableVolume
 
 class AddDeliverableView(CreateView):
     
@@ -17,3 +18,16 @@ class AddDeliverableVolumeView(CreateView):
         deliverable= Deliverable.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'deliverable':deliverable}
         return  context
+    
+class DeleteDeliverableVolumeView(DeleteView):
+    
+    deliverable = None
+    model = DeliverableVolume
+    template_name='deliverablevolume_confirm_delete.html'
+    
+    def get_success_url(self):
+        deliverable = Deliverable.objects.get(pk=self.object.deliverable.id)
+        url_params = dict()
+        url_params['pk'] = deliverable.id
+        return reverse('deliverable',kwargs=url_params)
+        
