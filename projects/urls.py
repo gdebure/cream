@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from projects.models import Project, Deliverable, DeliverableVolume
 
-from projects.views import AddDeliverableView, AddDeliverableVolumeView, DeleteDeliverableVolumeView
+from projects.views import AddDeliverableView, DeleteDeliverableView, AddDeliverableVolumeView, DeleteDeliverableVolumeView
 
 urlpatterns = patterns('',
     ##################################
@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     url(r'^deliverables/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Deliverable, template_name='deliverable_detail.html' )), name='deliverable'),
     url(r'^deliverables/create/$', permission_required('projects.add_deliverable')(CreateView.as_view( model=Deliverable, template_name='deliverable_form.html' )), name='create_deliverable'),
     url(r'^deliverables/(?P<pk>\d+)/update/$', permission_required('projects.change_deliverable')(UpdateView.as_view( model=Deliverable, template_name='deliverable_form.html' )), name='update_deliverable'),
-    url(r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteView.as_view( model=Deliverable, template_name='deliverable_confirm_delete.html', success_url=reverse_lazy('deliverables_list') )), name='delete_deliverable'),
+    url(r'^deliverables/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverable')(DeleteDeliverableView.as_view()), name='delete_deliverable'),
     
     # Add volume to a deiverable
     url(r'^deliverables/(?P<pk>\d+)/add_volume/$', permission_required('projects.change_deliverable')(AddDeliverableVolumeView.as_view( model=DeliverableVolume, template_name='deliverablevolume_form.html' )), name='add_deliverablevolume'),

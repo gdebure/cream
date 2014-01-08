@@ -11,6 +11,21 @@ class AddDeliverableView(CreateView):
         context['predefined'] = {'project':project}
         return  context
     
+    
+    
+class DeleteDeliverableView(DeleteView):
+    
+    project = None
+    model = Deliverable
+    template_name='deliverable_confirm_delete.html'
+    
+    def get_success_url(self):
+        project = self.object.project
+        url_params = dict()
+        url_params['pk'] = project.id
+        return reverse('project',kwargs=url_params)
+    
+    
 class AddDeliverableVolumeView(CreateView):
     
     def get_context_data(self, **kwargs):
@@ -26,7 +41,7 @@ class DeleteDeliverableVolumeView(DeleteView):
     template_name='deliverablevolume_confirm_delete.html'
     
     def get_success_url(self):
-        deliverable = Deliverable.objects.get(pk=self.object.deliverable.id)
+        deliverable = self.object.deliverable
         url_params = dict()
         url_params['pk'] = deliverable.id
         return reverse('deliverable',kwargs=url_params)
