@@ -91,7 +91,7 @@ class Deliverable (models.Model):
         )
     
     project = models.ForeignKey(Project, on_delete=models.PROTECT, verbose_name="project name")
-    service = models.ForeignKey(Service, on_delete=models.PROTECT, null=True, blank=True, verbose_name="service family / service")
+    service = models.ForeignKey(Service, on_delete=models.PROTECT, verbose_name="service family / service")
     code = models.CharField(max_length=32, null=True, blank=True, verbose_name="project deliverable identifier")
     name = models.CharField(max_length=128, verbose_name="project deliverable name")
     description = models.TextField()
