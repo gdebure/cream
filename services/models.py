@@ -8,7 +8,7 @@ import reversion
 class Domain (models.Model):
     '''A class to handle the domain for services'''
     name = models.CharField(max_length=64, verbose_name="domain name")
-    is_active = models.BooleanField(verbose_name="domaine is active")
+    is_active = models.BooleanField(verbose_name="domaine is active",default=True)
     owner = models.ForeignKey(Employee, verbose_name="domain owner")
     description = models.TextField(null=True)
     
@@ -51,7 +51,7 @@ class ServiceFamily (models.Model):
     domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="domain")
     description = models.TextField(null=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name="service family owner")
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     
     class Meta:
         ordering = ['domain','name']
@@ -90,7 +90,7 @@ class Service (models.Model):
     
     name = models.CharField(max_length=128, unique=True, verbose_name="service name")
     service_family = models.ForeignKey(ServiceFamily,on_delete=models.PROTECT)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name='service owner')
     description = models.TextField(null=True)
     
