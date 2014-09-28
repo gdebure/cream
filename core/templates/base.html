@@ -21,21 +21,16 @@
     </style>
     </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-            {% include "header.html" %}
-            </div>
-        </div>
-    </div>
+    
+    {% include "header.html" %}
     
     <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+        <div class="row">
+            <div class="col-md-2">
             {% include "menu.html" %}
             </div>
             
-            <div class="span9">
+            <div class="col-md-10">
             {% block content %}{% endblock %}
             </div>
         </div>

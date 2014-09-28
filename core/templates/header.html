@@ -1,14 +1,27 @@
-<div class="navbar-inner">
-    <div class="container" style="width: auto;">
-        <a class="brand" href="/">Cream V1.95</a>
-        <ul class="nav pull-right">
-        <li id="fat-menu" class="dropdown">
-            <a href="#" id="drop_user" role="button" class="dropdown-toggle" data-toggle="dropdown">Logged as {{user}}<b class="caret"></b></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-            <li><a tabindex="-1" href="/users/logout/">Logout</a></li>
-            <li><a tabindex="-1" href="users/change_password/">Change Password</a></li>
-            </ul>
-        </li>
-        </ul>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">CREAM</a>
     </div>
-</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged as {{user}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/users/logout/">Logout</a></li>
+            <li><a href="/users/change_password/">Change Password</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
