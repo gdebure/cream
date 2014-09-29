@@ -1,17 +1,21 @@
-<div class="well sidebar-nav">
-    <span style="margin-left:10px">Main</span>
-    <ul class="nav">
+<div class="sidebar-nav">
+    <div class="panel panel-default">
+    <div class="panel-heading">Main</div>
+    <ul class="nav list-group">
         <li><a href="/">Home</a></li>
     </ul>
+    </div>
     {% include "services_menu.html" %}
     {% include "projects_menu.html" %}
     {% include "reports_menu.html" %}
     {% if user.is_staff %}
-    <i class="fa fa-lock"></i>&nbsp; Administration
-    <ul class="nav">
+    <div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-lock"></i>&nbsp; Administration</div>
+    <ul class="nav list-group">
         <li><a href="/admin"><i class="fa fa-wrench"></i> Admin site</a></li>
         <li><a href="/users/employees/"><i class="fa fa-user"></i> Employees</a></li>
     </ul>
         {% endif %}
     </ul>
+    </div>
 </div><!--/.well -->
