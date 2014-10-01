@@ -37,10 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     # Use guardian for per-object permissions
-    #'guardian',
+    'guardian',
     
     # Use reversion for data versioning
-    #'reversion',
+    'reversion',
     
     'core',
     'mailer',
