@@ -28,7 +28,7 @@ The typically recommended setup for the server would be:
 * Apache with mod_wsgiscalable vector icons
 * Postgresql
 
-Please refer to the Django documentation (https://docs.djangoproject.com/en/1.6/topics/install/) for more details
+Please refer to the Django documentation (https://docs.djangoproject.com/en/1.7/topics/install/) for more details
 
 === Cream Specificities ===
 
@@ -37,14 +37,14 @@ On top of basic Django installation, CREAM needs a few more components enhancing
 * Guardian (http://pythonhosted.org/django-guardian/) : object permissions for Django. Refer to Guardian documentation for installation instructions.
 * Reversion (https://github.com/etianen/django-reversion) : version control facilities. Refer to Guardian documentation for installation instructions. 
 * jquery (http://jquery.com/) : fast, small, and feature-rich JavaScript library. Download and Unzip the archive in CREAM/CREAM/static/jquery
-* Bootstrap 2.x (http://getbootstrap.com/) : CSS framework for faster and easier web development. Boostrap 3.x not supported at this time. Download and Unzip the archive in CREAM/CREAM/static/bootstrap
+* Bootstrap 3.x (http://getbootstrap.com/) : CSS framework for faster and easier web development.
 * font-awesome (http://fontawesome.io/) : scalable vector icons. Download and Unzip the archive in CREAM/CREAM/static/font-awesome
 * Datatables (http://datatables.net/) : advanced interaction controls for HTML table (sorting, filtering...). Download and Unzip the archive in CREAM/CREAM/static/datatables
 * Bootstrap Datepicker (https://github.com/eternicode/bootstrap-datepicker) : A JavaScript Datepicker for bootstrap. Download and Unzip the archive in CREAM/CREAM/static/bootstrap-datepicker
 
 == Installing CREAM ==
 
-Please follow instructions on how to deploy a Django Application : https://docs.djangoproject.com/en/1.6/howto/deployment/
+Please follow instructions on how to deploy a Django Application : https://docs.djangoproject.com/en/1.7/howto/deployment/
 
 Once completed, proceed to the following steps.
 
