@@ -1,4 +1,3 @@
-{% load bootstrap3 %}
 {% load extras %}
 
 <form class="form-horizontal" action="" method="POST">
@@ -7,49 +6,45 @@
     <legend>{{ legend }}</legend>
     
     {% for field in form %}
-    {% with name=field.name %}
-
    
 {% comment %} Here we will check if the field is already defined in the view      {% endcomment %}
-    {% if name in predefined %}
-    {% with predefined_object=predefined|get:name %}
+    {% if field.name in predefined %}
+    {% with predefined_object=predefined|get:field.name %}
     <div class="form-group">
         <label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
-        <div class="controls">
-            <input type="text" class="form-control" value="{{ predefined_object }}" disabled/>
+        <div class="col-sm-6">
+            <input class="form-control" type="text" value="{{ predefined_object }}" disabled/>
             <input type="hidden" id="id_{{ field.name }}" name="{{ field.name }}" value="{{ predefined_object.id }}"/>
         </div>
     </div>
     {% endwith %}
 {% comment %} This field was not predefined     {% endcomment %}
     {% else %}
-    <div class="form-group {% if field.errors %}error{% endif %}">
+    <div class="form-group">
         <label class="col-sm-2 control-label" for="id_{{ field.name }}">
             {% if field.field.required %}<strong><i class="fa fa-asterisk"></i> {{ field.label }}</strong>
             {% else %}{{ field.label }}
             {% endif %}
             
         </label>
-        <div class="controls">
+        <div class="col-sm-6 input-group">
             {% if field|field_type == 'DateField' %}
-            <div class="input-append date" id="id_{{ field.name }}" data-date="{{ field.value|date:'Y-m-d'}}">
-                <input class="form-control" id="id_{{ field.name}}" name="{{ field.name }}" type="text" size="16" value="{{ field.value|date:'Y-m-d'}}"/><span class="add-on"><i class="fa fa-calendar"></i></span>
-            </div>
+            <div class="input-group-addon date" id="id_{{ field.name }}" data-date="{{ field.value|date:'Y-m-d'}}"><i class="fa fa-calendar"></i></div>
+            <input class="form-control" id="id_{{ field.name}}" name="{{ field.name }}" type="text" size="16" value="{{ field.value|date:'Y-m-d'}}"/>
             {% else %}
-            {% bootstrap_field field %}{{field.help_text}}
+            {{ field|css_class:'form-control' }}
             {% endif %}
-            <span class="help-inline">{{ field.errors|join:', ' }}</span>
+            <span>{{ field.errors|join:', ' }}</span>
         </div>
     </div>
     {% endif %}
-    {% endwith %}
     {% endfor %}
-    <div class="form-group">
-        <div class="controls">
+    <div>
+        <div>
             <p><i class="fa fa-asterisk"></i> <b>Mandatory fields</b></p>
-            <div class="btn-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button class="btn" onClick="history.back()" type="button"/>Cancel</button>
+            <div>
+                <button type="submit">Submit</button>
+                <button onClick="history.back()" type="button"/>Cancel</button>
             </div>
         </div>
     </div>

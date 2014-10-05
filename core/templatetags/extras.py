@@ -9,3 +9,7 @@ def get(dictionary, key):
 @register.filter
 def field_type(field):
     return field.field.__class__.__name__
+
+@register.filter(is_safe=True)
+def css_class(field,css_class):
+    return field.as_widget(attrs={'class': css_class})

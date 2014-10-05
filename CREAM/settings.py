@@ -36,9 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    # Use django-bootstrap3
-    'bootstrap3',
-    
     # Use guardian for per-object permissions
     'guardian',
     
