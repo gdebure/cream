@@ -12,9 +12,9 @@
     <tbody>
 {% for skill in skills_list %}
     <tr>
-        <td>{{ skill.name }}</td>
+        <td><a href="{% url "skill_detail" skill.id %}">{{ skill.name }}</a></td>
         <td>{{ skill.enabled }}</td>
-        <td>{{ skill.category }}</td>
+        <td><a href="{% url "skill_category_detail" skill.category.id %}">{{ skill.category }}</td>
     </tr>
 {% endfor %}
     </tbody>
