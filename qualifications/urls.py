@@ -8,19 +8,19 @@ from qualifications.forms import SkillForm
 urlpatterns = patterns('',
     ##################################
     # Skills 
-    (r'^skills/$', login_required()(ListView.as_view( model=Skill, context_object_name='skills_list', )), ),
+    (r'^skills/$', login_required()(ListView.as_view( model=Skill, context_object_name='skills_list', template_name='skill_list.html')), ),
     (r'^skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Skill, )), ),
-    (r'^skills/create/$', permission_required('qualifications.add_skill')(CreateView.as_view( model=Skill, success_url='/qualifications/skills/%(id)s' )), ),
+    (r'^skills/create/$', permission_required('qualifications.add_skill')(CreateView.as_view( model=Skill, success_url='/qualifications/skills/%(id)s', template_name='skill_form.html' )), ),
     (r'^skills/(?P<pk>\d+)/update/$', permission_required('qualifications.change_skill')(UpdateView.as_view( model=Skill, success_url='/qualifications/skills/%(id)s' )), ),
     (r'^skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_skill')(DeleteView.as_view( model=Skill, success_url='/qualifications/skills/' )), ),
     ##################################
     
     ##################################
     # Skill Categories 
-    (r'^skill_categories/$', login_required()(ListView.as_view( model=SkillCategory, context_object_name='skill_categories_list', )), ),
-    (r'^skill_categories/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=SkillCategory, )), ),
-    (r'^skill_categories/create/$', permission_required('qualifications.add_skillcategory')(CreateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' )), ),
-    (r'^skill_categories/(?P<pk>\d+)/update/$', permission_required('qualifications.change_skillcategory')(UpdateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' )), ),
+    (r'^skill_categories/$', login_required()(ListView.as_view( model=SkillCategory, context_object_name='skill_categories_list', template_name='skillcategory_list.html')), ),
+    (r'^skill_categories/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=SkillCategory, template_name='skillcategory_detail.html' )), ),
+    (r'^skill_categories/create/$', permission_required('qualifications.add_skillcategory')(CreateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s', template_name='skillcategory_form.html' )), ),
+    (r'^skill_categories/(?P<pk>\d+)/update/$', permission_required('qualifications.change_skillcategory')(UpdateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s', template_name='skillcategory_form.html' )), ),
     (r'^skill_categories/(?P<pk>\d+)/delete/$', permission_required('qualifications.add_skillcategory')(DeleteView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/' )), ),
     ##################################
     
