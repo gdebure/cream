@@ -12,4 +12,7 @@ def field_type(field):
 
 @register.filter(is_safe=True)
 def css_class(field,css_class):
-    return field.as_widget(attrs={'class': css_class})
+    if field_type(field) == 'BooleanField':
+        return field
+    else:
+        return field.as_widget(attrs={'class': css_class})

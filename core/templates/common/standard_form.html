@@ -12,7 +12,7 @@
     {% with predefined_object=predefined|get:field.name %}
     <div class="form-group">
         <label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <input class="form-control" type="text" value="{{ predefined_object }}" disabled/>
             <input type="hidden" id="id_{{ field.name }}" name="{{ field.name }}" value="{{ predefined_object.id }}"/>
         </div>
@@ -25,26 +25,28 @@
             {% if field.field.required %}<strong><i class="fa fa-asterisk"></i> {{ field.label }}</strong>
             {% else %}{{ field.label }}
             {% endif %}
-            
         </label>
-        <div class="col-sm-6 input-group">
-            {% if field|field_type == 'DateField' %}
-            <div class="input-group-addon date" id="id_{{ field.name }}" data-date="{{ field.value|date:'Y-m-d'}}"><i class="fa fa-calendar"></i></div>
-            <input class="form-control" id="id_{{ field.name}}" name="{{ field.name }}" type="text" size="16" value="{{ field.value|date:'Y-m-d'}}" data-provide="datepicker" data-date-format="yyyy-mm-dd"/>
-            {% else %}
+        <div class="col-sm-4">
+        {% if field|field_type == 'DateField' %}
+            <div class="input-group">
+                <span class="input-group-addon date" id="id_{{ field.name }}" data-date="{{ field.value|date:'Y-m-d'}}"><i class="fa fa-calendar"></i></span>
+                <input class="form-control" id="id_{{ field.name}}" name="{{ field.name }}" type="text" size="16" value="{{ field.value|date:'Y-m-d'}}" data-provide="datepicker" data-date-format="yyyy-mm-dd"/>
+            </div>
+        <span>{{ field.errors|join:', ' }}</span>
+       {% else %}
             {{ field|css_class:'form-control' }}
-            {% endif %}
-            <span>{{ field.errors|join:', ' }}</span>
+        <span>{{ field.errors|join:', ' }}</span>
+        {% endif %}
         </div>
     </div>
     {% endif %}
     {% endfor %}
     <div>
-        <div>
-            <p><i class="fa fa-asterisk"></i> <b>Mandatory fields</b></p>
-            <div>
-                <button type="submit">Submit</button>
-                <button onClick="history.back()" type="button"/>Cancel</button>
+        <div class="col-sm-offset-2">
+            <p><i class="fa fa-asterisk"></i>&nbsp; <strong>Mandatory fields</strong></p>
+            <div class="btn-group ">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-default" onClick="history.back()" type="button"/>Cancel</button>
             </div>
         </div>
     </div>
