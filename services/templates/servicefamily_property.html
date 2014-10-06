@@ -2,7 +2,7 @@
 <table class="table table-hover">
     <tr><th>service family name</th><td>{{ servicefamily.name}}</td></tr>
     <tr><th>service family is active</th><td>{% include 'common/colored_label.html' with value=servicefamily.is_active %}</td></tr>
-    <tr><th>service family owner</th><td><a href="{% url 'employee' servicefamily.owner.id %}">{{ servicefamily.owner }}</a></td></tr>
+    <tr><th>service family owner</th><td>{% if servicefamily.owner %}<a href="{% url 'employee' servicefamily.owner.id %}">{{ servicefamily.owner }}</a>{% endif %}</td></tr>
     <tr><th>domain</th><td><a href="{% url 'domain' servicefamily.domain.id %}">{{ servicefamily.domain.name}}</a></td></tr>
     <tr><th>description</th><td>{{ servicefamily.description|linebreaksbr }}</td></tr>
 </table>
