@@ -4,15 +4,11 @@
 {% block content %}
 
 <!-- Include the object property -->
-{% include "skillcategory_property.html" %}
+{% include "job_property.html" %}
 
 <!-- Include the object property -->
 {% include "common/object_actions.html" %}
 
 <hr/>
-
-{% include "skill_table.html" with skills_list=skillcategory.get_skills %}
-<a href="{% url "add_skill" skillcategory.id %}"><i class="fa fa-plus"></i>Add skill</a>
-
 
 {% endblock %}

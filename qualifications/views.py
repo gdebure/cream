@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from core.views import LoginRequiredMixin,PermissionRequiredMixin
-from qualifications.models import SkillCategory,Skill
+from qualifications.models import SkillCategory, Skill, Job
 
 
 ##############################
@@ -71,4 +71,55 @@ class SkillUpdateView(UpdateView,PermissionRequiredMixin):
 class SkillDeleteView(DeleteView,PermissionRequiredMixin):
     model=Skill
     success_url='/qualifications/skills/'
+    template_name='skill_confirm_delete.html'
     permission='qualifications.add_skill'
+
+    
+class AddSkillView(CreateView,PermissionRequiredMixin):
+    model=Skill
+    success_url='/qualifications/skills/%(id)s'
+    template_name='skill_form.html'
+    permission='qualifications.add_skill'
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddSkillView,self).get_context_data(**kwargs)
+        category = SkillCategory.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'category':category}
+        return  context
+    
+    
+    
+#################
+### Job Views ###
+#################
+
+class JobsListView(ListView,LoginRequiredMixin):
+    model=Job
+    context_object_name='jobs_list'
+    template_name='job_list.html'
+
+    
+class JobDetailView(DetailView,LoginRequiredMixin):
+    model = Job
+    template_name='job_detail.html'
+
+    
+class JobCreateView(CreateView,PermissionRequiredMixin):
+    model=Job
+    success_url='/qualifications/jobs/%(id)s'
+    template_name='job_form.html'
+    permission='qualifications.add_job'
+    
+
+class JobUpdateView(UpdateView,PermissionRequiredMixin):
+    model = Job
+    success_url='/qualifications/jobs/%(id)s'
+    template_name='job_form.html' 
+    permission = 'qualifications.change_job'
+    
+
+class JobDeleteView(DeleteView,PermissionRequiredMixin):
+    model=Job
+    success_url='/qualifications/jobs/'
+    template_name='job_confirm_delete.html'
+    permission='qualifications.add_job'
