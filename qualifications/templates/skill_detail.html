@@ -11,4 +11,8 @@
 
 <hr/>
 
+{% include "employee_table.html" with employees_list=skill.get_employees %}
+{% comment %} <a href="{% url "add_skill" skillcategory.id %}"><i class="fa fa-plus"></i>Add skill</a> {% endcomment %}
+
+
 {% endblock %}

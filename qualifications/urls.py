@@ -3,12 +3,13 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 
 from django.contrib.auth.decorators import permission_required, login_required
 
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, Profile, JobEmployee
+from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, JobEmployee
 from qualifications.forms import SkillForm
 
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
 from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
 from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView
+from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
 
 urlpatterns = patterns('',
     
@@ -43,11 +44,11 @@ urlpatterns = patterns('',
     
     ##################################
     # Employee Skills 
-    url(r'^employee_skills/$', login_required()(ListView.as_view( model=EmployeeSkill, context_object_name='employeeskills_list', )), ),
-    url(r'^employee_skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=EmployeeSkill, )), ),
-    url(r'^employee_skills/create/$', permission_required('qualifications.add_employeeskill')(CreateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' )), ),
-    url(r'^employee_skills/(?P<pk>\d+)/update/$', permission_required('qualifications.change_employeeskill')(UpdateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' )), ),
-    url(r'^employee_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_employeeskill')(DeleteView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/' )), ),
+    url(r'^employee_skills/$', EmployeeSkillsListView.as_view(), name='employee_skills_list'),
+    url(r'^employee_skills/(?P<pk>\d+)/$', EmployeeSkillDetailView.as_view(), name='employee_skills_detail' ),
+    url(r'^employee_skills/create/$', EmployeeSkillCreateView.as_view(), name='create_employee_skills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/update/$', EmployeeSkillUpdateView.as_view(), name='update_employee_skills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/delete/$', EmployeeSkillDeleteView.as_view(), name='delete_employee_skills' ),
     ##################################
     
     ##################################
