@@ -1,0 +1,26 @@
+{% include "decoration.html" with title=title|default:"Employee Skills list" icon=icon|default:"employee_skill_small.png" %}
+
+{% if employeeskills_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>employee</th>
+            <th>skill category</th>
+            <th>skill</th>
+            <th>level</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for employeeskill in employeeskills_list %}
+    <tr>
+        <td><a href="{% url "employee" employeeskill.employee.id %}">{{ employeeskill.employee }}</a></td>
+        <td><a href="{% url "skill_category_detail" employeeskill.skill.category.id %}">{{ employeeskill.skill.category }}</td>
+        <td><a href="{% url "skill_detail" employeeskill.skill.id %}">{{ employeeskill.skill}}</td>
+        <td>{{ employeeskill.level}}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No skills found.</p>
+{% endif %}
