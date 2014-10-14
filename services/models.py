@@ -18,12 +18,6 @@ class Domain (models.Model):
     def __unicode__(self):
         return self.name
         
-    def get_absolute_url(self):
-        return reverse('domain',kwargs={'pk':self.id})
-    
-    def get_report_url(self):
-        return '/services/reports/domains/' + str(self.id)
-        
     def get_service_families(self):
         return self.servicefamily_set.all()
         
@@ -59,12 +53,6 @@ class ServiceFamily (models.Model):
     def __unicode__(self):
         return self.name
         
-    def get_absolute_url(self):
-        return reverse('servicefamily',kwargs={'pk':self.id})
-        
-    def get_report_url(self):
-        return '/services/reports/service_families/' + str(self.id)
-        
     def get_services(self):
         return self.service_set.all()
         
@@ -99,12 +87,6 @@ class Service (models.Model):
     
     def __unicode__(self):
         return self.service_family.name + " : " + self.name
-        
-    def get_absolute_url(self):
-        return reverse('service', kwargs={'pk':self.id})
-        
-    def get_report_url(self):
-        return '/services/reports/services/' + str(self.id)
         
     def get_deliverables(self):
         return self.deliverable_set.all()

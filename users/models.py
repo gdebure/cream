@@ -20,6 +20,4 @@ class Employee (models.Model):
     def __unicode__(self):
         return self.user.last_name + " " + self.user.first_name
 
-    def get_absolute_url(self):
-        return reverse('employee',kwargs={'pk':self.id})
     
