@@ -3,7 +3,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 
 from django.contrib.auth.decorators import permission_required, login_required
 
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, JobEmployee
+from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, EmployeePosition
 from qualifications.forms import SkillForm
 
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
@@ -60,14 +60,6 @@ urlpatterns = patterns('',
     url(r'^job_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobprofileskill')(DeleteView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/' )), ),
     ##################################
     
-    ##################################
-    # job Employees 
-    url(r'^job_employees/$', login_required()(ListView.as_view( model=JobEmployee, context_object_name='jobemployees_list', )), ),
-    url(r'^job_employees/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=JobEmployee, )), ),
-    url(r'^job_employees/create/$', permission_required('qualifications.add_jobemployee')(CreateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
-    url(r'^job_employees/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobemployee')(UpdateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
-    url(r'^job_employees/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobemployee')(DeleteView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/' )), ),
-    ##################################
-    
+   
     
 )

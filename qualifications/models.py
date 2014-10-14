@@ -2,6 +2,7 @@ from django.db import models
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from projects.models import Project
 
 # The Qualifications app depends on the users app,
 # we need to link against the Employee object
@@ -86,8 +87,23 @@ class Job (models.Model):
     def get_employees(self):
         return self.jobemployee_set.all()
         
-            
-            
+
+POSITION_STATUS=(
+    ('A','Anticipation'),
+    ('C','Cancelled'),
+    ('V','Validated'),
+    )
+
+class Position(models.Model):
+    '''A Position is the implementation of a Job in a specific context'''
+    
+    job = models.ForeignKey(Job)
+    project = models.ForeignKey(Project)
+    status = models.CharField(max_length=1,choices=POSITION_STATUS)
+
+    def __unicode__(self):
+        return str(self.project) + ": " + str(self.job)
+
             
 class Profile (models.Model):
     '''A profile can is attached to a job to define the qualification levels for this job'''
@@ -143,18 +159,24 @@ class JobProfileSkill(models.Model):
         return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
 
         
+EMPLOYEE_POSITION_STATUS = (
+    ('I','Idea'),
+    ('S','Under Study'),
+    ('A','Approved'),
+    ('R','Rejected'),
+    ('C','Current Position'),
+    ('P','Previous Position'),
+    )
         
-class JobEmployee(models.Model):
+class EmployeePosition(models.Model):
+    '''Defines the Positions that are linked to an amployee'''
     
-    job = models.ForeignKey(Job)
     employee = models.ForeignKey(Employee)
-    date_start = models.DateField()
-    date_end = models.DateField(null=True, blank=True)
+    position = models.ForeignKey(Position)
+    status = models.CharField(max_length=1,choices=EMPLOYEE_POSITION_STATUS)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    comments = models.TextField()
     
-    class Meta:
-        ordering = ['employee','-date_start','job']
-        
     def __unicode__(self):
-        return str(self.job) + " : " + str(self.employee) + " : " + str(self.date_start) + " : " + str(self.date_end)
-        
-       
+        return str(self.employee) + ": " + str(self.position)
