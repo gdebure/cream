@@ -1,0 +1,28 @@
+{% include "decoration.html" with title=title|default:"Employee Positions list" icon=icon|default:"employee_position_small.png" %}
+
+{% if employeepositions_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>employee</th>
+            <th>position</th>
+            <th>status</th>
+            <th>start date</th>
+            <th>end date</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for employeeposition in employeepositions_list %}
+    <tr>
+        <td><a href="{% url "employee" employeeposition.employee.id %}">{{ employeeposition.employee }}</a></td>
+        <td><a href="{% url "position_detail" employeeposition.position.id %}">{{ employeeposition.position}}</td>
+        <td><a href="{% url "employee_position_detail" employeeposition.id %}">{{ employeeposition.get_status_display}}</a></td>
+        <td>{{ employeeposition.start_date }}</td>
+        <td>{{ employeeposition.end_date }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No positions found.</p>
+{% endif %}

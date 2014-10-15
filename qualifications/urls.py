@@ -6,6 +6,7 @@ from qualifications.views import JobsListView, JobDetailView, JobCreateView, Job
 from qualifications.views import PositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView
 from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
 from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
+from qualifications.views import EmployeePositionsListView, EmployeePositionDetailView, EmployeePositionCreateView, EmployeePositionUpdateView, EmployeePositionDeleteView
 
 
 urlpatterns = patterns('',
@@ -66,6 +67,13 @@ urlpatterns = patterns('',
     url(r'^job_profile_skills/(?P<pk>\d+)/delete/$', JobProfileSkillDeleteView.as_view(), name='delete_job_profile_skill'),
     ##################################
     
-   
+    ##################################
+    # Employee Positions 
+    url(r'^employee_positions/$', EmployeePositionsListView.as_view(), name='employee_positions_list'),
+    url(r'^employee_positions/(?P<pk>\d+)/$', EmployeePositionDetailView.as_view(), name='employee_position_detail' ),
+    url(r'^employee_positions/create/$', EmployeePositionCreateView.as_view(), name='create_employee_position' ),
+    url(r'^employee_positions/(?P<pk>\d+)/update/$', EmployeePositionUpdateView.as_view(), name='update_employee_position' ),
+    url(r'^employee_positions/(?P<pk>\d+)/delete/$', EmployeePositionDeleteView.as_view(), name='delete_employee_position' ),
+    ##################################
     
 )

@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
-from qualifications.models import SkillCategory, Skill, Job, Position, EmployeeSkill, JobProfileSkill
+from qualifications.models import SkillCategory, Skill, Job, Position, EmployeeSkill, JobProfileSkill, EmployeePosition
 
 
 ##############################
@@ -233,3 +233,40 @@ class JobProfileSkillDeleteView(DeleteView,PermissionRequiredMixin):
     success_url='/qualifications/jobprofileskills/'
     template_name='jobprofileskill_confirm_delete.html'
     permission='qualifications.add_jobprofileskill'
+
+
+
+################################
+### Employee Positions Views ###
+################################
+
+class EmployeePositionsListView(ListView,LoginRequiredMixin):
+    model=EmployeePosition
+    context_object_name='employeepositions_list'
+    template_name='employeeposition_list.html'
+
+    
+class EmployeePositionDetailView(DetailView,LoginRequiredMixin):
+    model = EmployeePosition
+    template_name='employeeposition_detail.html'
+
+    
+class EmployeePositionCreateView(CreateView,PermissionRequiredMixin):
+    model=EmployeePosition
+    success_url='/qualifications/employee_positions/%(id)s'
+    template_name='employeeposition_form.html'
+    permission='qualifications.add_employeeposition'
+    
+
+class EmployeePositionUpdateView(UpdateView,PermissionRequiredMixin):
+    model = EmployeePosition
+    success_url='/qualifications/employee_positions/%(id)s'
+    template_name='employeeposition_form.html' 
+    permission = 'qualifications.change_employeeposition'
+    
+
+class EmployeePositionDeleteView(DeleteView,PermissionRequiredMixin):
+    model=EmployeePosition
+    success_url='/qualifications/employeepositions/'
+    template_name='employeeposition_confirm_delete.html'
+    permission='qualifications.add_employeeposition'
