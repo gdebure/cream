@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
-from qualifications.models import SkillCategory, Skill, Job, EmployeeSkill
+from qualifications.models import SkillCategory, Skill, Job, Position, EmployeeSkill, JobProfileSkill
 
 
 ##############################
@@ -159,3 +159,39 @@ class EmployeeSkillDeleteView(DeleteView,PermissionRequiredMixin):
     success_url='/qualifications/employeeskills/'
     template_name='employeeskill_confirm_delete.html'
     permission='qualifications.add_employeeskill'
+
+
+#################################
+### Job Profiles Skills Views ###
+#################################
+
+class JobProfileSkillsListView(ListView,LoginRequiredMixin):
+    model=JobProfileSkill
+    context_object_name='jobprofileskills_list'
+    template_name='jobprofileskill_list.html'
+
+    
+class JobProfileSkillDetailView(DetailView,LoginRequiredMixin):
+    model = JobProfileSkill
+    template_name='jobprofileskill_detail.html'
+
+    
+class JobProfileSkillCreateView(CreateView,PermissionRequiredMixin):
+    model=JobProfileSkill
+    success_url='/qualifications/employees_kills/%(id)s'
+    template_name='jobprofileskill_form.html'
+    permission='qualifications.add_jobprofileskill'
+    
+
+class JobProfileSkillUpdateView(UpdateView,PermissionRequiredMixin):
+    model = JobProfileSkill
+    success_url='/qualifications/employee_skills/%(id)s'
+    template_name='jobprofileskill_form.html' 
+    permission = 'qualifications.change_jobprofileskill'
+    
+
+class JobProfileSkillDeleteView(DeleteView,PermissionRequiredMixin):
+    model=JobProfileSkill
+    success_url='/qualifications/jobprofileskills/'
+    template_name='jobprofileskill_confirm_delete.html'
+    permission='qualifications.add_jobprofileskill'

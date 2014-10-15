@@ -1,0 +1,26 @@
+{% include "decoration.html" with title=title|default:"Jobs, Profiles & Skills list" icon=icon|default:"job_profile_skill_small.png" %}
+
+{% if jobprofileskills_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>job</th>
+            <th>skill</th>
+            <th>profile</th>
+            <th>level</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for jobprofileskill in jobprofileskills_list %}
+    <tr>
+        <td><a href="{% url "job_detail" jobprofileskill.job.id %}">{{ jobprofileskill.job.name }}</a></td>
+        <td><a href="{% url "skill_detail" jobprofileskill.skill.id %}">{{ jobprofileskill.skill }}</a></td>
+        <td>{{ jobprofileskill.profile }}</td>
+        <td><a href="{% url "job_profile_skill_detail" jobprofileskill.id %}">{{ jobprofileskill.level }}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No job, profile and skills found.</p>
+{% endif %}
