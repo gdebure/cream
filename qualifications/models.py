@@ -51,12 +51,12 @@ class Skill (models.Model):
         '''Returns the category and name when printing this object'''
         return self.category.name + ": " + self.name
         
-    def get_employees (self):
+    def get_employees(self):
         '''Returns the list of employees with this skill. This method
         is just for convenience'''
         return self.employeeskill_set.all()
 
-    def get_jobs (self):
+    def get_jobs(self):
         '''Returns the list of jobs requiring this skill. This method
         is just for convenience'''
         return self.jobprofileskill_set.all()

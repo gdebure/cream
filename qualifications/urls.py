@@ -1,15 +1,11 @@
 from django.conf.urls import patterns,url
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-
-from django.contrib.auth.decorators import permission_required, login_required
-
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, EmployeePosition
-from qualifications.forms import SkillForm
 
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
 from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
 from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView
 from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
+from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
+
 
 urlpatterns = patterns('',
     
@@ -53,11 +49,11 @@ urlpatterns = patterns('',
     
     ##################################
     # job profile Skills 
-    url(r'^job_skills/$', login_required()(ListView.as_view( model=JobProfileSkill, context_object_name='jobprofileskills_list', )), ),
-    url(r'^job_skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=JobProfileSkill, )), ),
-    url(r'^job_skills/create/$', permission_required('qualifications.add_jobprofileskill')(CreateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' )), ),
-    url(r'^job_skills/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobprofileskill')(UpdateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' )), ),
-    url(r'^job_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobprofileskill')(DeleteView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/' )), ),
+    url(r'^job_profile_skills/$', JobProfileSkillsListView.as_view(), name='job_profile_skills_list'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/$', JobProfileSkillDetailView.as_view(), name='job_profile_skills_detail'),
+    url(r'^job_profile_skills/create/$', JobProfileSkillCreateView.as_view(), name='create_job_profile_skills'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/update/$', JobProfileSkillUpdateView.as_view(), name='update_job_profile_skills'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/delete/$', JobProfileSkillDeleteView.as_view(), name='delete_job_profile_skills'),
     ##################################
     
    
