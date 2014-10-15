@@ -16,9 +16,9 @@
     <tbody>
 {% for deliverable in deliverables_list %}
     <tr>
-        <td><a href="{% url 'deliverable' deliverable.id %}">{{ deliverable }}</a></td>
+        <td><a href="{% url 'deliverable_detail' deliverable.id %}">{{ deliverable }}</a></td>
         <td>{{ deliverable.code }}</td>
-        <td><a href="{% url 'project' deliverable.project.id %}">{{ deliverable.project }}</a></td>
+        <td><a href="{% url 'project_detail' deliverable.project.id %}">{{ deliverable.project }}</a></td>
         <td><a href="{% url 'servicefamily' deliverable.service.service_family.id %}">{{ deliverable.service.service_family }}</a></td>
         <td><a href="{% url 'service' deliverable.service.id %}">{{ deliverable.service.name }}</a></td>
         <td><span class={% include "link_display.html" %}></span><a href="{{ deliverable.get_absolute_url}}/validate_service">{{deliverable.get_approved_by_service_owner_display }}</a></td>
