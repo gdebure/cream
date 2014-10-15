@@ -3,6 +3,7 @@ from django.conf.urls import patterns,url
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
 from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
 from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView
+from qualifications.views import PositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView
 from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
 from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
 
@@ -38,6 +39,15 @@ urlpatterns = patterns('',
     url(r'^jobs/(?P<pk>\d+)/delete/$', JobDeleteView.as_view(), name='delete_job' ),
     ##################################
     
+    ##################################
+    # Positions
+    url(r'^positions/$', PositionsListView.as_view(), name='positions_list'),
+    url(r'^positions/(?P<pk>\d+)/$', PositionDetailView.as_view(), name='position_detail' ),
+    url(r'^positions/create/$', PositionCreateView.as_view(), name='create_position' ),
+    url(r'^positions/(?P<pk>\d+)/update/$', PositionUpdateView.as_view(), name='update_position' ),
+    url(r'^positions/(?P<pk>\d+)/delete/$', PositionDeleteView.as_view(), name='delete_position' ),
+    ##################################
+        
     ##################################
     # Employee Skills 
     url(r'^employee_skills/$', EmployeeSkillsListView.as_view(), name='employee_skills_list'),

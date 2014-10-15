@@ -125,6 +125,44 @@ class JobDeleteView(DeleteView,PermissionRequiredMixin):
     permission='qualifications.add_job'
 
 
+
+######################
+### Position Views ###
+######################
+
+class PositionsListView(ListView,LoginRequiredMixin):
+    model=Position
+    context_object_name='positions_list'
+    template_name='position_list.html'
+
+    
+class PositionDetailView(DetailView,LoginRequiredMixin):
+    model = Position
+    template_name='position_detail.html'
+
+    
+class PositionCreateView(CreateView,PermissionRequiredMixin):
+    model=Position
+    success_url='/qualifications/positions/%(id)s'
+    template_name='position_form.html'
+    permission='qualifications.add_position'
+    
+
+class PositionUpdateView(UpdateView,PermissionRequiredMixin):
+    model = Position
+    success_url='/qualifications/positions/%(id)s'
+    template_name='position_form.html' 
+    permission = 'qualifications.change_position'
+    
+
+class PositionDeleteView(DeleteView,PermissionRequiredMixin):
+    model=Position
+    success_url='/qualifications/positions/'
+    template_name='position_confirm_delete.html'
+    permission='qualifications.add_position'
+
+
+
 #############################
 ### Employee Skills Views ###
 #############################

@@ -1,0 +1,24 @@
+{% include "decoration.html" with title=title|default:"Jobs list" icon=icon|default:"position_small.png" %}
+
+{% if positions_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>job</th>
+            <th>project</th>
+            <th>status</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for position in positions_list %}
+    <tr>
+        <td><a href="{% url "job_detail" position.job.id %}">{{ position.job }}</a></td>
+        <td><a href="{% url "project_detail" position.project.id %}">{{ position.project }}</a></td>
+        <td><a href="{% url "position_detail" position.project.id %}">{{ position.get_status_display }}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No positions found.</p>
+{% endif %}
