@@ -4,7 +4,6 @@
 <table  class="table table-condensed table-bordered table-hover dataTable">
     <thead>
     <tr>
-        <th/>
         <th>id</th>
         <th>name</th>
         <th>firstname</th>
@@ -14,7 +13,6 @@
     <tbody>
 {% for employee in employees_list %}
     <tr>
-        <td><input type="checkbox" name="id_{{employee.id}}"/></td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.last_name }}</a></td>
         <td>{{ employee.user.first_name }}</td>
