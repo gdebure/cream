@@ -1,0 +1,24 @@
+{% include "decoration.html" with title=title|default:"Skills list" icon=icon|default:"skill_small.png" %}
+
+{% if skills_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>enabled</th>
+            <th>category</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for skill in skills_list %}
+    <tr>
+        <td><a href="{% url "skill_detail" skill.id %}">{{ skill.name }}</a></td>
+        <td>{{ skill.enabled }}</td>
+        <td><a href="{% url "skill_category_detail" skill.category.id %}">{{ skill.category }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No skills found.</p>
+{% endif %}

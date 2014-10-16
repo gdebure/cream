@@ -1,0 +1,9 @@
+{% include "decoration.html" with title="Employee Skills properties" icon="employee_position.png" block="main" %}
+<table class="table table-hover">
+    <tr><th>employee</th><td><a href="{% url "employee" employeeposition.employee.id %}">{{ employeeposition.employee }}</a></td></tr>
+    <tr><th>position</th><td><a href="{% url "position_detail" employeeposition.position.id %}">{{ employeeposition.position}}</a></td></tr>
+    <tr><th>status</th><td>{{ employeeposition.get_status_display}}</td></tr>
+    <tr><th>start date</th><td>{{ employeeposition.start_date }}</td></tr>
+    <tr><th>end date</th><td>{{ employeeposition.end_date }}</td></tr>
+    <tr><th>comments</th><td>{{ employeeposition.comments }}</td></tr>
+</table>

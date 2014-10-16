@@ -1,73 +1,79 @@
-from django.conf.urls.defaults import *
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from django.contrib.auth.decorators import permission_required, login_required
+from django.conf.urls import patterns,url
 
-from qualifications.models import Skill, SkillCategory, Job, EmployeeSkill, JobProfileSkill, Profile, JobEmployee
-from qualifications.forms import SkillForm
+from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
+from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
+from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView
+from qualifications.views import PositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView
+from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
+from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
+from qualifications.views import EmployeePositionsListView, EmployeePositionDetailView, EmployeePositionCreateView, EmployeePositionUpdateView, EmployeePositionDeleteView
+
 
 urlpatterns = patterns('',
-    ##################################
-    # Skills 
-    (r'^skills/$', login_required()(ListView.as_view( model=Skill, context_object_name='skills_list', )), ),
-    (r'^skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Skill, )), ),
-    (r'^skills/create/$', permission_required('qualifications.add_skill')(CreateView.as_view( model=Skill, success_url='/qualifications/skills/%(id)s' )), ),
-    (r'^skills/(?P<pk>\d+)/update/$', permission_required('qualifications.change_skill')(UpdateView.as_view( model=Skill, success_url='/qualifications/skills/%(id)s' )), ),
-    (r'^skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_skill')(DeleteView.as_view( model=Skill, success_url='/qualifications/skills/' )), ),
-    ##################################
     
     ##################################
     # Skill Categories 
-    (r'^skill_categories/$', login_required()(ListView.as_view( model=SkillCategory, context_object_name='skill_categories_list', )), ),
-    (r'^skill_categories/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=SkillCategory, )), ),
-    (r'^skill_categories/create/$', permission_required('qualifications.add_skillcategory')(CreateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' )), ),
-    (r'^skill_categories/(?P<pk>\d+)/update/$', permission_required('qualifications.change_skillcategory')(UpdateView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/%(id)s' )), ),
-    (r'^skill_categories/(?P<pk>\d+)/delete/$', permission_required('qualifications.add_skillcategory')(DeleteView.as_view( model=SkillCategory, success_url='/qualifications/skill_categories/' )), ),
+    url(r'^skill_categories/$', SkillCategoriesListView.as_view(), name='skill_categories_list'),
+    url(r'^skill_categories/(?P<pk>\d+)/$', SkillCategoryDetailView.as_view(), name='skill_category_detail'),
+    url(r'^skill_categories/create/$', SkillCategoryCreateView.as_view(), name='create_skill_category' ),
+    url(r'^skill_categories/(?P<pk>\d+)/update/$', SkillCategoryUpdateView.as_view(), name='update_skill_category' ),
+    url(r'^skill_categories/(?P<pk>\d+)/delete/$', SkillCategoryDeleteView.as_view(), name='delete_skill_category' ),
+    
+    url(r'^skill_categories/(?P<pk>\d+)/add_skill/$', AddSkillView.as_view(), name='add_skill' ),
     ##################################
     
+    ##################################
+    # Skills 
+    url(r'^skills/$', SkillsListView.as_view(), name='skills_list'),
+    url(r'^skills/(?P<pk>\d+)/$', SkillDetailView.as_view(), name='skill_detail' ),
+    url(r'^skills/create/$', SkillCreateView.as_view(), name='create_skill'),
+    url(r'^skills/(?P<pk>\d+)/update/$', SkillUpdateView.as_view(), name='update_skill' ),
+    url(r'^skills/(?P<pk>\d+)/delete/$', SkillDeleteView.as_view(), name='delete_skill' ),
+    ##################################
+        
     ##################################
     # Jobs
-    (r'^jobs/$', login_required()(ListView.as_view( model=Job, context_object_name='jobs_list', )), ),
-    (r'^jobs/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Job, )), ),
-    (r'^jobs/create/$', permission_required('qualifications.add_job')(CreateView.as_view( model=Job, success_url='/qualifications/jobs/%(id)s' )), ),
-    (r'^jobs/(?P<pk>\d+)/update/$', permission_required('qualifications.change_job')(UpdateView.as_view( model=Job, success_url='/qualifications/jobs/%(id)s' )), ),
-    (r'^jobs/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_job')(DeleteView.as_view( model=Job, success_url='/qualifications/jobs/' )), ),
+    url(r'^jobs/$', JobsListView.as_view(), name='jobs_list'),
+    url(r'^jobs/(?P<pk>\d+)/$', JobDetailView.as_view(), name='job_detail' ),
+    url(r'^jobs/create/$', JobCreateView.as_view(), name='create_job' ),
+    url(r'^jobs/(?P<pk>\d+)/update/$', JobUpdateView.as_view(), name='update_job' ),
+    url(r'^jobs/(?P<pk>\d+)/delete/$', JobDeleteView.as_view(), name='delete_job' ),
     ##################################
     
+    ##################################
+    # Positions
+    url(r'^positions/$', PositionsListView.as_view(), name='positions_list'),
+    url(r'^positions/(?P<pk>\d+)/$', PositionDetailView.as_view(), name='position_detail' ),
+    url(r'^positions/create/$', PositionCreateView.as_view(), name='create_position' ),
+    url(r'^positions/(?P<pk>\d+)/update/$', PositionUpdateView.as_view(), name='update_position' ),
+    url(r'^positions/(?P<pk>\d+)/delete/$', PositionDeleteView.as_view(), name='delete_position' ),
+    ##################################
+        
     ##################################
     # Employee Skills 
-    (r'^employee_skills/$', login_required()(ListView.as_view( model=EmployeeSkill, context_object_name='employeeskills_list', )), ),
-    (r'^employee_skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=EmployeeSkill, )), ),
-    (r'^employee_skills/create/$', permission_required('qualifications.add_employeeskill')(CreateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' )), ),
-    (r'^employee_skills/(?P<pk>\d+)/update/$', permission_required('qualifications.change_employeeskill')(UpdateView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/%(id)s' )), ),
-    (r'^employee_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_employeeskill')(DeleteView.as_view( model=EmployeeSkill, success_url='/qualifications/employee_skills/' )), ),
-    ##################################
-    
-    ##################################
-    # profiles 
-    (r'^profiles/$', login_required()(ListView.as_view( model=Profile, context_object_name='profiles_list', )), ),
-    (r'^profiles/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=Profile, )), ),
-    (r'^profiles/create/$', permission_required('qualifications.add_profile')(CreateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' )), ),
-    (r'^profiles/(?P<pk>\d+)/update/$', permission_required('qualifications.change_profile')(UpdateView.as_view( model=Profile, success_url='/qualifications/profiles/%(id)s' )), ),
-    (r'^profiles/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_profile')(DeleteView.as_view( model=Profile, success_url='/qualifications/profiles/' )), ),
+    url(r'^employee_skills/$', EmployeeSkillsListView.as_view(), name='employee_skills_list'),
+    url(r'^employee_skills/(?P<pk>\d+)/$', EmployeeSkillDetailView.as_view(), name='employee_skills_detail' ),
+    url(r'^employee_skills/create/$', EmployeeSkillCreateView.as_view(), name='create_employee_skills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/update/$', EmployeeSkillUpdateView.as_view(), name='update_employee_skills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/delete/$', EmployeeSkillDeleteView.as_view(), name='delete_employee_skills' ),
     ##################################
     
     ##################################
     # job profile Skills 
-    (r'^job_skills/$', login_required()(ListView.as_view( model=JobProfileSkill, context_object_name='jobprofileskills_list', )), ),
-    (r'^job_skills/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=JobProfileSkill, )), ),
-    (r'^job_skills/create/$', permission_required('qualifications.add_jobprofileskill')(CreateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' )), ),
-    (r'^job_skills/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobprofileskill')(UpdateView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/%(id)s' )), ),
-    (r'^job_skills/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobprofileskill')(DeleteView.as_view( model=JobProfileSkill, success_url='/qualifications/job_skills/' )), ),
+    url(r'^job_profile_skills/$', JobProfileSkillsListView.as_view(), name='job_profile_skills_list'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/$', JobProfileSkillDetailView.as_view(), name='job_profile_skill_detail'),
+    url(r'^job_profile_skills/create/$', JobProfileSkillCreateView.as_view(), name='create_job_profile_skill'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/update/$', JobProfileSkillUpdateView.as_view(), name='update_job_profile_skill'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/delete/$', JobProfileSkillDeleteView.as_view(), name='delete_job_profile_skill'),
     ##################################
     
     ##################################
-    # job Employees 
-    (r'^job_employees/$', login_required()(ListView.as_view( model=JobEmployee, context_object_name='jobemployees_list', )), ),
-    (r'^job_employees/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=JobEmployee, )), ),
-    (r'^job_employees/create/$', permission_required('qualifications.add_jobemployee')(CreateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
-    (r'^job_employees/(?P<pk>\d+)/update/$', permission_required('qualifications.add_jobemployee')(UpdateView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/%(id)s' )), ),
-    (r'^job_employees/(?P<pk>\d+)/delete/$', permission_required('qualifications.delete_jobemployee')(DeleteView.as_view( model=JobEmployee, success_url='/qualifications/job_employees/' )), ),
+    # Employee Positions 
+    url(r'^employee_positions/$', EmployeePositionsListView.as_view(), name='employee_positions_list'),
+    url(r'^employee_positions/(?P<pk>\d+)/$', EmployeePositionDetailView.as_view(), name='employee_position_detail' ),
+    url(r'^employee_positions/create/$', EmployeePositionCreateView.as_view(), name='create_employee_position' ),
+    url(r'^employee_positions/(?P<pk>\d+)/update/$', EmployeePositionUpdateView.as_view(), name='update_employee_position' ),
+    url(r'^employee_positions/(?P<pk>\d+)/delete/$', EmployeePositionDeleteView.as_view(), name='delete_employee_position' ),
     ##################################
-    
     
 )

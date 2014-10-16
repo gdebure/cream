@@ -25,3 +25,9 @@ class ServiceReportView(DetailView):
     
     template_name="service_report.html"
     model = Service
+    
+
+class ServicesReportView(ListView):
+    
+    template_name="service_report.html"
+    model = Service

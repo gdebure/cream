@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "skillcategory_table.html" with block="main" icon="skill_category.png" %}
+
+{% include "common/list_actions.html" with item_name="skill category" %}
+
+{% endblock %}

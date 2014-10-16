@@ -1,0 +1,22 @@
+{% include "decoration.html" with title=title|default:"Jobs list" icon=icon|default:"job_small.png" %}
+
+{% if jobs_list %}
+<table class="table table-condensed table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>description</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for job in jobs_list %}
+    <tr>
+        <td><a href="{% url "job_detail" job.id %}">{{ job.name }}</a></td>
+        <td>{{ job.description }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No jobs found.</p>
+{% endif %}

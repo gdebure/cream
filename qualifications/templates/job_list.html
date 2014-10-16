@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "job_table.html" with block="main" icon="job.png" %}
+
+{% include "common/list_actions.html" with item_name="job" %}
+
+{% endblock %}

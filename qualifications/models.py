@@ -2,6 +2,7 @@ from django.db import models
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from projects.models import Project
 
 # The Qualifications app depends on the users app,
 # we need to link against the Employee object
@@ -22,10 +23,6 @@ class SkillCategory (models.Model):
         '''Returns the name when printing object'''
         return self.name
         
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/skill_categories/" + str(self.id)
-
     def get_skills(self):
         '''Returns the list of skills belonging to this category. This method
         is just for convenience'''
@@ -54,16 +51,12 @@ class Skill (models.Model):
         '''Returns the category and name when printing this object'''
         return self.category.name + ": " + self.name
         
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/skills/" + str(self.id)
-        
-    def get_employees (self):
+    def get_employees(self):
         '''Returns the list of employees with this skill. This method
         is just for convenience'''
         return self.employeeskill_set.all()
 
-    def get_jobs (self):
+    def get_jobs(self):
         '''Returns the list of jobs requiring this skill. This method
         is just for convenience'''
         return self.jobprofileskill_set.all()
@@ -85,11 +78,7 @@ class Job (models.Model):
     def __unicode__(self):
         '''Returns the name when printing object'''
         return self.name
-    
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/jobs/" + str(self.id)
-        
+     
     def get_profile_skills(self):
         '''Returns the list of skills required for this job. This method
         is just for convenience'''
@@ -98,8 +87,23 @@ class Job (models.Model):
     def get_employees(self):
         return self.jobemployee_set.all()
         
-            
-            
+
+POSITION_STATUS=(
+    ('A','Anticipation'),
+    ('C','Cancelled'),
+    ('V','Validated'),
+    )
+
+class Position(models.Model):
+    '''A Position is the implementation of a Job in a specific context'''
+    
+    job = models.ForeignKey(Job)
+    project = models.ForeignKey(Project)
+    status = models.CharField(max_length=1,choices=POSITION_STATUS)
+
+    def __unicode__(self):
+        return str(self.project) + ": " + str(self.job)
+
             
 class Profile (models.Model):
     '''A profile can is attached to a job to define the qualification levels for this job'''
@@ -113,13 +117,7 @@ class Profile (models.Model):
     def __unicode__(self):
         return self.name
 
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/profiles/" + str(self.id)
-        
-           
-            
-   
+    
 
 class EmployeeSkill(models.Model):
     '''Defines the Skills levels for an employee. The level should be between 
@@ -139,12 +137,7 @@ class EmployeeSkill(models.Model):
         '''Returns the employee, skill and level when printing object'''
         return str(self.employee) + " : " + self.skill.name + " : " + str(self.level)
         
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/employee_skills/" + str(self.id)
-        
-
-
+    
 
 class JobProfileSkill(models.Model):
     ''''Defines the Skills levels required for a Job. The level should be between 
@@ -165,24 +158,25 @@ class JobProfileSkill(models.Model):
         '''Returns the job, skill and level when printing object'''
         return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
 
-    def get_absolute_url(self):
-        '''Returns the absolute URL to this object'''
-        return "/qualifications/job_skills/" + str(self.id)
         
+EMPLOYEE_POSITION_STATUS = (
+    ('I','Idea'),
+    ('S','Under Study'),
+    ('A','Approved'),
+    ('R','Rejected'),
+    ('C','Current Position'),
+    ('P','Previous Position'),
+    )
         
-class JobEmployee(models.Model):
+class EmployeePosition(models.Model):
+    '''Defines the Positions that are linked to an amployee'''
     
-    job = models.ForeignKey(Job)
     employee = models.ForeignKey(Employee)
-    date_start = models.DateField()
-    date_end = models.DateField(null=True, blank=True)
+    position = models.ForeignKey(Position)
+    status = models.CharField(max_length=1,choices=EMPLOYEE_POSITION_STATUS)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    comments = models.TextField()
     
-    class Meta:
-        ordering = ['employee','-date_start','job']
-        
     def __unicode__(self):
-        return self.job + " : " + self.employee + " : " + self.date_start + " : " + self.date_end
-        
-    def get_absolute_url(self):
-        return "/qualifications/job_employees/" + str(self.id)
-       
+        return str(self.employee) + ": " + str(self.position)

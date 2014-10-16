@@ -8,7 +8,7 @@ import reversion
 class Domain (models.Model):
     '''A class to handle the domain for services'''
     name = models.CharField(max_length=64, verbose_name="domain name")
-    is_active = models.BooleanField(verbose_name="domaine is active")
+    is_active = models.BooleanField(verbose_name="domaine is active",default=True)
     owner = models.ForeignKey(Employee, verbose_name="domain owner")
     description = models.TextField(null=True)
     
@@ -17,12 +17,6 @@ class Domain (models.Model):
 
     def __unicode__(self):
         return self.name
-        
-    def get_absolute_url(self):
-        return reverse('domain',kwargs={'pk':self.id})
-    
-    def get_report_url(self):
-        return '/services/reports/domains/' + str(self.id)
         
     def get_service_families(self):
         return self.servicefamily_set.all()
@@ -51,19 +45,13 @@ class ServiceFamily (models.Model):
     domain = models.ForeignKey(Domain, on_delete=models.PROTECT, verbose_name="domain")
     description = models.TextField(null=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name="service family owner")
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     
     class Meta:
         ordering = ['domain','name']
     
     def __unicode__(self):
         return self.name
-        
-    def get_absolute_url(self):
-        return reverse('servicefamily',kwargs={'pk':self.id})
-        
-    def get_report_url(self):
-        return '/services/reports/service_families/' + str(self.id)
         
     def get_services(self):
         return self.service_set.all()
@@ -90,7 +78,7 @@ class Service (models.Model):
     
     name = models.CharField(max_length=128, unique=True, verbose_name="service name")
     service_family = models.ForeignKey(ServiceFamily,on_delete=models.PROTECT)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     owner = models.ForeignKey(Employee, null=True, blank=True, verbose_name='service owner')
     description = models.TextField(null=True)
     
@@ -99,12 +87,6 @@ class Service (models.Model):
     
     def __unicode__(self):
         return self.service_family.name + " : " + self.name
-        
-    def get_absolute_url(self):
-        return reverse('service', kwargs={'pk':self.id})
-        
-    def get_report_url(self):
-        return '/services/reports/services/' + str(self.id)
         
     def get_deliverables(self):
         return self.deliverable_set.all()

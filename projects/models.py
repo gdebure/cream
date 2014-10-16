@@ -51,9 +51,6 @@ class Project (models.Model):
             
         return tasks
     
-    def get_absolute_url(self):
-        return reverse('project',kwargs={'pk':self.id})
-        
     def get_total_turnover(self):
         turnover = 0
         for deliverable in self.deliverable_set.all():
@@ -104,9 +101,6 @@ class Deliverable (models.Model):
     
     def __unicode__(self):
         return self.name
-        
-    def get_absolute_url(self):
-        return reverse('deliverable', kwargs={'pk':self.id})
         
     def get_tasks(self):
         return self.task_set.all()
@@ -172,9 +166,6 @@ class DeliverableVolume(models.Model):
         
     def __unicode__(self):
         return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
-        
-    def get_absolute_url(self):
-        return reverse('deliverablevolume', kwargs={'pk':self.id})
         
     def get_total_price(self):
         return self.quantity * self.unit_price

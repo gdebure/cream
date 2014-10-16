@@ -15,7 +15,7 @@
 {% for project in projects_list %}
     <tr>
         <td>{{ project.number }}</td>
-        <td><a href="{% url 'project' project.id %}">{{ project.name }}</td>
+        <td><a href="{% url 'project_detail' project.id %}">{{ project.name }}</td>
         <td>
             {% if project.project_leader %}<a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a>{% endif %}
         </td>

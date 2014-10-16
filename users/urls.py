@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     # Authentication stuff
     url(r'^login/', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login' ),
     url(r'^logout/$', logout_then_login, name='logout'),
-    url(r'^change_password/$', password_change, {'template_name': 'users/password_change_form.html','post_change_redirect' : '/users/change_password/done/'}, name='change_password' ),
-    url(r'^change_password/done/$', password_change_done, {'template_name': 'users/password_change_done.html'}, name='password_changed' ),
+    url(r'^change_password/$', password_change, {'template_name': 'password_change_form.html','post_change_redirect' : 'change_password/done/'}, name='change_password' ),
+    url(r'^change_password/done/$', password_change_done, {'template_name': 'password_change_done.html'}, name='password_changed' ),
     ###################################
     
     url(r'^employees/$', login_required()(ListView.as_view( queryset=Employee.objects.order_by('id'), context_object_name='employees_list', template_name='employee_list.html' )), name='employees_list'),

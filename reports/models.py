@@ -22,7 +22,7 @@ class Report(models.Model):
         ('not in','not in range'),
     )
     
-    title = models.CharField(max_length=256, choices=get_database_fields())
+    title = models.CharField(max_length=256)
     x_data = models.CharField(max_length=128)
     y_data = models.CharField(max_length=128)
     split_per = models.CharField(max_length=128)
@@ -34,8 +34,4 @@ class Report(models.Model):
     def __unicode__(self):
         return self.title
         
-    def get_absolute_url(self):
-        return "/reports/" + str(self.id)
-    
-
-    
+   

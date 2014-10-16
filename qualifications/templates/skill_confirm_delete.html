@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="bg-warning" align="center">Do you really want to delete this Skill ?</div>
+
+{% include "skill_property.html" %}
+  
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    {% include "common/form_buttons.html" %}
+</form>
+{% endblock %}

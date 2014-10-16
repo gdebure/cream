@@ -15,44 +15,36 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
-            .sidebar-nav {
-                padding: 9px 0;
-            }
     </style>
     </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-            {% include "header.html" %}
-            </div>
-        </div>
-    </div>
     
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+    {% include "header.html" %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
             {% include "menu.html" %}
             </div>
             
-            <div class="span9">
+            <div class="col-md-11">
             {% block content %}{% endblock %}
             </div>
         </div>
     </div>
     
-{% include "footer.html" %}
+    {% include "footer.html" %}
 
-<script src="{% static 'jquery/jquery.min.js' %}"></script>
-<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
-<script src="{% static 'datatables/DT_bootstrap.js' %}"></script>
-<script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
-<script language="javascript">
-$('.input-append.date').datepicker({
-    format: 'yyyy-mm-dd',
-})
-</script>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'datatables/DT_bootstrap.js' %}"></script>
+    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+    <script language="javascript">
+    $('.input-append.date').datepicker({
+        format: 'yyyy-mm-dd',
+    })
+    </script>
 
 </body>
 </html>

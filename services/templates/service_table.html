@@ -18,7 +18,7 @@
         <td><a href="{% url 'service' service.id %}">{{ service.name }}</a></td>
         <td><a href="{% url 'servicefamily' service.service_family.id %}">{{ service.service_family}}</a></td>
         <td><a href="{% url 'domain' service.service_family.domain.id %}">{{ service.service_family.domain}}</a></td>
-        <td><a href="{% url 'employee' service.owner.id %}">{{service.owner}}</a></td>
+        <td>{% if service.owner %}<a href="{% url 'employee' service.owner.id %}">{{service.owner}}</a>{% endif %}</td>
         <td>{% include 'common/colored_label.html' with value=service.is_active %}</td>
     </tr>
 {% endfor %}
