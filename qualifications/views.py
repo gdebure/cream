@@ -1,6 +1,7 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
+
 from qualifications.models import SkillCategory, Skill, Job, Position, EmployeeSkill, JobProfileSkill, EmployeePosition
 
 
@@ -290,6 +291,7 @@ class EmployeePositionUpdateView(UpdateView,PermissionRequiredMixin):
 
 class EmployeePositionDeleteView(DeleteView,PermissionRequiredMixin):
     model=EmployeePosition
-    success_url='/qualifications/employeepositions/'
+    success_url='/qualifications/employee_positions/'
     template_name='employeeposition_confirm_delete.html'
     permission='qualifications.add_employeeposition'
+    
