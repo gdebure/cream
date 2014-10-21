@@ -1,0 +1,8 @@
+{% include "decoration.html" with title="Employee properties" icon="employee.png" block="main" %}
+<table class="table table-hover">
+    <tr><th>id</th><td>{{ employee.user.username }}</td></tr>
+    <tr><th>name</th><td>{{ employee.user.last_name }}</td></tr>
+    <tr><th>first name</th><td>{{ employee.user.first_name }}</td></tr>
+    <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
+    <tr><th>email</th><td><a href="mailto:{{employee.user.email}}">{{employee.user.email}}</td></tr>
+</table>
