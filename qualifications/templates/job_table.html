@@ -12,7 +12,7 @@
 {% for job in jobs_list %}
     <tr>
         <td><a href="{% url "job_detail" job.id %}">{{ job.name }}</a></td>
-        <td>{{ job.description }}</td>
+        <td>{{ job.description|linebreaks }}</td>
     </tr>
 {% endfor %}
     </tbody>
