@@ -21,21 +21,21 @@ class ProjectDetailView(DetailView,LoginRequiredMixin):
     
 class ProjectCreateView(CreateView,PermissionRequiredMixin):
     model=Project
-    success_url='/projects/project/%(id)s'
+    success_url='/projects/projects/%(id)s'
     template_name='project_form.html'
     permission='projects.add_project'
     
 
 class ProjectUpdateView(UpdateView,PermissionRequiredMixin):
     model = Project
-    success_url='/projects/project/%(id)s'
+    success_url='/projects/projects/%(id)s'
     template_name='project_form.html' 
     permission = 'projects.change_project'
     
 
 class ProjectDeleteView(DeleteView,PermissionRequiredMixin):
     model=Project
-    success_url='/projects/project/'
+    success_url='/projects/projects/'
     permission='projects.delete_project'
     
     
