@@ -174,6 +174,17 @@ class PositionDeleteView(DeleteView,PermissionRequiredMixin):
     permission='qualifications.add_position'
 
 
+class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
+    model=EmployeePosition
+    success_url='/qualifications/employee_positions/%(id)s'
+    template_name='employeeposition_form.html'
+    permission='qualifications.add_employeeposition'
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddEmployeePositionView,self).get_context_data(**kwargs)
+        position = Position.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'position':position}
+        return context
 
 #############################
 ### Employee Skills Views ###
