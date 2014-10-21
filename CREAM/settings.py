@@ -119,7 +119,7 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
-STATIC_ROOT = '/server/static/'
+STATIC_ROOT = '/server/cream/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
