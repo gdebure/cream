@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     url(r'^jobs/(?P<pk>\d+)/update/$', JobUpdateView.as_view(), name='update_job' ),
     url(r'^jobs/(?P<pk>\d+)/delete/$', JobDeleteView.as_view(), name='delete_job' ),
     
-     url(r'^jobs/(?P<pk>\d+)/add_position/$', AddPositionView.as_view(), name='add_position' ),
+    url(r'^jobs/(?P<pk>\d+)/add_position/$', AddPositionView.as_view(), name='add_position' ),
     ##################################
     
     ##################################
