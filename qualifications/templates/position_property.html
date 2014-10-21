@@ -3,4 +3,6 @@
     <tr><th>job</th><td><a href="{% url "job_detail" position.job.id %}">{{position.job}}</a></td></tr>
     <tr><th>project</th><td><a href="{% url "project_detail" position.project.id %}">{{ position.project}}</a></td></tr>
     <tr><th>status</th><td>{{ position.get_status_display }}</td></tr>
+    <tr><th>location</th><td>{{ position.location }}</td></tr>
+    <tr><th>publish date</th><td>{{ position.publish_date }}</td></tr>
 </table>

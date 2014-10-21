@@ -81,6 +81,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'HOST': '44.4.170.19',
         'NAME': 'cream_django',                      # Or path to database file if using sqlite3.
         'USER': 'st01447',                      # Not used with sqlite3.
         'PASSWORD': 'gui0110',                  # Not used with sqlite3.

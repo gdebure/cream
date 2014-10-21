@@ -94,12 +94,22 @@ POSITION_STATUS=(
     ('V','Validated'),
     )
 
+class Location(models.Model):
+    '''A class that lists the possible locations for a position'''
+    name = models.CharField(max_length=128)
+    
+    def __unicode__(self):
+        return self.name
+
 class Position(models.Model):
     '''A Position is the implementation of a Job in a specific context'''
     
     job = models.ForeignKey(Job)
     project = models.ForeignKey(Project)
     status = models.CharField(max_length=1,choices=POSITION_STATUS)
+    location = models.ForeignKey(Location)
+    publish_date = models.DateField()
+    headcount = models.PositiveSmallIntegerField()    
 
     def __unicode__(self):
         return str(self.project) + ": " + str(self.job)
