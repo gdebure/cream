@@ -169,21 +169,22 @@ class JobProfileSkill(models.Model):
         return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
 
         
-EMPLOYEE_POSITION_STATUS = (
-    ('I','Idea'),
-    ('S','Under Study'),
-    ('A','Approved'),
-    ('R','Rejected'),
-    ('C','Current Position'),
-    ('P','Previous Position'),
-    )
+
+class EmployeePositionStatus(models.Model):
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return self.name
+    
         
 class EmployeePosition(models.Model):
     '''Defines the Positions that are linked to an amployee'''
     
     employee = models.ForeignKey(Employee)
     position = models.ForeignKey(Position)
-    status = models.CharField(max_length=1,choices=EMPLOYEE_POSITION_STATUS)
+    status = models.ForeignKey(EmployeePositionStatus)
     start_date = models.DateField(null=True,blank=True)
     end_date = models.DateField(null=True,blank=True)
     comments = models.TextField()

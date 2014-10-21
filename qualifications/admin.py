@@ -1,4 +1,4 @@
-from qualifications.models import SkillCategory, Skill, Job, Location, Position, Profile, EmployeeSkill, JobProfileSkill, EmployeePosition
+from qualifications.models import SkillCategory, Skill, Job, Location, Position, Profile, EmployeeSkill, JobProfileSkill, EmployeePositionStatus ,EmployeePosition
 from django.contrib import admin
 from guardian.admin import GuardedModelAdmin
 
@@ -26,6 +26,9 @@ class EmployeeSkillAdmin(GuardedModelAdmin):
 class JobProfileSkillAdmin(GuardedModelAdmin):
     pass
 
+class EmployeePositionStatusAdmin(GuardedModelAdmin):
+    pass
+
 class EmployeePositionAdmin(GuardedModelAdmin):
     pass
 
@@ -37,4 +40,5 @@ admin.site.register(Position,PositionAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(EmployeeSkill, EmployeeSkillAdmin)
 admin.site.register(JobProfileSkill, JobProfileSkillAdmin)
+admin.site.register(EmployeePositionStatus, EmployeePositionStatusAdmin)
 admin.site.register(EmployeePosition, EmployeePositionAdmin)
