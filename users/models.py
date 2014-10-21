@@ -4,6 +4,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+from import_export import resources
+
 
 EMPLOYEE_STATUS_CHOICE=(
     ('I','Intercontract'),
@@ -25,3 +27,7 @@ class Employee (models.Model):
         return self.user.last_name + " " + self.user.first_name
 
     
+class EmployeeResource(resources.ModelResource):
+    
+    class Meta:
+        model=Employee
