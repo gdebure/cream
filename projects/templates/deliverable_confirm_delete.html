@@ -2,8 +2,7 @@
 
 {% block content %}
 
-<div class="alert" align="center">Do you really want to delete this Deliverable ?</div>
-
+{% include "common/alert_panel.html" with heading="Please confirm" body="Do you really want to delete this Deliverable ?" %}
 {% include "deliverable_property.html" %}
   
 <form method="POST">
