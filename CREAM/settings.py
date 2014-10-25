@@ -72,12 +72,6 @@ ROOT_URLCONF = 'CREAM.urls'
 WSGI_APPLICATION = 'CREAM.wsgi.application'
 
 
-ADMINS = (
-    ('Guillaume DE BURE', 'guillaume.debure@airbus.com'),
-)
-
-MANAGERS = ADMINS
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -142,7 +136,7 @@ ANONYMOUS_USER_ID = -1
 
 
 #### Email stuff
-EMAIL_HOST = 'tocimserver'
+EMAIL_HOST = '' # Put the name of your SMTP server here
 EMAIL_PORT= 5225
 EMAIL_SUBJECT_PREFIX = '[CREAM]'
 
