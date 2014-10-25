@@ -82,7 +82,7 @@ Django will propose to create an administrator account, which you should accept 
 
 Open your browser at the URL you defined for CREAM on your webserver, then login with the administrator account you just created.
 
-** BUG **
+**BUG**
 There is currently a bug that displays an error message right after login. This is due to the fact that there is no Employee defined for the User logged in. As a workaround simply change the URL to http://yourserver.com/admin, and create a new Employee for the only existing User so far.
 Later, remember to always create an Employee for every User you add to the database.
 
