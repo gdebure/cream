@@ -5,5 +5,5 @@
     <tr><th>status</th><td><div class="label {{ employeeposition.status.css_class }}">{{ employeeposition.status }}</div></td></tr>
     <tr><th>start date</th><td>{{ employeeposition.start_date }}</td></tr>
     <tr><th>end date</th><td>{{ employeeposition.end_date }}</td></tr>
-    <tr><th>comments</th><td>{{ employeeposition.comments }}</td></tr>
+    <tr><th>comments</th><td>{{ employeeposition.comments|linebreaksbr }}</td></tr>
 </table>
