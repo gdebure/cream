@@ -88,12 +88,6 @@ class Job (models.Model):
         return self.jobemployee_set.all()
         
 
-POSITION_STATUS=(
-    ('A','Anticipation'),
-    ('C','Cancelled'),
-    ('V','Validated'),
-    )
-
 class Location(models.Model):
     '''A class that lists the possible locations for a position'''
     name = models.CharField(max_length=128)
@@ -101,12 +95,22 @@ class Location(models.Model):
     def __unicode__(self):
         return self.name
 
+
+class PositionStatus(models.Model):
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return self.name
+
+
 class Position(models.Model):
     '''A Position is the implementation of a Job in a specific context'''
     
     job = models.ForeignKey(Job)
     project = models.ForeignKey(Project)
-    status = models.CharField(max_length=1,choices=POSITION_STATUS)
+    status = models.ForeignKey(PositionStatus)
     location = models.ForeignKey(Location)
     publish_date = models.DateField()
     headcount = models.PositiveSmallIntegerField()    

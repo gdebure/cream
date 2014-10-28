@@ -17,7 +17,7 @@
     <tr>
         <td><a href="{% url "job_detail" position.job.id %}">{{ position.job }}</a></td>
         <td><a href="{% url "project_detail" position.project.id %}">{{ position.project }}</a></td>
-        <td><a href="{% url "position_detail" position.id %}">{{ position.get_status_display }}</a></td>
+        <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
         <td>{{ position.location }}</td>
         <td>{{ position.publish_date }}</td>
         <td>{{ position.headcount }}</td>
