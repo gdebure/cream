@@ -4,9 +4,9 @@
 <table  class="table table-condensed table-bordered table-hover dataTable">
     <thead>
     <tr>
-        <th>id</th>
         <th>name</th>
         <th>firstname</th>
+        <th>id</th>
         <th>siglum</th>
         <th>status</th>
     </tr>
@@ -14,9 +14,9 @@
     <tbody>
 {% for employee in employees_list %}
     <tr>
-        <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.last_name }}</a></td>
         <td>{{ employee.user.first_name }}</td>
+        <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
         <td>{{ employee.siglum }}</td>
         <td>{{ employee.get_status_display }}</td>
     </tr>
