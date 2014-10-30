@@ -16,6 +16,7 @@ class Employee (models.Model):
     user = models.ForeignKey(User, unique=True, null=True)
     siglum = models.CharField(max_length=16)
     status = models.CharField(max_length=1,choices=EMPLOYEE_STATUS_CHOICE)
+    category = models.CharField(max_length=1, null=True, blank=True)
     
     class Meta:
         ordering = ['user__last_name']
