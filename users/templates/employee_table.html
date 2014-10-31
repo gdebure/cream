@@ -8,6 +8,7 @@
         <th>firstname</th>
         <th>id</th>
         <th>siglum</th>
+        <th>category</th>
         <th>status</th>
     </tr>
     </thead>
@@ -18,6 +19,7 @@
         <td>{{ employee.user.first_name }}</td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
         <td>{{ employee.siglum }}</td>
+        <td>{{ employee.category }}</td>
         <td>{{ employee.get_status_display }}</td>
     </tr>
 {% endfor %}

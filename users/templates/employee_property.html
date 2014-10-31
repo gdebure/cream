@@ -4,6 +4,7 @@
     <tr><th>name</th><td>{{ employee.user.last_name }}</td></tr>
     <tr><th>first name</th><td>{{ employee.user.first_name }}</td></tr>
     <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
+    <tr><th>category</th><td>{{ employee.category }}</td>
     <tr><th>status</th><td>{{ employee.get_status_display }}</td></tr>
     <tr><th>email</th><td><a href="mailto:{{employee.user.email}}">{{employee.user.email}}</td></tr>
 </table>
