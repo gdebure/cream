@@ -11,4 +11,7 @@
 
 <hr/>
 
+{% include "position_table.html" with positions_list=job.position_set.all %}
+<a href="{% url "add_position" job.id %}"><i class="fa fa-plus"></i>Add Position</a>
+
 {% endblock %}

@@ -74,9 +74,10 @@ WSGI_APPLICATION = 'CREAM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'cream_django',                      # Or path to database file if using sqlite3.
-        'USER': 'postgres',                      # Not used with sqlite3.
+        'USER': 'st01447',                      # Not used with sqlite3.
+        'PASSWORD': 'gui0110',                  # Not used with sqlite3.
      }
 }
 
@@ -112,6 +113,7 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
+STATIC_ROOT = '/server/cream/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"

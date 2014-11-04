@@ -7,6 +7,7 @@
         <tr>
             <th>project number</th>
             <th>project name</th>
+            <th>department</th>
             <th>project leader</th>
             <th>project turnover</th>
         </tr>
@@ -16,6 +17,7 @@
     <tr>
         <td>{{ project.number }}</td>
         <td><a href="{% url 'project_detail' project.id %}">{{ project.name }}</td>
+        <td>{{ project.department }}</td>
         <td>
             {% if project.project_leader %}<a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a>{% endif %}
         </td>

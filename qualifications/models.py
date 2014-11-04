@@ -88,18 +88,32 @@ class Job (models.Model):
         return self.jobemployee_set.all()
         
 
-POSITION_STATUS=(
-    ('A','Anticipation'),
-    ('C','Cancelled'),
-    ('V','Validated'),
-    )
+class Location(models.Model):
+    '''A class that lists the possible locations for a position'''
+    name = models.CharField(max_length=128)
+    
+    def __unicode__(self):
+        return self.name
+
+
+class PositionStatus(models.Model):
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return self.name
+
 
 class Position(models.Model):
     '''A Position is the implementation of a Job in a specific context'''
     
     job = models.ForeignKey(Job)
     project = models.ForeignKey(Project)
-    status = models.CharField(max_length=1,choices=POSITION_STATUS)
+    status = models.ForeignKey(PositionStatus)
+    location = models.ForeignKey(Location)
+    publish_date = models.DateField()
+    headcount = models.PositiveSmallIntegerField()    
 
     def __unicode__(self):
         return str(self.project) + ": " + str(self.job)
@@ -159,23 +173,24 @@ class JobProfileSkill(models.Model):
         return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
 
         
-EMPLOYEE_POSITION_STATUS = (
-    ('I','Idea'),
-    ('S','Under Study'),
-    ('A','Approved'),
-    ('R','Rejected'),
-    ('C','Current Position'),
-    ('P','Previous Position'),
-    )
+
+class EmployeePositionStatus(models.Model):
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return self.name
+    
         
 class EmployeePosition(models.Model):
     '''Defines the Positions that are linked to an amployee'''
     
     employee = models.ForeignKey(Employee)
     position = models.ForeignKey(Position)
-    status = models.CharField(max_length=1,choices=EMPLOYEE_POSITION_STATUS)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    status = models.ForeignKey(EmployeePositionStatus)
+    start_date = models.DateField(null=True,blank=True)
+    end_date = models.DateField(null=True,blank=True)
     comments = models.TextField()
     
     def __unicode__(self):

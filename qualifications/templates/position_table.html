@@ -1,4 +1,4 @@
-{% include "decoration.html" with title=title|default:"Jobs list" icon=icon|default:"position_small.png" %}
+{% include "decoration.html" with title=title|default:"Positions list" icon=icon|default:"position_small.png" %}
 
 {% if positions_list %}
 <table class="table table-condensed table-bordered table-hover dataTable">
@@ -6,7 +6,11 @@
         <tr>
             <th>job</th>
             <th>project</th>
+            <th>department</th>
             <th>status</th>
+            <th>location</th>
+            <th>publish date</th>
+            <th>headcount</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +18,11 @@
     <tr>
         <td><a href="{% url "job_detail" position.job.id %}">{{ position.job }}</a></td>
         <td><a href="{% url "project_detail" position.project.id %}">{{ position.project }}</a></td>
-        <td><a href="{% url "position_detail" position.project.id %}">{{ position.get_status_display }}</a></td>
+        <td>{{ position.project.department }}</a></td>
+        <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
+        <td>{{ position.location }}</td>
+        <td>{{ position.publish_date }}</td>
+        <td>{{ position.headcount }}</td>
     </tr>
 {% endfor %}
     </tbody>
