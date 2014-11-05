@@ -1,12 +1,9 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-{% include "decoration.html" with title="Edit User" icon="employee.png" block="main" %}
-<form>
-    <table class="styled detail">
-    {{ form }}
-    </table>
-    <input type="submit" value="save"/>
-</form>
+
+{% include "decoration.html" with title="Update Employee" icon="employee.png" block="main" %}
+
+{% include "common/standard_form.html" %}
+
 {% endblock %}
