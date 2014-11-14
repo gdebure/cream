@@ -113,7 +113,8 @@ class Position(models.Model):
     status = models.ForeignKey(PositionStatus)
     location = models.ForeignKey(Location)
     publish_date = models.DateField()
-    headcount = models.PositiveSmallIntegerField()    
+    headcount = models.PositiveSmallIntegerField()
+    comment = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return str(self.project) + ": " + str(self.job)
