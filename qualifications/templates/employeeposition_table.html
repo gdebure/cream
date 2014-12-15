@@ -18,7 +18,7 @@
         <td><a href="{% url "employee" employeeposition.employee.id %}">{{ employeeposition.employee }}</a></td>
         <td>{{ employeeposition.employee.siglum }}</td>
         <td><a href="{% url "position_detail" employeeposition.position.id %}">{{ employeeposition.position}}</td>
-        <td><a href="{% url "employee_position_detail" employeeposition.id %}"><i class="fa fa-edit"></i></a>&nbsp; <div class="label {{ employeeposition.status.css_class }}">{{ employeeposition.status }}</div></td>
+        <td><a href="{% url "employee_position_detail" employeeposition.id %}"><i class="fa fa-edit"></i></a>&nbsp; <div class="label {{ employeeposition.status.css_class }}" title="{{ employeeposition.comments }}">{{ employeeposition.status }}</div></td>
         <td>{{ employeeposition.start_date }}</td>
         <td>{{ employeeposition.end_date }}</td>
     </tr>
