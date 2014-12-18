@@ -3,7 +3,7 @@ from django.conf.urls import patterns,url
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
 from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
 from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView, AddPositionView
-from qualifications.views import PositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView, AddEmployeePositionView
+from qualifications.views import PositionsListView, OpenPositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView, AddEmployeePositionView
 from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
 from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
 from qualifications.views import EmployeePositionsListView, EmployeePositionDetailView, EmployeePositionCreateView, EmployeePositionUpdateView, EmployeePositionDeleteView
@@ -45,6 +45,7 @@ urlpatterns = patterns('',
     ##################################
     # Positions
     url(r'^positions/$', PositionsListView.as_view(), name='positions_list'),
+    url(r'^positions/open/$', OpenPositionsListView.as_view(), name='open_positions_list'),
     url(r'^positions/(?P<pk>\d+)/$', PositionDetailView.as_view(), name='position_detail' ),
     url(r'^positions/create/$', PositionCreateView.as_view(), name='create_position' ),
     url(r'^positions/(?P<pk>\d+)/update/$', PositionUpdateView.as_view(), name='update_position' ),

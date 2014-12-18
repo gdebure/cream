@@ -1,4 +1,4 @@
-{% include "decoration.html" with title=title|default:"Domain properties" icon="domain.png" block="main" %}
+{% include "fa-decoration.html" with title=title|default:"Domain properties" icon="fa-th" block="main" %}
 <table class="table table-hover">
     <tr><th>domain name</th><td>{{ domain.name}}</td></tr>
     <tr><th>domain is active</th><td>{% include 'common/colored_label.html' with value=domain.is_active %}</td></tr>

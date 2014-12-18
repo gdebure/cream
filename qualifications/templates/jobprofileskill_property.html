@@ -1,4 +1,4 @@
-{% include "decoration.html" with title="Job Skill properties" icon="job_profile_skill.png" block="main" %}
+{% include "fa-decoration.html" with title="Job Skill properties" icon="fa-dashboard" block="main" %}
 <table class="table table-hover">
     <tr><th>job</th><td><a href="{% url "job_detail" jobprofileskill.job.id %}">{{ jobprofileskill.job }}</a></td></tr>
     <tr><th>skill</th><td><a href="{% url "skill_detail" jobprofileskill.skill.id %}">{{ jobprofileskill.skill}}</td></tr>

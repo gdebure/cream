@@ -2,8 +2,13 @@
 
 {% block content %}
 
+<ul class="nav nav-pills">
+  <li role="presentation" {% if viewing = "open" %}class="active"{% endif %}><a href="{%url "open_positions_list" %}">Open Positions only</a></li>
+  <li role="presentation" {% if viewing = "all" %}class="active"{% endif %}><a href="{%url "positions_list" %}">All Positions</a></li>
+</ul>
+
 <!-- Include the list of objects -->
-{% include "position_table.html" with block="main" icon="position.png" %}
+{% include "position_table.html" with block="main" %}
 
 {% include "common/list_actions.html" with item_name="position" %}
 

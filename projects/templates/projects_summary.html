@@ -2,11 +2,9 @@
 <h2>Projects Status</h2>
 <table>
     <tr>
-        <td><img src="{% static 'project_small.png'%}"/></td>
-        <td><a href="{% url 'projects_list' %}">{{count_projects}} Projects</a> registered</td>
+        <td><a href="{% url 'projects_list' %}"><i class="fa fa-cubes"></i>&nbsp;{{count_projects}} Projects</a> registered</td>
     </tr>
     <tr>
-        <td><img src="{% static 'deliverable_small.png' %}"/></td>
-        <td><a href="{% url 'deliverables_list' %}">{{count_deliverables}} Deliverables</a> registered</td>
+        <td><a href="{% url 'deliverables_list' %}"><i class="fa fa-file-text"></i>&nbsp;{{count_deliverables}} Deliverables</a> registered</td>
     </tr>
 </table>

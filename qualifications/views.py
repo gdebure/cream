@@ -147,7 +147,21 @@ class PositionsListView(ListView,LoginRequiredMixin):
     model=Position
     context_object_name='positions_list'
     template_name='position_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(ListView,self).get_context_data(**kwargs)
+        context['viewing'] = "all"
+        return  context
 
+class OpenPositionsListView(PositionsListView):
+    
+    def get_queryset(self):
+        return self.model.objects.exclude(status='S').exclude(status='C')
+
+    def get_context_data(self, **kwargs):
+        context = super(ListView,self).get_context_data(**kwargs)
+        context['viewing'] = "open"
+        return  context
     
 class PositionDetailView(DetailView,LoginRequiredMixin):
     model = Position
