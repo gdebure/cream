@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Use django comments
+    'django_comments',
+    
     # Use guardian for per-object permissions
     'guardian',
     

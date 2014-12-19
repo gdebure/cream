@@ -15,6 +15,9 @@ urlpatterns = patterns('',
     # URL for the admin site:
     url(r'^admin/', include(admin.site.urls)),
     
+    # URL for the comments framework
+    url(r'^comments/', include('django_comments.urls')),
+    
     # URLs for applications
     url(r'^services/',include('services.urls')),
     url(r'^projects/',include('projects.urls')),

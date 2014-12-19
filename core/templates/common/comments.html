@@ -1,16 +1,8 @@
-<!-- We need to display this page in a full layout -->
-{% extends "base.html" %}
+{% load comments %}
+{% load extras %}
 
-{% block content %}
-
-<!-- Include the object property -->
-{% include "position_property.html" %}
-
-<!-- Include the object property -->
-{% include "common/object_actions.html" %}
-
-{% comment %}<h2><i class="fa fa-comment"></i>&nbsp; Comments</h2>
-{% get_comment_list for position as comment_list %}
+<h2><i class="fa fa-comment"></i>&nbsp; Comments</h2>
+{% get_comment_list for object as comment_list %}
 
 {% for comment in comment_list %}
 <span class="row">
@@ -25,7 +17,7 @@
 {% endfor %}
 
 {% if user.is_authenticated %}
-    {% get_comment_form for position as form %}
+    {% get_comment_form for object as form %}
     <form action="{% comment_form_target %}" method="POST">
     {% csrf_token %}
     <div class="form-horizontal">
@@ -44,20 +36,11 @@
     </div>
     <span class="form-group">
         <span class="col-md-6 col-md-offset-2">
-            <input type="hidden" name="next" value="{% url 'position_detail' position.id %}" />
+            <input type="hidden" name="next" value="{% url object_detail object.id %}" />
             <button class="btn btn-primary" type="submit">Submit</button>
         </span>
     </span>
     </form>
 {% else %}
     <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
-{% endif %}{% endcomment %}
-
-{% include "common/comments.html" with object=position %}
-
-<hr/>
-
-{% include "employeeposition_table.html" with employeepositions_list=position.employeeposition_set.all icon="fa-user" %}
-<a href="{% url "add_employeeposition" position.id %}"><i class="fa fa-plus"></i>Add Employee</a>
-
-{% endblock %}
+{% endif %}
