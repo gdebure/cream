@@ -1,7 +1,8 @@
 {% load comments %}
 {% load extras %}
 
-<h2><i class="fa fa-comment"></i>&nbsp; Comments</h2>
+<div>
+<h3><i class="fa fa-comment"></i>&nbsp; Comments</h3>
 {% get_comment_list for object as comment_list %}
 
 {% for comment in comment_list %}
@@ -18,29 +19,28 @@
 
 {% if user.is_authenticated %}
     {% get_comment_form for object as form %}
-    <form action="{% comment_form_target %}" method="POST">
-    {% csrf_token %}
-    <div class="form-horizontal">
+    <form action="{% comment_form_target %}" method="POST" class="form-horizontal">
+        {% csrf_token %}
         <span class="form-group">
             <label class="col-md-2 control-label">Post your comment</label>
-            <div class="col-md-6">
+            <span class="col-md-6">
                 {{ form.comment|css_class:'form-control' }}
-            </div>
+            </span>
         </span>
-    </div>
-    <div style="display:none;">{{ form.honeypot }}
-    {{ form.content_type }}
-    {{ form.object_pk }}
-    {{ form.timestamp }}
-    {{ form.security_hash }}
-    </div>
-    <span class="form-group">
-        <span class="col-md-6 col-md-offset-2">
-            <input type="hidden" name="next" value="{% url object_detail object.id %}" />
-            <button class="btn btn-primary" type="submit">Submit</button>
+        <span style="display:none;">{{ form.honeypot }}
+            {{ form.content_type }}
+            {{ form.object_pk }}
+            {{ form.timestamp }}
+            {{ form.security_hash }}
         </span>
-    </span>
+        <span class="form-group">
+            <span class="col-md-6 col-md-offset-2">
+                <input type="hidden" name="next" value="{% url next_url object.id %}" />
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </span>
+        </span>
     </form>
 {% else %}
     <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
 {% endif %}
+</div>

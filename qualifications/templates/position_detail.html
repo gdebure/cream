@@ -9,51 +9,7 @@
 <!-- Include the object property -->
 {% include "common/object_actions.html" %}
 
-{% comment %}<h2><i class="fa fa-comment"></i>&nbsp; Comments</h2>
-{% get_comment_list for position as comment_list %}
-
-{% for comment in comment_list %}
-<span class="row">
-    <span class="col-md-2">
-        <strong>{{ comment.user_name }}</strong><br/>
-        <small>{{ comment.submit_date }}</small>
-    </span>
-    <span class="col-md-6">
-        {{ comment.comment }}
-    </span>
-</span>
-{% endfor %}
-
-{% if user.is_authenticated %}
-    {% get_comment_form for position as form %}
-    <form action="{% comment_form_target %}" method="POST">
-    {% csrf_token %}
-    <div class="form-horizontal">
-        <span class="form-group">
-            <label class="col-md-2 control-label">Post your comment</label>
-            <div class="col-md-6">
-                {{ form.comment|css_class:'form-control' }}
-            </div>
-        </span>
-    </div>
-    <div style="display:none;">{{ form.honeypot }}
-    {{ form.content_type }}
-    {{ form.object_pk }}
-    {{ form.timestamp }}
-    {{ form.security_hash }}
-    </div>
-    <span class="form-group">
-        <span class="col-md-6 col-md-offset-2">
-            <input type="hidden" name="next" value="{% url 'position_detail' position.id %}" />
-            <button class="btn btn-primary" type="submit">Submit</button>
-        </span>
-    </span>
-    </form>
-{% else %}
-    <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
-{% endif %}{% endcomment %}
-
-{% include "common/comments.html" with object=position %}
+{% include "common/comments.html" with object=position next_url="position_detail" %}
 
 <hr/>
 
