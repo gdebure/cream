@@ -13,7 +13,7 @@ EMPLOYEE_STATUS_CHOICE=(
 class Employee (models.Model):
     '''A class to handle employees'''
     
-    user = models.ForeignKey(User, unique=True, null=True)
+    user = models.OneToOneField(User)
     siglum = models.CharField(max_length=16)
     status = models.CharField(max_length=1,choices=EMPLOYEE_STATUS_CHOICE)
     category = models.CharField(max_length=1, null=True, blank=True)
@@ -23,4 +23,7 @@ class Employee (models.Model):
     
     def __unicode__(self):
         return self.user.last_name + " " + self.user.first_name
+    
+    def get_picture(self):
+        return 'http://inside.intra.cimpa.corp/UsersPhoto/' + str(self.user.username) + '.jpg'
 
