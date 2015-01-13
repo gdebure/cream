@@ -3,50 +3,57 @@
 
 <div class="panel panel-default">
     
-    <div class="panel-heading"><i class="fa fa-comment"></i>&nbsp; Comments</div>
-        
-    <div class="panel-body">
-        {% get_comment_list for object as comment_list %}
-
-        {% for comment in comment_list %}
-        <span class="row">
-            <span class="col-md-1"><img src="{{ comment.user.employee.get_picture }}" class="img-rounded" height="40px"></span>
-            <span class="col-md-2">
-                <strong>{{ comment.user_name }}</strong><br/>
-                <small>{{ comment.submit_date }}</small>
-            </span>
-            <span class="col-md-6">
-                {{ comment.comment }}
-            </span>
+    <div class="panel-heading">
+        <i class="fa fa-comment"></i>&nbsp; Comments
+        <span class="pull-right">
+            <a data-toggle="collapse" href="#commentsArea" aria-expanded="false" aria-controls="commentsArea">show comments <span class="caret"/></a>
         </span>
-        {% endfor %}
+        
+    </div>
+    <div class="collapse" id="commentsArea">
+        <div class="panel-body">
+            {% get_comment_list for object as comment_list %}
 
-        {% if user.is_authenticated %}
-            {% get_comment_form for object as form %}
-            <form action="{% comment_form_target %}" method="POST" class="form-horizontal">
-                {% csrf_token %}
-                <span class="form-group">
-                    <span class="col-md-1"><img src="{{ user.employee.get_picture }}" class="img-rounded" height="40px"></span>
-                    <label class="col-md-2 control-label">Post your comment</label>
-                    <span class="col-md-6">
-                        {{ form.comment|css_class:'form-control' }}
+            {% for comment in comment_list %}
+            <span class="row">
+                <span class="col-md-1"><img src="{{ comment.user.employee.get_picture }}" class="img-rounded" height="40px"></span>
+                <span class="col-md-2">
+                    <strong>{{ comment.user_name }}</strong><br/>
+                    <small>{{ comment.submit_date }}</small>
+                </span>
+                <span class="col-md-6">
+                    {{ comment.comment }}
+                </span>
+            </span>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                {% get_comment_form for object as form %}
+                <form action="{% comment_form_target %}" method="POST" class="form-horizontal">
+                    {% csrf_token %}
+                    <span class="form-group">
+                        <span class="col-md-1"><img src="{{ user.employee.get_picture }}" class="img-rounded" height="40px"></span>
+                        <label class="col-md-2 control-label">Post your comment</label>
+                        <span class="col-md-6">
+                            {{ form.comment|css_class:'form-control' }}
+                        </span>
                     </span>
-                </span>
-                <span style="display:none;">{{ form.honeypot }}
-                    {{ form.content_type }}
-                    {{ form.object_pk }}
-                    {{ form.timestamp }}
-                    {{ form.security_hash }}
-                </span>
-                <span class="form-group">
-                    <span class="col-md-6 col-md-offset-2">
-                        <input type="hidden" name="next" value="{% url next_url object.id %}" />
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                    <span style="display:none;">{{ form.honeypot }}
+                        {{ form.content_type }}
+                        {{ form.object_pk }}
+                        {{ form.timestamp }}
+                        {{ form.security_hash }}
                     </span>
-                </span>
-            </form>
-        {% else %}
-            <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
-        {% endif %}
+                    <span class="form-group">
+                        <span class="col-md-6 col-md-offset-2">
+                            <input type="hidden" name="next" value="{% url next_url object.id %}" />
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </span>
+                    </span>
+                </form>
+            {% else %}
+                <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
+            {% endif %}
+        </div>
     </div>
 </div>
