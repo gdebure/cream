@@ -1,0 +1,25 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="strong"><i class="fa fa-user"></i>&nbsp; Intercontracts</span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>employee</th>
+                    <th>category</th>
+                    <th>siglum</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees_list %}
+                <tr>
+                    <td>{{ employee }}</td>
+                    <td>{{ employee.category}}</td>
+                    <td>{{ employee.get_status_display }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

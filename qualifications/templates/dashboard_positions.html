@@ -1,0 +1,25 @@
+<div class="col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="strong"><i class="fa fa-bullhorn"></i>&nbsp; Open Positions</span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>job</th>
+                    <th>project</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for position in positions_list %}
+                <tr>
+                    <td>{{ position.job }}</td>
+                    <td>{{ position.project }}</td>
+                    <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
