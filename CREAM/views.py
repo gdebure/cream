@@ -42,7 +42,18 @@ class DashboardView(TemplateView):
         
         context.update(self.get_positions())
         context.update(self.get_intercontracts())
+        context.update(self.get_services())
         
+        return context
+        
+    def get_services(self, **kwargs):
+        
+        context = dict()
+        
+        context['count_domains'] = Domain.objects.count()
+        context['count_servicefamilies'] = ServiceFamily.objects.count()
+        context['count_services'] = Service.objects.count()
+
         return context
         
     def get_positions(self):
