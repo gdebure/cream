@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -22,23 +23,27 @@ class SkillCategoryDetailView(DetailView,LoginRequiredMixin):
     
 class SkillCategoryCreateView(CreateView,PermissionRequiredMixin):
     model=SkillCategory
-    success_url='/qualifications/skill_categories/%(id)s'
     template_name='skillcategory_form.html'
     permission='qualifications.add_skillcategory'
+    
+    def get_success_url(self):
+        return reverse_lazy('skill_category_detail',args=[self.object.id])
     
 
 class SkillCategoryUpdateView(UpdateView,PermissionRequiredMixin):
     model = SkillCategory
-    success_url='/qualifications/skill_categories/%(id)s'
     template_name='skillcategory_form.html' 
     permission = 'qualifications.change_skillcategory'
     
+    def get_success_url(self):
+        return reverse_lazy('skill_category_detail',args=[self.object.id])
 
 class SkillCategoryDeleteView(DeleteView,PermissionRequiredMixin):
     model=SkillCategory
-    success_url='/qualifications/skill_categories/'
     permission='qualifications.add_skillcategory'
     
+    def get_success_url(self):
+        return reverse_lazy('skill_categories_list')
     
 ###################
 ### Skill Views ###

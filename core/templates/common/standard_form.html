@@ -20,7 +20,7 @@
     {% endwith %}
 {% comment %} This field was not predefined     {% endcomment %}
     {% else %}
-    <div class="form-group">
+    <div class="form-group {% if field.errors %}has-error{% endif %}">
         <label class="col-sm-2 control-label" for="id_{{ field.name }}">
             {% if field.field.required %}<strong><i class="fa fa-asterisk"></i> {{ field.label }}</strong>
             {% else %}{{ field.label }}
@@ -32,10 +32,10 @@
                 <span class="input-group-addon date" id="id_{{ field.name }}" data-date="{{ field.value|date:'Y-m-d'}}"><i class="fa fa-calendar"></i></span>
                 <input class="form-control" id="id_{{ field.name}}" name="{{ field.name }}" type="text" size="16" value="{{ field.value|date:'Y-m-d'}}" data-provide="datepicker" data-date-format="yyyy-mm-dd"/>
             </div>
-        <span>{{ field.errors|join:', ' }}</span>
+        <span class="text-danger">{{ field.errors|join:', ' }}</span>
        {% else %}
             {{ field|css_class:'form-control' }}
-        <span>{{ field.errors|join:', ' }}</span>
+        <span class="text-danger">{{ field.errors|join:', ' }}</span>
         {% endif %}
         </div>
     </div>
