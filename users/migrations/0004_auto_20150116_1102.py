@@ -16,6 +16,5 @@ class Migration(migrations.Migration):
             model_name='employee',
             name='user',
             field=models.OneToOneField(to=settings.AUTH_USER_MODEL),
-            preserve_default=True,
         ),
     ]
