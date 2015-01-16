@@ -44,8 +44,8 @@ urlpatterns = patterns('',
     
     ##################################
     # Positions
-    url(r'^positions/$', PositionsListView.as_view(), name='positions_list'),
-    url(r'^positions/open/$', OpenPositionsListView.as_view(), name='open_positions_list'),
+    url(r'^positions/all$', PositionsListView.as_view(), name='all_positions_list'),
+    url(r'^positions/$', OpenPositionsListView.as_view(), name='positions_list'),
     url(r'^positions/(?P<pk>\d+)/$', PositionDetailView.as_view(), name='position_detail' ),
     url(r'^positions/create/$', PositionCreateView.as_view(), name='create_position' ),
     url(r'^positions/(?P<pk>\d+)/update/$', PositionUpdateView.as_view(), name='update_position' ),
