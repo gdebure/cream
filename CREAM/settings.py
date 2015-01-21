@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Use django-bower
+    'djangobower',
+    'django_nvd3',
     # Use django comments
     'django_comments',
     
@@ -122,7 +125,16 @@ STATIC_ROOT = '/server/cream/static/'
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+STATICFILES_FINDER = (
+    'djangobower.finders.BowerFinder',
+    )
 
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
+
+BOWER_INSTALLED_APPS = (
+    'd3',
+    'nvd3',
+)
 
 # Define additional information for users in the Employee model
 AUTH_PROFILE_MODULE = 'users.Employee'

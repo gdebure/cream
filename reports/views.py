@@ -6,8 +6,40 @@ from services.models import Domain, ServiceFamily, Service
 class DomainsReportView(ListView):
     
     template_name="domains_report.html"
-    model = Domain    
+    model = Domain
     
+class DomainsChartView(ListView):
+    
+    template_name = "domain_piechart.html"
+    model = Domain
+    
+    def get_context_data(self, **kwargs):
+        
+        context = super(DomainsChartView,self).get_context_data(**kwargs)
+        
+        x_data = []
+        y_data = []
+        
+        for domain in context['domain_list']:
+            x_data.append(str(domain))
+            y_data.append(domain.get_turnover())
+            
+        chartdata = {'x': x_data, 'y': y_data}
+        charttype = "pieChart"
+        chartcontainer = 'piechart_container'
+        data = {
+            'charttype': charttype,
+            'chartdata': chartdata,
+            'chartcontainer': chartcontainer,
+            'extra': {
+                'x_is_date': False,
+                'x_axis_format': '',
+                'tag_script_js': True,
+                'jquery_on_ready': False,
+            }
+        }
+        context.update(data)
+        return context
     
 class DomainReportView(DetailView):
     
