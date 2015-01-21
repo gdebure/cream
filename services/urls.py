@@ -24,11 +24,11 @@ urlpatterns = patterns('',
     
     ##################################
     # Service Families 
-    url(r'^service_families/$', ServiceFamilyListView.as_view(), name='service_families_list'),
-    url(r'^service_families/(?P<pk>\d+)/$', ServiceFamilyDetailView.as_view(), name='service_family' ),
-    url(r'^service_families/create/$', ServiceFamilyCreateView.as_view(), name='create_service_family'),
-    url(r'^service_families/(?P<pk>\d+)/update/$',ServiceFamilyUpdateView.as_view() , name='update_service_family' ),
-    url(r'^service_families/(?P<pk>\d+)/delete/$', ServiceFamilyDeleteView.as_view(), name='delete_service_family' ),
+    url(r'^service_families/$', ServiceFamilyListView.as_view(), name='servicefamilies_list'),
+    url(r'^service_families/(?P<pk>\d+)/$', ServiceFamilyDetailView.as_view(), name='servicefamily' ),
+    url(r'^service_families/create/$', ServiceFamilyCreateView.as_view(), name='create_servicefamily'),
+    url(r'^service_families/(?P<pk>\d+)/update/$',ServiceFamilyUpdateView.as_view() , name='update_servicefamily' ),
+    url(r'^service_families/(?P<pk>\d+)/delete/$', ServiceFamilyDeleteView.as_view(), name='delete_servicefamily' ),
     url(r'^service_families/(?P<pk>\d+)/add_service/$', AddServiceView.as_view(), name='add_service'),
     ##################################
     

@@ -16,7 +16,7 @@
         <td><a href="{% url "job_detail" jobprofileskill.job.id %}">{{ jobprofileskill.job.name }}</a></td>
         <td><a href="{% url "skill_detail" jobprofileskill.skill.id %}">{{ jobprofileskill.skill }}</a></td>
         <td>{{ jobprofileskill.profile }}</td>
-        <td><a href="{% url "job_profile_skill_detail" jobprofileskill.id %}">{{ jobprofileskill.level }}</a></td>
+        <td><a href="{% url "jobprofileskill_detail" jobprofileskill.id %}">{{ jobprofileskill.level }}</a></td>
     </tr>
 {% endfor %}
     </tbody>
