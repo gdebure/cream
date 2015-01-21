@@ -3,5 +3,5 @@
     <tr><th>name</th><td>{{skill.name}}</td></tr>
     <tr><th>enabled</th><td>{{skill.enabled}}</td></tr>
     <tr><th>description</th><td>{{ skill.description}}</td></tr>
-    <tr><th>category</th><td><a href="{% url "skill_category_detail" skill.category.id %}">{{skill.category}}</a></td></tr>
+    <tr><th>category</th><td><a href="{% url "skillcategory_detail" skill.category.id %}">{{skill.category}}</a></td></tr>
 </table>

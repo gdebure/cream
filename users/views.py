@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -19,28 +20,33 @@ class EmployeeDetailView(DetailView,LoginRequiredMixin):
     
 class EmployeeCreateView(CreateView,PermissionRequiredMixin):
     model=Employee
-    success_url='/users/employees/%(id)s'
     template_name='employee_form.html'
     permission='users.add_employee'
+    
+    def get_success_url(self):
+        return reverse_lazy('employee_detail',args=[self.object.id])
     
 
 class EmployeeUpdateView(UpdateView,PermissionRequiredMixin):
     model = Employee
-    success_url='/users/employees/%(id)s'
     template_name='employee_form.html' 
     permission = 'users.change_employee'
     
+    def get_success_url(self):
+        return reverse_lazy('employee_detail',args=[self.object.id])
+
 
 class EmployeeDeleteView(DeleteView,PermissionRequiredMixin):
     model=Employee
-    success_url='/users/employees/'
     template_name='employee_confirm_delete.html' 
     permission='users.add_employee'
+
+    def get_success_url(self):
+        return reverse_lazy('employees_list',args=[self.object.id])
 
 
 class AddPositionToEmployeeView(CreateView,PermissionRequiredMixin):
     model=EmployeePosition
-    success_url='/users/employees/%(id)s'
     template_name='employeeposition_form.html'
     permission='qualifications.add_employeeposition'
     
@@ -49,3 +55,6 @@ class AddPositionToEmployeeView(CreateView,PermissionRequiredMixin):
         employee = Employee.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'employee':employee}
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeposition_detail',args=[self.object.id])

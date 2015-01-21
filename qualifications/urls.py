@@ -13,11 +13,11 @@ urlpatterns = patterns('',
     
     ##################################
     # Skill Categories 
-    url(r'^skill_categories/$', SkillCategoriesListView.as_view(), name='skill_categories_list'),
-    url(r'^skill_categories/(?P<pk>\d+)/$', SkillCategoryDetailView.as_view(), name='skill_category_detail'),
-    url(r'^skill_categories/create/$', SkillCategoryCreateView.as_view(), name='create_skill_category' ),
-    url(r'^skill_categories/(?P<pk>\d+)/update/$', SkillCategoryUpdateView.as_view(), name='update_skill_category' ),
-    url(r'^skill_categories/(?P<pk>\d+)/delete/$', SkillCategoryDeleteView.as_view(), name='delete_skill_category' ),
+    url(r'^skill_categories/$', SkillCategoriesListView.as_view(), name='skillcategories_list'),
+    url(r'^skill_categories/(?P<pk>\d+)/$', SkillCategoryDetailView.as_view(), name='skillcategory_detail'),
+    url(r'^skill_categories/create/$', SkillCategoryCreateView.as_view(), name='create_skillcategory' ),
+    url(r'^skill_categories/(?P<pk>\d+)/update/$', SkillCategoryUpdateView.as_view(), name='update_skillcategory' ),
+    url(r'^skill_categories/(?P<pk>\d+)/delete/$', SkillCategoryDeleteView.as_view(), name='delete_skillcategory' ),
     
     url(r'^skill_categories/(?P<pk>\d+)/add_skill/$', AddSkillView.as_view(), name='add_skill' ),
     ##################################
@@ -56,29 +56,29 @@ urlpatterns = patterns('',
         
     ##################################
     # Employee Skills 
-    url(r'^employee_skills/$', EmployeeSkillsListView.as_view(), name='employee_skills_list'),
-    url(r'^employee_skills/(?P<pk>\d+)/$', EmployeeSkillDetailView.as_view(), name='employee_skills_detail' ),
-    url(r'^employee_skills/create/$', EmployeeSkillCreateView.as_view(), name='create_employee_skills' ),
-    url(r'^employee_skills/(?P<pk>\d+)/update/$', EmployeeSkillUpdateView.as_view(), name='update_employee_skills' ),
-    url(r'^employee_skills/(?P<pk>\d+)/delete/$', EmployeeSkillDeleteView.as_view(), name='delete_employee_skills' ),
+    url(r'^employee_skills/$', EmployeeSkillsListView.as_view(), name='employeeskills_list'),
+    url(r'^employee_skills/(?P<pk>\d+)/$', EmployeeSkillDetailView.as_view(), name='employeeskills_detail' ),
+    url(r'^employee_skills/create/$', EmployeeSkillCreateView.as_view(), name='create_employeeskills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/update/$', EmployeeSkillUpdateView.as_view(), name='update_employeeskills' ),
+    url(r'^employee_skills/(?P<pk>\d+)/delete/$', EmployeeSkillDeleteView.as_view(), name='delete_employeeskills' ),
     ##################################
     
     ##################################
     # job profile Skills 
-    url(r'^job_profile_skills/$', JobProfileSkillsListView.as_view(), name='job_profile_skills_list'),
-    url(r'^job_profile_skills/(?P<pk>\d+)/$', JobProfileSkillDetailView.as_view(), name='job_profile_skill_detail'),
-    url(r'^job_profile_skills/create/$', JobProfileSkillCreateView.as_view(), name='create_job_profile_skill'),
-    url(r'^job_profile_skills/(?P<pk>\d+)/update/$', JobProfileSkillUpdateView.as_view(), name='update_job_profile_skill'),
-    url(r'^job_profile_skills/(?P<pk>\d+)/delete/$', JobProfileSkillDeleteView.as_view(), name='delete_job_profile_skill'),
+    url(r'^job_profile_skills/$', JobProfileSkillsListView.as_view(), name='jobprofileskills_list'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/$', JobProfileSkillDetailView.as_view(), name='jobprofileskill_detail'),
+    url(r'^job_profile_skills/create/$', JobProfileSkillCreateView.as_view(), name='create_jobprofileskill'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/update/$', JobProfileSkillUpdateView.as_view(), name='update_jobprofileskill'),
+    url(r'^job_profile_skills/(?P<pk>\d+)/delete/$', JobProfileSkillDeleteView.as_view(), name='delete_jobprofileskill'),
     ##################################
     
     ##################################
     # Employee Positions 
-    url(r'^employee_positions/$', EmployeePositionsListView.as_view(), name='employee_positions_list'),
-    url(r'^employee_positions/(?P<pk>\d+)/$', EmployeePositionDetailView.as_view(), name='employee_position_detail' ),
-    url(r'^employee_positions/create/$', EmployeePositionCreateView.as_view(), name='create_employee_position' ),
-    url(r'^employee_positions/(?P<pk>\d+)/update/$', EmployeePositionUpdateView.as_view(), name='update_employee_position' ),
-    url(r'^employee_positions/(?P<pk>\d+)/delete/$', EmployeePositionDeleteView.as_view(), name='delete_employee_position' ),
+    url(r'^employee_positions/$', EmployeePositionsListView.as_view(), name='employeepositions_list'),
+    url(r'^employee_positions/(?P<pk>\d+)/$', EmployeePositionDetailView.as_view(), name='employeeposition_detail' ),
+    url(r'^employee_positions/create/$', EmployeePositionCreateView.as_view(), name='create_employeeposition' ),
+    url(r'^employee_positions/(?P<pk>\d+)/update/$', EmployeePositionUpdateView.as_view(), name='update_employeeposition' ),
+    url(r'^employee_positions/(?P<pk>\d+)/delete/$', EmployeePositionDeleteView.as_view(), name='delete_employeeposition' ),
     ##################################
     
 )

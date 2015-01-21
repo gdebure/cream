@@ -14,7 +14,7 @@
 {% for employeeskill in employeeskills_list %}
     <tr>
         <td><a href="{% url "employee" employeeskill.employee.id %}">{{ employeeskill.employee }}</a></td>
-        <td><a href="{% url "skill_category_detail" employeeskill.skill.category.id %}">{{ employeeskill.skill.category }}</td>
+        <td><a href="{% url "skillcategory_detail" employeeskill.skill.category.id %}">{{ employeeskill.skill.category }}</td>
         <td><a href="{% url "skill_detail" employeeskill.skill.id %}">{{ employeeskill.skill}}</td>
         <td>{{ employeeskill.level}}</td>
     </tr>

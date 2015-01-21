@@ -14,7 +14,7 @@
     <tbody>
 {% for servicefamily in servicefamilies_list %}
     <tr>
-        <td><a href="{% url 'service_family' servicefamily.id %}">{{ servicefamily}}</a></td>
+        <td><a href="{% url 'servicefamily' servicefamily.id %}">{{ servicefamily}}</a></td>
         <td><a href="{% url 'domain' servicefamily.domain.id %}">{{ servicefamily.domain }}</a></td>
         <td>{% if servicefamily.owner %}<a href="{% url 'employee' servicefamily.owner.id %}">{{ servicefamily.owner}}</a>{% endif %}</td>
         <td>{% include 'common/colored_label.html' with value=servicefamily.is_active %}</td>

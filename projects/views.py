@@ -21,29 +21,34 @@ class ProjectDetailView(DetailView,LoginRequiredMixin):
     
 class ProjectCreateView(CreateView,PermissionRequiredMixin):
     model=Project
-    success_url='/projects/projects/%(id)s'
     template_name='project_form.html'
     permission='projects.add_project'
+    
+    def get_success_url(self):
+        return reverse_lazy('project_detail',args=[self.object.id])
     
 
 class ProjectUpdateView(UpdateView,PermissionRequiredMixin):
     model = Project
-    success_url='/projects/projects/%(id)s'
     template_name='project_form.html' 
     permission = 'projects.change_project'
+    
+    def get_success_url(self):
+        return reverse_lazy('project_detail',args=[self.object.id])
     
 
 class ProjectDeleteView(DeleteView,PermissionRequiredMixin):
     model=Project
-    success_url='/projects/projects/'
     permission='projects.delete_project'
+    
+    def get_success_url(self):
+        return reverse_lazy('projects_list',args=[self.object.id])
     
     
 class AddDeliverableView(CreateView,PermissionRequiredMixin):
     model = Deliverable
     template_name='deliverable_form.html'
     permission='projects.add_deliverable'
-    success_url='/projects/deliverable/%(id)s'
     permission='projects.add_deliverable'
 
     def get_context_data(self, **kwargs):
@@ -51,6 +56,9 @@ class AddDeliverableView(CreateView,PermissionRequiredMixin):
         project = Project.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'project':project}
         return  context
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverable_detail',args=[self.object.id])
 
 
 #####################
@@ -70,30 +78,35 @@ class DeliverableDetailView(DetailView,LoginRequiredMixin):
     
 class DeliverableCreateView(CreateView,PermissionRequiredMixin):
     model=Deliverable
-    success_url='/projects/deliverable/%(id)s'
     template_name='deliverable_form.html'
     permission='projects.add_deliverable'
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverable_detail',args=[self.object.id])
     
 
 class DeliverableUpdateView(UpdateView,PermissionRequiredMixin):
     model = Deliverable
-    success_url='/projects/deliverable/%(id)s'
     template_name='deliverable_form.html' 
     permission = 'projects.change_deliverable'
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverable_detail',args=[self.object.id])
     
 
 class DeliverableDeleteView(DeleteView,PermissionRequiredMixin):
     model=Deliverable
-    success_url='/projects/deliverable/'
     template_name='deliverable_confirm_delete.html'
     permission='projects.delete_deliverable'
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverables_list')
     
     
 class AddDeliverableVolumeView(CreateView,PermissionRequiredMixin):
     model = DeliverableVolume
     template_name='deliverablevolume_form.html'
     permission='projects.add_deliverablevolume'
-    success_url='/projects/deliverable_volume/%(id)s' 
     permission='projects.add_deliverablevolume'
 
     def get_context_data(self, **kwargs):
@@ -101,4 +114,7 @@ class AddDeliverableVolumeView(CreateView,PermissionRequiredMixin):
         deliverable= Deliverable.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'deliverable':deliverable}
         return  context
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverablevolume_detail',args=[self.object.id])
     
