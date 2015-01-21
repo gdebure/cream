@@ -27,7 +27,7 @@ class SkillCategoryCreateView(CreateView,PermissionRequiredMixin):
     permission='qualifications.add_skillcategory'
     
     def get_success_url(self):
-        return reverse_lazy('skill_category_detail',args=[self.object.id])
+        return reverse_lazy('skillcategory_detail',args=[self.object.id])
     
 
 class SkillCategoryUpdateView(UpdateView,PermissionRequiredMixin):
@@ -36,14 +36,14 @@ class SkillCategoryUpdateView(UpdateView,PermissionRequiredMixin):
     permission = 'qualifications.change_skillcategory'
     
     def get_success_url(self):
-        return reverse_lazy('skill_category_detail',args=[self.object.id])
+        return reverse_lazy('skillcategory_detail',args=[self.object.id])
 
 class SkillCategoryDeleteView(DeleteView,PermissionRequiredMixin):
     model=SkillCategory
     permission='qualifications.add_skillcategory'
     
     def get_success_url(self):
-        return reverse_lazy('skill_categories_list')
+        return reverse_lazy('skillcategories_list')
     
 ###################
 ### Skill Views ###
@@ -62,24 +62,30 @@ class SkillDetailView(DetailView,LoginRequiredMixin):
     
 class SkillCreateView(CreateView,PermissionRequiredMixin):
     model=Skill
-    success_url='/qualifications/skills/%(id)s'
     template_name='skill_form.html'
     permission='qualifications.add_skill'
     
+    def get_success_url(self):
+        return reverse_lazy('skill_detail',args=[self.object.id])
+
 
 class SkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = Skill
-    success_url='/qualifications/skills/%(id)s'
     template_name='skill_form.html' 
     permission = 'qualifications.change_skill'
     
+    def get_success_url(self):
+        return reverse_lazy('skill_detail',args=[self.object.id])
+
 
 class SkillDeleteView(DeleteView,PermissionRequiredMixin):
     model=Skill
-    success_url='/qualifications/skills/'
     template_name='skill_confirm_delete.html'
     permission='qualifications.add_skill'
 
+    def get_success_url(self):
+        return reverse_lazy('skills_list')
+    
     
 class AddSkillView(CreateView,PermissionRequiredMixin):
     model=Skill
@@ -92,6 +98,9 @@ class AddSkillView(CreateView,PermissionRequiredMixin):
         category = SkillCategory.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'category':category}
         return  context
+    
+    def get_success_url(self):
+        return reverse_lazy('skill_detail',args=[self.object.id])
     
     
     
@@ -112,28 +121,32 @@ class JobDetailView(DetailView,LoginRequiredMixin):
     
 class JobCreateView(CreateView,PermissionRequiredMixin):
     model=Job
-    success_url='/qualifications/jobs/%(id)s'
     template_name='job_form.html'
     permission='qualifications.add_job'
     
+    def get_success_url(self):
+        return reverse_lazy('job_detail',args=[self.object.id])
 
 class JobUpdateView(UpdateView,PermissionRequiredMixin):
     model = Job
-    success_url='/qualifications/jobs/%(id)s'
     template_name='job_form.html' 
     permission = 'qualifications.change_job'
+    
+    def get_success_url(self):
+        return reverse_lazy('job_detail',args=[self.object.id])
     
 
 class JobDeleteView(DeleteView,PermissionRequiredMixin):
     model=Job
-    success_url='/qualifications/jobs/'
     template_name='job_confirm_delete.html'
     permission='qualifications.add_job'
+
+    def get_success_url(self):
+        return reverse_lazy('skills_list')
 
 
 class AddPositionView(CreateView,PermissionRequiredMixin):
     model=Position
-    success_url='/qualifications/positions/%(id)s'
     template_name='position_form.html'
     permission='qualifications.add_position'
     
@@ -142,6 +155,9 @@ class AddPositionView(CreateView,PermissionRequiredMixin):
         job = Job.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'job':job}
         return  context
+
+    def get_success_url(self):
+        return reverse_lazy('position_detail',args=[self.object.id])
 
 
 ######################
@@ -175,28 +191,34 @@ class PositionDetailView(DetailView,LoginRequiredMixin):
     
 class PositionCreateView(CreateView,PermissionRequiredMixin):
     model=Position
-    success_url='/qualifications/positions/%(id)s'
     template_name='position_form.html'
     permission='qualifications.add_position'
+    
+    def get_success_url(self):
+        return reverse_lazy('position_detail',args=[self.object.id])
     
 
 class PositionUpdateView(UpdateView,PermissionRequiredMixin):
     model = Position
-    success_url='/qualifications/positions/%(id)s'
     template_name='position_form.html' 
     permission = 'qualifications.change_position'
+    
+    def get_success_url(self):
+        return reverse_lazy('position_detail',args=[self.object.id])
     
 
 class PositionDeleteView(DeleteView,PermissionRequiredMixin):
     model=Position
-    success_url='/qualifications/positions/'
     template_name='position_confirm_delete.html'
     permission='qualifications.add_position'
+    
+    def get_success_url(self):
+        return reverse_lazy('positions_list')
+
 
 
 class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
     model=EmployeePosition
-    success_url='/qualifications/employee_positions/%(id)s'
     template_name='employeeposition_form.html'
     permission='qualifications.add_employeeposition'
     
@@ -205,6 +227,9 @@ class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
         position = Position.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'position':position}
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeposition_detail',args=[self.object.id])
 
 #############################
 ### Employee Skills Views ###
@@ -223,23 +248,30 @@ class EmployeeSkillDetailView(DetailView,LoginRequiredMixin):
     
 class EmployeeSkillCreateView(CreateView,PermissionRequiredMixin):
     model=EmployeeSkill
-    success_url='/qualifications/employees_kills/%(id)s'
     template_name='employeeskill_form.html'
     permission='qualifications.add_employeeskill'
     
-
+    def get_success_url(self):
+        return reverse_lazy('employeeskill_detail',args=[self.object.id])
+    
+    
+    
 class EmployeeSkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = EmployeeSkill
-    success_url='/qualifications/employee_skills/%(id)s'
     template_name='employeeskill_form.html' 
     permission = 'qualifications.change_employeeskill'
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeskill_detail',args=[self.object.id])
     
 
 class EmployeeSkillDeleteView(DeleteView,PermissionRequiredMixin):
     model=EmployeeSkill
-    success_url='/qualifications/employeeskills/'
     template_name='employeeskill_confirm_delete.html'
     permission='qualifications.add_employeeskill'
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeskills_list')
 
 
 #################################
@@ -259,25 +291,29 @@ class JobProfileSkillDetailView(DetailView,LoginRequiredMixin):
     
 class JobProfileSkillCreateView(CreateView,PermissionRequiredMixin):
     model=JobProfileSkill
-    success_url='/qualifications/employees_kills/%(id)s'
     template_name='jobprofileskill_form.html'
     permission='qualifications.add_jobprofileskill'
+    
+    def get_success_url(self):
+        return reverse_lazy('jobprofileskill_detail',args=[self.object.id])
     
 
 class JobProfileSkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = JobProfileSkill
-    success_url='/qualifications/employee_skills/%(id)s'
     template_name='jobprofileskill_form.html' 
     permission = 'qualifications.change_jobprofileskill'
+    
+    def get_success_url(self):
+        return reverse_lazy('jobprofileskill_detail',args=[self.object.id])
     
 
 class JobProfileSkillDeleteView(DeleteView,PermissionRequiredMixin):
     model=JobProfileSkill
-    success_url='/qualifications/jobprofileskills/'
     template_name='jobprofileskill_confirm_delete.html'
     permission='qualifications.add_jobprofileskill'
 
-
+    def get_success_url(self):
+        return reverse_lazy('jobprofileskills_list')
 
 ################################
 ### Employee Positions Views ###
@@ -296,21 +332,27 @@ class EmployeePositionDetailView(DetailView,LoginRequiredMixin):
     
 class EmployeePositionCreateView(CreateView,PermissionRequiredMixin):
     model=EmployeePosition
-    success_url='/qualifications/employee_positions/%(id)s'
     template_name='employeeposition_form.html'
     permission='qualifications.add_employeeposition'
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeposition_detail',args=[self.object.id])
     
 
 class EmployeePositionUpdateView(UpdateView,PermissionRequiredMixin):
     model = EmployeePosition
-    success_url='/qualifications/employee_positions/%(id)s'
     template_name='employeeposition_form.html' 
     permission = 'qualifications.change_employeeposition'
+    
+    def get_success_url(self):
+        return reverse_lazy('employeeposition_detail',args=[self.object.id])
     
 
 class EmployeePositionDeleteView(DeleteView,PermissionRequiredMixin):
     model=EmployeePosition
-    success_url='/qualifications/employee_positions/'
     template_name='employeeposition_confirm_delete.html'
     permission='qualifications.add_employeeposition'
+    
+    def get_success_url(self):
+        return reverse_lazy('employeepositions_list',args=[self.object.id])
     
