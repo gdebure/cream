@@ -24,7 +24,7 @@ class EmployeeCreateView(CreateView,PermissionRequiredMixin):
     permission='users.add_employee'
     
     def get_success_url(self):
-        return reverse_lazy('employee_detail',args=[self.object.id])
+        return reverse_lazy('employee',args=[self.object.id])
     
 
 class EmployeeUpdateView(UpdateView,PermissionRequiredMixin):
@@ -33,7 +33,7 @@ class EmployeeUpdateView(UpdateView,PermissionRequiredMixin):
     permission = 'users.change_employee'
     
     def get_success_url(self):
-        return reverse_lazy('employee_detail',args=[self.object.id])
+        return reverse_lazy('employee',args=[self.object.id])
 
 
 class EmployeeDeleteView(DeleteView,PermissionRequiredMixin):
