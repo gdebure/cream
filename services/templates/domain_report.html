@@ -2,6 +2,15 @@
 
 {% block content %}
 {% include "fa-decoration.html" with title=title|default:"Turnover by Service Family" icon="fa-calculator" block="main" %}
+
+{% load nvd3_tags %}
+{% include_chart_jscss %}
+{% load_chart charttype chartdata chartcontainer extra %}
+
 {% include "servicefamily_report_table.html" with servicefamilies_list=domain.get_service_families %}
+
+<div>
+{% include_container chartcontainer 400 600 %}
+</div>
 
 {% endblock %}
