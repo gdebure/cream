@@ -2,6 +2,8 @@
 <table class="table table-condensed table-bordered table-hover dataTable">
 <thead>
 <tr>
+    <th>Deliverable</th>
+    <th>Project</th>
     <th>Service</th>
     <th>Service Family</th>
     <th>Domain</th>
@@ -9,8 +11,10 @@
 </tr>
 </thead>
 <tbody>
-{% for service in services_list %}
+{% for deliverable in service.get_deliverables %}
     <tr>
+        <td><a href="{%url 'deliverable_detail' deliverable.id %}">{{ deliverable }}</a></td>
+        <td><a href="{%url 'project_detail' deliverable.project.id %}">{{ deliverable.project }}</a></td>
         <td><a href="{% url 'service_report' service.id %}">{{service.name}}</a></td>
         <td><a href="{% url 'servicefamily_report' service.service_family.id %}">{{service.service_family}}</a></td>
         <td><a href="{% url 'domain_report'  service.service_family.domain.id %}">{{service.service_family.domain}}</a></td>
@@ -20,7 +24,7 @@
 </tbody>
 <tfoot>
     <tr>
-        <th colspan="3">Total</th>
+        <th colspan="5">Total</th>
         <th style="text-align:right;">{{total_turnover|currency}}</th>
     </tr>
 </tfoot>
