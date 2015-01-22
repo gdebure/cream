@@ -4,6 +4,10 @@
 {% block content %}
 {% include "fa-decoration.html" with title=title|default:"Turnover by Domain" icon="fa-calculator" block="main" %}
 
+{% load nvd3_tags %}
+{% include_chart_jscss %}
+{% load_chart charttype chartdata chartcontainer extra %}
+
 <table class="table table-condensed table-bordered table-hover dataTable">
     <thead>
     <tr>
@@ -26,5 +30,8 @@
     </tr>
     </tfoot>
 <table>
+
+{% include_container chartcontainer 400 600 %}
+
 
 {% endblock %}

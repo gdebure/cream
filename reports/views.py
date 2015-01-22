@@ -1,4 +1,3 @@
-# Create your views here.
 from django.views.generic import ListView, DetailView
 
 from services.models import Domain, ServiceFamily, Service
@@ -10,7 +9,7 @@ class DomainsReportView(ListView):
     
 class DomainsChartView(ListView):
     
-    template_name = "domain_piechart.html"
+    template_name = "domains_report.html"
     model = Domain
     
     def get_context_data(self, **kwargs):
@@ -22,7 +21,7 @@ class DomainsChartView(ListView):
         
         for domain in context['domain_list']:
             x_data.append(str(domain))
-            y_data.append(domain.get_turnover())
+            y_data.append(float(domain.get_turnover()))
             
         chartdata = {'x': x_data, 'y': y_data}
         charttype = "pieChart"
