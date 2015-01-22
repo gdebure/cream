@@ -1,4 +1,6 @@
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
+
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from projects.models import Project, Deliverable, DeliverableVolume
