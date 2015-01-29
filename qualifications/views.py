@@ -354,5 +354,5 @@ class EmployeePositionDeleteView(DeleteView,PermissionRequiredMixin):
     permission='qualifications.add_employeeposition'
     
     def get_success_url(self):
-        return reverse_lazy('employeepositions_list',args=[self.object.id])
+        return reverse_lazy('employeepositions_list')
     
