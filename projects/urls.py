@@ -5,7 +5,8 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from projects.models import Project, Deliverable, DeliverableVolume
 
 from projects.views import ProjectListView, ProjectDetailView, ProjectUpdateView, ProjectCreateView, ProjectDeleteView, AddDeliverableView
-from projects.views import DeliverableListView, DeliverableDetailView, DeliverableUpdateView, DeliverableCreateView, DeliverableDeleteView, AddDeliverableVolumeView
+from projects.views import DeliverableListView, DeliverableDetailView, DeliverableUpdateView, DeliverableCreateView, DeliverableDeleteView
+from projects.views import AddDeliverableVolumeView, DeliverableVolumeUpdateView
 
 urlpatterns = patterns('',
     ##################################
@@ -37,7 +38,7 @@ urlpatterns = patterns('',
     ##################################
     # Deliverable Volumes
     url(r'^deliverablevolumes/(?P<pk>\d+)/$', login_required()(DetailView.as_view( model=DeliverableVolume, template_name='deliverablevolume_detail.html', )), name='deliverablevolume_detail'),
-    url(r'^deliverablevolumes/(?P<pk>\d+)/update/$', permission_required('projects.change_deliverablevolume')(UpdateView.as_view( model=DeliverableVolume, template_name='deliverablevolume_form.html' )), name='update_deliverablevolume'),
+    url(r'^deliverablevolumes/(?P<pk>\d+)/update/$', DeliverableVolumeUpdateView.as_view(), name='update_deliverablevolume'),
     #url(r'^deliverablevolumes/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverablevolume')(DeleteDeliverableVolumeView.as_view()), name='delete_deliverablevolume'),
     ##################################
 
