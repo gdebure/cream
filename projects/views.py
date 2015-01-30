@@ -120,3 +120,11 @@ class AddDeliverableVolumeView(CreateView,PermissionRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('deliverablevolume_detail',args=[self.object.id])
     
+class DeliverableVolumeUpdateView(UpdateView,PermissionRequiredMixin):
+    model = DeliverableVolume
+    template_name='deliverablevolume_form.html' 
+    permission = 'projects.change_deliverablevolume'
+    
+    def get_success_url(self):
+        return reverse_lazy('deliverablevolume_detail',args=[self.object.id])
+    
