@@ -7,7 +7,7 @@
 {% include_chart_jscss %}
 {% load_chart charttype chartdata chartcontainer extra %}
 
-{% include "servicefamily_report_table.html" with servicefamilies_list=domain.get_service_families %}
+{% include "domain_report_table.html" with servicefamilies_list=domain.get_service_families %}
 
 <div>
 {% include_container chartcontainer 400 600 %}
