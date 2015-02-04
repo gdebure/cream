@@ -18,7 +18,7 @@
         <td><a href="{% url 'service_report' service.id %}">{{service.name}}</a></td>
         <td><a href="{% url 'servicefamily_report' service.service_family.id %}">{{service.service_family}}</a></td>
         <td><a href="{% url 'domain_report'  service.service_family.domain.id %}">{{service.service_family.domain}}</a></td>
-        <td style="text-align:right;">{{service.get_turnover|currency}}</td>
+        <td style="text-align:right;">{{deliverable.get_turnover|currency}}</td>
     </tr>
 {% endfor %}
 </tbody>
