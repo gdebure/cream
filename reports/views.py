@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView
 
 from services.models import Domain, ServiceFamily, Service
 
-class DonutChart(object):
+class PieChart(object):
     
     def set_chart(self,x_data,y_data):
         chartdata = {'x': x_data, 'y': y_data}
@@ -13,12 +13,14 @@ class DonutChart(object):
             'chartdata': chartdata,
             'chartcontainer': chartcontainer,
             'extra': {
-                'x_is_date': False,
-                'x_axis_format': '',
-                'tag_script_js': True,
-                'jquery_on_ready': False,
-                'donut': True,
-                'donutRatio': 0.55,
+                #'x_is_date': False,
+                #'x_axis_format': '',
+                #'tag_script_js': True,
+                #'jquery_on_ready': False,
+                #'donut': True,
+                #'donutRatio': 0.55,
+                #'tooltips':True,
+                'pieLabelsOutside':True,
             }
         }
         return data
@@ -29,7 +31,7 @@ class DomainsReportView(ListView):
     template_name="domains_report.html"
     model = Domain
     
-class DomainsChartView(ListView,DonutChart):
+class DomainsChartView(ListView,PieChart):
     
     template_name = "domains_report.html"
     model = Domain
@@ -53,7 +55,7 @@ class DomainsChartView(ListView,DonutChart):
         context['total_turnover'] = total_turnover
         return context
     
-class DomainReportView(DetailView, DonutChart):
+class DomainReportView(DetailView, PieChart):
     
     template_name="domain_report.html"
     model = Domain
@@ -80,7 +82,7 @@ class DomainReportView(DetailView, DonutChart):
         return context
 
     
-class ServiceFamilyReportView(DetailView,DonutChart):
+class ServiceFamilyReportView(DetailView,PieChart):
     
     template_name="servicefamily_report.html"
     model = ServiceFamily
@@ -107,7 +109,7 @@ class ServiceFamilyReportView(DetailView,DonutChart):
         return context
     
 
-class ServiceReportView(DetailView,DonutChart):
+class ServiceReportView(DetailView,PieChart):
     
     template_name="service_report.html"
     model = Service

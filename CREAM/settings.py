@@ -36,15 +36,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    # Use django-bower
+    # Use django-bower for managing required addons
     'djangobower',
+    # Use django_nvd3 for displaying charts
     'django_nvd3',
     # Use django comments
     'django_comments',
-    
     # Use guardian for per-object permissions
     'guardian',
-    
     # Use reversion for data versioning
     'reversion',
     
@@ -80,11 +79,9 @@ WSGI_APPLICATION = 'CREAM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'HOST': '44.4.170.19',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'cream_django',                      # Or path to database file if using sqlite3.
-        'USER': 'st01447',                      # Not used with sqlite3.
-        'PASSWORD': 'gui0110',                  # Not used with sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
      }
 }
 
@@ -120,21 +117,29 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
-STATIC_ROOT = '/server/cream/static/'
+STATIC_ROOT = '/server/cream/static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
 STATICFILES_FINDER = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder',
     )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
 BOWER_INSTALLED_APPS = (
+    'jquery',
+    'bootstrap',
+    'bootstrap-datepicker',
+    'datatables',
     'd3',
-    'nvd3',
+    'fontawesome',
+    'nvd3-community',
+    'respond',
 )
 
 # Define additional information for users in the Employee model
