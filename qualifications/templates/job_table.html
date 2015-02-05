@@ -1,7 +1,7 @@
 {% include "fa-decoration.html" with title=title|default:"Jobs list" icon=icon|default:"fa-briefcase" %}
 
 {% if jobs_list %}
-<table class="table table-condensed table-bordered table-hover dataTable">
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
         <tr>
             <th>name</th>

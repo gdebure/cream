@@ -2,7 +2,7 @@
 {% include "fa-decoration.html" with title=title|default:"Projects list" icon=icon|default:"fa-cubes" %}
 
 {% if projects_list %}
-<table class="table table-condensed table-bordered table-hover dataTable">
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
         <tr>
             <th>project number</th>

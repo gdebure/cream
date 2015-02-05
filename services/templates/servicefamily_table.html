@@ -2,7 +2,7 @@
 {% include "fa-decoration.html" with title=title|default:"Service Families list" icon=icon|default:"fa-th-large" %}
 
 {% if servicefamilies_list %}
-<table class="table table-condensed table-bordered table-hover dataTable">
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
     <tr>
         <th>service family</th>

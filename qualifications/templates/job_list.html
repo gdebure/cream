@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- Include the list of objects -->
-{% include "job_table.html" with block="main" icon="fa-briefcase" %}
+{% include "job_table.html" with block="main" icon="fa-briefcase" datatable_style="dataTableFiltered" %}
 
 {% include "common/list_actions.html" with action_url="create_job" item_name="job" %}
 

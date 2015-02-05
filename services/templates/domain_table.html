@@ -2,7 +2,7 @@
 {% include "fa-decoration.html" with title=title|default:"Domains list" icon=icon|default:"fa-th" %}
 
 {% if domains_list %}
-<table class="table table-condensed table-bordered table-hover dataTable">
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
     <tr>
         <th>domain</th>

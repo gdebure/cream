@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% include "service_table.html" with block="main" %}
+{% include "service_table.html" with block="main" datatable_style="dataTableFiltered" %}
 
 {% include "common/list_actions.html" with action_url="create_service" item_name="service" %}
 

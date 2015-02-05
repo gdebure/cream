@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Include the list of objects -->
-{% include "domain_table.html" with block="main" %}
+{% include "domain_table.html" with block="main" datatable_style="dataTableFiltered" %}
 
 {% include "common/list_actions.html" with action_url="create_domain" item_name="domain" %}
 

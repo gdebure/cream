@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Include the list of objects -->
-{% include "project_table.html" with block="main" %}
+{% include "project_table.html" with block="main" datatable_style="dataTableFiltered" %}
 
 {% include "common/list_actions.html" with action_url="create_project" item_name="project" %}
 
