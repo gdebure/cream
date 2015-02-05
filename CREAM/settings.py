@@ -138,7 +138,7 @@ BOWER_INSTALLED_APPS = (
     'datatables',
     'd3',
     'fontawesome',
-    'nvd3-community',
+    'nvd3',
     'respond',
 )
 
