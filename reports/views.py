@@ -1,29 +1,9 @@
 from django.views.generic import ListView, DetailView
 
+from core.views import PieChartMixin
 from services.models import Domain, ServiceFamily, Service
 
-class PieChart(object):
-    
-    def set_chart(self,x_data,y_data):
-        chartdata = {'x': x_data, 'y': y_data}
-        charttype = "pieChart"
-        chartcontainer = 'piechart_container'
-        data = {
-            'charttype': charttype,
-            'chartdata': chartdata,
-            'chartcontainer': chartcontainer,
-            'extra': {
-                #'x_is_date': False,
-                #'x_axis_format': '',
-                #'tag_script_js': True,
-                #'jquery_on_ready': False,
-                #'donut': True,
-                #'donutRatio': 0.55,
-                #'tooltips':True,
-                'pieLabelsOutside':True,
-            }
-        }
-        return data
+
     
 
 class DomainsReportView(ListView):
@@ -31,7 +11,7 @@ class DomainsReportView(ListView):
     template_name="domains_report.html"
     model = Domain
     
-class DomainsChartView(ListView,PieChart):
+class DomainsChartView(ListView,PieChartMixin):
     
     template_name = "domains_report.html"
     model = Domain
@@ -55,7 +35,7 @@ class DomainsChartView(ListView,PieChart):
         context['total_turnover'] = total_turnover
         return context
     
-class DomainReportView(DetailView, PieChart):
+class DomainReportView(DetailView, PieChartMixin):
     
     template_name="domain_report.html"
     model = Domain
@@ -82,7 +62,7 @@ class DomainReportView(DetailView, PieChart):
         return context
 
     
-class ServiceFamilyReportView(DetailView,PieChart):
+class ServiceFamilyReportView(DetailView,PieChartMixin):
     
     template_name="servicefamily_report.html"
     model = ServiceFamily
@@ -109,7 +89,7 @@ class ServiceFamilyReportView(DetailView,PieChart):
         return context
     
 
-class ServiceReportView(DetailView,PieChart):
+class ServiceReportView(DetailView,PieChartMixin):
     
     template_name="service_report.html"
     model = Service
