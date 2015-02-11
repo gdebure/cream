@@ -79,9 +79,11 @@ WSGI_APPLICATION = 'CREAM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'HOST': '44.4.170.19',
         'NAME': 'cream_django',                      # Or path to database file if using sqlite3.
-        'USER': 'postgres',                      # Not used with sqlite3.
+        'USER': 'st01447',                      # Not used with sqlite3.
+        'PASSWORD': 'gui0110',
      }
 }
 
