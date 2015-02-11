@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 
 
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 # https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
 SECRET_KEY = 'Ee7vGi-ING6n02gkcJ-QLHg6vFw'
+
 
 
 # Set your database settings here. Please refer to 

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # import instance specific settings
 # 1. create a file named instance_settings.py in the CREAM/CREAM folder
 # 2. in this instance_settings.py file, set the correct value for each of the variables imported below
+from instance_settings import DEBUG # SECURITY WARNING: don't run with debug turned on in production!
 from instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key used in production secret! https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
 from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#time-zone
@@ -29,9 +30,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
