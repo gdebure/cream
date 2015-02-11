@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-
 """
-Django settings for openCompany project.
+Django settings for CREAM project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -9,6 +7,19 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
+
+
+
+# import instance specific settings
+# 1. create a file named instance_settings.py in the CREAM/CREAM folder
+# 2. in this instance_settings.py file, set the correct value for each of the variables imported below
+from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#time-zone
+from instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#static-root
+from instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.7/topics/email/
+from instance_settings import CURRENCY_SYMBOL, THOUSAND_SEPARATOR, DECIMAL_SEPARATOR # Set the currency symbol and separators
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -77,25 +88,6 @@ ROOT_URLCONF = 'CREAM.urls'
 WSGI_APPLICATION = 'CREAM.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'HOST': '44.4.170.19',
-        'NAME': 'cream_django',                      # Or path to database file if using sqlite3.
-        'USER': 'st01447',                      # Not used with sqlite3.
-        'PASSWORD': 'gui0110',
-     }
-}
-
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'Europe/Paris'
-
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
@@ -119,7 +111,6 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
-STATIC_ROOT = '/server/cream/static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -158,14 +149,3 @@ AUTHENTICATION_BACKENDS = (
 
 # Also needed for guardian
 ANONYMOUS_USER_ID = -1
-
-
-#### Email stuff
-EMAIL_HOST = '' # Put the name of your SMTP server here
-EMAIL_PORT= 5225
-EMAIL_SUBJECT_PREFIX = '[CREAM]'
-
-### Currency stuff
-CURRENCY_SYMBOL = u"\u20AC" # This is the utf-8 code for the ¤ symbol
-THOUSAND_SEPARATOR = ','
-DECIMAL_SEPARATOR = '.'
