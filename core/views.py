@@ -18,17 +18,19 @@ class PermissionRequiredMixin(object):
     
 class PieChartMixin(object):
 
+    data = dict()
+    chartcontainer = 'piechart_container'
+
     @classmethod
     def set_chart(self,x_data,y_data):
         chartdata = {'x': x_data, 'y': y_data}
         charttype = "pieChart"
-        chartcontainer = 'piechart_container'
-        data = {
+        self.data = {
             'charttype': charttype,
             'chartdata': chartdata,
-            'chartcontainer': chartcontainer,
+            'chartcontainer': self.chartcontainer,
             'extra': {
                 'pieLabelsOutside':True,
             }
         }
-        return data
+        return self.data

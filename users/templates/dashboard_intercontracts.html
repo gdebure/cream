@@ -12,14 +12,15 @@
                 </tr>
             </thead>
             <tbody>
-            {% for employee in employees_list %}
+            {% for employee in employees_list|slice:":5" %}
                 <tr>
-                    <td>{{ employee }}</td>
+                    <td><a href="{% url "employee" employee.id %}">{{ employee }}</a></td>
                     <td>{{ employee.category}}</td>
-                    <td>{{ employee.get_status_display }}</td>
+                    <td>{{ employee.siglum }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        <div class="panel-footer">... and {{ employees_list|length|add:"-5"}} more <span class="pull-right">(see all)</span></div>
     </div>
 </div>

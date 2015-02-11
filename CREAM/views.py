@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView
 from guardian.shortcuts import get_objects_for_user
 
+from core.views import PieChartMixin
+
 from users.models import Employee
 from services.models import Domain, ServiceFamily, Service
 from projects.models import Project, Deliverable
@@ -63,4 +65,11 @@ class DashboardView(TemplateView):
     def get_intercontracts(self):
         
         return {'employees_list':Employee.objects.filter(status='I')}
+    
+    def get_employee_status(self):
+        
+        pie_chart = PieChartMixin()
+        pie_chart.chartcontainer = "employee_status_chart"
+        
+        employees = Employee.objects()
     

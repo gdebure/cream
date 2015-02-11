@@ -9,3 +9,11 @@
     <tr><th>status</th><td>{{ employee.get_status_display }}</td></tr>
     <tr><th>email</th><td><a href="mailto:{{employee.user.email}}">{{employee.user.email}}</td></tr>
 </table>
+
+Positions:
+
+{% with positions=employee.get_workload %}
+{% for pos in positions %}
+<p>pos : {{ pos }}</p>
+{% endfor %}
+{% endwith %}
