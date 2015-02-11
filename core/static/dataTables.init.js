@@ -2,20 +2,18 @@
 $(document).ready(function() {
     
     $('.dataTable').dataTable( {
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bFilter": false,
-        "bSort": true,
-        "bInfo": false,
-        "bAutoWidth": false
+        "paginate": false,
+        "filter": false,
+        "sort": true,
+        "autoWidth": false,
+        "stateSave":true
     } );
     
     $('.dataTableFiltered').dataTable( {
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": false,
-        "bAutoWidth": false
+        "paginate": false,
+        "filter": true,
+        "sort": true,
+        "autoWidth": false,
+        "stateSave":true
     } );
 } );
