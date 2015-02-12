@@ -1,6 +1,6 @@
 <div class="sidebar">
     <ul class="nav nav-sidebar">
-        <li><a href="/"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+        <li><a href="/"><i class="fa fa-fw fa-home"></i>&nbsp;Home</a></li>
     </ul>
     <hr/>
     {% include "services_menu.html" %}
@@ -13,8 +13,8 @@
     {% if user.is_staff %}
     <hr/>
     <ul class="nav nav-sidebar">
-        <li><a href="/admin"><i class="fa fa-wrench"></i> Admin site</a></li>
-        <li><a href="/users/employees/"><i class="fa fa-user"></i> Employees</a></li>
+        <li><a href="/admin"><i class="fa fa-fw fa-wrench"></i> Admin site</a></li>
+        <li><a href="/users/employees/"><i class="fa fa-fw fa-user"></i> Employees</a></li>
     </ul>
     {% endif %}
     
