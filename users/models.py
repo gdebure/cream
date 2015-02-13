@@ -24,14 +24,6 @@ class Employee (models.Model):
     def __unicode__(self):
         return self.user.last_name + " " + self.user.first_name
 
-
-    def get_workload(self):
-        
-        positions = self.employeeposition_set.all()
-        positions = positions.filter(status__effective_workload=True)
-        #.filter(start_date<=start_date).filter(status__effective_workload=True)
-        return positions
-    
     def get_picture(self):
         return 'http://inside.intra.cimpa.corp/UsersPhoto/' + str(self.user.username) + '.jpg'
 
