@@ -105,23 +105,9 @@ class PositionStatus(models.Model):
         return self.name
 
 
-class Position(models.Model):
-    '''A Position is the implementation of a Job in a specific context'''
-    
-    job = models.ForeignKey(Job)
-    project = models.ForeignKey(Project)
-    status = models.ForeignKey(PositionStatus)
-    location = models.ForeignKey(Location)
-    publish_date = models.DateField()
-    headcount = models.DecimalField(max_digits=5,decimal_places=2)
-    comment = models.TextField(null=True, blank=True)
 
-    def __unicode__(self):
-        return str(self.project) + ": " + str(self.job)
-
-            
 class Profile (models.Model):
-    '''A profile can is attached to a job to define the qualification levels for this job'''
+    '''A profile is attached to a job to define the qualification levels for this job'''
     
     name = models.CharField(max_length=64)
     description = models.TextField()
@@ -132,7 +118,25 @@ class Profile (models.Model):
     def __unicode__(self):
         return self.name
 
+ 
+
+class Position(models.Model):
+    '''A Position is the implementation of a Job in a specific context'''
     
+    job = models.ForeignKey(Job)
+    profile = models.ForeignKey(Profile)
+    project = models.ForeignKey(Project)
+    status = models.ForeignKey(PositionStatus)
+    location = models.ForeignKey(Location)
+    publish_date = models.DateField()
+    headcount = models.DecimalField(max_digits=5,decimal_places=2)
+    comment = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.project) + ": " + str(self.job) + " (" + str(self.profile) + ")"
+            
+            
+   
 
 class EmployeeSkill(models.Model):
     '''Defines the Skills levels for an employee. The level should be between 
