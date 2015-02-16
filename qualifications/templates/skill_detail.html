@@ -2,7 +2,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<ol class="breadcrumb">
+  <li><a href="{% url "home" %}"><i class="fa fa-home"></i>&nbsp;</a></li>
+  <li><a href="{% url "skillcategories_list" %}">Skill Categories</a></li>
+  <li><a href="{% url "skillcategory_detail" skill.category.id %}">{{ skill.category }}</a></li>
+  <li class="active">{{ skill.name }}</li>
+</ol>
 <!-- Include the object property -->
 {% include "skill_property.html" %}
 

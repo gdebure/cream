@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<ol class="breadcrumb">
+  <li><a href="{% url "home" %}"><i class="fa fa-home"></i>&nbsp;</a></li>
+  <li><a href="{% url "skillcategories_list" %}">Skill Categories</a></li>
+  <li><a href="{% url "skillcategory_detail" skill.category.id %}">{{ skill.category }}</a></li>
+  <li><a href="{% url "skill_detail" skill.id %}">{{ skill.name }}</a></li>
+  <li class="active">Delete Skill</li>
+</ol>
 <div class="bg-warning" align="center">Do you really want to delete this Skill ?</div>
 
 {% include "skill_property.html" %}
