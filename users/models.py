@@ -25,5 +25,5 @@ class Employee (models.Model):
         return self.user.last_name + " " + self.user.first_name
     
     def get_picture(self):
-        return 'http://inside.intra.cimpa.corp/UsersPhoto/' + str(self.user.username) + '.jpg'
+        return ''
 
