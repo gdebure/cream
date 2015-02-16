@@ -34,8 +34,8 @@ As per any web database application, Django will need:
 The Django documentation lists everything you need to know to get Django running on your server.
 The typically recommended setup for the server would be:
 * linux
-* Apache with mod_wsgiscalable vector icons
-* Postgresql
+* Apache with mod_wsgi, or gunicorn
+* Postgresql or Mariadb (MySQL fork)
 
 Please refer to the Django documentation (https://docs.djangoproject.com/en/1.7/topics/install/) for more details
 
@@ -43,13 +43,25 @@ Please refer to the Django documentation (https://docs.djangoproject.com/en/1.7/
 
 On top of basic Django installation, CREAM needs a few more components enhancing functionality or look & Feel.
 
+django add-ons:
 * Guardian (http://pythonhosted.org/django-guardian/) : object permissions for Django. Refer to Guardian documentation for installation instructions.
-* Reversion (https://github.com/etianen/django-reversion) : version control facilities. Refer to Guardian documentation for installation instructions. 
-* jquery (http://jquery.com/) : fast, small, and feature-rich JavaScript library. Download and Unzip the archive in CREAM/CREAM/static/jquery
+* Reversion (https://github.com/etianen/django-reversion) : version control facilities. Refer to Reversion documentation for installation instructions.
+* Django-nvd3 (https://github.com/areski/django-nvd3) : html5 charts using d3.js. Refer to Django-nvd3 documentation for installation instructions.
+* Django-bower (https://github.com/nvbn/django-bower) : Easy way to use bower with your django project.
+** Install node.js (http://nodejs.org/) first
+** then bower (http://bower.io/)
+** And finally django-bower
+
+other components:
+These components will be installed through django-bower, so you don't need to download them individually.
+* jquery (http://jquery.com/) : fast, small, and feature-rich JavaScript library.
 * Bootstrap 3.x (http://getbootstrap.com/) : CSS framework for faster and easier web development.
-* font-awesome (http://fontawesome.io/) : scalable vector icons. Download and Unzip the archive in CREAM/CREAM/static/font-awesome
-* Datatables (http://datatables.net/) : advanced interaction controls for HTML table (sorting, filtering...). Download and Unzip the archive in CREAM/CREAM/static/datatables
-* Bootstrap Datepicker (https://github.com/eternicode/bootstrap-datepicker) : A JavaScript Datepicker for bootstrap. Download and Unzip the archive in CREAM/CREAM/static/bootstrap-datepicker
+* font-awesome (http://fontawesome.io/) : scalable vector icons.
+* Datatables (http://datatables.net/) : advanced interaction controls for HTML table (sorting, filtering...).
+* Bootstrap Datepicker (https://github.com/eternicode/bootstrap-datepicker) : A JavaScript Datepicker for bootstrap. 
+* respond.js (https://github.com/scottjehl/Respond) : enable responsive web designs in browsers that don't support CSS3 Media Queries - in particular, Internet Explorer 8 and under
+
+
 
 # Installing CREAM
 
@@ -59,24 +71,23 @@ Once completed, proceed to the following steps.
 
 ## Settings
 
-CREAM settings are stored in a single file located in CREAM/CREAM/settings.py. Some of the values there need to be updated for your CREAM instance :
-* DEBUG : when deploying in production environment, set this to False. Refer to Django documentation for more explanation
-* ADMINS : add as many email adresses you want for application administrators.
-* DATABASES : update the values for your choice of database
-
-Additionally, CREAM needs to know a mail server (SMTP) for sending the notifications. These values can be found at the end of the settings.py file :
-* EMAIL_HOST : name or IP adress of the SMTP server
-* EMAIL_PORT : port for the SMTP server
-* EMAIL_SUBJECT_PREFIX : string added at the beginning of all email titles sent by CREAM.
+CREAM settings are stored in a single file located in CREAM/CREAM/settings.py. The values in that file won't need to be changed. Instead, you should create an instance_settings.py in the same folder. This is where  you should put your CREAM's instance settings. You may take as a reference the instance_settings_sample.py provided and change the values accordingly.
 
 ## Create Database
 
-CREAM can create automatically the tables, but it needs the Database to be manually created first. Create a database on your database server, consistent with the values defined in the settings.py file.
+CREAM can create automatically the tables, but it needs the Database to be manually created first. Create a database on your database server, consistent with the values defined in the instance_settings.py file.
 
 Once this is completed, Django can create the tables automatically by entering the following command in a shell :
     python2 manage.py migrate
 
 Django will propose to create an administrator account, which you should accept as it will allow you accessing CREAM from your browser.
+
+## Install additional dependencies
+
+This step will install additional dependencies as described above. Ensure the machine is connected to Internet, and Enter the following command:
+    python2 manage.py bower_install
+    
+Thanks to the BOWER_INSTALLED_APPS setting (in settings.py, you don't need to change that), this will call to bower to download and install all necessary components in the components folder
 
 ## Login and create data
 
