@@ -1,4 +1,4 @@
-CREAM (Company REsources Administration and Management) is a Suite allowing you to manage several aspects of your company
+**CREAM** (Company REsources Administration and Management) is a Suite allowing you to manage several aspects of your company
 
 It is currently composed of several modules:
 * Users: allows to define attributes for employees in the company
@@ -48,9 +48,9 @@ django add-ons:
 * Reversion (https://github.com/etianen/django-reversion) : version control facilities. Refer to Reversion documentation for installation instructions.
 * Django-nvd3 (https://github.com/areski/django-nvd3) : html5 charts using d3.js. Refer to Django-nvd3 documentation for installation instructions.
 * Django-bower (https://github.com/nvbn/django-bower) : Easy way to use bower with your django project.
-** Install node.js (http://nodejs.org/) first
-** then bower (http://bower.io/)
-** And finally django-bower
+  * Install node.js (http://nodejs.org/) first
+  * then bower (http://bower.io/)
+  * And finally django-bower
 
 other components:
 These components will be installed through django-bower, so you don't need to download them individually.
