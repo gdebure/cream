@@ -1,12 +1,18 @@
 <!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb skillcategory "skillcategory_detail" skillcategory.id %}
+{% endblock %}
+
 {% block content %}
-<ol class="breadcrumb">
-  <li><a href="{% url "home" %}"><i class="fa fa-home"></i>&nbsp;</a></li>
-  <li><a href="{% url "skillcategories_list" %}">Skill Categories</a></li>
-  <li class="active">{{ skillcategory }}</li>
-</ol>
+
+{% render_breadcrumbs %}
+
 <!-- Include the object property -->
 {% include "skillcategory_property.html" %}
 

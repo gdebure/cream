@@ -13,4 +13,5 @@ class PermissionRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
         view = super(PermissionRequiredMixin, cls).as_view(**initkwargs)
-        return permission_required(view,self.permission)
+        return permission_required(view,cls.permission)
+    
