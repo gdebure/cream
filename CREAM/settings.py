@@ -36,7 +36,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
     )
-BREADCRUMB_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap3.html"
+BREADCRUMBS_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap3.html"
 
 ALLOWED_HOSTS = []
 
