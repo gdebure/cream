@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb "Skills" "skills_list" %}
+{% endblock %}
+
 {% block content %}
-{% include "breadcrumb.html" %}
+
+{% render_breadcrumbs %}
+
 
 <!-- Include the list of objects -->
 {% include "skill_table.html" with block="main" %}

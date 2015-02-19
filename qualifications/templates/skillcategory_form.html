@@ -1,12 +1,17 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb "Edit Skill Category" "" %}
+{% endblock %}
 
 {% block content %}
-<ol class="breadcrumb">
-  <li><a href="{% url "home" %}"><i class="fa fa-home"></i>&nbsp;</a></li>
-  <li><a href="{% url "skillcategories_list" %}">Skill Categories</a></li>
-  <li class="active">Edit Skill Category</li>
-</ol>
-{% include "fa-decoration.html" with title="Update Skill Category" icon="fa-institution" block="main" %}
+
+{% render_breadcrumbs %}
+
+{% include "fa-decoration.html" with title="Edit Skill Category" icon="fa-institution" block="main" %}
 
 {% include "common/standard_form.html" %}
 

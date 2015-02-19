@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb skill.category "skillcategory_detail" skill.category.id %}
+    {% breadcrumb skill.name "skill_detail" skill.id %}
+    {% breadcrumb "Delete skill" "" %}
+{% endblock %}
 
 {% block content %}
-<ol class="breadcrumb">
-  <li><a href="{% url "home" %}"><i class="fa fa-home"></i>&nbsp;</a></li>
-  <li><a href="{% url "skillcategories_list" %}">Skill Categories</a></li>
-  <li><a href="{% url "skillcategory_detail" skill.category.id %}">{{ skill.category }}</a></li>
-  <li><a href="{% url "skill_detail" skill.id %}">{{ skill.name }}</a></li>
-  <li class="active">Delete Skill</li>
-</ol>
+
+{% render_breadcrumbs %}
+
 <div class="bg-warning" align="center">Do you really want to delete this Skill ?</div>
 
 {% include "skill_property.html" %}
