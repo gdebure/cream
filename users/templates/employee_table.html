@@ -7,7 +7,6 @@
         <th>name</th>
         <th>firstname</th>
         <th>id</th>
-        <th>active</th>
         <th>siglum</th>
         <th>category</th>
         <th>status</th>
@@ -19,10 +18,9 @@
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.last_name }}</a></td>
         <td>{{ employee.user.first_name }}</td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
-        <td><span class="label {% if employee.user.is_active %}label-primary{% else %}label-default{% endif %}">{{ employee.user.is_active }}</span></td>
         <td>{{ employee.siglum }}</td>
         <td>{{ employee.category }}</td>
-        <td>{{ employee.get_status_display }}</td>
+        <td><span class="{{ employee.status.css_class }}">{{ employee.status }}</span></td>
     </tr>
 {% endfor %}
     </tbody>
