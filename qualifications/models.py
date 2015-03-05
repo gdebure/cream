@@ -2,6 +2,7 @@ from django.db import models
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+from core.models import Location
 from projects.models import Project
 
 # The Qualifications app depends on the users app,
@@ -87,13 +88,6 @@ class Job (models.Model):
     def get_employees(self):
         return self.jobemployee_set.all()
         
-
-class Location(models.Model):
-    '''A class that lists the possible locations for a position'''
-    name = models.CharField(max_length=128)
-    
-    def __unicode__(self):
-        return self.name
 
 
 class PositionStatus(models.Model):
