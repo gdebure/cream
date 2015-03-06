@@ -8,6 +8,7 @@
         <th>firstname</th>
         <th>id</th>
         <th>siglum</th>
+        <th>location</th>
         <th>category</th>
         <th>status</th>
     </tr>
@@ -19,6 +20,7 @@
         <td>{{ employee.user.first_name }}</td>
         <td><a href="{% url 'employee' employee.id %}">{{ employee.user.username }}</a></td>
         <td>{{ employee.siglum }}</td>
+        <td>{{ employee.location }}</td>
         <td>{{ employee.category }}</td>
         <td><span class="{{ employee.status.css_class }}">{{ employee.status }}</span></td>
     </tr>

@@ -4,6 +4,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+from core.models import Location
+
 class EmployeeStatus(models.Model):
     '''Indicates the status of an Employee'''
     id = models.CharField(max_length=1,primary_key=True)
@@ -23,8 +25,10 @@ class Employee (models.Model):
     
     user = models.OneToOneField(User)
     siglum = models.CharField(max_length=16)
+    location = models.ForeignKey(Location)
     status = models.ForeignKey(EmployeeStatus)
     category = models.CharField(max_length=1, null=True, blank=True)
+
     
     class Meta:
         ordering = ['user__last_name']
