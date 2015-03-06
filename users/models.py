@@ -20,20 +20,6 @@ class EmployeeStatus(models.Model):
         return self.name
 
 
-class EmployeeStatus(models.Model):
-    '''Indicates the status of an Employee'''
-    id = models.CharField(max_length=1,primary_key=True)
-    name = models.CharField(max_length=32)
-    description = models.TextField()
-    css_class = models.CharField(max_length=64)
-    
-    class Meta:
-        ordering = ['name']
-        
-    def __unicode__(self):
-        return self.name
-
-    
 class Employee (models.Model):
     '''A class to handle employees'''
     
