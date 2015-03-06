@@ -22,7 +22,7 @@ class EmployeeStatus(models.Model):
 
 class EmployeeStatus(models.Model):
     '''Indicates the status of an Employee'''
-    id = models.IntegerField(primary_key=True)
+    id = models.CharField(max_length=1,primary_key=True)
     name = models.CharField(max_length=32)
     description = models.TextField()
     css_class = models.CharField(max_length=64)
