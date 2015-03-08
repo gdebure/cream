@@ -5,7 +5,8 @@
     <tr><th>first name</th><td>{{ employee.user.first_name }}</td></tr>
     <tr><th>active</th><td><span class="label {% if employee.user.is_active %}label-primary{% else %}label-default{% endif %}">{{ employee.user.is_active }}</span></td></tr>
     <tr><th>siglum</th><td>{{ employee.siglum }}</td></tr>
+    <tr><th>location</th><td>{{ employee.location }}</td></tr>
     <tr><th>category</th><td>{{ employee.category }}</td>
-    <tr><th>status</th><td>{{ employee.get_status_display }}</td></tr>
+    <tr><th>status</th><td><span class="{{ employee.status.css_class }}">{{ employee.status }}</span></td></tr>
     <tr><th>email</th><td><a href="mailto:{{employee.user.email}}">{{employee.user.email}}</td></tr>
 </table>

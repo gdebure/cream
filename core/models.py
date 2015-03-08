@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+class Location(models.Model):
+    '''A class that lists the possible locations, used in other apps'''
+    
+    name = models.CharField(max_length=128)
+    
+    def __unicode__(self):
+        return self.name
