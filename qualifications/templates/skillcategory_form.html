@@ -4,6 +4,9 @@
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% if skillcategory.id %}
+        {% breadcrumb skillcategory "skillcategory_detail" skillcategory.id %}
+    {% endif %}
     {% breadcrumb "Edit Skill Category" "" %}
 {% endblock %}
 

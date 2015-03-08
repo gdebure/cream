@@ -1,8 +1,17 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Projects" "projects_list" %}
+    {% breadcrumb project "project_detail" project.id %}
+    {% breadcrumb "Delete Project" "" %}
+{% endblock %}
 
 {% block content %}
 
-<div class="alert">Do you really want to delete this Project ?</div>
+{% render_breadcrumbs %}
+<div class="bg-warning" align="center">Do you really want to delete this Project ?</div>
 
 {% include "project_property.html" %}
   
