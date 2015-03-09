@@ -4,6 +4,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+from CREAM.instance_settings import USER_PICTURE_BASE_URL, USER_PICTURE_FILE_EXTENSION
+
 from core.models import Location
 
 class EmployeeStatus(models.Model):
@@ -37,5 +39,5 @@ class Employee (models.Model):
         return self.user.last_name + " " + self.user.first_name
     
     def get_picture(self):
-        return ''
+        return USER_PICTURE_BASE_URL + '/' + str(self.user.username) + USER_PICTURE_FILE_EXTENSION
 
