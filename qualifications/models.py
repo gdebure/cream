@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -122,7 +124,7 @@ class Position(models.Model):
     project = models.ForeignKey(Project)
     status = models.ForeignKey(PositionStatus)
     location = models.ForeignKey(Location)
-    publish_date = models.DateField()
+    publish_date = models.DateField(default=date.today())
     headcount = models.DecimalField(max_digits=5,decimal_places=2)
     comment = models.TextField(null=True, blank=True)
 
