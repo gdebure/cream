@@ -1,7 +1,9 @@
 from django.views.generic import TemplateView
+from django.db.models import Count
+
 from guardian.shortcuts import get_objects_for_user
 
-from users.models import Employee
+from users.models import Employee, EmployeeStatus
 from services.models import Domain, ServiceFamily, Service
 from projects.models import Project, Deliverable
 
@@ -43,6 +45,7 @@ class DashboardView(TemplateView):
         context.update(self.get_positions())
         context.update(self.get_intercontracts())
         context.update(self.get_services())
+        context.update(self.get_employeestatus_count())
         
         return context
         
@@ -63,4 +66,10 @@ class DashboardView(TemplateView):
     def get_intercontracts(self):
         
         return {'employees_list':Employee.objects.filter(status='I')}
+    
+    def get_employeestatus_count(self):
+        
+        result = EmployeeStatus.objects.annotate(count=Count('employee'))
+        print result
+        return {'employee_status':result}
     
