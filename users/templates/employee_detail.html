@@ -5,7 +5,13 @@
 <div class="pull-right"><img src="{{ employee.get_picture }}" class="img-rounded" width="80px"/></div>
 {% include "employee_property.html" %}
 {% include "common/object_actions.html" %}
+
+<br/>
+
+{% include "common/comments.html" with object=employee next_url="employee" %}
+
 <hr/>
+
 
 {% include "employeeposition_table.html" with employeepositions_list=employee.employeeposition_set.all title="Positions" %}
 <a href="{% url "add_position_to_employee" employee.id %}"><i class="fa fa-plus"></i>Add Position</a>

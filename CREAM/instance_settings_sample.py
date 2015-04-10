@@ -61,3 +61,9 @@ EMAIL_SUBJECT_PREFIX = '[CREAM]'
 CURRENCY_SYMBOL = u"\u20AC" # This is the utf-8 code for the € symbol
 THOUSAND_SEPARATOR = ','
 DECIMAL_SEPARATOR = '.'
+
+
+# URL to user pictures will be built as an aggregation of
+# user_picture_base_url, user.id, and user_picture_file_extension
+USER_PICTURE_BASE_URL = 'http://base.url.to.user.picture'
+USER_PICTURE_FILE_EXTENSION = '.jpg'

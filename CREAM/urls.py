@@ -10,7 +10,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Base URL displays home page
-    url(r'^$', login_required()(HomeView.as_view())),
+    url(r'^$', login_required()(HomeView.as_view()),name="home"),
     url(r'^dashboard/$', DashboardView.as_view()),
     
     # URL for the admin site:

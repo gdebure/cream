@@ -11,9 +11,6 @@ class SkillAdmin(GuardedModelAdmin):
 class JobAdmin(GuardedModelAdmin):
     pass #Nothing to do here yet...
 
-class LocationAdmin(GuardedModelAdmin):
-    pass #Nothing to do here yet...
-
 class PositionStatusAdmin(GuardedModelAdmin):
     pass
 
@@ -38,7 +35,6 @@ class EmployeePositionAdmin(GuardedModelAdmin):
 admin.site.register(SkillCategory, SkillCategoryAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(Job, JobAdmin)
-admin.site.register(Location, LocationAdmin)
 admin.site.register(PositionStatus, PositionStatusAdmin)
 admin.site.register(Position,PositionAdmin)
 admin.site.register(Profile, ProfileAdmin)

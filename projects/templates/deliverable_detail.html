@@ -1,8 +1,18 @@
 <!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Projects" "projects_list" %}
+    {% breadcrumb deliverable.project "project_detail" deliverable.project.id %}
+    {% breadcrumb deliverable "deliverable_detail" deliverable.id %}
+{% endblock %}
+
 {% block content %}
 
+{% render_breadcrumbs %}
 <!-- Include the object property -->
 {% include "deliverable_property.html" %}
 

@@ -32,6 +32,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 TEMPLATE_DEBUG = DEBUG
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    )
+BREADCRUMBS_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap3.html"
 
 ALLOWED_HOSTS = []
 
@@ -54,6 +59,9 @@ INSTALLED_APPS = (
     'guardian',
     # Use reversion for data versioning
     'reversion',
+    # Use django django_bootstrap_breadcrumbs
+    'django_bootstrap_breadcrumbs',
+    
     
     'core',
     'mailer',

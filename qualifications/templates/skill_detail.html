@@ -1,8 +1,18 @@
 <!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb skill.category "skillcategory_detail" skill.category.id %}
+    {% breadcrumb skill.name "skill_detail" skill.id %}
+{% endblock %}
+
 {% block content %}
 
+{% render_breadcrumbs %}
 <!-- Include the object property -->
 {% include "skill_property.html" %}
 

@@ -1,7 +1,17 @@
 <!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb skillcategory "skillcategory_detail" skillcategory.id %}
+{% endblock %}
+
 {% block content %}
+
+{% render_breadcrumbs %}
 
 <!-- Include the object property -->
 {% include "skillcategory_property.html" %}

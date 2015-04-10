@@ -1,8 +1,20 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% if skillcategory.id %}
+        {% breadcrumb skillcategory "skillcategory_detail" skillcategory.id %}
+    {% endif %}
+    {% breadcrumb "Edit Skill Category" "" %}
+{% endblock %}
 
 {% block content %}
 
-{% include "fa-decoration.html" with title="Update Skill Category" icon="fa-institution" block="main" %}
+{% render_breadcrumbs %}
+
+{% include "fa-decoration.html" with title="Edit Skill Category" icon="fa-institution" block="main" %}
 
 {% include "common/standard_form.html" %}
 

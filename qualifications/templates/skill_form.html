@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% if skill.id %}
+        {% breadcrumb skill.category "skillcategory_detail" skill.category.id %}
+        {% breadcrumb skill.name "skill_detail" skill.id %}
+    {% endif %}
+    {% breadcrumb "Edit Skill" "" %}
+{% endblock %}
+
 {% block content %}
+
+{% render_breadcrumbs %}
 
 {% include "fa-decoration.html" with title="Update Skill" icon="fa-graduation-cap" block="main" %}
 

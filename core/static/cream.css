@@ -8,8 +8,8 @@ th {
 }
 @media (min-width: 768px) {
   .sidebar {
-    position: fixed;
-    top: 51px;
+    /*position: fixed;*/
+    /*top: 51px;*/
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -19,6 +19,9 @@ th {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
+    margin-left: -15px;
+    margin-top: -20px;
+    margin-bottom: -10px;
   }
 }
 

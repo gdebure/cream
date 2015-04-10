@@ -1,5 +1,5 @@
 {% load currency_filter %}
-{% include "decoration.html" with title="Project Deliverable Volume properties" icon="deliverablevolume.png" block="main" %}
+{% include "fa-decoration.html" with title="Project Deliverable Volume properties" icon="fa-line-chart" block="main" %}
 <table class="table table-hover">
     <tr><th>project deliverable name</th><td><a href="{% url 'deliverable_detail' deliverablevolume.deliverable.id %}">{{ deliverablevolume.deliverable}}</a></td></tr>
     <tr><th>date start</th><td>{{ deliverablevolume.date_start}}</td></tr>

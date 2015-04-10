@@ -1,6 +1,17 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Skill Categories" "skillcategories_list" %}
+    {% breadcrumb skill.category "skillcategory_detail" skill.category.id %}
+    {% breadcrumb skill.name "skill_detail" skill.id %}
+    {% breadcrumb "Delete skill" "" %}
+{% endblock %}
 
 {% block content %}
+
+{% render_breadcrumbs %}
 
 <div class="bg-warning" align="center">Do you really want to delete this Skill ?</div>
 

@@ -1,6 +1,18 @@
 {% extends "base.html" %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Projects" "projects_list" %}
+    {% if project.id %}
+        {% breadcrumb project "project_detail" project.id %}
+    {% endif %}
+    {% breadcrumb "Edit Project" "" %}
+{% endblock %}
 
 {% block content %}
+
+{% render_breadcrumbs %}
 
 {% include "fa-decoration.html" with title="Update Project" icon="fa-cubes" block="main" %}
 
