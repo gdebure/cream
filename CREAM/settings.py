@@ -55,10 +55,6 @@ INSTALLED_APPS = (
     'django_nvd3',
     # Use django comments
     'django_comments',
-    # Use guardian for per-object permissions
-    'guardian',
-    # Use reversion for data versioning
-    'reversion',
     # Use django django_bootstrap_breadcrumbs
     'django_bootstrap_breadcrumbs',
     
@@ -82,10 +78,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    # We need this for reversion
-    'django.middleware.transaction.TransactionMiddleware',
-    'reversion.middleware.RevisionMiddleware',
 )
 
 ROOT_URLCONF = 'CREAM.urls'
@@ -151,7 +143,6 @@ LOGIN_REDIRECT_URL="/"
 # Guardian Backends
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
-    'guardian.backends.ObjectPermissionBackend',
 )
 
 # Also needed for guardian
