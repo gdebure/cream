@@ -124,7 +124,7 @@ class Position(models.Model):
     project = models.ForeignKey(Project)
     status = models.ForeignKey(PositionStatus)
     location = models.ForeignKey(Location)
-    publish_date = models.DateField(default=timezone.now().today())
+    publish_date = models.DateField(default=timezone.now)
     headcount = models.DecimalField(max_digits=5,decimal_places=2)
     comment = models.TextField(null=True, blank=True)
 
