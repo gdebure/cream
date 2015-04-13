@@ -2,10 +2,10 @@
 Django settings for CREAM project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 
@@ -14,11 +14,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # 1. create a file named instance_settings.py in the CREAM/CREAM folder
 # 2. in this instance_settings.py file, set the correct value for each of the variables imported below
 from instance_settings import DEBUG # SECURITY WARNING: don't run with debug turned on in production!
-from instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key used in production secret! https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
-from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#time-zone
-from instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.7/ref/settings/#static-root
-from instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.7/topics/email/
+from instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key used in production secret! https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key
+from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#time-zone
+from instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#static-root
+from instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.8/topics/email/
 from instance_settings import CURRENCY_SYMBOL, THOUSAND_SEPARATOR, DECIMAL_SEPARATOR # Set the currency symbol and separators
 
 
@@ -28,7 +28,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 
 TEMPLATE_DEBUG = DEBUG
@@ -55,10 +55,6 @@ INSTALLED_APPS = (
     'django_nvd3',
     # Use django comments
     'django_comments',
-    # Use guardian for per-object permissions
-    'guardian',
-    # Use reversion for data versioning
-    'reversion',
     # Use django django_bootstrap_breadcrumbs
     'django_bootstrap_breadcrumbs',
     
@@ -82,10 +78,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    # We need this for reversion
-    'django.middleware.transaction.TransactionMiddleware',
-    'reversion.middleware.RevisionMiddleware',
 )
 
 ROOT_URLCONF = 'CREAM.urls'
@@ -106,6 +98,8 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
+
+USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -149,7 +143,6 @@ LOGIN_REDIRECT_URL="/"
 # Guardian Backends
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default
-    'guardian.backends.ObjectPermissionBackend',
 )
 
 # Also needed for guardian
