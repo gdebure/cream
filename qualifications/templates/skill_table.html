@@ -4,17 +4,17 @@
 <table class="table table-condensed table-bordered table-hover dataTable">
     <thead>
         <tr>
+            <th>category</th>
             <th>name</th>
             <th>enabled</th>
-            <th>category</th>
         </tr>
     </thead>
     <tbody>
 {% for skill in skills_list %}
     <tr>
+        <td><a href="{% url "skillcategory_detail" skill.category.id %}">{{ skill.category }}</td>
         <td><a href="{% url "skill_detail" skill.id %}">{{ skill.name }}</a></td>
         <td>{{ skill.enabled }}</td>
-        <td><a href="{% url "skillcategory_detail" skill.category.id %}">{{ skill.category }}</td>
     </tr>
 {% endfor %}
     </tbody>
