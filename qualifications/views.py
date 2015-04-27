@@ -25,6 +25,7 @@ class SkillCategoryCreateView(CreateView,PermissionRequiredMixin):
     model=SkillCategory
     template_name='skillcategory_form.html'
     permission='qualifications.add_skillcategory'
+    fields=['name','description']
     
     def get_success_url(self):
         return reverse_lazy('skillcategory_detail',args=[self.object.id])
@@ -34,6 +35,7 @@ class SkillCategoryUpdateView(UpdateView,PermissionRequiredMixin):
     model = SkillCategory
     template_name='skillcategory_form.html' 
     permission = 'qualifications.change_skillcategory'
+    fields=['name','description']
     
     def get_success_url(self):
         return reverse_lazy('skillcategory_detail',args=[self.object.id])
@@ -64,6 +66,7 @@ class SkillCreateView(CreateView,PermissionRequiredMixin):
     model=Skill
     template_name='skill_form.html'
     permission='qualifications.add_skill'
+    fields=['category','name','enabled','description']
     
     def get_success_url(self):
         return reverse_lazy('skill_detail',args=[self.object.id])
@@ -73,6 +76,7 @@ class SkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = Skill
     template_name='skill_form.html' 
     permission = 'qualifications.change_skill'
+    fields=['category','name','enabled','description']
     
     def get_success_url(self):
         return reverse_lazy('skill_detail',args=[self.object.id])
@@ -92,6 +96,7 @@ class AddSkillView(CreateView,PermissionRequiredMixin):
     success_url='/qualifications/skills/%(id)s'
     template_name='skill_form.html'
     permission='qualifications.add_skill'
+    fields=['category','name','enabled','description']
     
     def get_context_data(self, **kwargs):
         context = super(AddSkillView,self).get_context_data(**kwargs)
@@ -123,6 +128,7 @@ class JobCreateView(CreateView,PermissionRequiredMixin):
     model=Job
     template_name='job_form.html'
     permission='qualifications.add_job'
+    fields=['name','description']
     
     def get_success_url(self):
         return reverse_lazy('job_detail',args=[self.object.id])
@@ -131,6 +137,7 @@ class JobUpdateView(UpdateView,PermissionRequiredMixin):
     model = Job
     template_name='job_form.html' 
     permission = 'qualifications.change_job'
+    fields=['name','description']
     
     def get_success_url(self):
         return reverse_lazy('job_detail',args=[self.object.id])
@@ -149,6 +156,7 @@ class AddPositionView(CreateView,PermissionRequiredMixin):
     model=Position
     template_name='position_form.html'
     permission='qualifications.add_position'
+    fields=['job','profile','project','status','location','publish_date','headcount','comment']
     
     def get_context_data(self, **kwargs):
         context = super(AddPositionView,self).get_context_data(**kwargs)
@@ -193,6 +201,7 @@ class PositionCreateView(CreateView,PermissionRequiredMixin):
     model=Position
     template_name='position_form.html'
     permission='qualifications.add_position'
+    fields=['job','profile','project','status','location','publish_date','headcount','comment']
     
     def get_success_url(self):
         return reverse_lazy('position_detail',args=[self.object.id])
@@ -202,6 +211,7 @@ class PositionUpdateView(UpdateView,PermissionRequiredMixin):
     model = Position
     template_name='position_form.html' 
     permission = 'qualifications.change_position'
+    fields=['job','profile','project','status','location','publish_date','headcount','comment']
     
     def get_success_url(self):
         return reverse_lazy('position_detail',args=[self.object.id])
@@ -221,6 +231,7 @@ class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
     model=EmployeePosition
     template_name='employeeposition_form.html'
     permission='qualifications.add_employeeposition'
+    fields=['employee','position','status','start_date','end_date','comments']
     
     def get_context_data(self, **kwargs):
         context = super(AddEmployeePositionView,self).get_context_data(**kwargs)
