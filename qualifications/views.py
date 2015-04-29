@@ -261,6 +261,7 @@ class EmployeeSkillCreateView(CreateView,PermissionRequiredMixin):
     model=EmployeeSkill
     template_name='employeeskill_form.html'
     permission='qualifications.add_employeeskill'
+    fields=['employee','skill','level']
     
     def get_success_url(self):
         return reverse_lazy('employeeskill_detail',args=[self.object.id])
@@ -271,6 +272,7 @@ class EmployeeSkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = EmployeeSkill
     template_name='employeeskill_form.html' 
     permission = 'qualifications.change_employeeskill'
+    fields=['employee','skill','level']
     
     def get_success_url(self):
         return reverse_lazy('employeeskill_detail',args=[self.object.id])
@@ -304,6 +306,7 @@ class JobProfileSkillCreateView(CreateView,PermissionRequiredMixin):
     model=JobProfileSkill
     template_name='jobprofileskill_form.html'
     permission='qualifications.add_jobprofileskill'
+    fields=['job','profile','skill','level']
     
     def get_success_url(self):
         return reverse_lazy('jobprofileskill_detail',args=[self.object.id])
@@ -313,6 +316,7 @@ class JobProfileSkillUpdateView(UpdateView,PermissionRequiredMixin):
     model = JobProfileSkill
     template_name='jobprofileskill_form.html' 
     permission = 'qualifications.change_jobprofileskill'
+    fields=['job','profile','skill','level']
     
     def get_success_url(self):
         return reverse_lazy('jobprofileskill_detail',args=[self.object.id])
@@ -345,6 +349,7 @@ class EmployeePositionCreateView(CreateView,PermissionRequiredMixin):
     model=EmployeePosition
     template_name='employeeposition_form.html'
     permission='qualifications.add_employeeposition'
+    fields=['employee','position','status','start_date','end_date','comments']
     
     def get_success_url(self):
         return reverse_lazy('employeeposition_detail',args=[self.object.id])
@@ -354,6 +359,7 @@ class EmployeePositionUpdateView(UpdateView,PermissionRequiredMixin):
     model = EmployeePosition
     template_name='employeeposition_form.html' 
     permission = 'qualifications.change_employeeposition'
+    fields=['employee','position','status','start_date','end_date','comments']
     
     def get_success_url(self):
         return reverse_lazy('employeeposition_detail',args=[self.object.id])
