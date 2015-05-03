@@ -25,6 +25,7 @@ class DomainCreateView(CreateView,PermissionRequiredMixin):
     model = Domain
     template_name = 'domain_form.html'
     permission = 'services.add_domain'
+    fields=['name','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('domain',args=[self.object.id])
@@ -35,6 +36,7 @@ class DomainUpdateView(UpdateView,PermissionRequiredMixin):
     model = Domain
     template_name = 'domain_form.html'
     permission = 'services.change_domain'
+    fields=['name','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('domain',args=[self.object.id])
@@ -70,6 +72,7 @@ class ServiceFamilyCreateView(CreateView,PermissionRequiredMixin):
     model = ServiceFamily
     template_name = 'servicefamily_form.html'
     permission = 'services.add_servicefamily'
+    fields=['name','domain','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('servicefamily',args=[self.object.id])
@@ -89,6 +92,7 @@ class ServiceFamilyUpdateView(UpdateView,PermissionRequiredMixin):
     model = ServiceFamily
     template_name = 'servicefamily_form.html'
     permission = 'services.change_servicefamily'
+    fields=['name','domain','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('servicefamily',args=[self.object.id])
@@ -122,6 +126,7 @@ class ServiceCreateView(CreateView, PermissionRequiredMixin):
     model = Service
     template_name = 'service_form.html'
     permission = 'services.add_service'
+    fields=['name','service_family','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('service',args=[self.object.id])
@@ -140,6 +145,7 @@ class ServiceUpdateView(UpdateView,PermissionRequiredMixin):
     model = Service
     template_name = 'service_form.html'
     permission = 'services.change_service'
+    fields=['name','service_family','is_active','owner','description']
     
     def get_success_url(self):
         return reverse_lazy('service',args=[self.object.id])
