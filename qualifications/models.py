@@ -129,6 +129,9 @@ class Position(models.Model):
     comment = models.TextField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
 
+    class Meta:
+        ordering=['project','job','profile']
+
     def __unicode__(self):
         return str(self.project) + ": " + str(self.job) + " (" + str(self.profile) + ")"
             
