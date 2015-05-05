@@ -10,6 +10,7 @@
             <th>department</th>
             <th>status</th>
             <th>location</th>
+            <th>start date</th>
             <th>publish date</th>
             <th>headcount</th>
         </tr>
@@ -23,6 +24,7 @@
         <td>{{ position.project.department }}</a></td>
         <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
         <td>{{ position.location }}</td>
+        <td>{{ position.start_date }}</td>
         <td>{{ position.publish_date }}</td>
         <td>{{ position.headcount }}</td>
     </tr>
