@@ -127,6 +127,7 @@ class Position(models.Model):
     publish_date = models.DateField(default=timezone.now)
     headcount = models.DecimalField(max_digits=5,decimal_places=2)
     comment = models.TextField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
         return str(self.project) + ": " + str(self.job) + " (" + str(self.profile) + ")"
