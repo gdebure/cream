@@ -133,7 +133,7 @@ class Position(models.Model):
         ordering=['project','job','profile']
 
     def __unicode__(self):
-        return str(self.project) + ": " + str(self.job) + " (" + str(self.profile) + ")"
+        return str(self.project) + ": " + str(self.job) + " (" + str(self.location) + ")"
             
             
    
