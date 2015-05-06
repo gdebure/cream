@@ -32,6 +32,6 @@ class Report(models.Model):
     graph_type = models.CharField(max_length=1)
     
     def __unicode__(self):
-        return self.title
+        return unicode(self.title)
         
    

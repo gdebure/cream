@@ -36,7 +36,7 @@ class Project (models.Model):
         
     
     def __unicode__(self):
-        return self.number + ": " + self.name
+        return self.number + ": " + unicode(self.name)
         
     def get_authorizations(self):
         return self.authorization_set.all()
@@ -100,7 +100,7 @@ class Deliverable (models.Model):
         ordering = ['project','code','name']
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
         
     def get_tasks(self):
         return self.task_set.all()
@@ -165,7 +165,7 @@ class DeliverableVolume(models.Model):
         ordering = ['deliverable','date_start']
         
     def __unicode__(self):
-        return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
+        return unicode(self.deliverable.name) + ' : ' + unicode(self.date_start) + " : " + unicode(self.date_end) + " : " + unicode(self.quantity)
         
     def get_total_price(self):
         return self.quantity * self.unit_price

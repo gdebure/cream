@@ -7,7 +7,6 @@ class Location(models.Model):
 
     class Meta:
         ordering = ['name']
-    
-    
+        
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)

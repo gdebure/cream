@@ -24,7 +24,7 @@ class SkillCategory (models.Model):
    
     def __unicode__(self):
         '''Returns the name when printing object'''
-        return self.name
+        return unicode(self.name)
         
     def get_skills(self):
         '''Returns the list of skills belonging to this category. This method
@@ -52,7 +52,7 @@ class Skill (models.Model):
     
     def __unicode__(self):
         '''Returns the category and name when printing this object'''
-        return self.category.name + ": " + self.name
+        return unicode(self.category.name) + ": " + unicode(self.name)
         
     def get_employees(self):
         '''Returns the list of employees with this skill. This method
@@ -80,7 +80,7 @@ class Job (models.Model):
     
     def __unicode__(self):
         '''Returns the name when printing object'''
-        return self.name
+        return unicode(self.name)
      
     def get_profile_skills(self):
         '''Returns the list of skills required for this job. This method
@@ -98,7 +98,7 @@ class PositionStatus(models.Model):
     css_class = models.CharField(max_length=64)
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
 
 
@@ -112,7 +112,7 @@ class Profile (models.Model):
         ordering = ['name']
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
  
 
@@ -133,8 +133,7 @@ class Position(models.Model):
         ordering=['project','job','profile']
 
     def __unicode__(self):
-        return str(self.project) + ": " + str(self.job) + " (" + str(self.location) + ")"
-            
+        return unicode(self.project) + " - " + unicode(self.job) + " - " + unicode(self.location)
             
    
 
@@ -154,7 +153,7 @@ class EmployeeSkill(models.Model):
     
     def __unicode__(self):
         '''Returns the employee, skill and level when printing object'''
-        return str(self.employee) + " : " + self.skill.name + " : " + str(self.level)
+        return unicode(self.employee) + " : " + self.skill.name + " : " + unicode(self.level)
         
     
 
@@ -175,7 +174,7 @@ class JobProfileSkill(models.Model):
         
     def __unicode__(self):
         '''Returns the job, skill and level when printing object'''
-        return self.job.name + " : " + self.profile.name +" : " + self.skill.name + " : " + str(self.level)
+        return unicode(self.job.name) + " : " + unicode(self.profile.name) +" : " + unicode(self.skill.name) + " : " + unicode(self.level)
 
         
 
@@ -185,7 +184,7 @@ class EmployeePositionStatus(models.Model):
     css_class = models.CharField(max_length=64)
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
     
         
 class EmployeePosition(models.Model):
@@ -199,4 +198,4 @@ class EmployeePosition(models.Model):
     comments = models.TextField()
     
     def __unicode__(self):
-        return str(self.employee) + ": " + str(self.position)
+        return unicode(self.employee) + ": " + unicode(self.position)
