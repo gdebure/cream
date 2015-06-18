@@ -19,10 +19,4 @@ class Migration(migrations.Migration):
                 ('css_class', models.CharField(max_length=64)),
             ],
         ),
-        migrations.AddField(
-            model_name='project',
-            name='status',
-            field=models.ForeignKey(default='a', to='projects.ProjectStatus'),
-            preserve_default=False,
-        ),
     ]
