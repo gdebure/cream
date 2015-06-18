@@ -5,11 +5,12 @@
 <table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
         <tr>
-            <th>project number</th>
-            <th>project name</th>
+            <th>number</th>
+            <th>name</th>
             <th>department</th>
             <th>project leader</th>
-            <th>project turnover</th>
+            <th>status</th>
+            <th>turnover</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +21,8 @@
         <td>{{ project.department }}</td>
         <td>
             {% if project.project_leader %}<a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a>{% endif %}
-        </td>
+        </td>{{ project.number }}</td>
+        <td></td>
         <td align="right">{{ project.get_total_turnover|currency }}</td>
     </tr>
 {% endfor %}

@@ -10,6 +10,16 @@ import reversion
 from users.models import Employee
 from services.models import Service
 
+class ProjectStatus(models.Model):
+    
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return unicode(self.name)
+
+
 class Project (models.Model):
     '''A class to handle projects'''
     
@@ -30,6 +40,7 @@ class Project (models.Model):
     project_leader = models.ForeignKey(Employee, null=True, blank=True, related_name="project_leader")
     department = models.CharField(max_length=2,null=True, blank=True, verbose_name="CIMPA department")
     natco = models.CharField(max_length=2, choices=NATCO_CHOICES, verbose_name="turnover allocation natco", null=True, blank=True)
+    status = models.ForeignKey(ProjectStatus)
     
     class Meta:
         ordering = ["number", "name"]
