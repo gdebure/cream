@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from projects.models import Project, Deliverable, DeliverableVolume
+from qualifications.models import Position
 
 
 #####################
