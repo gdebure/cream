@@ -23,7 +23,7 @@
 
 <div class="block">
 {% include "position_table.html" with positions_list=project.get_positions %}
-<!--<a href="{% url 'add_position' project.id %}"><i class="fa fa-plus"></i>Add deliverable</a>-->
+<a href="{% url 'add_position' project.id %}"><i class="fa fa-plus"></i>Add deliverable</a>
 </div>
 
 {% endblock %}

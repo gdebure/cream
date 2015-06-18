@@ -65,7 +65,22 @@ class AddDeliverableView(CreateView,PermissionRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('deliverable_detail',args=[self.object.id])
 
+class AddPositionView(CreateView,PermissionRequiredMixin):
+    model=Position
+    template_name='position_form.html'
+    permission='qualifications.add_position'
+    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddPositionView,self).get_context_data(**kwargs)
+        project = Project.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'project':project}
+        return  context
 
+    def get_success_url(self):
+        return reverse_lazy('position_detail',args=[self.object.id])
+    
+    
 #####################
 ### Deliverables View ###
 #####################
