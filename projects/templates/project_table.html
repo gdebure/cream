@@ -22,7 +22,7 @@
         <td>
             {% if project.project_leader %}<a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a>{% endif %}
         </td>
-        <td>{{ project.status }}</td>
+        <td><div class="label {{ project.status.css_class }}">{{ project.status }}</div></td>
         <td align="right">{{ project.get_total_turnover|currency }}</td>
     </tr>
 {% endfor %}
