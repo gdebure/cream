@@ -80,7 +80,7 @@ class Project (models.Model):
         return turnover
     
     def get_positions(self):
-        return sel.position_set.all()
+        return self.position_set.all()
 
 # Register this object in reversion, so that we can track its history
 #reversion.register(Project)
