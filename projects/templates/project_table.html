@@ -21,8 +21,8 @@
         <td>{{ project.department }}</td>
         <td>
             {% if project.project_leader %}<a href="{% url 'employee' project.project_leader.id %}">{{ project.project_leader }}</a>{% endif %}
-        </td>{{ project.number }}</td>
-        <td></td>
+        </td>
+        <td>{{ project.status }}</td>
         <td align="right">{{ project.get_total_turnover|currency }}</td>
     </tr>
 {% endfor %}
