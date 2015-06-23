@@ -10,6 +10,16 @@ import reversion
 from users.models import Employee
 from services.models import Service
 
+class ProjectStatus(models.Model):
+    
+    id = models.CharField(primary_key=True, max_length=1)
+    name = models.CharField(max_length=64)
+    css_class = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return unicode(self.name)
+
+
 class Project (models.Model):
     '''A class to handle projects'''
     
@@ -30,13 +40,14 @@ class Project (models.Model):
     project_leader = models.ForeignKey(Employee, null=True, blank=True, related_name="project_leader")
     department = models.CharField(max_length=2,null=True, blank=True, verbose_name="CIMPA department")
     natco = models.CharField(max_length=2, choices=NATCO_CHOICES, verbose_name="turnover allocation natco", null=True, blank=True)
+    status = models.ForeignKey(ProjectStatus)
     
     class Meta:
         ordering = ["number", "name"]
         
     
     def __unicode__(self):
-        return self.number + ": " + self.name
+        return self.number + ": " + unicode(self.name)
         
     def get_authorizations(self):
         return self.authorization_set.all()
@@ -67,6 +78,9 @@ class Project (models.Model):
                 year_turnover += deliverable.get_turnover_year(year)
             turnover[year] = year_turnover
         return turnover
+    
+    def get_positions(self):
+        return self.position_set.all()
 
 # Register this object in reversion, so that we can track its history
 #reversion.register(Project)
@@ -100,7 +114,7 @@ class Deliverable (models.Model):
         ordering = ['project','code','name']
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
         
     def get_tasks(self):
         return self.task_set.all()
@@ -165,7 +179,7 @@ class DeliverableVolume(models.Model):
         ordering = ['deliverable','date_start']
         
     def __unicode__(self):
-        return self.deliverable.name+ ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
+        return unicode(self.deliverable.name) + ' : ' + unicode(self.date_start) + " : " + unicode(self.date_end) + " : " + unicode(self.quantity)
         
     def get_total_price(self):
         return self.quantity * self.unit_price

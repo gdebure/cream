@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from projects.models import Project, Deliverable, DeliverableVolume
+from qualifications.models import Position
 
 
 #####################
@@ -25,7 +26,7 @@ class ProjectCreateView(CreateView,PermissionRequiredMixin):
     model=Project
     template_name='project_form.html'
     permission='projects.add_project'
-    fields=['name','number','description','date_start','date_end','customer_name','customer_siglum','wiki_link','project_leader','department','natco']
+    fields=['name','number','description','date_start','date_end','customer_name','customer_siglum','wiki_link','project_leader','department','natco','status']
     
     def get_success_url(self):
         return reverse_lazy('project_detail',args=[self.object.id])
@@ -35,7 +36,7 @@ class ProjectUpdateView(UpdateView,PermissionRequiredMixin):
     model = Project
     template_name='project_form.html' 
     permission = 'projects.change_project'
-    fields=['name','number','description','date_start','date_end','customer_name','customer_siglum','wiki_link','project_leader','department','natco']
+    fields=['name','number','description','date_start','date_end','customer_name','customer_siglum','wiki_link','project_leader','department','natco','status']
     
     def get_success_url(self):
         return reverse_lazy('project_detail',args=[self.object.id])
@@ -65,7 +66,22 @@ class AddDeliverableView(CreateView,PermissionRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('deliverable_detail',args=[self.object.id])
 
+class AddPositionView(CreateView,PermissionRequiredMixin):
+    model=Position
+    template_name='position_form.html'
+    permission='qualifications.add_position'
+    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddPositionView,self).get_context_data(**kwargs)
+        project = Project.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'project':project}
+        return  context
 
+    def get_success_url(self):
+        return reverse_lazy('position_detail',args=[self.object.id])
+    
+    
 #####################
 ### Deliverables View ###
 #####################

@@ -16,7 +16,7 @@ class Domain (models.Model):
         ordering = ['name']
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
         
     def get_service_families(self):
         return self.servicefamily_set.all()
@@ -51,7 +51,7 @@ class ServiceFamily (models.Model):
         ordering = ['domain','name']
     
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
         
     def get_services(self):
         return self.service_set.all()
@@ -86,7 +86,7 @@ class Service (models.Model):
         ordering = ['service_family__name','name']
     
     def __unicode__(self):
-        return self.service_family.name + " : " + self.name
+        return unicode(self.service_family.name) + " : " + unicode(self.name)
         
     def get_deliverables(self):
         return self.deliverable_set.all()
