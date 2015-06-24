@@ -24,4 +24,22 @@ class ApplicantCreateView(CreateView,PermissionRequiredMixin):
 
     def get_success_url(self):
         return reverse_lazy('applicant_detail',args=[self.object.id])
+    
+class ApplicantUpdateView(UpdateView,PermissionRequiredMixin):
+    model = Applicant
+    template_name='applicant_form.html'
+    permission='recruitment.add_applicant'
+    fields=['last_name','first_name','address','phone','email','first_contact','cv','comments']
+
+    def get_success_url(self):
+        return reverse_lazy('applicant_detail',args=[self.object.id])
+    
+class ApplicantDeleteView(DeleteView):
+    model = Applicant
+    permission='recruitment.delete_applicant'
+    template_name = 'applicant_confirm_delete.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('applicants_list',args=[self.object.id])
+
 
