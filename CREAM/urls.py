@@ -25,4 +25,5 @@ urlpatterns = patterns('',
     url(r'^reports/',include('reports.urls')),
     url(r'^users/',include('users.urls')),
     url(r'^qualifications/',include('qualifications.urls')),
+    url(r'^recruitment/',include('recruitment.urls')),
 )

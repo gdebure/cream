@@ -1,0 +1,11 @@
+{% include "fa-decoration.html" with title="Applicant properties" icon="fa-user" block="main" %}
+<table class="table table-hover">
+    <tr><th>last name</th><td>{{ applicant.last_name }}</td></tr>
+    <tr><th>first name</th><td>{{ applicant.first_name }}</td></tr>
+    <tr><th>address</th><td>{{ applicant.address }}</a></td></tr>
+    <tr><th>phone</th><td>{{ applicant.phone }}</td></tr>
+    <tr><th>email</th><td>{{ applicant.email }}</td></tr>
+    <tr><th>first contact</th><td>{{ applicant.first_contact}}</td></tr>
+    <tr><th>cv</th><td>{{ applicant.cv }}</td></tr>
+    <tr><th>comments</th><td>{{ applicant.comments }}</td></tr>
+</table>

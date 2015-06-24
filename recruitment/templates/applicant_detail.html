@@ -1,0 +1,21 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "applicant_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+<br/>
+
+{% comment %} {% include "common/comments.html" with object=position next_url="applicant_detail" %} {% endcomment %}
+
+<hr/>
+
+{% comment %}{% include "employeeposition_table.html" with employeepositions_list=position.employeeposition_set.all icon="fa-user" %}
+<a href="{% url "add_employeeposition" position.id %}"><i class="fa fa-plus"></i>Add Employee</a>{% endcomment %}
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from qualifications.models import Position, EmployeePositionStatus
 
+
 class Applicant(models.Model):
     
     last_name = models.CharField(max_length=64)
@@ -14,6 +15,7 @@ class Applicant(models.Model):
     
     def __unicode__(self):
         return unicode(self.first_name) + " " + unicode(self.last_name)
+
     
 class ApplicantPosition(models.Model):
     
