@@ -182,7 +182,6 @@ class EmployeePositionStatus(models.Model):
     id = models.CharField(primary_key=True, max_length=1)
     name = models.CharField(max_length=64)
     css_class = models.CharField(max_length=64)
-    effective_workload = models.BooleanField(default=True)
     
     def __unicode__(self):
         return unicode(self.name)
@@ -196,7 +195,6 @@ class EmployeePosition(models.Model):
     status = models.ForeignKey(EmployeePositionStatus)
     start_date = models.DateField(null=True,blank=True)
     end_date = models.DateField(null=True,blank=True)
-    workload = models.PositiveSmallIntegerField(default=0)
     comments = models.TextField()
     
     
