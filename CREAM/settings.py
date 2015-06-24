@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'projects',
     'services',
     'qualifications',
+    'recruitment',
     'reports',
     
 )

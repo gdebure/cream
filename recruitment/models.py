@@ -18,7 +18,7 @@ class Applicant(models.Model):
 class ApplicantPosition(models.Model):
     
     applicant = models.ForeignKey(Applicant)
-    position = models.ForeignKey(Applicant)
+    position = models.ForeignKey(Applicant, related_name='applicant_position')
     status = models.ForeignKey(EmployeePositionStatus)
     comments = models.TextField()
     
