@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -43,3 +44,49 @@ class ApplicantDeleteView(DeleteView):
         return reverse_lazy('applicants_list',args=[self.object.id])
 
 
+
+
+class ApplicantPositionListView(ListView,LoginRequiredMixin):
+    
+    model = ApplicantPosition
+    context_object_name='applicantpositions_list'
+    template_name='applicantposition_list.html'
+    
+class ApplicantPositionDetailView(DetailView,LoginRequiredMixin):
+    
+    model = ApplicantPosition
+    template_name='applicantposition_detail.html'
+    
+class ApplicantPositionCreateView(CreateView,PermissionRequiredMixin):
+    model = ApplicantPosition
+    template_name='applicantposition_form.html'
+    permission='recruitment.add_applicantposition'
+    fields=['applicant','position','status','comments']
+
+    def get_success_url(self):
+        return reverse_lazy('applicantposition_detail',args=[self.object.id])
+    
+class ApplicantPositionUpdateView(UpdateView,PermissionRequiredMixin):
+    model = ApplicantPosition
+    template_name='applicantposition_form.html'
+    permission='recruitment.add_applicantposition'
+    fields=['applicant','position','status','comments']
+
+    def get_success_url(self):
+        return reverse_lazy('applicant_detail',args=[self.object.id])
+    
+class ApplicantPositionDeleteView(DeleteView):
+    model = ApplicantPosition
+    permission='recruitment.delete_applicantposition'
+    template_name = 'applicantposition_confirm_delete.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('applicantpositions_list',args=[self.object.id])
+    
+class AddPositionView(ApplicantPositionCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddPositionView,self).get_context_data(**kwargs)
+        applicant = Applicant.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'applicant':applicant}
+        return  context

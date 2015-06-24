@@ -1,0 +1,26 @@
+{% include "fa-decoration.html" with title=title|default:"Applicants Positions list" icon=icon|default:"fa-bullhorn" %}
+
+{% if applicantpositions_list %}
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
+    <thead>
+        <tr>
+            <th>applicantposition</th>
+            <th>position</th>
+            <th>status</th>
+            <th>comments</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for applicantposition in applicantpositions_list %}
+    <tr>
+        <td><a href="{% url "applicant_detail" applicantposition.applicant.id %}">{{ applicantposition.applicant }}</a></td>
+        <td><a href="{% url "position_detail" applicantposition.position.id %}">{{applicantposition.position}}</a></td>
+        <td><a href="{% url "applicantposition_detail" applicantposition.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ applicantposition.status.css_class }}">{{ applicantposition.status }}</div></td>
+        <td>{{ applicantposition.comments }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No applicant position found.</p>
+{% endif %}
