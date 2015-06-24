@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from recruitment.models import Applicant, ApplicantPosition
+from qualifications.models import Position
 
 class ApplicantListView(ListView,LoginRequiredMixin):
     
@@ -83,10 +84,19 @@ class ApplicantPositionDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('applicantpositions_list',args=[self.object.id])
     
-class AddPositionView(ApplicantPositionCreateView):
+class AddPositionFromApplicantView(ApplicantPositionCreateView):
     
     def get_context_data(self, **kwargs):
-        context = super(AddPositionView,self).get_context_data(**kwargs)
+        context = super(AddPositionFromApplicantView,self).get_context_data(**kwargs)
         applicant = Applicant.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'applicant':applicant}
+        return  context
+    
+
+class AddApplicantFromPositionView(ApplicantPositionCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddApplicantFromPositionView,self).get_context_data(**kwargs)
+        position = Position.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'position':position}
         return  context

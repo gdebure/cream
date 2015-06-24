@@ -18,4 +18,9 @@
 {% include "employeeposition_table.html" with employeepositions_list=position.employeeposition_set.all icon="fa-user" %}
 <a href="{% url "add_employeeposition" position.id %}"><i class="fa fa-plus"></i>Add Employee</a>
 
+<hr/>
+
+{% include "applicantposition_table.html" with applicantpositions_list=position.applicantposition_set.all icon="fa-child" %}
+<a href="{% url "add_applicantfromposition" position.id %}"><i class="fa fa-plus"></i>Add Applicant</a>
+
 {% endblock %}

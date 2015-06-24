@@ -16,6 +16,6 @@
 <hr/>
 
 {% include "applicantposition_table.html" with applicantpositions_list=applicant.applicantposition_set.all icon="fa-bullhorn" %}
-<a href="{% url "add_applicantposition" applicant.id %}"><i class="fa fa-plus"></i>Add Position</a>
+<a href="{% url "add_positionfromapplicant" applicant.id %}"><i class="fa fa-plus"></i>Add Position</a>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns,url
 
-from recruitment.views import ApplicantListView, ApplicantDetailView, ApplicantCreateView, ApplicantUpdateView, ApplicantDeleteView, AddPositionView
+from recruitment.views import ApplicantListView, ApplicantDetailView, ApplicantCreateView, ApplicantUpdateView, ApplicantDeleteView, AddPositionFromApplicantView
 from recruitment.views import ApplicantPositionListView, ApplicantPositionDetailView, ApplicantPositionCreateView, ApplicantPositionUpdateView, ApplicantPositionDeleteView
 
 urlpatterns = patterns('',
@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^applicants/create/$',ApplicantCreateView.as_view(),name='create_applicant'),
     url(r'^applicants/(?P<pk>\d+)/update/$',ApplicantUpdateView.as_view(),name='update_applicant'),
     url(r'^applicants/(?P<pk>\d+)/delete/$',ApplicantDeleteView.as_view(),name='delete_applicant'),
-    url(r'^applicants/(?P<pk>\d+)/add_position/$', AddPositionView.as_view(), name='add_applicantposition' ),
+    url(r'^applicants/(?P<pk>\d+)/add_position/$', AddPositionFromApplicantView.as_view(), name='add_positionfromapplicant' ),
     
     url(r'^applicantpositions/$', ApplicantPositionListView.as_view(), name='applicantpositions_list'),
     url(r'^applicantpositions/(?P<pk>\d+)/$', ApplicantPositionDetailView.as_view(), name='applicantposition_detail'),

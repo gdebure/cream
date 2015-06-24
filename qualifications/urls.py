@@ -8,6 +8,8 @@ from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView
 from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
 from qualifications.views import EmployeePositionsListView, EmployeePositionDetailView, EmployeePositionCreateView, EmployeePositionUpdateView, EmployeePositionDeleteView
 
+from recruitment.views import AddApplicantFromPositionView
+
 
 urlpatterns = patterns('',
     
@@ -52,6 +54,7 @@ urlpatterns = patterns('',
     url(r'^positions/(?P<pk>\d+)/delete/$', PositionDeleteView.as_view(), name='delete_position' ),
     
     url(r'^positions/(?P<pk>\d+)/add_employee/$', AddEmployeePositionView.as_view(), name='add_employeeposition' ),
+    url(r'^positions/(?P<pk>\d+)/add_applicant/$', AddApplicantFromPositionView.as_view(), name='add_applicantfromposition' ),
     ##################################
         
     ##################################
