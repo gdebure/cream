@@ -18,4 +18,9 @@
 {% include "applicantposition_table.html" with applicantpositions_list=applicant.applicantposition_set.all icon="fa-bullhorn" %}
 <a href="{% url "add_positionfromapplicant" applicant.id %}"><i class="fa fa-plus"></i>Add Position</a>
 
+<hr/>
+
+{% include "recruitmentmeeting_table.html" with recruitmentmeetings_list=applicant.recruitmentmeeting_set.all icon="fa-calendar" %}
+<a href="{% url "add_recruitmentmeetingfromapplicant" applicant.id %}"><i class="fa fa-plus"></i>Add Recruitment Meeting</a>
+
 {% endblock %}

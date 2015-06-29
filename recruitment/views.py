@@ -143,3 +143,12 @@ class RecruitmentMeetingDeleteView(DeleteView):
     
     def get_success_url(self):
         return reverse_lazy('recruitmentmeetings_list')
+    
+    
+class AddRecruitmentMeetingFromApplicantView(RecruitmentMeetingCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddRecruitmentMeetingFromPositionView,self).get_context_data(**kwargs)
+        applicant = Applicant.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'applicant':applicant}
+        return  context
