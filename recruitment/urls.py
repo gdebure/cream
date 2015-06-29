@@ -2,7 +2,7 @@ from django.conf.urls import patterns,url
 
 from recruitment.views import ApplicantListView, ApplicantDetailView, ApplicantCreateView, ApplicantUpdateView, ApplicantDeleteView, AddPositionFromApplicantView
 from recruitment.views import ApplicantPositionListView, ApplicantPositionDetailView, ApplicantPositionCreateView, ApplicantPositionUpdateView, ApplicantPositionDeleteView
-from recruitment.views import RecruitmentMeetingListView, RecruitmentMeetingDetailView
+from recruitment.views import RecruitmentMeetingListView, RecruitmentMeetingDetailView, RecruitmentMeetingCreateView,RecruitmentMeetingUpdateView, RecruitmentMeetingDeleteView
 
 urlpatterns = patterns('',
     
@@ -21,4 +21,7 @@ urlpatterns = patterns('',
     
     url(r'^recruitmentmeetings/$', RecruitmentMeetingListView.as_view(), name='recruitmentmeetings_list'),
     url(r'^recruitmentmeetings/(?P<pk>\d+)/$', RecruitmentMeetingDetailView.as_view(), name='recruitmentmeeting_detail'),
+    url(r'^recruitmentmeetings/create/$', RecruitmentMeetingCreateView.as_view(), name='create_recruitmentmeeting'),
+    url(r'^recruitmentmeetings/(?P<pk>\d+)/update/$', RecruitmentMeetingUpdateView.as_view(), name='update_recruitmentmeeting'),
+    url(r'^recruitmentmeetings/(?P<pk>\d+)/delete/$', RecruitmentMeetingDeleteView.as_view(), name='delete_recruitmentmeeting'),
     )

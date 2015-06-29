@@ -84,7 +84,7 @@ class ApplicantPositionDeleteView(DeleteView):
     template_name = 'applicantposition_confirm_delete.html'
     
     def get_success_url(self):
-        return reverse_lazy('applicantpositions_list',args=[self.object.id])
+        return reverse_lazy('applicantpositions_list')
     
 class AddPositionFromApplicantView(ApplicantPositionCreateView):
     
@@ -116,3 +116,30 @@ class RecruitmentMeetingDetailView(DetailView,PermissionRequiredMixin):
     model = RecruitmentMeeting
     template_name='recruitmentmeeting_detail.html'
     permission='recruitment.add_recruitmentmeeting'
+    
+    
+class RecruitmentMeetingCreateView(CreateView, PermissionRequiredMixin):
+    model = RecruitmentMeeting
+    template_name='recruitmentmeeting_form.html'
+    permission='recruitment.add_recruitmentmeeting'
+    fields=['applicant','type','date','interviewer','status','notes']
+    
+    def get_success_url(self):
+        return reverse_lazy('recruitmentmeeting_detail',args=[self.object.id])
+    
+class RecruitmentMeetingUpdateView(UpdateView, PermissionRequiredMixin):
+    model = RecruitmentMeeting
+    template_name='recruitmentmeeting_form.html'
+    permission='recruitment.add_recruitmentmeeting'
+    fields=['applicant','type','date','interviewer','status','notes']
+    
+    def get_success_url(self):
+        return reverse_lazy('recruitmentmeeting_detail',args=[self.object.id])
+    
+class RecruitmentMeetingDeleteView(DeleteView):
+    model = RecruitmentMeeting
+    permission='recruitment.delete_recruitmentmeeting'
+    template_name = 'recruitmentmeeting_confirm_delete.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('recruitmentmeetings_list')
