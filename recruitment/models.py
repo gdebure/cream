@@ -10,7 +10,7 @@ class Applicant(models.Model):
     phone = models.CharField(max_length=32)
     email = models.EmailField()
     first_contact = models.DateField()
-    cv = models.FileField()
+    cv = models.FileField(upload_to='applicants/cv')
     comments = models.TextField()
     
     def __unicode__(self):

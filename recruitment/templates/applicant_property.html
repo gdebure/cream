@@ -6,6 +6,6 @@
     <tr><th>phone</th><td>{{ applicant.phone }}</td></tr>
     <tr><th>email</th><td>{{ applicant.email }}</td></tr>
     <tr><th>first contact</th><td>{{ applicant.first_contact}}</td></tr>
-    <tr><th>cv</th><td>{{ applicant.cv }}</td></tr>
+    <tr><th>cv</th><td><a href="{{ applicant.cv.url }}">{{ applicant.cv }}</a></td></tr>
     <tr><th>comments</th><td>{{ applicant.comments }}</td></tr>
 </table>
