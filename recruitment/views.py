@@ -44,7 +44,7 @@ class ApplicantDeleteView(DeleteView):
     template_name = 'applicant_confirm_delete.html'
     
     def get_success_url(self):
-        return reverse_lazy('applicants_list',args=[self.object.id])
+        return reverse_lazy('applicants_list')
 
 
 
