@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the list of objects -->
+{% include "interview_table.html" with block="main" datatable_style="dataTableFiltered" %}
+
+{% include "common/list_actions.html" with action_url="create_interview" item_name="interview" %}
+
+{% endblock %}

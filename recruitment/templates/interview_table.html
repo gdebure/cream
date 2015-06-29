@@ -1,0 +1,28 @@
+{% include "fa-decoration.html" with title=title|default:"Interviews list" icon=icon|default:"fa-calendar" %}
+
+{% if interviews_list %}
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
+    <thead>
+        <tr>
+            <th>applicant</th>
+            <th>type</th>
+            <th>date</th>
+            <th>interviewer</th>
+            <th>status</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for interview in interviews_list %}
+    <tr>
+        <td><a href="{% url "applicant_detail" interview.applicant.id %}">{{ interview.applicant }}</a></td>
+        <td><a href="{% url "interview_detail" interview.id %}">{{interview.type}}</a></td>
+        <td>{{ interview.date }}</td>
+        <td><a href="{% url "employee" interview.interviewer.id %}">{{ interview.interviewer }}</a></td>
+        <td><div class="{{ interview.status.css_class }}">{{ interview.status }}</div></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No interview found.</p>
+{% endif %}

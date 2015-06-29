@@ -20,7 +20,7 @@
 
 <hr/>
 
-{% include "recruitmentmeeting_table.html" with recruitmentmeetings_list=applicant.recruitmentmeeting_set.all icon="fa-calendar" %}
-<a href="{% url "add_recruitmentmeetingfromapplicant" applicant.id %}"><i class="fa fa-plus"></i>Add Recruitment Meeting</a>
+{% include "interview_table.html" with interviews_list=applicant.interview_set.all icon="fa-calendar" %}
+<a href="{% url "add_interviewfromapplicant" applicant.id %}"><i class="fa fa-plus"></i>Add Interview</a>
 
 {% endblock %}

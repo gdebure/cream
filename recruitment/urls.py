@@ -2,7 +2,7 @@ from django.conf.urls import patterns,url
 
 from recruitment.views import ApplicantListView, ApplicantDetailView, ApplicantCreateView, ApplicantUpdateView, ApplicantDeleteView, AddPositionFromApplicantView
 from recruitment.views import ApplicantPositionListView, ApplicantPositionDetailView, ApplicantPositionCreateView, ApplicantPositionUpdateView, ApplicantPositionDeleteView
-from recruitment.views import RecruitmentMeetingListView, RecruitmentMeetingDetailView, RecruitmentMeetingCreateView,RecruitmentMeetingUpdateView, RecruitmentMeetingDeleteView, AddRecruitmentMeetingFromApplicantView
+from recruitment.views import InterviewListView, InterviewDetailView, InterviewCreateView,InterviewUpdateView, InterviewDeleteView, AddInterviewFromApplicantView
 
 urlpatterns = patterns('',
     
@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^applicants/(?P<pk>\d+)/update/$',ApplicantUpdateView.as_view(),name='update_applicant'),
     url(r'^applicants/(?P<pk>\d+)/delete/$',ApplicantDeleteView.as_view(),name='delete_applicant'),
     url(r'^applicants/(?P<pk>\d+)/add_position/$', AddPositionFromApplicantView.as_view(), name='add_positionfromapplicant' ),
-    url(r'^applicants/(?P<pk>\d+)/add_recruitmentmeeting/$', AddRecruitmentMeetingFromApplicantView.as_view(), name='add_recruitmentmeetingfromapplicant' ),
+    url(r'^applicants/(?P<pk>\d+)/add_interview/$', AddInterviewFromApplicantView.as_view(), name='add_interviewfromapplicant' ),
     
     url(r'^applicantpositions/$', ApplicantPositionListView.as_view(), name='applicantpositions_list'),
     url(r'^applicantpositions/(?P<pk>\d+)/$', ApplicantPositionDetailView.as_view(), name='applicantposition_detail'),
@@ -20,9 +20,9 @@ urlpatterns = patterns('',
     url(r'^applicantpositions/(?P<pk>\d+)/update/$',ApplicantPositionUpdateView.as_view(),name='update_applicantposition'),
     url(r'^applicantpositions/(?P<pk>\d+)/delete/$',ApplicantPositionDeleteView.as_view(),name='delete_applicantposition'),
     
-    url(r'^recruitmentmeetings/$', RecruitmentMeetingListView.as_view(), name='recruitmentmeetings_list'),
-    url(r'^recruitmentmeetings/(?P<pk>\d+)/$', RecruitmentMeetingDetailView.as_view(), name='recruitmentmeeting_detail'),
-    url(r'^recruitmentmeetings/create/$', RecruitmentMeetingCreateView.as_view(), name='create_recruitmentmeeting'),
-    url(r'^recruitmentmeetings/(?P<pk>\d+)/update/$', RecruitmentMeetingUpdateView.as_view(), name='update_recruitmentmeeting'),
-    url(r'^recruitmentmeetings/(?P<pk>\d+)/delete/$', RecruitmentMeetingDeleteView.as_view(), name='delete_recruitmentmeeting'),
+    url(r'^interviews/$', InterviewListView.as_view(), name='interviews_list'),
+    url(r'^interviews/(?P<pk>\d+)/$', InterviewDetailView.as_view(), name='interview_detail'),
+    url(r'^interviews/create/$', InterviewCreateView.as_view(), name='create_interview'),
+    url(r'^interviews/(?P<pk>\d+)/update/$', InterviewUpdateView.as_view(), name='update_interview'),
+    url(r'^interviews/(?P<pk>\d+)/delete/$', InterviewDeleteView.as_view(), name='delete_interview'),
     )

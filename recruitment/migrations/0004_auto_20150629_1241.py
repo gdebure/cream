@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='RecruitmentMeeting',
+            name='Interview',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('date', models.DateField(default=django.utils.timezone.now)),
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='RecruitmentMeetingStatus',
+            name='InterviewStatus',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=32)),
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='RecruitmentMeetingType',
+            name='InterviewType',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=32)),
@@ -41,13 +41,13 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='recruitmentmeeting',
+            model_name='interview',
             name='status',
-            field=models.ForeignKey(to='recruitment.RecruitmentMeetingStatus'),
+            field=models.ForeignKey(to='recruitment.InterviewStatus'),
         ),
         migrations.AddField(
-            model_name='recruitmentmeeting',
+            model_name='interview',
             name='type',
-            field=models.ForeignKey(to='recruitment.RecruitmentMeetingType'),
+            field=models.ForeignKey(to='recruitment.InterviewType'),
         ),
     ]

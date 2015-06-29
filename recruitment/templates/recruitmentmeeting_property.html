@@ -1,9 +1,0 @@
-{% include "fa-decoration.html" with title="Recruitment meeting properties" icon="fa-calendar" block="main" %}
-<table class="table table-hover">
-    <tr><th>applicant</th> <td><a href="{% url "applicant_detail" recruitmentmeeting.applicant.id %}">{{ recruitmentmeeting.applicant }}</a></td></tr>
-    <tr><th>type</th><td>{{ recruitmentmeeting.type }}</td></tr>
-    <tr><th>date</th><td>{{ recruitmentmeeting.date }}</a></td></tr>
-    <tr><th>interviewer</th><td><a href="{% url "employee" recruitmentmeeting.interviewer.id %}">{{ recruitmentmeeting.interviewer }}</a></td></tr>
-    <tr><th>status</th><td><div class="{{ recruitmentmeeting.status.css_class }}">{{ recruitmentmeeting.status }}</div></td></tr>
-    <tr><th>notes</th><td>{{ recruitmentmeeting.notes }}</td></tr>
-</table>

@@ -31,7 +31,7 @@ class ApplicantPosition(models.Model):
         return unicode(self.name)
     
     
-class RecruitmentMeetingType(models.Model):
+class InterviewType(models.Model):
     
     name = models.CharField(max_length=32)
     comments = models.TextField()
@@ -40,7 +40,7 @@ class RecruitmentMeetingType(models.Model):
         return unicode(self.name)
     
 
-class RecruitmentMeetingStatus(models.Model):
+class InterviewStatus(models.Model):
     
     name = models.CharField(max_length=32)
     comments = models.TextField()
@@ -50,11 +50,11 @@ class RecruitmentMeetingStatus(models.Model):
         return unicode(self.name)
     
     
-class RecruitmentMeeting(models.Model):
+class Interview(models.Model):
     
     applicant = models.ForeignKey(Applicant)
-    type = models.ForeignKey(RecruitmentMeetingType)
+    type = models.ForeignKey(InterviewType)
     date = models.DateField(default=timezone.now)
     interviewer = models.ForeignKey(Employee)
-    status = models.ForeignKey(RecruitmentMeetingStatus)
+    status = models.ForeignKey(InterviewStatus)
     notes = models.TextField()

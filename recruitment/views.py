@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from recruitment.models import Applicant, ApplicantPosition
-from recruitment.models import RecruitmentMeeting
+from recruitment.models import Interview
 
 from qualifications.models import Position
 
@@ -105,50 +105,50 @@ class AddApplicantFromPositionView(ApplicantPositionCreateView):
     
     
     
-class RecruitmentMeetingListView(ListView, PermissionRequiredMixin):
-    model = RecruitmentMeeting
-    context_object_name='recruitmentmeetings_list'
-    template_name='recruitmentmeeting_list.html'
-    permission='recruitment.add_recruitmentmeeting'
+class InterviewListView(ListView, PermissionRequiredMixin):
+    model = Interview
+    context_object_name='interviews_list'
+    template_name='interview_list.html'
+    permission='recruitment.add_interview'
 
 
-class RecruitmentMeetingDetailView(DetailView,PermissionRequiredMixin):
-    model = RecruitmentMeeting
-    template_name='recruitmentmeeting_detail.html'
-    permission='recruitment.add_recruitmentmeeting'
+class InterviewDetailView(DetailView,PermissionRequiredMixin):
+    model = Interview
+    template_name='interview_detail.html'
+    permission='recruitment.add_interview'
     
     
-class RecruitmentMeetingCreateView(CreateView, PermissionRequiredMixin):
-    model = RecruitmentMeeting
-    template_name='recruitmentmeeting_form.html'
-    permission='recruitment.add_recruitmentmeeting'
+class InterviewCreateView(CreateView, PermissionRequiredMixin):
+    model = Interview
+    template_name='interview_form.html'
+    permission='recruitment.add_interview'
     fields=['applicant','type','date','interviewer','status','notes']
     
     def get_success_url(self):
-        return reverse_lazy('recruitmentmeeting_detail',args=[self.object.id])
+        return reverse_lazy('interview_detail',args=[self.object.id])
     
-class RecruitmentMeetingUpdateView(UpdateView, PermissionRequiredMixin):
-    model = RecruitmentMeeting
-    template_name='recruitmentmeeting_form.html'
-    permission='recruitment.add_recruitmentmeeting'
+class InterviewUpdateView(UpdateView, PermissionRequiredMixin):
+    model = Interview
+    template_name='interview_form.html'
+    permission='recruitment.add_interview'
     fields=['applicant','type','date','interviewer','status','notes']
     
     def get_success_url(self):
-        return reverse_lazy('recruitmentmeeting_detail',args=[self.object.id])
+        return reverse_lazy('interview_detail',args=[self.object.id])
     
-class RecruitmentMeetingDeleteView(DeleteView):
-    model = RecruitmentMeeting
-    permission='recruitment.delete_recruitmentmeeting'
-    template_name = 'recruitmentmeeting_confirm_delete.html'
+class InterviewDeleteView(DeleteView):
+    model = Interview
+    permission='recruitment.delete_interview'
+    template_name = 'interview_confirm_delete.html'
     
     def get_success_url(self):
-        return reverse_lazy('recruitmentmeetings_list')
+        return reverse_lazy('interviews_list')
     
     
-class AddRecruitmentMeetingFromApplicantView(RecruitmentMeetingCreateView):
+class AddInterviewFromApplicantView(InterviewCreateView):
     
     def get_context_data(self, **kwargs):
-        context = super(AddRecruitmentMeetingFromPositionView,self).get_context_data(**kwargs)
+        context = super(AddInterviewFromApplicantView,self).get_context_data(**kwargs)
         applicant = Applicant.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'applicant':applicant}
         return  context
