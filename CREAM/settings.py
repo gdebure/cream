@@ -18,6 +18,7 @@ from instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key
 from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#time-zone
 from instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#static-root
+from instance_settings import MEDIA_ROOT, MEDIA_URL # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#media-root
 from instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.8/topics/email/
 from instance_settings import CURRENCY_SYMBOL, THOUSAND_SEPARATOR, DECIMAL_SEPARATOR # Set the currency symbol and separators
 
@@ -101,15 +102,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
 
 
 # URL prefix for static files.

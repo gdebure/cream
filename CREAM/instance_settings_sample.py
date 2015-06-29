@@ -38,14 +38,20 @@ DATABASES = {
 TIME_ZONE = 'Europe/Paris'
 
 
-
 # The absolute path to the directory where collectstatic will collect 
 # static files for deployment. Please refer to 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#static-root
 # for details
 STATIC_ROOT = '/server/cream/static'
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = '/server/cream/media/'
 
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/server/cream/media/'
 
 # Email settings. Please refer to 
 # https://docs.djangoproject.com/en/1.7/topics/email/
