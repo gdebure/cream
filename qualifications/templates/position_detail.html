@@ -20,7 +20,9 @@
 
 <hr/>
 
-{% include "applicantposition_table.html" with applicantpositions_list=position.applicantposition_set.all icon="fa-child" %}
+# In the following line, instead of using applicantposition_set.all, we use applicant_position.all because
+# of the related_name attribute for Position in ApplicantPosition model
+{% include "applicantposition_table.html" with applicantpositions_list=position.applicant_position.all icon="fa-child" %}
 <a href="{% url "add_applicantfromposition" position.id %}"><i class="fa fa-plus"></i>Add Applicant</a>
 
 {% endblock %}
