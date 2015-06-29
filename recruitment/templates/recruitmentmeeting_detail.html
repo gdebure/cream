@@ -1,0 +1,18 @@
+<!-- We need to display this page in a full layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Include the object property -->
+{% include "recruitmentmeeting_property.html" %}
+
+<!-- Include the object property -->
+{% include "common/object_actions.html" %}
+
+<br/>
+
+{% include "common/comments.html" with object=recruitmentmeeting next_url="recruitmentmeeting_detail" %}
+
+<hr/>
+
+{% endblock %}

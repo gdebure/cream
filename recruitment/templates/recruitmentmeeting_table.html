@@ -1,0 +1,28 @@
+{% include "fa-decoration.html" with title=title|default:"Recruitment Meetings list" icon=icon|default:"fa-calendar" %}
+
+{% if recruitmentmeetings_list %}
+<table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
+    <thead>
+        <tr>
+            <th>applicant</th>
+            <th>type</th>
+            <th>date</th>
+            <th>interviewer</th>
+            <th>status</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for recruitmentmeeting in recruitmentmeetings_list %}
+    <tr>
+        <td><a href="{% url "applicant_detail" recruitmentmeeting.applicant.id %}">{{ recruitmentmeeting.applicant }}</a></td>
+        <td><a href="{% url "recruitmentmeeting_detail" recruitmentmeeting.id %}">{{recruitmentmeeting.type}}</a></td>
+        <td>{{ recruitmentmeeting.date }}</td>
+        <td><a href="{% url "employee" recruitmentmeeting.interviewer.id %}">{{ recruitmentmeeting.interviewer }}</a></td>
+        <td><div class="{{ recruitmentmeeting.status.css_class }}">{{ recruitmentmeeting.status }}</div></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No recruitment meeting found.</p>
+{% endif %}

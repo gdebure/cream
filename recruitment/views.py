@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse_lazy
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
 from recruitment.models import Applicant, ApplicantPosition
+from recruitment.models import RecruitmentMeeting
+
 from qualifications.models import Position
 
 class ApplicantListView(ListView,LoginRequiredMixin):
@@ -100,3 +102,17 @@ class AddApplicantFromPositionView(ApplicantPositionCreateView):
         position = Position.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'position':position}
         return  context
+    
+    
+    
+class RecruitmentMeetingListView(ListView, PermissionRequiredMixin):
+    model = RecruitmentMeeting
+    context_object_name='recruitmentmeetings_list'
+    template_name='recruitmentmeeting_list.html'
+    permission='recruitment.add_recruitmentmeeting'
+
+
+class RecruitmentMeetingDetailView(DetailView,PermissionRequiredMixin):
+    model = RecruitmentMeeting
+    template_name='recruitmentmeeting_detail.html'
+    permission='recruitment.add_recruitmentmeeting'
