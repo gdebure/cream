@@ -1,6 +1,6 @@
 {% load extras %}
 
-<form class="form-horizontal" action="" method="POST">
+<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <legend>{{ legend }}</legend>
