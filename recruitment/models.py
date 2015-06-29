@@ -1,5 +1,8 @@
 from django.db import models
+from django.utils import timezone
+
 from qualifications.models import Position, EmployeePositionStatus
+from users.models import Employee
 
 
 class Applicant(models.Model):
@@ -24,3 +27,34 @@ class ApplicantPosition(models.Model):
     status = models.ForeignKey(EmployeePositionStatus)
     comments = models.TextField()
     
+    def __unicode__(self):
+        return unicode(self.name)
+    
+    
+class RecruitmentMeetingType(models.Model):
+    
+    name = models.CharField(max_length=32)
+    comments = models.TextField()
+    
+    def __unicode__(self):
+        return unicode(self.name)
+    
+
+class RecruitmentMeetingStatus(models.Model):
+    
+    name = models.CharField(max_length=32)
+    comments = models.TextField()
+    css_class = models.CharField(max_length=128)
+    
+    def __unicode__(self):
+        return unicode(self.name)
+    
+    
+class RecruitmentMeeting(models.Model):
+    
+    applicant = models.ForeignKey(Applicant)
+    type = models.ForeignKey(RecruitmentMeetingType)
+    date = models.DateField(default=timezone.now)
+    interviewer = models.ForeignKey(Employee)
+    status = models.ForeignKey(RecruitmentMeetingStatus)
+    notes = models.TextField()
