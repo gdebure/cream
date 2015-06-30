@@ -20,6 +20,9 @@ It is currently composed of several modules:
   * Employee Skills
   * Job Profile Skills
   * Employee Positions
+* Recruitment : Follow recruitments
+  * Applicants
+  * Interviews
 
 CREAM is written in Python, based on the Django web framework : https://www.djangoproject.com/
 
@@ -37,7 +40,7 @@ The typically recommended setup for the server would be:
 * Apache with mod_wsgi, or gunicorn
 * Postgresql or Mariadb (MySQL fork)
 
-Please refer to the Django documentation (https://docs.djangoproject.com/en/1.7/topics/install/) for more details
+Please refer to the Django documentation (https://docs.djangoproject.com/en/1.8/topics/install/) for more details
 
 ## Cream Specificities
 
@@ -63,13 +66,15 @@ These components will be installed through django-bower, so you don't need to do
 
 # Installing CREAM
 
-Please follow instructions on how to deploy a Django Application : https://docs.djangoproject.com/en/1.7/howto/deployment/
+Please follow instructions on how to deploy a Django Application : https://docs.djangoproject.com/en/1.8/howto/deployment/
 
 Once completed, proceed to the following steps.
 
 ## Settings
 
-CREAM settings are stored in a single file located in CREAM/CREAM/settings.py. The values in that file won't need to be changed. Instead, you should create an instance_settings.py in the same folder. This is where  you should put your CREAM's instance settings. You may take as a reference the instance_settings_sample.py provided and change the values accordingly.
+CREAM settings are stored in a two files located in subfolder CREAM
+* settings.py : The values in that file won't need to be changed.
+* instance_settings.py : This is where  you should put your CREAM's instance settings. You may take as a reference the instance_settings_sample.py provided and change the values accordingly.
 
 ## Create Database
 
@@ -95,4 +100,4 @@ Open your browser at the URL you defined for CREAM on your webserver, then login
 There is currently a bug that displays an error message right after login. This is due to the fact that there is no Employee defined for the User logged in. As a workaround simply change the URL to http://yourserver.com/admin, and create a new Employee for the only existing User so far.
 Later, remember to always create an Employee for every User you add to the database.
 
-Start creating data, starting with Domains, Service Families, and Services, then Projects, Deliverables, and Deliverable Volumes
+Start creating data
