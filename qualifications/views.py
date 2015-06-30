@@ -152,21 +152,6 @@ class JobDeleteView(DeleteView,PermissionRequiredMixin):
         return reverse_lazy('skills_list')
 
 
-class AddPositionView(CreateView,PermissionRequiredMixin):
-    model=Position
-    template_name='position_form.html'
-    permission='qualifications.add_position'
-    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
-    
-    def get_context_data(self, **kwargs):
-        context = super(AddPositionView,self).get_context_data(**kwargs)
-        job = Job.objects.get(pk=self.kwargs['pk'])
-        context['predefined'] = {'job':job}
-        return  context
-
-    def get_success_url(self):
-        return reverse_lazy('position_detail',args=[self.object.id])
-
 
 ######################
 ### Position Views ###
@@ -201,7 +186,7 @@ class PositionCreateView(CreateView,PermissionRequiredMixin):
     model=Position
     template_name='position_form.html'
     permission='qualifications.add_position'
-    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
+    fields=['title','job','profile','project','status','location','start_date','publish_date','headcount','comment']
     
     def get_success_url(self):
         return reverse_lazy('position_detail',args=[self.object.id])
@@ -211,7 +196,7 @@ class PositionUpdateView(UpdateView,PermissionRequiredMixin):
     model = Position
     template_name='position_form.html' 
     permission = 'qualifications.change_position'
-    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
+    fields=['title','job','profile','project','status','location','start_date','publish_date','headcount','comment']
     
     def get_success_url(self):
         return reverse_lazy('position_detail',args=[self.object.id])
@@ -225,6 +210,16 @@ class PositionDeleteView(DeleteView,PermissionRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('positions_list')
 
+
+class AddPositionFromEmployeeView(PositionCreateView,PermissionRequiredMixin):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddPositionFromEmployeeView,self).get_context_data(**kwargs)
+        job = Job.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'job':job}
+        return  context
+
+    
 
 
 class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
