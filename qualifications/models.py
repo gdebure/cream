@@ -119,6 +119,7 @@ class Profile (models.Model):
 class Position(models.Model):
     '''A Position is the implementation of a Job in a specific context'''
     
+    title = models.CharField(max_length=128,null=True,blank=True)
     job = models.ForeignKey(Job)
     profile = models.ForeignKey(Profile)
     project = models.ForeignKey(Project)
@@ -133,7 +134,10 @@ class Position(models.Model):
         ordering=['project','job','profile']
 
     def __unicode__(self):
-        return unicode(self.project) + " - " + unicode(self.job) + " - " + unicode(self.location)
+        if self.title != None:
+            return unicode(self.title)
+        else:
+            return unicode(self.project) + " - " + unicode(self.job) + " - " + unicode(self.location)
             
    
 

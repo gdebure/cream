@@ -4,6 +4,7 @@
 <table class="table table-condensed table-bordered table-hover {{ datatable_style |default:"dataTable" }}">
     <thead>
         <tr>
+            <th>title</th>
             <th>job</th>
             <th>profile</th>
             <th>project</th>
@@ -18,6 +19,7 @@
     <tbody>
 {% for position in positions_list %}
     <tr>
+        <td><a href="{% url "position_detail" position.id %}">{{ position }}</td>
         <td><a href="{% url "job_detail" position.job.id %}">{{ position.job }}</a></td>
         <td>{{position.profile}}</td>
         <td><a href="{% url "project_detail" position.project.id %}">{{ position.project }}</a></td>

@@ -1,5 +1,6 @@
 {% include "fa-decoration.html" with title="Position properties" icon="fa-bullhorn" block="main" %}
 <table class="table table-hover">
+    <tr><th>title</th><td>{{ position }}</td></tr>
     <tr><th>job</th><td><a href="{% url "job_detail" position.job.id %}">{{position.job}}</a></td></tr>
     <tr><th>profile</th><td>{{ position.profile }}</td></tr>
     <tr><th>project</th><td><a href="{% url "project_detail" position.project.id %}">{{ position.project}}</a></td></tr>
