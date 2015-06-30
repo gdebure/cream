@@ -7,8 +7,8 @@ from services.models import Domain, ServiceFamily, Service
 from services.forms import DomainForm, ServiceFamilyForm, ServiceForm
 
 from services.views import DomainListView, DomainDetailView, DomainCreateView, DomainUpdateView, DomainDeleteView
-from services.views import ServiceFamilyListView, ServiceFamilyDetailView, ServiceFamilyCreateView, AddServiceFamilyView, ServiceFamilyUpdateView, ServiceFamilyDeleteView
-from services.views import ServiceListView, ServiceDetailView, ServiceCreateView, AddServiceView, ServiceUpdateView, ServiceDeleteView
+from services.views import ServiceFamilyListView, ServiceFamilyDetailView, ServiceFamilyCreateView, AddServiceFamilyFromDomainView, ServiceFamilyUpdateView, ServiceFamilyDeleteView
+from services.views import ServiceListView, ServiceDetailView, ServiceCreateView, AddServiceFromServiceFamilyView, ServiceUpdateView, ServiceDeleteView
 
 urlpatterns = patterns('',
     ##################################
@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^domains/create/$', DomainCreateView.as_view(), name='create_domain'),
     url(r'^domains/(?P<pk>\d+)/update/$', DomainUpdateView.as_view(), name='update_domain'),
     url(r'^domains/(?P<pk>\d+)/delete/$', DomainDeleteView.as_view(), name='delete_domain'),
-    url(r'^domains/(?P<pk>\d+)/add_servicefamily/$', AddServiceFamilyView.as_view(), name='add_servicefamily'),
+    url(r'^domains/(?P<pk>\d+)/add_servicefamily/$', AddServiceFamilyFromDomainView.as_view(), name='add_servicefamily'),
     ##url(r'^domains/deleted',show_history),
     ##################################
     
@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^service_families/create/$', ServiceFamilyCreateView.as_view(), name='create_servicefamily'),
     url(r'^service_families/(?P<pk>\d+)/update/$',ServiceFamilyUpdateView.as_view() , name='update_servicefamily' ),
     url(r'^service_families/(?P<pk>\d+)/delete/$', ServiceFamilyDeleteView.as_view(), name='delete_servicefamily' ),
-    url(r'^service_families/(?P<pk>\d+)/add_service/$', AddServiceView.as_view(), name='add_service'),
+    url(r'^service_families/(?P<pk>\d+)/add_service/$', AddServiceFromServiceFamilyView.as_view(), name='add_service'),
     ##################################
     
     ##################################

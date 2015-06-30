@@ -1,9 +1,9 @@
 from django.conf.urls import patterns,url
 
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
-from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillView
+from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillFromSkillCategoryView
 from qualifications.views import JobsListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView, AddPositionFromEmployeeView
-from qualifications.views import PositionsListView, OpenPositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView, AddEmployeePositionView
+from qualifications.views import PositionsListView, OpenPositionsListView, PositionDetailView, PositionCreateView, PositionUpdateView, PositionDeleteView, AddEmployeePositionFromPositionView
 from qualifications.views import EmployeeSkillsListView, EmployeeSkillDetailView, EmployeeSkillCreateView, EmployeeSkillUpdateView, EmployeeSkillDeleteView
 from qualifications.views import JobProfileSkillsListView, JobProfileSkillDetailView, JobProfileSkillCreateView, JobProfileSkillUpdateView, JobProfileSkillDeleteView
 from qualifications.views import EmployeePositionsListView, EmployeePositionDetailView, EmployeePositionCreateView, EmployeePositionUpdateView, EmployeePositionDeleteView
@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^skill_categories/(?P<pk>\d+)/update/$', SkillCategoryUpdateView.as_view(), name='update_skillcategory' ),
     url(r'^skill_categories/(?P<pk>\d+)/delete/$', SkillCategoryDeleteView.as_view(), name='delete_skillcategory' ),
     
-    url(r'^skill_categories/(?P<pk>\d+)/add_skill/$', AddSkillView.as_view(), name='add_skill' ),
+    url(r'^skill_categories/(?P<pk>\d+)/add_skill/$', AddSkillFromSkillCategoryView.as_view(), name='add_skill' ),
     ##################################
     
     ##################################
@@ -53,7 +53,7 @@ urlpatterns = patterns('',
     url(r'^positions/(?P<pk>\d+)/update/$', PositionUpdateView.as_view(), name='update_position' ),
     url(r'^positions/(?P<pk>\d+)/delete/$', PositionDeleteView.as_view(), name='delete_position' ),
     
-    url(r'^positions/(?P<pk>\d+)/add_employee/$', AddEmployeePositionView.as_view(), name='add_employeeposition' ),
+    url(r'^positions/(?P<pk>\d+)/add_employee/$', AddEmployeePositionFromPositionView.as_view(), name='add_employeeposition' ),
     url(r'^positions/(?P<pk>\d+)/add_applicant/$', AddApplicantFromPositionView.as_view(), name='add_applicantfromposition' ),
     ##################################
         

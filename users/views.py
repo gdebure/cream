@@ -45,19 +45,3 @@ class EmployeeDeleteView(DeleteView,PermissionRequiredMixin):
 
     def get_success_url(self):
         return reverse_lazy('employees_list',args=[self.object.id])
-
-
-class AddPositionToEmployeeView(CreateView,PermissionRequiredMixin):
-    model=EmployeePosition
-    template_name='employeeposition_form.html'
-    permission='qualifications.add_employeeposition'
-    fields=['employee','position','status','start_date','end_date','comments']
-
-    def get_context_data(self, **kwargs):
-        context = super(AddPositionToEmployeeView,self).get_context_data(**kwargs)
-        employee = Employee.objects.get(pk=self.kwargs['pk'])
-        context['predefined'] = {'employee':employee}
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('employeeposition_detail',args=[self.object.id])

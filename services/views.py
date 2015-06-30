@@ -78,10 +78,10 @@ class ServiceFamilyCreateView(CreateView,PermissionRequiredMixin):
         return reverse_lazy('servicefamily',args=[self.object.id])
 
 
-class AddServiceFamilyView(ServiceFamilyCreateView):
+class AddServiceFamilyFromDomainView(ServiceFamilyCreateView):
     
     def get_context_data(self, **kwargs):
-        context = super(AddServiceFamilyView,self).get_context_data(**kwargs)
+        context = super(AddServiceFamilyFromDomainView,self).get_context_data(**kwargs)
         domain = Domain.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'domain':domain}
         return  context
@@ -132,10 +132,10 @@ class ServiceCreateView(CreateView, PermissionRequiredMixin):
         return reverse_lazy('service',args=[self.object.id])
     
     
-class AddServiceView(ServiceCreateView):
+class AddServiceFromServiceFamilyView(ServiceCreateView):
     
     def get_context_data(self, **kwargs):
-        context = super(AddServiceView,self).get_context_data(**kwargs)
+        context = super(AddServiceFromServiceFamilyView,self).get_context_data(**kwargs)
         service_family = ServiceFamily.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'service_family':service_family}
         return  context

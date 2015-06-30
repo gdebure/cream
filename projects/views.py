@@ -51,37 +51,7 @@ class ProjectDeleteView(DeleteView,PermissionRequiredMixin):
         return reverse_lazy('projects_list',args=[self.object.id])
     
     
-class AddDeliverableView(CreateView,PermissionRequiredMixin):
-    model = Deliverable
-    template_name='deliverable_form.html'
-    permission='projects.add_deliverable'
-    fields=['project','service','code','name','description','acceptance_criteria']
 
-    def get_context_data(self, **kwargs):
-        context = super(AddDeliverableView,self).get_context_data(**kwargs)
-        project = Project.objects.get(pk=self.kwargs['pk'])
-        context['predefined'] = {'project':project}
-        return  context
-    
-    def get_success_url(self):
-        return reverse_lazy('deliverable_detail',args=[self.object.id])
-
-class AddPositionView(CreateView,PermissionRequiredMixin):
-    model=Position
-    template_name='position_form.html'
-    permission='qualifications.add_position'
-    fields=['job','profile','project','status','location','start_date','publish_date','headcount','comment']
-    
-    def get_context_data(self, **kwargs):
-        context = super(AddPositionView,self).get_context_data(**kwargs)
-        project = Project.objects.get(pk=self.kwargs['pk'])
-        context['predefined'] = {'project':project}
-        return  context
-
-    def get_success_url(self):
-        return reverse_lazy('position_detail',args=[self.object.id])
-    
-    
 #####################
 ### Deliverables View ###
 #####################
@@ -149,4 +119,13 @@ class DeliverableVolumeUpdateView(UpdateView,PermissionRequiredMixin):
     
     def get_success_url(self):
         return reverse_lazy('deliverablevolume_detail',args=[self.object.id])
+
+
+class AddDeliverableFromProjectView(DeliverableCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddDeliverableFromProjectView,self).get_context_data(**kwargs)
+        project = Project.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'project':project}
+        return  context
     

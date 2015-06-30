@@ -2,6 +2,8 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
+from projects.models import Project
+from users.models import Employee
 
 from qualifications.models import SkillCategory, Skill, Job, Position, EmployeeSkill, JobProfileSkill, EmployeePosition
 
@@ -91,21 +93,13 @@ class SkillDeleteView(DeleteView,PermissionRequiredMixin):
         return reverse_lazy('skills_list')
     
     
-class AddSkillView(CreateView,PermissionRequiredMixin):
-    model=Skill
-    success_url='/qualifications/skills/%(id)s'
-    template_name='skill_form.html'
-    permission='qualifications.add_skill'
-    fields=['category','name','enabled','description']
+class AddSkillFromSkillCategoryView(SkillCreateView):
     
     def get_context_data(self, **kwargs):
-        context = super(AddSkillView,self).get_context_data(**kwargs)
+        context = super(AddSkillFromSkillCategoryView,self).get_context_data(**kwargs)
         category = SkillCategory.objects.get(pk=self.kwargs['pk'])
         context['predefined'] = {'category':category}
         return  context
-    
-    def get_success_url(self):
-        return reverse_lazy('skill_detail',args=[self.object.id])
     
     
     
@@ -211,7 +205,7 @@ class PositionDeleteView(DeleteView,PermissionRequiredMixin):
         return reverse_lazy('positions_list')
 
 
-class AddPositionFromEmployeeView(PositionCreateView,PermissionRequiredMixin):
+class AddPositionFromEmployeeView(PositionCreateView):
     
     def get_context_data(self, **kwargs):
         context = super(AddPositionFromEmployeeView,self).get_context_data(**kwargs)
@@ -220,22 +214,14 @@ class AddPositionFromEmployeeView(PositionCreateView,PermissionRequiredMixin):
         return  context
 
     
-
-
-class AddEmployeePositionView(CreateView,PermissionRequiredMixin):
-    model=EmployeePosition
-    template_name='employeeposition_form.html'
-    permission='qualifications.add_employeeposition'
-    fields=['employee','position','status','start_date','end_date','comments']
-    
+class AddPositionFromProjectView(PositionCreateView):
     def get_context_data(self, **kwargs):
-        context = super(AddEmployeePositionView,self).get_context_data(**kwargs)
-        position = Position.objects.get(pk=self.kwargs['pk'])
-        context['predefined'] = {'position':position}
-        return context
+        context = super(AddPositionFromProjectView,self).get_context_data(**kwargs)
+        project = Project.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'project':project}
+        return  context
+
     
-    def get_success_url(self):
-        return reverse_lazy('employeeposition_detail',args=[self.object.id])
 
 #############################
 ### Employee Skills Views ###
@@ -368,3 +354,19 @@ class EmployeePositionDeleteView(DeleteView,PermissionRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('employeepositions_list')
     
+
+class AddEmployeePositionFromPositionView(EmployeePositionCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddEmployeePositionFromPositionView,self).get_context_data(**kwargs)
+        position = Position.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'position':position}
+        return context
+    
+class AddEmployeePositionFromEmployeeView(EmployeePositionCreateView):
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddEmployeePositionFromEmployeeView,self).get_context_data(**kwargs)
+        employee = Employee.objects.get(pk=self.kwargs['pk'])
+        context['predefined'] = {'employee':employee}
+        return context
