@@ -48,7 +48,7 @@ class ProjectDeleteView(DeleteView,PermissionRequiredMixin):
     template_name = 'project_confirm_delete.html'
     
     def get_success_url(self):
-        return reverse_lazy('projects_list',args=[self.object.id])
+        return reverse_lazy('projects_list')
     
     
 

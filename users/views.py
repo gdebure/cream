@@ -44,4 +44,4 @@ class EmployeeDeleteView(DeleteView,PermissionRequiredMixin):
     permission='users.add_employee'
 
     def get_success_url(self):
-        return reverse_lazy('employees_list',args=[self.object.id])
+        return reverse_lazy('employees_list')
