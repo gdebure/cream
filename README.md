@@ -47,6 +47,11 @@ Please refer to the Django documentation (https://docs.djangoproject.com/en/1.8/
 On top of basic Django installation, CREAM needs a few more components enhancing functionality or look & Feel.
 
 django add-ons:
+Install the following components using pip. For example :
+    pip install django-contrib-comments
+will install (what a surprise !) django-contrib-comments.
+
+* Django-contrib-comments (https://github.com/django/django-contrib-comments)
 * Django-nvd3 (https://github.com/areski/django-nvd3) : html5 charts using d3.js. Refer to Django-nvd3 documentation for installation instructions.
 * Django-bower (https://github.com/nvbn/django-bower) : Easy way to use bower with your django project.
   * Install node.js (http://nodejs.org/) first
