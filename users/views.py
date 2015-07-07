@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from users.models import Employee
+from users.models import Employee, EmployeeStatus
 from qualifications.models import EmployeePosition
 
 
@@ -11,7 +11,25 @@ class EmployeeListView(ListView,LoginRequiredMixin):
     model=Employee
     context_object_name='employees_list'
     template_name='employee_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(EmployeeListView,self).get_context_data(**kwargs)
+        context['viewing'] = "all"
+        context['employeestatus_list'] = EmployeeStatus.objects.all()
+        return  context
 
+class FilteredEmployeeListView(EmployeeListView):
+    
+    def get_queryset(self):
+        employee_status = self.kwargs['filter']
+        return self.model.objects.filter(status__name=employee_status)
+
+    def get_context_data(self, **kwargs):
+        context = super(FilteredEmployeeListView,self).get_context_data(**kwargs)
+        context['viewing'] = self.kwargs['filter']
+        context['employeestatus_list'] = EmployeeStatus.objects.all()
+        return  context
+    
 
 class EmployeeDetailView(DetailView,LoginRequiredMixin):
     model = Employee

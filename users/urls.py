@@ -2,7 +2,7 @@ from django.conf.urls import *
 
 from django.contrib.auth.views import login, logout_then_login, password_change, password_change_done
 
-from users.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView
+from users.views import EmployeeListView, FilteredEmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView
 from qualifications.views import AddEmployeePositionFromEmployeeView
 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -24,4 +24,5 @@ urlpatterns = patterns('',
     url(r'^employees/(?P<pk>\d+)/delete/$', EmployeeDeleteView.as_view(), name='delete_employee' ),
     
     url(r'^employees/(?P<pk>\d+)/add_position/$', AddEmployeePositionFromEmployeeView.as_view(), name='add_position_to_employee'),
+    url(r'^employees/(?P<filter>.+)/$', FilteredEmployeeListView.as_view(),name='employees_list_status'),
 )
