@@ -1,6 +1,8 @@
 <!-- We need to display this page in a full layout -->
 {% extends "base.html" %}
 
+{% block content %}
+
 {% load django_bootstrap_breadcrumbs %}
 
 {% block breadcrumbs %}
@@ -10,7 +12,6 @@
     {% breadcrumb deliverable "deliverable_detail" deliverable.id %}
 {% endblock %}
 
-{% block content %}
 
 {% render_breadcrumbs %}
 <!-- Include the object property -->

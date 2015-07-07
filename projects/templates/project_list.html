@@ -3,12 +3,14 @@
 
 {% load django_bootstrap_breadcrumbs %}
 
+{% block content %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb "Projects" "projects_list" %}
 {% endblock %}
 
-{% block content %}
+{% render_breadcrumbs %}
 
 <ul class="nav nav-pills">
     <li role="presentation" {% if viewing == "all" %}class="active"{% endif %}><a href="{%url "projects_list" %}">All</a></li>
@@ -17,7 +19,6 @@
     {% endfor %}
 </ul>
 
-{% render_breadcrumbs %}
 <!-- Include the list of objects -->
 {% include "project_table.html" with block="main" datatable_style="dataTableFiltered" %}
 

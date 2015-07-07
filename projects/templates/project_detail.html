@@ -3,13 +3,13 @@
 
 {% load django_bootstrap_breadcrumbs %}
 
+{% block content %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     {% breadcrumb "Projects" "projects_list" %}
     {% breadcrumb project "project_detail" project.id %}
 {% endblock %}
-
-{% block content %}
 
 {% render_breadcrumbs %}
 

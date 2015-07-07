@@ -3,6 +3,18 @@
 
 {% block content %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Projects" "projects_list" %}
+    {% breadcrumb deliverablevolume.deliverable.project "project_detail" deliverablevolume.deliverable.project.id %}
+    {% breadcrumb deliverablevolume.deliverable "deliverable_detail" deliverablevolume.deliverable.id %}
+    {% breadcrumb deliverablevolume.date_start "deliverablevolume_detail" deliverablevolume.id %}
+{% endblock %}
+
+{% render_breadcrumbs %}
+
 <!-- Include the object property -->
 {% include "deliverablevolume_property.html" %}
 

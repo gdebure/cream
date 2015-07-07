@@ -3,6 +3,15 @@
 
 {% block content %}
 
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "deliverables" "deliverables_list" %}
+{% endblock %}
+
+{% render_breadcrumbs %}
+
 <!-- Include the list of objects -->
 {% include "deliverable_table.html" with block="main" datatable_style="dataTableFiltered" %}
 
