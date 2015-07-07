@@ -5,9 +5,6 @@
     <thead>
         <tr>
             <th>title</th>
-            <th>job</th>
-            <th>profile</th>
-            <th>project</th>
             <th>department</th>
             <th>status</th>
             <th>location</th>
@@ -20,9 +17,6 @@
 {% for position in positions_list %}
     <tr>
         <td><a href="{% url "position_detail" position.id %}">{{ position }}</td>
-        <td><a href="{% url "job_detail" position.job.id %}">{{ position.job }}</a></td>
-        <td>{{position.profile}}</td>
-        <td><a href="{% url "project_detail" position.project.id %}">{{ position.project }}</a></td>
         <td>{{ position.project.department }}</a></td>
         <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
         <td>{{ position.location }}</td>
