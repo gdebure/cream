@@ -11,10 +11,10 @@
                 </tr>
             </thead>
             <tbody>
-            {% for status in employee_status %}
+            {% for employeestatus in employee_status %}
                 <tr>
-                    <td>{{ status }}</td>
-                    <td>{{ status.count }}</td>
+                    <td><a href="{% url "employees_list_status" employeestatus %}">{{ employeestatus }}</a></td>
+                    <td>{{ employeestatus.count }}</td>
                 </tr>
             {% endfor %}
             </tbody>
