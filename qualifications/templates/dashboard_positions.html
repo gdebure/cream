@@ -6,17 +6,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>job</th>
-                    <th>project</th>
+                    <th>position</th>
                     <th>status</th>
                 </tr>
             </thead>
             <tbody>
             {% for position in positions_list %}
                 <tr>
-                    <td>{{ position.job }}</td>
-                    <td>{{ position.project }}</td>
-                    <td><a href="{% url "position_detail" position.id %}"><i class="fa fa-edit"></i></a>&nbsp;<div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
+                    <td><a href="{% url "position_detail" position.id %}">{{ position }}</a></td>
+                    <td><div class="label {{ position.status.css_class }}">{{ position.status }}</div></td>
                 </tr>
             {% endfor %}
             </tbody>
