@@ -27,7 +27,6 @@ class FilteredEmployeeListView(EmployeeListView):
     def get_context_data(self, **kwargs):
         context = super(FilteredEmployeeListView,self).get_context_data(**kwargs)
         context['viewing'] = self.kwargs['filter']
-        context['employeestatus_list'] = EmployeeStatus.objects.all()
         return  context
     
 
