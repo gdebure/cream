@@ -167,7 +167,7 @@ class OpenPositionsListView(PositionsListView):
         return self.model.objects.exclude(status='S').exclude(status='C')
 
     def get_context_data(self, **kwargs):
-        context = super(ListView,self).get_context_data(**kwargs)
+        context = super(OpenPositionsListView,self).get_context_data(**kwargs)
         context['viewing'] = "open"
         return  context
     
