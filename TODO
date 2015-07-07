@@ -1,2 +1,4 @@
 * Add a breadcrumb for easier navigation
+* Reimplement Reversion functionalities
+* Implement a search function (based on hadoop ?)
 * Display people workload based on Employee Positions
