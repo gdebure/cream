@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% block content %}
+
 {% load django_bootstrap_breadcrumbs %}
 
 {% block breadcrumbs %}
@@ -9,8 +12,6 @@
     {% endif %}
     {% breadcrumb "Edit Project" "" %}
 {% endblock %}
-
-{% block content %}
 
 {% render_breadcrumbs %}
 
