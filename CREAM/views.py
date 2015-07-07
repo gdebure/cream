@@ -42,8 +42,6 @@ class DashboardView(TemplateView):
         
         context = super(DashboardView,self).get_context_data(**kwargs)
         
-        context.update(self.get_positions())
-        context.update(self.get_intercontracts())
         context.update(self.get_services())
         context.update(self.get_employeestatus_count())
         
@@ -59,14 +57,6 @@ class DashboardView(TemplateView):
 
         return context
         
-    def get_positions(self):
-        
-        return {'positions_list':Position.objects.exclude(status='S').exclude(status='C')}
-        
-    def get_intercontracts(self):
-        
-        return {'employees_list':Employee.objects.filter(status='I')}
-    
     def get_employeestatus_count(self):
         
         result = EmployeeStatus.objects.annotate(count=Count('employee'))
