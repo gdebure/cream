@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from core.views import LoginRequiredMixin, PermissionRequiredMixin
 
-from projects.models import Project, Deliverable, DeliverableVolume
+from projects.models import Project, ProjectStatus, Deliverable, DeliverableVolume
 from qualifications.models import Position
 
 
@@ -16,6 +16,22 @@ class ProjectListView(ListView, LoginRequiredMixin):
     context_object_name='projects_list'
     template_name='project_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ProjectListView,self).get_context_data(**kwargs)
+        context['viewing'] = "all"
+        context['projectstatus_list'] = ProjectStatus.objects.all()
+        return  context
+    
+class FilteredProjectListView(ProjectListView):
+    
+    def get_queryset(self):
+        project_status = self.kwargs['filter']
+        return self.model.objects.filter(status__name=project_status)
+
+    def get_context_data(self, **kwargs):
+        context = super(FilteredProjectListView,self).get_context_data(**kwargs)
+        context['viewing'] = self.kwargs['filter']
+        return  context
 
 class ProjectDetailView(DetailView,LoginRequiredMixin):
     model = Project()

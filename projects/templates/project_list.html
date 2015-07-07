@@ -10,6 +10,13 @@
 
 {% block content %}
 
+<ul class="nav nav-pills">
+    <li role="presentation" {% if viewing == "all" %}class="active"{% endif %}><a href="{%url "projects_list" %}">All</a></li>
+    {% for projectstatus in projectstatus_list %}
+    <li role="presentation" {% if viewing|lower == projectstatus|lower %}class="active"{% endif %}><a href="{%url "projects_list_status" projectstatus %}">{{ projectstatus }}</a></li>
+    {% endfor %}
+</ul>
+
 {% render_breadcrumbs %}
 <!-- Include the list of objects -->
 {% include "project_table.html" with block="main" datatable_style="dataTableFiltered" %}

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from projects.models import Project, Deliverable, DeliverableVolume
 
-from projects.views import ProjectListView, ProjectDetailView, ProjectUpdateView, ProjectCreateView, ProjectDeleteView
+from projects.views import ProjectListView, FilteredProjectListView, ProjectDetailView, ProjectUpdateView, ProjectCreateView, ProjectDeleteView
 from projects.views import DeliverableListView, DeliverableDetailView, DeliverableUpdateView, DeliverableCreateView, DeliverableDeleteView, AddDeliverableFromProjectView
 from projects.views import AddDeliverableVolumeView, DeliverableVolumeUpdateView
 from qualifications.views import AddPositionFromProjectView
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<pk>\d+)/add_deliverable/$', AddDeliverableFromProjectView.as_view(), name='add_deliverable'),
     # Add position to a project
     url(r'^projects/(?P<pk>\d+)/add_position/$', AddPositionFromProjectView.as_view(), name='add_projectposition'),
+    url(r'^projects/(?P<filter>.+)/$', FilteredProjectListView.as_view(),name='projects_list_status'),
     ##################################
     
     
