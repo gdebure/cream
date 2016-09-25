@@ -15,8 +15,8 @@ class Domain (models.Model):
     class Meta:
         ordering = ['name']
 
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
         
     def get_service_families(self):
         return self.servicefamily_set.all()
@@ -50,8 +50,8 @@ class ServiceFamily (models.Model):
     class Meta:
         ordering = ['domain','name']
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
         
     def get_services(self):
         return self.service_set.all()
@@ -85,8 +85,8 @@ class Service (models.Model):
     class Meta:
         ordering = ['service_family__name','name']
     
-    def __unicode__(self):
-        return unicode(self.service_family.name) + " : " + unicode(self.name)
+    def __str__(self):
+        return str(self.service_family.name) + " : " + str(self.name)
         
     def get_deliverables(self):
         return self.deliverable_set.all()

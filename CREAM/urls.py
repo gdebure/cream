@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib.auth.decorators import login_required
 
-from views import HomeView, DashboardView
+from .views import HomeView, DashboardView
 
 # Enable the admin site:
 from django.contrib import admin

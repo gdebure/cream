@@ -31,7 +31,7 @@ class Report(models.Model):
     filter_value = models.CharField(max_length=256)
     graph_type = models.CharField(max_length=1)
     
-    def __unicode__(self):
-        return unicode(self.title)
+    def __str__(self):
+        return str(self.title)
         
    

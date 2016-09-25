@@ -7,10 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>CREAM reloaded</title>
         <link rel="stylesheet" type="text/css" href="{% static 'cream.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'dataTables.bootstrap.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'fontawesome/css/font-awesome.min.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-datepicker/css/datepicker.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}"/>
         <style type="text/css">
             body {
                 padding-top: 70px;
@@ -37,13 +37,13 @@
     
     {% include "footer.html" %}
 
-    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'respond/dest/respond.min.js' %}"></script>
-    <script src="{% static 'datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bower_components/respond/dest/respond.min.js' %}"></script>
+    <script src="{% static 'bower_components/datatables/media/js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'dataTables.bootstrap.js' %}"></script>
     <script src="{% static 'dataTables.init.js' %}"></script>
-    <script src="{% static 'bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
     <script language="javascript">
     $('.input-append.date').datepicker({
         format: 'yyyy-mm-dd',

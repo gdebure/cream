@@ -60,6 +60,6 @@ class DashboardView(TemplateView):
     def get_employeestatus_count(self):
         
         result = EmployeeStatus.objects.annotate(count=Count('employee'))
-        print result
+        print(result)
         return {'employee_status':result}
     

@@ -18,8 +18,8 @@ class EmployeeStatus(models.Model):
     class Meta:
         ordering = ['name']
         
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
 
 
 class Employee (models.Model):
@@ -35,8 +35,8 @@ class Employee (models.Model):
     class Meta:
         ordering = ['user__last_name']
     
-    def __unicode__(self):
-        return unicode(self.user.last_name) + " " + unicode(self.user.first_name)
+    def __str__(self):
+        return str(self.user.last_name) + " " + str(self.user.first_name)
 
     def get_picture(self):
         return USER_PICTURE_BASE_URL + '/' + str(self.user.username) + USER_PICTURE_FILE_EXTENSION

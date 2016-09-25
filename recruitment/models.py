@@ -16,8 +16,8 @@ class Applicant(models.Model):
     cv = models.FileField(upload_to='applicants/cv')
     comments = models.TextField()
     
-    def __unicode__(self):
-        return unicode(self.first_name) + " " + unicode(self.last_name)
+    def __str__(self):
+        return str(self.first_name) + " " + str(self.last_name)
 
     
 class ApplicantPosition(models.Model):
@@ -27,8 +27,8 @@ class ApplicantPosition(models.Model):
     status = models.ForeignKey(EmployeePositionStatus)
     comments = models.TextField()
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
     
     
 class InterviewType(models.Model):
@@ -36,8 +36,8 @@ class InterviewType(models.Model):
     name = models.CharField(max_length=32)
     comments = models.TextField()
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
     
 
 class InterviewStatus(models.Model):
@@ -46,8 +46,8 @@ class InterviewStatus(models.Model):
     comments = models.TextField()
     css_class = models.CharField(max_length=128)
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
     
     
 class Interview(models.Model):

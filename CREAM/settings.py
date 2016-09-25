@@ -8,8 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
-
-
 # import instance specific settings
 # 1. create a file named instance_settings.py in the CREAM/CREAM folder
 # 2. in this instance_settings.py file, set the correct value for each of the variables imported below
@@ -114,7 +112,7 @@ STATICFILES_FINDER = (
     'djangobower.finders.BowerFinder',
     )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+BOWER_COMPONENTS_ROOT = BASE_DIR
 
 BOWER_INSTALLED_APPS = (
     'jquery',

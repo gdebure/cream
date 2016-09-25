@@ -22,9 +22,9 @@ class SkillCategory (models.Model):
         '''Default order is on name'''
         ordering = ['name']
    
-    def __unicode__(self):
+    def __str__(self):
         '''Returns the name when printing object'''
-        return unicode(self.name)
+        return str(self.name)
         
     def get_skills(self):
         '''Returns the list of skills belonging to this category. This method
@@ -50,9 +50,9 @@ class Skill (models.Model):
         '''Default order is category, then name'''
         ordering = ['category', 'name']
     
-    def __unicode__(self):
+    def __str__(self):
         '''Returns the category and name when printing this object'''
-        return unicode(self.category.name) + ": " + unicode(self.name)
+        return str(self.category.name) + ": " + str(self.name)
         
     def get_employees(self):
         '''Returns the list of employees with this skill. This method
@@ -78,9 +78,9 @@ class Job (models.Model):
         # Default order is on name
         ordering = ['name']
     
-    def __unicode__(self):
+    def __str__(self):
         '''Returns the name when printing object'''
-        return unicode(self.name)
+        return str(self.name)
      
     def get_profile_skills(self):
         '''Returns the list of skills required for this job. This method
@@ -97,8 +97,8 @@ class PositionStatus(models.Model):
     name = models.CharField(max_length=64)
     css_class = models.CharField(max_length=64)
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
 
 
 
@@ -111,8 +111,8 @@ class Profile (models.Model):
     class Meta:
         ordering = ['name']
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
 
  
 
@@ -133,11 +133,11 @@ class Position(models.Model):
     class Meta:
         ordering=['project','job','profile']
 
-    def __unicode__(self):
-        if self.title != None:
-            return unicode(self.title)
+    def __str__(self):
+        if self.title is not None:
+            return str(self.title)
         else:
-            return unicode(self.project) + " - " + unicode(self.job) + " - " + unicode(self.location)
+            return str(self.project) + " - " + str(self.job) + " - " + str(self.location)
             
    
 
@@ -155,9 +155,9 @@ class EmployeeSkill(models.Model):
         # Default order is employee, then level (desc), then skill
         ordering = ['employee','-level','skill']
     
-    def __unicode__(self):
+    def __str__(self):
         '''Returns the employee, skill and level when printing object'''
-        return unicode(self.employee) + " : " + self.skill.name + " : " + unicode(self.level)
+        return str(self.employee) + " : " + self.skill.name + " : " + str(self.level)
         
     
 
@@ -176,9 +176,9 @@ class JobProfileSkill(models.Model):
         # Default order is job, then profile, then level (desc), then skill
         ordering = ['job', 'profile', '-level','skill']
         
-    def __unicode__(self):
+    def __str__(self):
         '''Returns the job, skill and level when printing object'''
-        return unicode(self.job.name) + " : " + unicode(self.profile.name) +" : " + unicode(self.skill.name) + " : " + unicode(self.level)
+        return str(self.job.name) + " : " + str(self.profile.name) +" : " + str(self.skill.name) + " : " + str(self.level)
 
         
 
@@ -187,8 +187,8 @@ class EmployeePositionStatus(models.Model):
     name = models.CharField(max_length=64)
     css_class = models.CharField(max_length=64)
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
     
         
 class EmployeePosition(models.Model):
@@ -202,5 +202,5 @@ class EmployeePosition(models.Model):
     comments = models.TextField()
     
     
-    def __unicode__(self):
-        return unicode(self.employee) + ": " + unicode(self.position)
+    def __str__(self):
+        return str(self.employee) + ": " + str(self.position)

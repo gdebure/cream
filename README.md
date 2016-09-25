@@ -55,6 +55,7 @@ will install (what a surprise !) django-contrib-comments.
 * Django-nvd3 (https://github.com/areski/django-nvd3) : html5 charts using d3.js. Refer to Django-nvd3 documentation for installation instructions.
 * Django-bootstrap-breadcrumbs (https://github.com/prymitive/bootstrap-breadcrumbs) : breadcrumbs using bootstrap
 * django-reversion (https://github.com/etianen/django-reversion) : provides version control for model instances
+* django-guardian (https://github.com/django-guardian/django-guardian) : per object permissions for Django
 * Django-bower (https://github.com/nvbn/django-bower) : Easy way to use bower with your django project.
   * Install node.js (http://nodejs.org/) first
   * then bower (http://bower.io/)
