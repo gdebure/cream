@@ -16,8 +16,8 @@ class ProjectStatus(models.Model):
     name = models.CharField(max_length=64)
     css_class = models.CharField(max_length=64)
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
 
 
 class Project (models.Model):
@@ -46,8 +46,8 @@ class Project (models.Model):
         ordering = ["number", "name"]
         
     
-    def __unicode__(self):
-        return self.number + ": " + unicode(self.name)
+    def __str__(self):
+        return self.number + ": " + str(self.name)
         
     def get_authorizations(self):
         return self.authorization_set.all()
@@ -113,8 +113,8 @@ class Deliverable (models.Model):
     class Meta:
         ordering = ['project','code','name']
     
-    def __unicode__(self):
-        return unicode(self.name)
+    def __str__(self):
+        return str(self.name)
         
     def get_tasks(self):
         return self.task_set.all()
@@ -129,7 +129,7 @@ class Deliverable (models.Model):
 
     def get_turnover_year(self,year):
         
-        date_start = date(year,01,01).toordinal()
+        date_start = date(year,1,1).toordinal()
         date_end = date(year,12,31).toordinal()
         year_range = range(date_start,date_end+1)
         days_year = len(year_range)
@@ -178,8 +178,8 @@ class DeliverableVolume(models.Model):
     class Meta:
         ordering = ['deliverable','date_start']
         
-    def __unicode__(self):
-        return unicode(self.deliverable.name) + ' : ' + unicode(self.date_start) + " : " + unicode(self.date_end) + " : " + unicode(self.quantity)
+    def __str__(self):
+        return str(self.deliverable.name) + ' : ' + str(self.date_start) + " : " + str(self.date_end) + " : " + str(self.quantity)
         
     def get_total_price(self):
         return self.quantity * self.unit_price

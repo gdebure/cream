@@ -13,14 +13,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # import instance specific settings
 # 1. create a file named instance_settings.py in the CREAM/CREAM folder
 # 2. in this instance_settings.py file, set the correct value for each of the variables imported below
-from instance_settings import DEBUG # SECURITY WARNING: don't run with debug turned on in production!
-from instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key used in production secret! https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key
-from instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-from instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#time-zone
-from instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#static-root
-from instance_settings import MEDIA_ROOT, MEDIA_URL # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#media-root
-from instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.8/topics/email/
-from instance_settings import CURRENCY_SYMBOL, THOUSAND_SEPARATOR, DECIMAL_SEPARATOR # Set the currency symbol and separators
+from .instance_settings import DEBUG # SECURITY WARNING: don't run with debug turned on in production!
+from .instance_settings import SECRET_KEY # SECURITY WARNING: keep the secret key used in production secret! https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key
+from .instance_settings import DATABASES # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+from .instance_settings import TIME_ZONE # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#time-zone
+from .instance_settings import STATIC_ROOT # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#static-root
+from .instance_settings import MEDIA_ROOT, MEDIA_URL # Refer to https://docs.djangoproject.com/en/1.8/ref/settings/#media-root
+from .instance_settings import EMAIL_HOST, EMAIL_PORT, EMAIL_SUBJECT_PREFIX # Refer to https://docs.djangoproject.com/en/1.8/topics/email/
+from .instance_settings import CURRENCY_SYMBOL, THOUSAND_SEPARATOR, DECIMAL_SEPARATOR # Set the currency symbol and separators
 
 
 
