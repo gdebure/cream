@@ -1,10 +1,10 @@
-from django.conf.urls import patterns,url
+from django.conf.urls import url
 
 from recruitment.views import ApplicantListView, ApplicantDetailView, ApplicantCreateView, ApplicantUpdateView, ApplicantDeleteView, AddPositionFromApplicantView
 from recruitment.views import ApplicantPositionListView, ApplicantPositionDetailView, ApplicantPositionCreateView, ApplicantPositionUpdateView, ApplicantPositionDeleteView
 from recruitment.views import InterviewListView, InterviewDetailView, InterviewCreateView,InterviewUpdateView, InterviewDeleteView, AddInterviewFromApplicantView
 
-urlpatterns = patterns('',
+urlpatterns = [
     
     url(r'^applicants/$', ApplicantListView.as_view(), name='applicants_list'),
     url(r'^applicants/(?P<pk>\d+)/$', ApplicantDetailView.as_view(), name='applicant_detail'),
@@ -25,4 +25,4 @@ urlpatterns = patterns('',
     url(r'^interviews/create/$', InterviewCreateView.as_view(), name='create_interview'),
     url(r'^interviews/(?P<pk>\d+)/update/$', InterviewUpdateView.as_view(), name='update_interview'),
     url(r'^interviews/(?P<pk>\d+)/delete/$', InterviewDeleteView.as_view(), name='delete_interview'),
-    )
+    ]

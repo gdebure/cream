@@ -1,11 +1,11 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
 from reports.views import DomainsReportView, DomainReportView, ServiceFamilyReportView, ServiceReportView, ServicesReportView
 from reports.views import DomainsChartView
 from django.views.generic import TemplateView
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     ##################################
     # Reports
     url(r'^$',DomainsChartView.as_view(), name='domains_report'),
@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     url(r'^service/(?P<pk>\d+)/$', ServiceReportView.as_view(), name='service_report'),
     url(r'^services/$', ServicesReportView.as_view(), name='service_report'),
     ##################################
-    )
+    ]
     

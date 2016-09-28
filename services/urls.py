@@ -1,16 +1,10 @@
-from django.conf.urls import url, patterns
-from django.contrib.auth.decorators import permission_required, login_required
-from django.core.urlresolvers import reverse_lazy
-
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-from services.models import Domain, ServiceFamily, Service
-from services.forms import DomainForm, ServiceFamilyForm, ServiceForm
+from django.conf.urls import url
 
 from services.views import DomainListView, DomainDetailView, DomainCreateView, DomainUpdateView, DomainDeleteView
 from services.views import ServiceFamilyListView, ServiceFamilyDetailView, ServiceFamilyCreateView, AddServiceFamilyFromDomainView, ServiceFamilyUpdateView, ServiceFamilyDeleteView
 from services.views import ServiceListView, ServiceDetailView, ServiceCreateView, AddServiceFromServiceFamilyView, ServiceUpdateView, ServiceDeleteView
 
-urlpatterns = patterns('',
+urlpatterns = [
     ##################################
     # Domains 
     url(r'^domains/$', DomainListView.as_view(), name='domains_list'),
@@ -41,4 +35,4 @@ urlpatterns = patterns('',
     url(r'^services/(?P<pk>\d+)/delete/$', ServiceDeleteView.as_view(), name='delete_service'),
     ##################################
     
-)
+]

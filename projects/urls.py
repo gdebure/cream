@@ -1,4 +1,4 @@
-from django.conf.urls import patterns,url
+from django.conf.urls import url
 from django.contrib.auth.decorators import permission_required, login_required
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
@@ -9,7 +9,7 @@ from projects.views import DeliverableListView, DeliverableDetailView, Deliverab
 from projects.views import AddDeliverableVolumeView, DeliverableVolumeUpdateView
 from qualifications.views import AddPositionFromProjectView
 
-urlpatterns = patterns('',
+urlpatterns = [
     ##################################
     # Projects 
     url(r'^projects/$', ProjectListView.as_view(), name='projects_list'),
@@ -46,4 +46,4 @@ urlpatterns = patterns('',
     #url(r'^deliverablevolumes/(?P<pk>\d+)/delete/$', permission_required('projects.delete_deliverablevolume')(DeleteDeliverableVolumeView.as_view()), name='delete_deliverablevolume'),
     ##################################
 
-)
+]

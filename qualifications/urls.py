@@ -1,4 +1,4 @@
-from django.conf.urls import patterns,url
+from django.conf.urls import url
 
 from qualifications.views import SkillCategoriesListView, SkillCategoryDetailView, SkillCategoryCreateView, SkillCategoryUpdateView, SkillCategoryDeleteView
 from qualifications.views import SkillsListView, SkillDetailView, SkillCreateView, SkillUpdateView, SkillDeleteView, AddSkillFromSkillCategoryView
@@ -11,7 +11,7 @@ from qualifications.views import EmployeePositionsListView, EmployeePositionDeta
 from recruitment.views import AddApplicantFromPositionView
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     
     ##################################
     # Skill Categories 
@@ -84,4 +84,4 @@ urlpatterns = patterns('',
     url(r'^employee_positions/(?P<pk>\d+)/delete/$', EmployeePositionDeleteView.as_view(), name='delete_employeeposition' ),
     ##################################
     
-)
+]

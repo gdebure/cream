@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 
 from django.contrib.auth.decorators import login_required
 
@@ -8,7 +8,7 @@ from .views import HomeView, DashboardView
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Base URL displays home page
     # url(r'^$', login_required()(HomeView.as_view()),name="home"),
     url(r'^$', DashboardView.as_view()),
@@ -26,4 +26,4 @@ urlpatterns = patterns('',
     url(r'^users/',include('users.urls')),
     url(r'^qualifications/',include('qualifications.urls')),
     url(r'^recruitment/',include('recruitment.urls')),
-)
+]
