@@ -3,18 +3,18 @@
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
-SECRET_KEY = 'Ee7vGi-ING6n02gkcJ-QLHg6vFw'
+# https://docs.djangoproject.com/en/1.10/ref/settings/#secret-key
+SECRET_KEY = 'Som35uper$ecretKey'
 
 
 
 # Set your database settings here. Please refer to 
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 # for details
 DATABASES = {
     'default': {
@@ -40,7 +40,7 @@ TIME_ZONE = 'Europe/Paris'
 
 # The absolute path to the directory where collectstatic will collect 
 # static files for deployment. Please refer to 
-# https://docs.djangoproject.com/en/1.7/ref/settings/#static-root
+# https://docs.djangoproject.com/en/1.10/ref/settings/#static-root
 # for details
 STATIC_ROOT = '/server/cream/static'
 
@@ -54,7 +54,7 @@ MEDIA_ROOT = '/server/cream/media/'
 MEDIA_URL = '/server/cream/media/'
 
 # Email settings. Please refer to 
-# https://docs.djangoproject.com/en/1.7/topics/email/
+# https://docs.djangoproject.com/en/1.10/topics/email/
 # for details
 EMAIL_HOST = 'your.smtp.hostname.or.ip'
 EMAIL_PORT= 5225
@@ -64,7 +64,7 @@ EMAIL_SUBJECT_PREFIX = '[CREAM]'
 
 # Currency settings. If your currency symbol in non ascii, 
 # remember to add an encoding statement at the beginning of this file
-CURRENCY_SYMBOL = u"\u20AC" # This is the utf-8 code for the € symbol
+CURRENCY_SYMBOL = u"\u20AC" # This is the utf-8 code for the euro symbol
 THOUSAND_SEPARATOR = ','
 DECIMAL_SEPARATOR = '.'
 
